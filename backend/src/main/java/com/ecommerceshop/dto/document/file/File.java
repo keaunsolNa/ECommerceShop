@@ -4,7 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.*;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
@@ -12,11 +15,10 @@ import java.util.Date;
 @Setter
 @ToString
 @Document(indexName = "file")
-@Setting(shards = 1, replicas = 1)
 public class File {
 
     @Id
-    private String od;
+    private String id;
     @Field(type = FieldType.Keyword)
     private String userId;
     @Field(type = FieldType.Keyword)
