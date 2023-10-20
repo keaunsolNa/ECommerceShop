@@ -19,11 +19,38 @@ public class EmpBaseController {
 
     @PostMapping()
     public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBase empBase) {
+
+        empBase.setCreateDate(System.currentTimeMillis());
+        empBase.setLastLogin(System.currentTimeMillis());
+
         return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBase));
     }
 
     @GetMapping()
-    public ResponseEntity<Iterable<EmpBase>> empBaseDocumentSearch() {
-        return ResponseEntity.ok(empBaseService.empBaseDocumentSearch());
+    public ResponseEntity<Iterable<EmpBase>> empBaseDocumentListSearch() {
+        return ResponseEntity.ok(empBaseService.empBaseDocumentListSearch());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EmpBase> empBaseDocumentSearchById(@PathVariable String id) {
+
+        try {
+            return ResponseEntity.ok(empBaseService.empBaseDocumentSearchById(id));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<EmpBase> empBaseDocumentDeleteById(@PathVariable String id) {
+
+        try {
+            empBaseService.empBaseDocumentDeleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return ResponseEntity.ok().build();
+    }
+
 }

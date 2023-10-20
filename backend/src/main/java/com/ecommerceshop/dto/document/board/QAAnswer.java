@@ -9,8 +9,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @ToString
@@ -28,6 +26,6 @@ public class QAAnswer {
     private String name;
     private String detail;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private Date createDate;
+    private Long createDate;
 
 }

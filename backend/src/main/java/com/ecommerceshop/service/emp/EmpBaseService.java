@@ -27,10 +27,30 @@ public class EmpBaseService {
         return this.empBaseRepository.save(empBase);
     }
 
-    public Iterable<EmpBase> empBaseDocumentSearch() {
+    public Iterable<EmpBase> empBaseDocumentListSearch() {
 
         NativeQuery query = commonModule.makeMatchAllQuery();
         SearchHits<EmpBase> searchHits = elasticsearchOperations.search(query, EmpBase.class);
         return commonModule.getListFromSearchHit(searchHits);
+    }
+
+    public EmpBase empBaseDocumentSearchById(String id) throws Exception {
+
+        return empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+    }
+
+    public EmpBase empBaseDocumentDeleteById(String id) throws Exception {
+
+        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception(("해당하는 문서가 없습니다.")));
+        empBase.setState("RED");
+        empBaseRepository.save(empBase);
+
+        return empBase;
+    }
+
+    public EmpBase empBaseDocumentSearchForTest() {
+        NativeQuery query = commonModule.makeMatchAllQuery();
+        SearchHits<EmpBase> searchHits = elasticsearchOperations.search(query, EmpBase.class);
+        return searchHits.getSearchHit(0).getContent();
     }
 }
