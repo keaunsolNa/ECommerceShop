@@ -1,6 +1,10 @@
 package com.ecommerceshop.controller.emp;
 
 import com.ecommerceshop.dto.document.emp.EmpBase;
+import com.ecommerceshop.dto.document.emp.EmpSI;
+import com.ecommerceshop.dto.integrated.emp.EmpBaseDTO;
+import com.ecommerceshop.module.security.SHA512;
+import com.ecommerceshop.module.security.Salt;
 import com.ecommerceshop.service.emp.EmpBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +22,22 @@ public class EmpBaseController {
     }
 
     @PostMapping()
-    public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBase empBase) {
+    public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBaseDTO empBaseDTO) {
 
-        empBase.setCreateDate(System.currentTimeMillis());
+        EmpBase empBase = new EmpBase();
+        empBase.set_id(empBaseDTO.getId());
+        empBase.setName(empBaseDTO.getName());
+        empBase.setState(empBaseDTO.getState());
         empBase.setLastLogin(System.currentTimeMillis());
+        empBase.setCreateDate(System.currentTimeMillis());
 
-        return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBase));
+        EmpSI empSI = new EmpSI();
+        empSI.set_id(empBaseDTO.getEmpId());
+        empSI.setPassword(empBaseDTO.getPassword());
+        empSI.setCallNumber(empBaseDTO.getCallNumber());
+        empSI.setPhoneNumber(empBaseDTO.getPhoneNumber());
+
+        return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBase, empSI));
     }
 
     @GetMapping()

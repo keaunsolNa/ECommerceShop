@@ -17,7 +17,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class EmpBase {
 
     @Id
-    private String id;
+    private String _id;
     @Field(type = FieldType.Keyword)
     private String state;
     private String name;

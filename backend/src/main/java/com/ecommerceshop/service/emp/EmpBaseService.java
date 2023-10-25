@@ -1,7 +1,9 @@
 package com.ecommerceshop.service.emp;
 
 import com.ecommerceshop.dto.document.emp.EmpBase;
+import com.ecommerceshop.dto.document.emp.EmpSI;
 import com.ecommerceshop.module.CommonModule;
+import com.ecommerceshop.repository.emp.EMPSIRepository;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
@@ -13,17 +15,21 @@ public class EmpBaseService {
 
     private final ElasticsearchOperations elasticsearchOperations;
     private final EmpBaseRepository empBaseRepository;
+    private final EMPSIRepository empsiRepository;
     private final CommonModule commonModule;
 
 
-    public EmpBaseService(EmpBaseRepository empBaseRepository, CommonModule commonModule,
+    public EmpBaseService(EmpBaseRepository empBaseRepository, EMPSIRepository empsiRepository, CommonModule commonModule,
                           ElasticsearchOperations elasticsearchOperations) {
         this.empBaseRepository = empBaseRepository;
+        this.empsiRepository = empsiRepository;
         this.commonModule = commonModule;
         this.elasticsearchOperations = elasticsearchOperations;
     }
 
-    public EmpBase empBaseDocumentCreate(EmpBase empBase) {
+    public EmpBase empBaseDocumentCreate(EmpBase empBase, EmpSI empSI) {
+
+        empsiRepository.save(empSI);
         return this.empBaseRepository.save(empBase);
     }
 
