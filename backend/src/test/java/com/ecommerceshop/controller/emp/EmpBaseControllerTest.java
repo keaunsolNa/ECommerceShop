@@ -44,7 +44,7 @@ public class EmpBaseControllerTest {
 
         EmpBase empBase = empBaseServiceTemp.empBaseDocumentSearchForTest();
 
-        mockMvc.perform(get("/empBase/" + empBase.getId())
+        mockMvc.perform(get("/empBase/" + empBase.get_id())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -56,7 +56,7 @@ public class EmpBaseControllerTest {
 
         EmpBase empBase = empBaseServiceTemp.empBaseDocumentSearchForTest();
 
-       mockMvc.perform(patch("/empBase/" + empBase.getId())
+       mockMvc.perform(patch("/empBase/" + empBase.get_id())
                .contentType(MediaType.APPLICATION_JSON))
                .andExpect(status().isOk())
                .andReturn();
