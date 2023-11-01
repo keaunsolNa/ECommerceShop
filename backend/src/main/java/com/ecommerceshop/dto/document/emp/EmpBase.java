@@ -17,10 +17,12 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class EmpBase {
 
     @Id
-    private String _id;
+    private String id;
     @Field(type = FieldType.Keyword)
     private String state;
     private String name;
+    @Field(type = FieldType.Keyword)
+    private String role;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
     private Long lastLogin;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)

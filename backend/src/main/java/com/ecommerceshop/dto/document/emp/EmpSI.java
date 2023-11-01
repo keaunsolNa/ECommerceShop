@@ -15,9 +15,11 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class EmpSI {
 
     @Id
-    private String _id;
+    private String id;
     private String phoneNumber;
     private String callNumber;
     @Field(type = FieldType.Keyword)
     private String password;
+    @Field(type = FieldType.Keyword)
+    private String salt;
 }

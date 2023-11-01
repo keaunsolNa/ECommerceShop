@@ -6,7 +6,7 @@ import java.util.Base64;
 
 public class Salt {
 
-    public static String Salt() {
+    public static String makeSalt() {
 
         String salt = "";
 

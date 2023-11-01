@@ -8,6 +8,7 @@ public class EmpBaseDTO {
     private String id;
     private String state;
     private String name;
+    private String role;
     private Long lastLogin;
     private Long createDate;
     private String empId;

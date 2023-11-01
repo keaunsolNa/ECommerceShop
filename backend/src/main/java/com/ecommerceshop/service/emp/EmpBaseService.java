@@ -1,14 +1,22 @@
 package com.ecommerceshop.service.emp;
 
+import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.repository.emp.EMPSIRepository;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
+import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EmpBaseService {
@@ -27,10 +35,26 @@ public class EmpBaseService {
         this.elasticsearchOperations = elasticsearchOperations;
     }
 
-    public EmpBase empBaseDocumentCreate(EmpBase empBase, EmpSI empSI) {
+    public EmpBase empBaseDocumentCreate(EmpBase empBase, EmpSI empSI, List<UserRole> userRoleList) throws JsonProcessingException {
 
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        List<IndexQuery> userRoleCreateQueryList = new ArrayList<>();
+        IndexQuery userRoleIndexQuery = new IndexQuery();
+        for(UserRole userRole : userRoleList) {
+            userRoleIndexQuery.setSource(objectMapper.writeValueAsString(userRole));
+            userRoleCreateQueryList.add(userRoleIndexQuery);
+        }
+
+        IndexCoordinates userRoleIndexCoordinates = IndexCoordinates.of("user-role");
+
+        empBaseRepository.save(empBase);
         empsiRepository.save(empSI);
-        return this.empBaseRepository.save(empBase);
+
+        elasticsearchOperations.bulkIndex(userRoleCreateQueryList, userRoleIndexCoordinates);
+        elasticsearchOperations.indexOps(userRoleIndexCoordinates).refresh();
+
+        return empBase;
     }
 
     public Iterable<EmpBase> empBaseDocumentListSearch() {

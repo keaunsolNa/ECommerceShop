@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './layouts/Layout';
 import Main from './pages/Main';
 import Error from './pages/commons/Error';
-import "./App.css";
+import './App.css';
 
 function App() {
   return (

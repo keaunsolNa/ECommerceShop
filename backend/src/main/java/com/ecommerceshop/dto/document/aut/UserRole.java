@@ -18,10 +18,12 @@ public class UserRole {
     @Id
     private String id;
     @Field(type = FieldType.Keyword)
+    private String empId;
+    @Field(type = FieldType.Keyword)
     private String userId;
     @Field(type = FieldType.Keyword)
     private String ssoId;
     @Field(type = FieldType.Keyword)
-    private String authorityCode;
+    private Integer authorityCode;
 
 }

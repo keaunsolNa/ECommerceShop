@@ -22,5 +22,7 @@ public class MemberSI {
     private String cellNumber;
     @Field(type = FieldType.Keyword)
     private String password;
+    @Field(type = FieldType.Keyword)
+    private String salt;
     private String address;
 }
