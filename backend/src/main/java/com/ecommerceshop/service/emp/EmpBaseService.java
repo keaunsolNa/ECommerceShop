@@ -4,8 +4,8 @@ import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
 import com.ecommerceshop.module.CommonModule;
-import com.ecommerceshop.repository.emp.EMPSIRepository;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
+import com.ecommerceshop.repository.emp.EmpSIRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
@@ -23,11 +23,11 @@ public class EmpBaseService {
 
     private final ElasticsearchOperations elasticsearchOperations;
     private final EmpBaseRepository empBaseRepository;
-    private final EMPSIRepository empsiRepository;
+    private final EmpSIRepository empsiRepository;
     private final CommonModule commonModule;
 
 
-    public EmpBaseService(EmpBaseRepository empBaseRepository, EMPSIRepository empsiRepository, CommonModule commonModule,
+    public EmpBaseService(EmpBaseRepository empBaseRepository, EmpSIRepository empsiRepository, CommonModule commonModule,
                           ElasticsearchOperations elasticsearchOperations) {
         this.empBaseRepository = empBaseRepository;
         this.empsiRepository = empsiRepository;

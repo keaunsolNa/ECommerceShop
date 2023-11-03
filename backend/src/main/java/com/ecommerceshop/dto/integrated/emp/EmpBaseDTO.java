@@ -11,7 +11,6 @@ public class EmpBaseDTO {
     private String role;
     private Long lastLogin;
     private Long createDate;
-    private String empId;
     private String phoneNumber;
     private String callNumber;
     private String password;

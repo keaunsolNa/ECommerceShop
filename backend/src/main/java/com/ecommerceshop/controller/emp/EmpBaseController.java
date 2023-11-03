@@ -38,9 +38,10 @@ public class EmpBaseController {
         empBase.setCreateDate(System.currentTimeMillis());
 
         EmpSI empSI = new EmpSI();
-        empSI.setId(empBaseDTO.getEmpId());
-        empSI.setSalt(Salt.makeSalt());
-        empSI.setPassword(SHA512.SHA512(empSI.getPassword(), empSI.getSalt()));
+        empSI.setId(empBaseDTO.getId());
+        String salt = Salt.makeSalt();
+        empSI.setSalt(salt);
+        empSI.setPassword(SHA512.SHA512(empBaseDTO.getPassword(), salt));
         empSI.setCallNumber(empBaseDTO.getCallNumber());
         empSI.setPhoneNumber(empBaseDTO.getPhoneNumber());
 
@@ -51,32 +52,33 @@ public class EmpBaseController {
             case "CEO" :
 
                 UserRole userRole1 = new UserRole();
-                userRole1.setEmpId(empBaseDTO.getEmpId());
+                userRole1.setEmpId(empBaseDTO.getId());
                 userRole1.setAuthorityCode(40);
                 userRoleList.add(userRole1);
 
             case "재정관리자" :
 
                 UserRole userRole2 = new UserRole();
-                userRole2.setEmpId(empBaseDTO.getEmpId());
+                userRole2.setEmpId(empBaseDTO.getId());
                 userRole2.setAuthorityCode(30);
                 userRoleList.add(userRole2);
 
             case "인사관리자" :
 
                 UserRole userRole3 = new UserRole();
-                userRole3.setEmpId(empBaseDTO.getEmpId());
+                userRole3.setEmpId(empBaseDTO.getId());
                 userRole3.setAuthorityCode(20);
                 userRoleList.add(userRole3);
 
             case "일반관리자" :
 
                 UserRole userRole4 = new UserRole();
-                userRole4.setEmpId(empBaseDTO.getEmpId());
+                userRole4.setEmpId(empBaseDTO.getId());
                 userRole4.setAuthorityCode(10);
                 userRoleList.add(userRole4);
         }
 
+        System.out.println(userRoleList);
         try {
             return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBase, empSI, userRoleList));
         } catch (JsonProcessingException e) {
@@ -86,6 +88,7 @@ public class EmpBaseController {
 
     @GetMapping()
     public ResponseEntity<Iterable<EmpBase>> empBaseDocumentListSearch() {
+        System.out.println("GET");
         return ResponseEntity.ok(empBaseService.empBaseDocumentListSearch());
     }
 

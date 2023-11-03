@@ -5,5 +5,5 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EMPSIRepository extends ElasticsearchRepository<EmpSI, String> {
+public interface EmpSIRepository extends ElasticsearchRepository<EmpSI, String> {
 }

@@ -1,16 +1,15 @@
 package com.ecommerceshop.module.test;
 
 import com.ecommerceshop.module.security.SHA512;
-import com.ecommerceshop.module.security.Salt;
 
 public class TestApplication {
 
     public static void main(String[] args) {
 
-        String generatedSalt = Salt.makeSalt();
+        String generatedSalt = "Nf+YcOaSF7Ca8uzx5ZORYg==";
         System.out.println(generatedSalt);
 
-        String encryptPwd = SHA512.SHA512("password", generatedSalt);
+        String encryptPwd = SHA512.SHA512("knasolsdkm", "Nf+YcOaSF7Ca8uzx5ZORYg==");
         System.out.println(encryptPwd);
 
         System.out.println(encryptPwd.equals(generatedSalt));

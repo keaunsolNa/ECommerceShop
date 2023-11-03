@@ -1,6 +1,7 @@
 package com.ecommerceshop.module;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
+import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Sort;
@@ -130,6 +131,10 @@ public class CommonModule {
                 EmpBase empBase = (EmpBase) searchHit.getContent();
                 resultSet.add(empBase);
 
+            } else if(searchHit.getIndex().equals("user-role")) {
+
+                UserRole userRole = (UserRole) searchHit.getContent();
+                resultSet.add(userRole);
             }
 
         }
