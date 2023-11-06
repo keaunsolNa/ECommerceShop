@@ -1,4 +1,4 @@
-package com.ecommerceshop.config;
+package com.ecommerceshop.component.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "com.ecommerceshop.repository.*")
-@ComponentScan(basePackages = { "com.ecommerceshop.service.*" })
+@ComponentScan(basePackages = { "com.ecommerceshop.*" })
 public class ElasticsearchBaseConfig extends ElasticsearchConfiguration {
 
     @Value("${elasticsearch.host}")

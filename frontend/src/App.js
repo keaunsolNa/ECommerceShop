@@ -3,6 +3,7 @@ import Layout from './layouts/Layout';
 import Main from './pages/Main';
 import Error from './pages/commons/Error';
 import './App.css';
+import Login from './pages/commons/login';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
             </Route>
           </Route>
 
-          {/*<Route path="login" element={ <Login/> }/>*/}
+          <Route path="login" element={ <Login/> }/>
 
         </Route>
 

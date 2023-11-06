@@ -28,7 +28,6 @@ public class EmpBaseController {
 
     @PostMapping()
     public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBaseDTO empBaseDTO) {
-
         EmpBase empBase = new EmpBase();
         empBase.setId(empBaseDTO.getId());
         empBase.setName(empBaseDTO.getName());
@@ -77,8 +76,6 @@ public class EmpBaseController {
                 userRole4.setAuthorityCode(10);
                 userRoleList.add(userRole4);
         }
-
-        System.out.println(userRoleList);
         try {
             return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBase, empSI, userRoleList));
         } catch (JsonProcessingException e) {

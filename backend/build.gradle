@@ -25,19 +25,14 @@ repositories {
 
 dependencies {
 
+	// Spring
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 	// Webflux
 	compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-
-	// rest documentation
-	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-	implementation 'org.fusesource.jansi:jansi:2.4.0'
-	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 
 	// Elasticsearch
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'

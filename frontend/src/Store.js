@@ -1,4 +1,4 @@
-import rootReducer from './modules/reducer/index';
+import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { applyMiddleware, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';

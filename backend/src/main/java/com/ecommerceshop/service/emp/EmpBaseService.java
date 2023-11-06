@@ -26,7 +26,6 @@ public class EmpBaseService {
     private final EmpSIRepository empsiRepository;
     private final CommonModule commonModule;
 
-
     public EmpBaseService(EmpBaseRepository empBaseRepository, EmpSIRepository empsiRepository, CommonModule commonModule,
                           ElasticsearchOperations elasticsearchOperations) {
         this.empBaseRepository = empBaseRepository;
