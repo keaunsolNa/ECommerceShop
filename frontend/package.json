@@ -1,41 +1,16 @@
 {
-  "name": "untitled",
-  "version": "0.1.0",
+  "name": "mantis-material-react",
+  "version": "2.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.59",
-    "@types/react": "^18.2.29",
-    "@types/react-dom": "^18.2.14",
-    "axios": "^1.6.0",
-    "http-proxy-middleware": "^2.0.6",
-    "jwt-decode": "^4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.1.3",
-    "react-router-dom": "^6.17.0",
-    "react-scripts": "5.0.1",
-    "redux": "^4.2.1",
-    "redux-actions": "^3.0.0",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.2",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
     ]
   },
   "browserslist": {
@@ -49,6 +24,88 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "resolutions": {
+    "@svgr/webpack": "6.4.0"
+  },
+  "dependencies": {
+    "@ant-design/colors": "^7.0.0",
+    "@ant-design/icons": "^5.2.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@ckeditor/ckeditor5-build-classic": "^40.0.0",
+    "@ckeditor/ckeditor5-react": "^6.1.0",
+    "@emotion/cache": "^11.10.7",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/base": "^5.0.0-alpha.126",
+    "@mui/icons-material": "^5.14.15",
+    "@mui/lab": "^5.0.0-alpha.127",
+    "@mui/material": "^5.12.1",
+    "@mui/x-date-pickers": "^6.11.1",
+    "@mui/x-tree-view": "^6.0.0-beta.0",
+    "@react-pdf/renderer": "^3.1.12",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@svgr/webpack": "^7.0.0",
+    "apexcharts": "^3.43.0",
+    "axios": "^1.3.5",
+    "base-64": "^1.0.0",
+    "buffer": "^6.0.3",
+    "chance": "^1.1.11",
+    "crypto-browserify": "^3.12.0",
+    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.9",
+    "formik": "^2.2.9",
+    "framer-motion": "^10.12.4",
+    "http-proxy-middleware": "^2.0.6",
+    "immutability-helper": "^3.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "match-sorter": "^6.3.1",
+    "notistack": "^3.0.1",
+    "process": "^0.11.10",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-app-rewired": "^2.2.1",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-csv": "^2.2.2",
+    "react-device-detect": "^2.2.3",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dnd-touch-backend": "^16.0.1",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-intl": "^6.4.1",
+    "react-number-format": "^5.3.1",
+    "react-redux": "^8.0.5",
+    "react-router": "^6.10.0",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "^5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "react-table": "^7.8.0",
+    "react-table-sticky": "^1.1.3",
+    "react-timer-hook": "^3.0.5",
+    "react-webcam": "^7.1.1",
+    "react-window": "^1.8.9",
+    "react18-input-otp": "^1.1.3",
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
+    "simplebar": "^6.2.5",
+    "simplebar-react": "^3.2.4",
+    "stream-browserify": "^3.0.0",
+    "styled-components": "^6.1.0",
+    "stylis-plugin-rtl": "^2.1.1",
+    "util": "^0.12.5",
+    "web-vitals": "^3.3.1",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

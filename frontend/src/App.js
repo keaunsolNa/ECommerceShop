@@ -1,35 +1,32 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './layouts/Layout';
-import Main from './pages/Main';
-import Error from './pages/commons/Error';
-import './App.css';
-import Login from './pages/commons/login';
+// project import
+import Routes from 'routes';
+import ThemeCustomization from 'themes';
+import Locales from 'components/Locales';
+// import RTLLayout from 'components/RTLLayout';
+import ScrollTop from 'components/ScrollTop';
+import Snackbar from 'components/@extended/Snackbar';
+import Notistack from 'components/third-party/Notistack';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={ <Layout/> }>
-          <Route index element={ <Main/> }/>
+// auth-provider
+import { JWTProvider as AuthProvider } from 'contexts/JWTContext';
 
-          <Route path="menu" >
-            {/*<Route index element={ <Menus/> }/>*/}
-            {/*<Route path=":id" element={ <MenuDetail/> }/>*/}
-            {/*<Route path="regist" element={ <MenuRegist/> }/>*/}
-            {/*<Route path="registNI" element={ <MenuRegistNI/>}/>*/}
-            <Route path="modify" >
-              {/*<Route path=":id" element={ <MenuModify/> }/>*/}
-            </Route>
-          </Route>
+// ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
-          <Route path="login" element={ <Login/> }/>
-
-        </Route>
-
-        <Route path="*" element={ <Error/> }/>
-      </Routes>
-    </BrowserRouter>
-  );
-}
+const App = () => (
+  <ThemeCustomization>
+    <Locales>
+      <ScrollTop>
+        <AuthProvider>
+          <>
+            <Notistack>
+              <Routes />
+              <Snackbar />
+            </Notistack>
+          </>
+        </AuthProvider>
+      </ScrollTop>
+    </Locales>
+  </ThemeCustomization>
+);
 
 export default App;
