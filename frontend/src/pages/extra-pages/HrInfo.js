@@ -8,7 +8,7 @@ import { Box, Button, Tab, Tabs } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // assets
-import HrInfoMaster from 'sections/extra-pages/HrInfoMaster';
+import HrInfoMaster from 'sections/extra-pages/hrinfo/HrInfoMaster';
 import { response } from './data';
 import axios from 'axios';
 
@@ -18,19 +18,11 @@ const HrInfo = () => {
 
   let selectedTab = 0;
   switch (pathname) {
-    case '/hrinfo/appointment':
-      selectedTab = 1;
-      break;
-    case '/hrinfo/personal':
-      selectedTab = 2;
-      break;
+
     case '/hrinfo/family':
       selectedTab = 3;
       break;
-    case '/hrinfo/address':
-      selectedTab = 4;
-      break;
-    case '/hrinfo/basic':
+
     default:
       selectedTab = 0;
   }

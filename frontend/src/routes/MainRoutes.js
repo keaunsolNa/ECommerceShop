@@ -25,32 +25,14 @@ const OrganizationInfoBasic = Loadable(lazy(() => import('sections/extra-pages/o
 const OrganizationInfoHistory = Loadable(lazy(() => import('sections/extra-pages/organizationinfo/OrganizationInfoHistory')));
 const OrganizationInfoAddressChange = Loadable(lazy(() => import('sections/extra-pages/organizationinfo/OrganizationInfoAddressChange')));
 const HrInfoBasic = Loadable(lazy(() => import('sections/extra-pages/hrinfo/HrInfoBasic')));
-const HrInfoAppointment = Loadable(lazy(() => import('sections/extra-pages/hrinfo/HrInfoAppointment')));
-const HrInfoPersonal = Loadable(lazy(() => import('sections/extra-pages/hrinfo/HrInfoPersonal')));
 const HrInfoFamily = Loadable(lazy(() => import('sections/extra-pages/hrinfo/HrInfoFamily')));
-const HrInfoAddress = Loadable(lazy(() => import('sections/extra-pages/hrinfo/HrInfoAddress')));
 const WorkStandard = Loadable(lazy(() => import('pages/extra-pages/systeminfo/WorkStandard')));
-
-const VacationAppl = Loadable(lazy(() => import('pages/extra-pages/vacationAppl')));
 
 // pages routing
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
 const MaintenanceError500 = Loadable(lazy(() => import('pages/maintenance/500')));
 const MaintenanceUnderConstruction = Loadable(lazy(() => import('pages/maintenance/under-construction')));
 const MaintenanceComingSoon = Loadable(lazy(() => import('pages/maintenance/coming-soon')));
-
-// render - sample page
-// const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
-
-// !!매우중요!!
-// path 경로 문구 설정할때 SetupProxy 에 포함된 문구를 앞에다가 두면 안됨. 그럴경우 리퀘스트 요청을 보내버려서 해당페이지가 404오류가남
-// EX) path: 'post' 이렇게 선언할경우 SetupProxy.js에
-// app.use(
-//   createProxyMiddleware('/post', {
-//     target: url,
-//     changeOrigin: true
-//   })
-// ); 부분을 건드리게되어 spring 서버로 요청을 보내게됨. (src -> SetupProxy.js 파일을 보면 알수있음)
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -113,26 +95,10 @@ const MainRoutes = {
               element: <HrInfoBasic />
             },
             {
-              path: 'appointment',
-              element: <HrInfoAppointment />
-            },
-            {
-              path: 'personal',
-              element: <HrInfoPersonal />
-            },
-            {
               path: 'family',
               element: <HrInfoFamily />
-            },
-            {
-              path: 'address',
-              element: <HrInfoAddress />
             }
           ]
-        },
-        {
-          path: 'vacation',
-          element: <VacationAppl />
         },
         {
           path: 'organizationinfo',
