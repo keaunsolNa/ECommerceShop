@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 // material-ui
-import { Button, Grid, TextField, Stack, Tooltip, Box } from '@mui/material';
+import { Box, Button, Grid, Stack, TextField, Tooltip } from '@mui/material';
 
 // third-party
 import { sub } from 'date-fns';

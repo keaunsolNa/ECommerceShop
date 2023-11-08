@@ -7,7 +7,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import {
-  useMediaQuery,
   Box,
   Button,
   Chip,
@@ -21,6 +20,7 @@ import {
   Stack,
   Toolbar,
   Typography,
+  useMediaQuery,
   useScrollTrigger
 } from '@mui/material';
 
@@ -31,7 +31,7 @@ import AnimateButton from 'components/@extended/AnimateButton';
 import Logo from 'components/logo';
 
 // assets
-import { MenuOutlined, LineOutlined } from '@ant-design/icons';
+import { LineOutlined, MenuOutlined } from '@ant-design/icons';
 
 // ==============================|| COMPONENTS - APP BAR ||============================== //
 

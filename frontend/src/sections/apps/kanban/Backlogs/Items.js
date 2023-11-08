@@ -16,7 +16,7 @@ import IconButton from 'components/@extended/IconButton';
 
 import { ThemeMode } from 'config';
 import { useDispatch, useSelector } from 'store';
-import { selectItem, deleteItem } from 'store/reducers/kanban';
+import { deleteItem, selectItem } from 'store/reducers/kanban';
 import { openSnackbar } from 'store/reducers/snackbar';
 
 // assets

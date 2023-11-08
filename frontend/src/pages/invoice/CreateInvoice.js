@@ -43,11 +43,11 @@ import { useDispatch, useSelector } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
 import {
   customerPopup,
-  toggleCustomerPopup,
-  selectCountry,
   getInvoiceInsert,
+  getInvoiceList,
   reviewInvoicePopup,
-  getInvoiceList
+  selectCountry,
+  toggleCustomerPopup
 } from 'store/reducers/invoice';
 
 // assets

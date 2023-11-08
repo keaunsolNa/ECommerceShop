@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useCallback, useMemo } from 'react';
-import { useTable, useSortBy, useBlockLayout } from 'react-table';
+import { useBlockLayout, useSortBy, useTable } from 'react-table';
 import { FixedSizeList } from 'react-window';
 
 // material-ui

@@ -15,19 +15,19 @@ import { openSnackbar } from 'store/reducers/snackbar';
 
 // third-party
 import Slider from 'react-slick';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 // assets
 import {
-  ZoomInOutlined,
-  ZoomOutOutlined,
-  RedoOutlined,
+  DownOutlined,
   HeartFilled,
   HeartOutlined,
-  DownOutlined,
-  UpOutlined,
+  LeftOutlined,
+  RedoOutlined,
   RightOutlined,
-  LeftOutlined
+  UpOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined
 } from '@ant-design/icons';
 
 import prod1 from 'assets/images/e-commerce/prod-1.png';

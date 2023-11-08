@@ -11,7 +11,7 @@ import SortOptions from 'sections/apps/e-commerce/products/SortOptions';
 import MainCard from 'components/MainCard';
 
 // assets
-import { SearchOutlined, DownOutlined, FilterOutlined } from '@ant-design/icons';
+import { DownOutlined, FilterOutlined, SearchOutlined } from '@ant-design/icons';
 
 const ProductsHeader = ({ filter, handleDrawerOpen, setFilter }) => {
   const theme = useTheme();

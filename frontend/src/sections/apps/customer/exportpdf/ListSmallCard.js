@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 
 // third-party
-import { Page, View, Document, StyleSheet, Image, Text, Link } from '@react-pdf/renderer';
+import { Document, Image, Link, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 
 //asset
 import LinkIcon from 'assets/images/icons/link.png';

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Divider, FormLabel, Grid, TextField, Menu, MenuItem, Stack, Typography } from '@mui/material';
+import { Box, Divider, FormLabel, Grid, Menu, MenuItem, Stack, TextField, Typography } from '@mui/material';
 
 // project import
 import ProfileTab from './ProfileTab';
@@ -12,10 +12,10 @@ import MainCard from 'components/MainCard';
 import IconButton from 'components/@extended/IconButton';
 import Avatar from 'components/@extended/Avatar';
 
-import { facebookColor, linkedInColor, twitterColor, ThemeMode } from 'config';
+import { facebookColor, linkedInColor, ThemeMode, twitterColor } from 'config';
 
 // assets
-import { FacebookFilled, LinkedinFilled, MoreOutlined, TwitterSquareFilled, CameraOutlined } from '@ant-design/icons';
+import { CameraOutlined, FacebookFilled, LinkedinFilled, MoreOutlined, TwitterSquareFilled } from '@ant-design/icons';
 
 const avatarImage = require.context('assets/images/users', true);
 

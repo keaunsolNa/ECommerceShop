@@ -10,7 +10,7 @@ import AddColumn from './AddColumn';
 import ItemDetails from './ItemDetails';
 import MainCard from 'components/MainCard';
 import { useDispatch, useSelector } from 'store';
-import { updateColumnOrder, updateColumnItemOrder } from 'store/reducers/kanban';
+import { updateColumnItemOrder, updateColumnOrder } from 'store/reducers/kanban';
 
 const getDragWrapper = () => ({
   p: 2.5,

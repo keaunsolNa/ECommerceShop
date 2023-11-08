@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 
 // third-party
-import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import { Image, StyleSheet, Text, View } from '@react-pdf/renderer';
 import { format } from 'date-fns';
 
 // assets

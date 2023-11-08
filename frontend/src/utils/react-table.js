@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 // material-ui
 import { FormControl, MenuItem, OutlinedInput, Select, Slider, Stack, TextField, Tooltip } from '@mui/material';

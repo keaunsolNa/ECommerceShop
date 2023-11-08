@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 // material-ui
 import { alpha, Table, TableBody, TableCell, TableFooter, TableHead, TableRow, useTheme } from '@mui/material';
 // third-party
-
 // project import
 import ScrollX from 'components/ScrollX';
 import { HeaderSort } from '../third-party/ReactTable';

@@ -15,7 +15,7 @@ import { addProduct } from 'store/reducers/cart';
 import { openSnackbar } from 'store/reducers/snackbar';
 
 // assets
-import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 
 const prodImage = require.context('assets/images/e-commerce', true);
 

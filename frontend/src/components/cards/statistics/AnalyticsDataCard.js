@@ -7,7 +7,7 @@ import { Box, Chip, Stack, Typography } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // assets
-import { RiseOutlined, FallOutlined } from '@ant-design/icons';
+import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 
 // ==============================|| STATISTICS - ECOMMERCE CARD  ||============================== //
 

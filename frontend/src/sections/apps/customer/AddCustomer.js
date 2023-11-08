@@ -12,9 +12,9 @@ import {
   Divider,
   FormControl,
   FormControlLabel,
+  FormHelperText,
   FormLabel,
   Grid,
-  FormHelperText,
   InputLabel,
   ListItemText,
   MenuItem,
@@ -32,7 +32,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 // third-party
 import _ from 'lodash';
 import * as Yup from 'yup';
-import { useFormik, Form, FormikProvider } from 'formik';
+import { Form, FormikProvider, useFormik } from 'formik';
 
 // project imports
 import AlertCustomerDelete from './AlertCustomerDelete';

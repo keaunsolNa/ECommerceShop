@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 // assets
-import { EditOutlined, ProfileOutlined, LogoutOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
+import { EditOutlined, LogoutOutlined, ProfileOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
 
 // ==============================|| HEADER PROFILE - PROFILE TAB ||============================== //
 

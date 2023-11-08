@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // material-ui
-import { Button, Grid, TextField, Stack, useTheme, Tooltip, Box } from '@mui/material';
+import { Box, Button, Grid, Stack, TextField, Tooltip, useTheme } from '@mui/material';
 
 // third-party
 import { Chance } from 'chance';

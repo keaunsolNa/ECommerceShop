@@ -1,7 +1,7 @@
 // third-party
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch as useAppDispatch, useSelector as useAppSelector } from 'react-redux';
-import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 
 // project import
 import reducers from './reducers';

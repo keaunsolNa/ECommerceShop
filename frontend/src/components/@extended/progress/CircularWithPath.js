@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { Box, CircularProgress, Typography, circularProgressClasses } from '@mui/material';
+import { Box, CircularProgress, circularProgressClasses, Typography } from '@mui/material';
 
 // ==============================|| PROGRESS - CIRCULAR PATH ||============================== //
 

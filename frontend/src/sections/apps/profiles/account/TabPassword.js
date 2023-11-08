@@ -23,14 +23,14 @@ import IconButton from 'components/@extended/IconButton';
 
 import { dispatch } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
-import { isNumber, isLowercaseChar, isUppercaseChar, isSpecialChar, minLength } from 'utils/password-validation';
+import { isLowercaseChar, isNumber, isSpecialChar, isUppercaseChar, minLength } from 'utils/password-validation';
 
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // assets
-import { CheckOutlined, EyeOutlined, EyeInvisibleOutlined, LineOutlined } from '@ant-design/icons';
+import { CheckOutlined, EyeInvisibleOutlined, EyeOutlined, LineOutlined } from '@ant-design/icons';
 
 // ==============================|| TAB - PASSWORD CHANGE ||============================== //
 

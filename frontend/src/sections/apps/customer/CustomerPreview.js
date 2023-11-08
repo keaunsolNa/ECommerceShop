@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 // material-ui
 import {
-  useMediaQuery,
   Box,
   Button,
   Chip,
@@ -18,8 +17,9 @@ import {
   ListItemAvatar,
   ListItemText,
   Stack,
+  Tooltip,
   Typography,
-  Tooltip
+  useMediaQuery
 } from '@mui/material';
 
 // third-party

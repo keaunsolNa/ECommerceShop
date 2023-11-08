@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, Grid, Divider, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
 
 // project import
 import useAuth from 'hooks/useAuth';

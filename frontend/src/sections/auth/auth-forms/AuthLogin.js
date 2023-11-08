@@ -8,9 +8,9 @@ import {
   FormControlLabel,
   FormHelperText,
   Grid,
-  Link,
   InputAdornment,
   InputLabel,
+  Link,
   OutlinedInput,
   Stack,
   Typography
@@ -27,7 +27,7 @@ import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 
 // ============================|| JWT - LOGIN ||============================ //
 

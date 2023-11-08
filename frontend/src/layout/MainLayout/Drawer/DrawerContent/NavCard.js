@@ -1,5 +1,5 @@
 // material-ui
-import { Button, Link, CardMedia, Stack, Typography } from '@mui/material';
+import { Button, CardMedia, Link, Stack, Typography } from '@mui/material';
 
 // project import
 import MainCard from 'components/MainCard';

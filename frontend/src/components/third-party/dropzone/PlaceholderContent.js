@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { CameraOutlined } from '@ant-design/icons';
-import { Typography, Stack } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 // assets
 // import UploadCover from 'assets/images/upload/upload.svg';

@@ -9,10 +9,10 @@ import {
   ClickAwayListener,
   Divider,
   List,
-  ListItemButton,
   ListItemAvatar,
-  ListItemText,
+  ListItemButton,
   ListItemSecondaryAction,
+  ListItemText,
   Paper,
   Popper,
   Tooltip,
@@ -28,14 +28,14 @@ import { ThemeMode } from 'config';
 
 // assets
 import {
+  AuditOutlined,
   BellOutlined,
   CheckCircleOutlined,
-  GiftOutlined,
-  MessageOutlined,
-  SettingOutlined,
-  MailOutlined,
   FileTextOutlined,
-  AuditOutlined
+  GiftOutlined,
+  MailOutlined,
+  MessageOutlined,
+  SettingOutlined
 } from '@ant-design/icons';
 
 // sx styles

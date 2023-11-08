@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Tooltip } from '@mui/material';
 
 // third-party
-import { Droppable, Draggable } from '@hello-pangea/dnd';
+import { Draggable, Droppable } from '@hello-pangea/dnd';
 
 // project imports
 import EditColumn from './EditColumn';

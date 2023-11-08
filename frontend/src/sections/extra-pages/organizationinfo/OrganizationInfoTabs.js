@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
 // material-ui
 import { Box, Tab, Tabs } from '@mui/material';
 
 // third-party
-
 // project import
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 // material-ui
-import { Alert, Button, CardContent, Divider, Dialog, Grid, Stack, Typography } from '@mui/material';
+import { Alert, Button, CardContent, Dialog, Divider, Grid, Stack, Typography } from '@mui/material';
 
 // third-party
 import { CopyToClipboard } from 'react-copy-to-clipboard';

@@ -8,6 +8,7 @@ import {
   Checkbox,
   Grid,
   InputAdornment,
+  InputLabel,
   List,
   ListItemAvatar,
   ListItemButton,
@@ -15,8 +16,7 @@ import {
   ListItemText,
   Stack,
   TextField,
-  Typography,
-  InputLabel
+  Typography
 } from '@mui/material';
 
 // project imports
@@ -28,7 +28,7 @@ import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 
 // assets
-import { AppstoreOutlined, LeftOutlined, DeleteOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, DeleteOutlined, LeftOutlined } from '@ant-design/icons';
 
 const prodImage = require.context('assets/images/e-commerce', true);
 

@@ -1,23 +1,21 @@
 import PropTypes from 'prop-types';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { Chip, Table, TableBody, TableCell, TableHead, TableRow, Stack } from '@mui/material';
+import { Chip, Stack, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 // third-party
-import { useTable, useSortBy } from 'react-table';
+import { useSortBy, useTable } from 'react-table';
 import { useSticky } from 'react-table-sticky';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // project import
-import MainCard from 'components/MainCard';
 import ScrollX from 'components/ScrollX';
-import { CSVExport, HeaderSort } from 'components/third-party/ReactTable';
+import { HeaderSort } from 'components/third-party/ReactTable';
 import LinearWithLabel from 'components/@extended/progress/LinearWithLabel';
 
 import { ThemeMode } from 'config';
-import makeData from 'data/react-table';
 
 // ==============================|| REACT TABLE ||============================== //
 

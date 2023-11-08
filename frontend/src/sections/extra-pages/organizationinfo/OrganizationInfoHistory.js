@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
-
 // third-party
-
 // project import
 import VirtualizedInfiniteScrollTable from 'components/win/VirtualizedInfiniteScrollTable';
 import Loader from 'components/Loader';

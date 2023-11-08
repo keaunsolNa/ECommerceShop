@@ -12,7 +12,7 @@ import AddStory from './AddStory';
 import UserStory from './UserStory';
 import ItemDetails from '../Board/ItemDetails';
 import { useDispatch, useSelector } from 'store';
-import { updateStoryOrder, updateStoryItemOrder } from 'store/reducers/kanban';
+import { updateStoryItemOrder, updateStoryOrder } from 'store/reducers/kanban';
 
 // assets
 import { PlusOutlined } from '@ant-design/icons';

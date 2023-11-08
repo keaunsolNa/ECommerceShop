@@ -5,7 +5,7 @@ import { APP_DEFAULT_PATH } from 'config';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { useMediaQuery, Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // assets
 import error500 from 'assets/images/maintenance/Error500.png';

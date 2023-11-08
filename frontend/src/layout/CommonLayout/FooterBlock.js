@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Button, Container, CardMedia, Divider, Stack, Grid, Link, Typography } from '@mui/material';
+import { Box, Button, CardMedia, Container, Divider, Grid, Link, Stack, Typography } from '@mui/material';
 
 // third party
 import { motion } from 'framer-motion';

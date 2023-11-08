@@ -2,14 +2,14 @@ import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Grid, IconButton, Button, Typography, Link } from '@mui/material';
+import { Button, Grid, IconButton, Link, Typography } from '@mui/material';
 
 // project import
 import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 
 // assets
-import { LinkOutlined, MoreOutlined, DownloadOutlined, FileTextOutlined, SettingOutlined } from '@ant-design/icons';
+import { DownloadOutlined, FileTextOutlined, LinkOutlined, MoreOutlined, SettingOutlined } from '@ant-design/icons';
 
 const InvoiceNotificationList = () => {
   const theme = useTheme();

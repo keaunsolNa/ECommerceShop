@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { List, ListItemText, ListItem } from '@mui/material';
+import { List, ListItem, ListItemText } from '@mui/material';
 
 // project import
 import IconButton from 'components/@extended/IconButton';

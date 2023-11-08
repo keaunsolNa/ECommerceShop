@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { useMediaQuery, Button, Stack } from '@mui/material';
+import { Button, Stack, useMediaQuery } from '@mui/material';
 
 // project import
 import useAuth from 'hooks/useAuth';

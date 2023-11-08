@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { useMediaQuery, Box, Chip, Collapse, Divider, Grid, Stack, Switch, Typography } from '@mui/material';
+import { Box, Chip, Collapse, Divider, Grid, Stack, Switch, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import AvatarStatus from './AvatarStatus';

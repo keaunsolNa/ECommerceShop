@@ -12,7 +12,7 @@ import SimpleBar from 'components/third-party/SimpleBar';
 
 import { useDispatch, useSelector } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
-import { selectItem, deleteItem } from 'store/reducers/kanban';
+import { deleteItem, selectItem } from 'store/reducers/kanban';
 
 // assets
 import { CloseOutlined, DeleteFilled } from '@ant-design/icons';

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
-import { useMediaQuery, Button, ButtonGroup, Grid, Stack, Tooltip, Typography } from '@mui/material';
+import { Button, ButtonGroup, Grid, Stack, Tooltip, Typography, useMediaQuery } from '@mui/material';
 
 // third-party
 import { format } from 'date-fns';
@@ -11,7 +11,14 @@ import { format } from 'date-fns';
 import IconButton from 'components/@extended/IconButton';
 
 // assets
-import { AppstoreOutlined, LayoutOutlined, LeftOutlined, OrderedListOutlined, PicCenterOutlined, RightOutlined } from '@ant-design/icons';
+import {
+  AppstoreOutlined,
+  LayoutOutlined,
+  LeftOutlined,
+  OrderedListOutlined,
+  PicCenterOutlined,
+  RightOutlined
+} from '@ant-design/icons';
 
 // constant
 const viewOptions = [

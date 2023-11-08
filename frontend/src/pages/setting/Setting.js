@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { Grid, Stack, Typography, Button } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 // project import
-import useAuth from 'hooks/useAuth';
 import AuthWrapper from 'sections/auth/AuthWrapper';
 import OrganizationSetting from 'sections/setting/OrganizationSetting';
-import AnimateButton from 'components/@extended/AnimateButton';
 
 // ================================|| LOGIN ||================================ //
 

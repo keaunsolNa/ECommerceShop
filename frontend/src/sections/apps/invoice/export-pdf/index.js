@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // third-party
-import { Page, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, StyleSheet, View } from '@react-pdf/renderer';
 
 // project import
 import Header from './Header';

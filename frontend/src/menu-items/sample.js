@@ -1,15 +1,15 @@
 import {
-  SearchOutlined,
-  CameraOutlined,
-  FileTextOutlined,
-  TableOutlined,
-  FormOutlined,
-  ClusterOutlined,
-  UserOutlined,
   ApartmentOutlined,
-  ControlOutlined,
   AreaChartOutlined,
-  SmileOutlined
+  CameraOutlined,
+  ClusterOutlined,
+  ControlOutlined,
+  FileTextOutlined,
+  FormOutlined,
+  SearchOutlined,
+  SmileOutlined,
+  TableOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 
 //화면 왼쪽 메뉴에서 나타나는 아이콘들을 설정해준것.

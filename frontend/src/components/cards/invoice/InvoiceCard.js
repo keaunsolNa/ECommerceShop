@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, Grid, Stack, Typography } from '@mui/material';
 
 // assets
-import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 // ==============================|| INVOICE - CARD  ||============================== //
 

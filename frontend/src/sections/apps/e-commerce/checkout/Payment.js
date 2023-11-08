@@ -5,20 +5,20 @@ import { Link } from 'react-router-dom';
 // material-ui
 import {
   Button,
+  Divider,
   FormControl,
   Grid,
   InputAdornment,
-  RadioGroup,
-  List,
   InputLabel,
+  List,
   ListItemAvatar,
   ListItemButton,
   ListItemSecondaryAction,
   ListItemText,
+  RadioGroup,
   Stack,
-  Typography,
   TextField,
-  Divider
+  Typography
 } from '@mui/material';
 
 // project imports
@@ -38,7 +38,7 @@ import { openSnackbar } from 'store/reducers/snackbar';
 import { useDispatch } from 'store';
 
 // assets
-import { LeftOutlined, CheckOutlined, DeleteOutlined } from '@ant-design/icons';
+import { CheckOutlined, DeleteOutlined, LeftOutlined } from '@ant-design/icons';
 import cvv from 'assets/images/e-commerce/cvv.png';
 import lock from 'assets/images/e-commerce/lock.png';
 import master from 'assets/images/e-commerce/master-card.png';

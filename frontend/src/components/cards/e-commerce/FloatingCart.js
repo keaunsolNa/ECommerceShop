@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Fab, Badge } from '@mui/material';
+import { Badge, Fab } from '@mui/material';
 
 // project import
 import { useSelector } from 'store';

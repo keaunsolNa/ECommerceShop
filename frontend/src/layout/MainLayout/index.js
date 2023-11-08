@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { useMediaQuery, Box, Container, Toolbar } from '@mui/material';
+import { Box, Container, Toolbar, useMediaQuery } from '@mui/material';
 
 // project import
 import Drawer from './Drawer';

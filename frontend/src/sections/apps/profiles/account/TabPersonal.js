@@ -2,7 +2,18 @@ import { useEffect, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, FormLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormLabel,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 
 // third-party
 import { PatternFormat } from 'react-number-format';
@@ -10,10 +21,10 @@ import { PatternFormat } from 'react-number-format';
 // project import
 import Avatar from 'components/@extended/Avatar';
 import MainCard from 'components/MainCard';
-import { facebookColor, linkedInColor, twitterColor, ThemeMode } from 'config';
+import { facebookColor, linkedInColor, ThemeMode, twitterColor } from 'config';
 
 // assets
-import { FacebookFilled, LinkedinFilled, TwitterSquareFilled, CameraOutlined } from '@ant-design/icons';
+import { CameraOutlined, FacebookFilled, LinkedinFilled, TwitterSquareFilled } from '@ant-design/icons';
 
 const avatarImage = require.context('assets/images/users', true);
 

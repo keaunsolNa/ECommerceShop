@@ -22,7 +22,7 @@ import {
 
 // third-party
 import { format } from 'date-fns';
-import { Droppable, Draggable } from '@hello-pangea/dnd';
+import { Draggable, Droppable } from '@hello-pangea/dnd';
 
 // project imports
 import AddItem from './AddItem';
@@ -37,7 +37,7 @@ import { deleteStory } from 'store/reducers/kanban';
 import IconButton from 'components/@extended/IconButton';
 
 // assets
-import { DownOutlined, MoreOutlined, RightOutlined, PlusSquareTwoTone, ClusterOutlined } from '@ant-design/icons';
+import { ClusterOutlined, DownOutlined, MoreOutlined, PlusSquareTwoTone, RightOutlined } from '@ant-design/icons';
 
 // drag wrapper
 const getDragWrapper = (isDragging, theme, open) => {

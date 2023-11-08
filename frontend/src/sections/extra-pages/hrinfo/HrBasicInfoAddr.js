@@ -3,10 +3,10 @@ import { useMemo, useState } from 'react';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { Chip, Table, TableBody, TableCell, TableHead, TableRow, Stack } from '@mui/material';
+import { Chip, Stack, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 // third-party
-import { useTable, useSortBy } from 'react-table';
+import { useSortBy, useTable } from 'react-table';
 import { useSticky } from 'react-table-sticky';
 import InfiniteScroll from 'react-infinite-scroll-component';
 

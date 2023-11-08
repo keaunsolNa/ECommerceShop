@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 // material-ui
 import { Box, Chip, Grid, Stack, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 // third-party
-import { useTable, useFilters, usePagination } from 'react-table';
+import { useFilters, usePagination, useTable } from 'react-table';
 
 // project import
 import MainCard from 'components/MainCard';

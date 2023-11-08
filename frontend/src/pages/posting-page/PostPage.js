@@ -1,4 +1,4 @@
-import { Grid, Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import MainCard from 'components/MainCard';
 import PostPagination from './PostPagination';
 import { Link } from 'react-router-dom';

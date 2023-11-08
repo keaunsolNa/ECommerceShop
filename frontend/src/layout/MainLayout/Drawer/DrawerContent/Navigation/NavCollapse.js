@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import {
   Box,
-  Collapse,
   ClickAwayListener,
+  Collapse,
   List,
   ListItemButton,
   ListItemIcon,
@@ -30,7 +30,7 @@ import { activeItem } from 'store/reducers/menu';
 import { MenuOrientation, ThemeMode } from 'config';
 
 // assets
-import { BorderOutlined, DownOutlined, UpOutlined, RightOutlined } from '@ant-design/icons';
+import { BorderOutlined, DownOutlined, RightOutlined, UpOutlined } from '@ant-design/icons';
 
 // mini-menu - wrapper
 const PopperStyled = styled(Popper)(({ theme }) => ({

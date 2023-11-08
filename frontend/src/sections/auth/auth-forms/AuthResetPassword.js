@@ -30,7 +30,7 @@ import { openSnackbar } from 'store/reducers/snackbar';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 

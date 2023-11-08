@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
-
 // third-party
-
 // project import
 import Loader from 'components/Loader';
 import { useOutletContext } from 'react-router';

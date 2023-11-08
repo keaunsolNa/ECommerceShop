@@ -14,7 +14,7 @@ import EditStory from '../Backlogs/EditStory';
 import AlertItemDelete from './AlertItemDelete';
 import { openSnackbar } from 'store/reducers/snackbar';
 import { useDispatch, useSelector } from 'store';
-import { selectItem, deleteItem } from 'store/reducers/kanban';
+import { deleteItem, selectItem } from 'store/reducers/kanban';
 import IconButton from 'components/@extended/IconButton';
 
 // assets

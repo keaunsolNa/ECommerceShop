@@ -4,7 +4,20 @@ import { useNavigate } from 'react-router';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, ButtonBase, CardContent, ClickAwayListener, Grid, Paper, Popper, Stack, Tab, Tabs, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  ButtonBase,
+  CardContent,
+  ClickAwayListener,
+  Grid,
+  Paper,
+  Popper,
+  Stack,
+  Tab,
+  Tabs,
+  Tooltip,
+  Typography
+} from '@mui/material';
 
 // project import
 import ProfileTab from './ProfileTab';

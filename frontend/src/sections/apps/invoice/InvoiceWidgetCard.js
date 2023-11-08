@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Grid } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 // third-party
 import ReactApexChart from 'react-apexcharts';
@@ -14,7 +14,7 @@ import { ThemeDirection, ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
 
 // assets
-import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 // ==============================|| INVOICE - CARD  ||============================== //
 

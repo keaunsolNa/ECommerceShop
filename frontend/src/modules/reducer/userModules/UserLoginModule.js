@@ -1,4 +1,4 @@
-import { createActions, handleActions } from "redux-actions";
+import { createActions, handleActions } from 'redux-actions';
 
 /* 초기 state값 */
 const initialState = {};

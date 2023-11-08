@@ -5,24 +5,24 @@ import { useState } from 'react';
 
 // material-ui
 import {
+  Autocomplete,
   Box,
   Button,
   Divider,
   Drawer,
-  Grid,
-  Typography,
-  Autocomplete,
   FormControl,
   FormControlLabel,
+  FormHelperText,
+  Grid,
+  InputLabel,
   MenuItem,
   Radio,
   RadioGroup,
   Select,
   Stack,
   TextField,
-  InputLabel,
-  FormHelperText,
-  Tooltip
+  Tooltip,
+  Typography
 } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -42,7 +42,7 @@ import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
 
 import { useDispatch, useSelector } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
-import { editStory, deleteStory } from 'store/reducers/kanban';
+import { deleteStory, editStory } from 'store/reducers/kanban';
 
 // assets
 import { CloseOutlined, DeleteFilled } from '@ant-design/icons';

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, Grid, LinearProgress, Rating, Stack, Typography, TextField } from '@mui/material';
+import { Box, Button, Grid, LinearProgress, Rating, Stack, TextField, Typography } from '@mui/material';
 
 // project imports
 import ProductReview from 'components/cards/e-commerce/ProductReview';
@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'store';
 import { getProductReviews } from 'store/reducers/product';
 
 // assets
-import { FileAddOutlined, VideoCameraAddOutlined, SmileOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
+import { FileAddOutlined, SmileOutlined, StarFilled, StarOutlined, VideoCameraAddOutlined } from '@ant-design/icons';
 import IconButton from 'components/@extended/IconButton';
 
 // progress

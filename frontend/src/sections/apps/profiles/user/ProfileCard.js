@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { useMediaQuery, Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project import
 import MainCard from 'components/MainCard';

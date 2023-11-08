@@ -10,10 +10,8 @@ import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
 // third-party
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import IconButton from 'components/@extended/IconButton';
 
 // assets
-import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
 
 // ==============================|| PLUGINS - DROPZONE ||============================== //
 

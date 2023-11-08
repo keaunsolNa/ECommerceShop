@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, tooltipClasses, Tooltip as MuiTooltip } from '@mui/material';
+import { Box, Tooltip as MuiTooltip, tooltipClasses } from '@mui/material';
 
 // project import
 import getColors from 'utils/getColors';

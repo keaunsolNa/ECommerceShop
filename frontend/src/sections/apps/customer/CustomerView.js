@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {
-  useMediaQuery,
-  Grid,
   Chip,
   Divider,
+  Grid,
   Link,
   List,
   ListItem,
@@ -15,7 +14,8 @@ import {
   Stack,
   TableCell,
   TableRow,
-  Typography
+  Typography,
+  useMediaQuery
 } from '@mui/material';
 
 // third-party

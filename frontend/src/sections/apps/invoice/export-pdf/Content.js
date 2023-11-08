@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 
 // third-party
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
 
 const textPrimary = '#262626';
 const textSecondary = '#8c8c8c';

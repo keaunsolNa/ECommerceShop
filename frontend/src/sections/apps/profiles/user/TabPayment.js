@@ -33,7 +33,7 @@ import IconButton from 'components/@extended/IconButton';
 import MainCard from 'components/MainCard';
 
 // assets
-import { DeleteOutlined, EyeOutlined, EyeInvisibleOutlined, PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EyeInvisibleOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
 import masterCard from 'assets/images/icons/master-card.png';
 import paypal from 'assets/images/icons/paypal.png';
 import visaCard from 'assets/images/icons/visa-card.png';

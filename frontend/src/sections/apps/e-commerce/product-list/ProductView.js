@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Grid, Chip, Rating, Stack, TableCell, TableRow, Typography } from '@mui/material';
+import { Box, Chip, Grid, Rating, Stack, TableCell, TableRow, Typography } from '@mui/material';
 
 const productImage = require.context('assets/images/e-commerce', true);
 
