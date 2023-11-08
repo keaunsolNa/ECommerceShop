@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { Grid, Stack, Typography, Button } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 // project import
 import useAuth from 'hooks/useAuth';
 import AuthWrapper from 'sections/auth/AuthWrapper';
 import AuthLogin from 'sections/auth/auth-forms/AuthLogin';
-import AnimateButton from 'components/@extended/AnimateButton';
 
 // ================================|| LOGIN ||================================ //
 
@@ -40,14 +39,14 @@ const Login = () => {
         </Grid>
         <Grid item xs={12}>
           <AuthLogin />
-          <div style={{ marginTop: 10 }}>
-            <AnimateButton>
-              <Button
-                onClick={kakaoLogin}
-                style={{ backgroundImage: 'url(/kakao_login_large_wide.png)', backgroundSize: '100% 100%', width: '100%', height: 60 }}
-              ></Button>
-            </AnimateButton>
-          </div>
+          {/*<div style={{ marginTop: 10 }}>*/}
+          {/*  <AnimateButton>*/}
+          {/*    <Button*/}
+          {/*      onClick={kakaoLogin}*/}
+          {/*      style={{ backgroundImage: 'url(/kakao_login_large_wide.png)', backgroundSize: '100% 100%', width: '100%', height: 60 }}*/}
+          {/*    ></Button>*/}
+          {/*  </AnimateButton>*/}
+          {/*</div>*/}
         </Grid>
       </Grid>
     </AuthWrapper>

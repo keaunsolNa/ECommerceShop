@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -33,8 +34,8 @@ public class EmpBaseController {
         empBase.setName(empBaseDTO.getName());
         empBase.setRole(empBaseDTO.getRole());
         empBase.setState(empBaseDTO.getState());
-        empBase.setLastLogin(System.currentTimeMillis());
-        empBase.setCreateDate(System.currentTimeMillis());
+        empBase.setLastLogin(new Date());
+        empBase.setCreateDate(new Date());
 
         EmpSI empSI = new EmpSI();
         empSI.setId(empBaseDTO.getId());

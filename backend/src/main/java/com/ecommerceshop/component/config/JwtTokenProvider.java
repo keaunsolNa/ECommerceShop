@@ -1,24 +1,19 @@
 package com.ecommerceshop.component.config;
 
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
-
 import com.ecommerceshop.dto.document.aut.UserRole;
-import jakarta.annotation.PostConstruct;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Component
@@ -72,6 +67,8 @@ public class JwtTokenProvider {
     // Request의 Header에서 token 값을 가져옵니다. "X-AUTH-TOKEN" : "TOKEN값'
     public String resolveToken(HttpServletRequest request) {
 
+        System.out.println(request);
+        System.out.println(request.getHeader("X-AUTH-TOKEN"));
         System.out.println("resolveToken");
         return request.getHeader("X-AUTH-TOKEN");
     }

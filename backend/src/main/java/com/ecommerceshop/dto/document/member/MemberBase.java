@@ -9,6 +9,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @ToString
@@ -21,7 +23,7 @@ public class MemberBase {
     private String state;
     private String name;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private Long birthDate;
+    private Date birthDate;
     @Field(type = FieldType.Keyword)
     private String gender;
     @Field(type = FieldType.Keyword)
@@ -33,7 +35,7 @@ public class MemberBase {
     @Field(type = FieldType.Integer)
     private Integer pointHave;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private Long lastLogin;
+    private Date lastLogin;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private Long createDate;
+    private Date createDate;
 }

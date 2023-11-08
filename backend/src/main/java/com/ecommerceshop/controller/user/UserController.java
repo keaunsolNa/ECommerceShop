@@ -27,7 +27,7 @@ public class UserController {
         System.out.println("login");
         boolean check;
         try {
-            userService.empLoginMatcher(empBaseDTO);
+            userService.empLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
 
             List<UserRole> list = userService.getAuthorityList("empId", empBaseDTO.getId());
             System.out.println(list);
@@ -35,9 +35,9 @@ public class UserController {
         } catch (Exception e) {
 
             try {
-                List<UserRole> list = userService.getAuthorityList("memberId", empBaseDTO.getId());
-                userService.memberLoginMatcher(empBaseDTO);
+                userService.memberLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
 
+                List<UserRole> list = userService.getAuthorityList("memberId", empBaseDTO.getId());
                 System.out.println(list);
 
             } catch (Exception ex) {

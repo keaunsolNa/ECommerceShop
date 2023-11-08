@@ -9,6 +9,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.util.Date;
+
 
 @Getter
 @Setter
@@ -24,7 +26,7 @@ public class EmpBase {
     @Field(type = FieldType.Keyword)
     private String role;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private Long lastLogin;
+    private Date lastLogin;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private Long createDate;
+    private Date createDate;
 }
