@@ -1,10 +1,10 @@
 package com.ecommerceshop.controller.user;
 
+import com.ecommerceshop.component.config.JwtTokenProvider;
 import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.integrated.emp.EmpBaseDTO;
 import com.ecommerceshop.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,39 +17,39 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public UserController(UserService userService) { this.userService = userService; }
+    public UserController(UserService userService, JwtTokenProvider jwtTokenProvider) {
+        this.userService = userService;
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
 
     @PostMapping()
-    public ResponseEntity login(@RequestBody EmpBaseDTO empBaseDTO) {
+    public String login(@RequestBody EmpBaseDTO empBaseDTO) {
 
-        System.out.println("login");
-        boolean check;
+        System.out.println("Controller");
+        String token;
         try {
-            userService.empLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
 
+            userService.empLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
             List<UserRole> list = userService.getAuthorityList("empId", empBaseDTO.getId());
-            System.out.println(list);
+            return jwtTokenProvider.createToken(empBaseDTO.getId() +"",list);
 
         } catch (Exception e) {
 
             try {
-                userService.memberLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
 
+                userService.memberLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
                 List<UserRole> list = userService.getAuthorityList("memberId", empBaseDTO.getId());
-                System.out.println(list);
+                return jwtTokenProvider.createToken(empBaseDTO.getId() +"",list);
 
             } catch (Exception ex) {
 
                 throw new RuntimeException(ex);
             }
-
-
-            throw new RuntimeException(e);
         }
 
-        return null;
     }
 
 }

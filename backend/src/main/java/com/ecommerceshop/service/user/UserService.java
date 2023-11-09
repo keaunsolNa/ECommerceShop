@@ -1,9 +1,7 @@
 package com.ecommerceshop.service.user;
 
 import com.ecommerceshop.dto.document.aut.UserRole;
-import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
-import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.dto.document.member.MemberSI;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.module.security.SHA512;
@@ -51,39 +49,29 @@ public class UserService implements UserServiceInterface{
 
     public void memberLoginMatcher(String username, String password) throws Exception {
 
-        System.out.println(username);
-        System.out.println(password);
-        MemberBase memberBase = memberBaseRepository
+        memberBaseRepository
                 .findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("userId" + username + " not found"));
 
-        System.out.println(memberBase);
 
         MemberSI memberSi = memberSIRepository
                 .findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("userId" + username + " not found"));
 
-        System.out.println(memberSi);
         if(!(SHA512.SHA512(password, memberSi.getSalt()).equals(memberSi.getPassword())))
             throw new Exception("비밀번호를 잘못 입력하셨습니다.");
     }
 
     public void empLoginMatcher(String username, String password) throws Exception {
 
-        System.out.println(username);
-        System.out.println(password);
-
-        EmpBase empBase = empBaseRepository
+        empBaseRepository
                 .findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("userId" + username + " not found"));
-
-        System.out.println(empBase);
 
         EmpSI empSI = empsiRepository
                 .findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("userId" + username + " not found"));
 
-        System.out.println(empSI);
         if(!(SHA512.SHA512(password, empSI.getSalt()).equals(empSI.getPassword())))
             throw new Exception("비밀번호를 잘못 입력하셨습니다.");
     }

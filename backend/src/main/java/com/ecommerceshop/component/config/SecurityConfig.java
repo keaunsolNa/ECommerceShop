@@ -1,5 +1,6 @@
 package com.ecommerceshop.component.config;
 
+import com.ecommerceshop.component.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -21,13 +23,16 @@ public class SecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf((AbstractHttpConfigurer::disable))
                 .sessionManagement((sessionManagement) ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests.anyRequest().permitAll()
-                );
+                )
+
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 //                .authorizeRequests((requests) -> requests
 //                        .anyRequest().authenticated()
 //                        .dispatcherTypeMatchers(HttpMethod.valueOf("/login/**")).authenticated()
@@ -37,7 +42,6 @@ public class SecurityConfig  {
 
 //                )
 //                .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-//                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

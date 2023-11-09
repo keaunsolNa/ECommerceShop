@@ -37,14 +37,16 @@ public class EmpBaseService {
     public EmpBase empBaseDocumentCreate(EmpBase empBase, EmpSI empSI, List<UserRole> userRoleList) throws JsonProcessingException {
 
         ObjectMapper objectMapper = new ObjectMapper();
-
         List<IndexQuery> userRoleCreateQueryList = new ArrayList<>();
-        IndexQuery userRoleIndexQuery = new IndexQuery();
+
         for(UserRole userRole : userRoleList) {
-            userRoleIndexQuery.setSource(objectMapper.writeValueAsString(userRole));
-            userRoleCreateQueryList.add(userRoleIndexQuery);
+
+            IndexQuery indexQuery = new IndexQuery();
+            indexQuery.setSource(objectMapper.writeValueAsString(userRole));
+            userRoleCreateQueryList.add(indexQuery);
         }
 
+        System.out.println(userRoleCreateQueryList);
         IndexCoordinates userRoleIndexCoordinates = IndexCoordinates.of("user-role");
 
         empBaseRepository.save(empBase);

@@ -93,10 +93,12 @@ export const JWTProvider = ({ children }) => {
   //   // console.log('tokenData is22222222222 : ', tokenData);
   // }, [tokenData]);
 
-  const login = async (email, password) => {
+  const login = async (id, password) => {
+    console.log(id)
+    id = "empbasetestloginuser3";
     console.log('login')
     // const response = await axiosServices.post('/api/login', { email, password });
-    const response = await axios.post('/api/login', { email, password });
+    const response = await axios.post('http://localhost:8080/login', { id, password });
     console.log(response)
     const { serviceToken, user } = response.data;
 

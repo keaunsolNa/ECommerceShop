@@ -1,16 +1,22 @@
 package com.ecommerceshop.component.config;
 
 import com.ecommerceshop.dto.document.aut.UserRole;
+import com.ecommerceshop.service.user.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -22,10 +28,11 @@ public class JwtTokenProvider {
     @Value("${jwt.secretKey}")
     private String secretKey;
 
+    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     // 토큰 유효시간 300분
-    private long tokenValidTime = 300 * 60 * 1000L;
+    private final long tokenValidTime = 300 * 60 * 1000L;
 
-//    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
     @PostConstruct
@@ -37,25 +44,23 @@ public class JwtTokenProvider {
     // JWT 토큰 생성
     public String createToken(String userPk, List<UserRole> roles) {
 
-        System.out.println("createToken");
-        Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
-        claims.put("roles", roles);
+        Claims claims = Jwts.claims().setId(userPk); // JWT payload 에 저장되는 ID
         Date now = new Date();
+
         return Jwts.builder()
-                .setClaims(claims)
+                .signWith( key)
+                .setSubject(userPk + roles)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + tokenValidTime))
-                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
 
     // JWT 토큰에서 인증 정보 조회
-//    public Authentication getAuthentication(String token) {
-//
-//        System.out.println("getAuthentication");
-//        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-//        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-//    }
+    public Authentication getAuthentication(String token) {
+
+        UserDetails userDetails = userService.loadUserByUsername(this.getUserPk(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
 
     // 토큰에서 회원 정보 추출
     public String getUserPk(String token) {
@@ -67,9 +72,6 @@ public class JwtTokenProvider {
     // Request의 Header에서 token 값을 가져옵니다. "X-AUTH-TOKEN" : "TOKEN값'
     public String resolveToken(HttpServletRequest request) {
 
-        System.out.println(request);
-        System.out.println(request.getHeader("X-AUTH-TOKEN"));
-        System.out.println("resolveToken");
         return request.getHeader("X-AUTH-TOKEN");
     }
 

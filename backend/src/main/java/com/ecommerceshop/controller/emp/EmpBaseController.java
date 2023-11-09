@@ -77,6 +77,7 @@ public class EmpBaseController {
                 userRole4.setAuthorityCode(10);
                 userRoleList.add(userRole4);
         }
+
         try {
             return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBase, empSI, userRoleList));
         } catch (JsonProcessingException e) {

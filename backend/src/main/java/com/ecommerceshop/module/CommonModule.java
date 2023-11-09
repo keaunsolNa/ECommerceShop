@@ -134,7 +134,7 @@ public class CommonModule {
             } else if(searchHit.getIndex().equals("user-role")) {
 
                 UserRole userRole = (UserRole) searchHit.getContent();
-                resultSet.add(userRole);
+                resultSet.add(userRole.getAuthorityCode());
             }
 
         }
