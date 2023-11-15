@@ -48,8 +48,8 @@ public class JwtTokenProvider {
         Date now = new Date();
 
         return Jwts.builder()
-                .signWith( key)
-                .setSubject(userPk + roles)
+                .signWith(key)
+                .setSubject(userPk)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + tokenValidTime))
                 .compact();
@@ -65,7 +65,6 @@ public class JwtTokenProvider {
     // 토큰에서 회원 정보 추출
     public String getUserPk(String token) {
 
-        System.out.println("getUserPk");
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
@@ -78,7 +77,6 @@ public class JwtTokenProvider {
     // 토큰의 유효성 + 만료일자 확인
     public boolean validateToken(String jwtToken) {
 
-        System.out.println("validateToken");
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
             return !claims.getBody().getExpiration().before(new Date());

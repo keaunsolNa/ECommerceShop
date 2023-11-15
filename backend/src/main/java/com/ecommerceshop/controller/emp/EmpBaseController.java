@@ -85,7 +85,7 @@ public class EmpBaseController {
         }
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     public ResponseEntity<Iterable<EmpBase>> empBaseDocumentListSearch() {
         System.out.println("GET");
         return ResponseEntity.ok(empBaseService.empBaseDocumentListSearch());
@@ -94,6 +94,8 @@ public class EmpBaseController {
     @GetMapping("/{id}")
     public ResponseEntity<EmpBase> empBaseDocumentSearchById(@PathVariable String id) {
 
+        System.out.println("Controller");
+        System.out.println(id);
         try {
             return ResponseEntity.ok(empBaseService.empBaseDocumentSearchById(id));
         } catch (Exception e) {

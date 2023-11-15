@@ -49,6 +49,7 @@ const setSession = (serviceToken) => {
 const JWTContext = createContext(null);
 
 export const JWTProvider = ({ children }) => {
+  console.log('JWTPROVIDER')
   const [state, dispatch] = useReducer(authReducer, initialState);
   // const [tokenData, setTokenData] = useState();
 
@@ -94,13 +95,11 @@ export const JWTProvider = ({ children }) => {
   // }, [tokenData]);
 
   const login = async (id, password) => {
-    console.log(id)
-    id = "empbasetestloginuser3";
-    console.log('login')
-    // const response = await axiosServices.post('/api/login', { email, password });
     const response = await axios.post('http://localhost:8080/login', { id, password });
-    console.log(response)
-    const { serviceToken, user } = response.data;
+    const decoded = jwtDecode(response.data);
+
+    const serviceToken = response.data;
+    const user = decoded.sub;
 
     setSession(serviceToken);
 

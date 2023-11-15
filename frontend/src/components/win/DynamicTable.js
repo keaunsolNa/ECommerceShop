@@ -13,7 +13,7 @@ import CommonCellEdit from './CommonCellEdit';
 import CommonEditableCell from './CommonEditableCell';
 import { getDate } from 'utils/common';
 import { DefaultColumnFilter, GlobalFilter, renderFilterTypes } from '../../utils/react-table';
-import { update } from '../../store/reducers/hrinfo';
+import { update } from '../../store/reducers/emp/employee';
 
 // assets
 const DynamicTable = ({ name, columns, data, tableType }) => {

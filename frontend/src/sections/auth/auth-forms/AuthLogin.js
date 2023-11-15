@@ -4,8 +4,6 @@ import { Link as RouterLink } from 'react-router-dom';
 // material-ui
 import {
   Button,
-  Checkbox,
-  FormControlLabel,
   FormHelperText,
   Grid,
   InputAdornment,
@@ -13,7 +11,6 @@ import {
   Link,
   OutlinedInput,
   Stack,
-  Typography
 } from '@mui/material';
 
 // third party
@@ -50,17 +47,17 @@ const AuthLogin = () => {
     <>
       <Formik
         initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
+          id: 'testId123',
+          password: 'testpassword123!@#',
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          id: Yup.string().max(255).required('ID is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await login(values.email, values.password);
+            await login(values.id, values.password);
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
@@ -80,21 +77,21 @@ const AuthLogin = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="email-login">Email Address</InputLabel>
+                  <InputLabel htmlFor="email-login">ID</InputLabel>
                   <OutlinedInput
-                    id="email-login"
-                    type="email"
-                    value={values.email}
-                    name="email"
+                    id="id"
+                    type="id"
+                    value={values.id}
+                    name="id"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter email address"
+                    placeholder="Enter ID"
                     fullWidth
-                    error={Boolean(touched.email && errors.email)}
+                    error={Boolean(touched.id && errors.id)}
                   />
-                  {touched.email && errors.email && (
+                  {touched.id && errors.id && (
                     <FormHelperText error id="standard-weight-helper-text-email-login">
-                      {errors.email}
+                      {errors.id}
                     </FormHelperText>
                   )}
                 </Stack>
@@ -136,18 +133,6 @@ const AuthLogin = () => {
 
               <Grid item xs={12} sx={{ mt: -1 }}>
                 <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={checked}
-                        onChange={(event) => setChecked(event.target.checked)}
-                        name="checked"
-                        color="primary"
-                        size="small"
-                      />
-                    }
-                    label={<Typography variant="h6">Keep me sign in</Typography>}
-                  />
                   <Link variant="h6" component={RouterLink} to="/forgot-password" color="text.primary">
                     Forgot Password?
                   </Link>

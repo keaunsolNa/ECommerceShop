@@ -8,7 +8,7 @@ import { Box, Button, Tab, Tabs } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // assets
-import HrInfoMaster from 'sections/extra-pages/hrinfo/HrInfoMaster';
+import HrInfoMaster from 'sections/extra-pages/employee/HrInfoMaster';
 import { response } from './data';
 import axios from 'axios';
 
@@ -19,7 +19,7 @@ const HrInfo = () => {
   let selectedTab = 0;
   switch (pathname) {
 
-    case '/hrinfo/family':
+    case '/employee/family':
       selectedTab = 3;
       break;
 
@@ -42,8 +42,8 @@ const HrInfo = () => {
   };
 
   useEffect(() => {
-    axios.get('/api/hrinfo/personalinfo?uuid=3008948717').then((res) => {
-      console.log('hrinfo/personalinfo is : ', res.data);
+    axios.get('/api/employee/personalinfo?uuid=3008948717').then((res) => {
+      console.log('employee/personalinfo is : ', res.data);
     });
   }, []);
 
@@ -56,11 +56,11 @@ const HrInfo = () => {
       </Box>
       <Box>
         <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="account profile tab">
-          <Tab label="인사기본" component={Link} to="/hrinfo/basic"></Tab>
-          <Tab label="발령" component={Link} to="/hrinfo/appointment"></Tab>
-          <Tab label="인적사항" component={Link} to="/hrinfo/personal"></Tab>
-          <Tab label="가족" component={Link} to="/hrinfo/family"></Tab>
-          <Tab label="주소/전화" component={Link} to="/hrinfo/address"></Tab>
+          <Tab label="인사기본" component={Link} to="/employee/basic"></Tab>
+          <Tab label="발령" component={Link} to="/employee/appointment"></Tab>
+          <Tab label="인적사항" component={Link} to="/employee/personal"></Tab>
+          <Tab label="가족" component={Link} to="/employee/family"></Tab>
+          <Tab label="주소/전화" component={Link} to="/employee/address"></Tab>
         </Tabs>
       </Box>
       <Box>

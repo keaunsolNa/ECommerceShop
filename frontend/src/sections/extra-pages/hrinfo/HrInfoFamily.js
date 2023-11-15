@@ -8,7 +8,6 @@ import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import DynamicTable from 'components/win/DynamicTable';
 // project import
-import { dispatchRetrieveHrInfo } from 'store/reducers/hrinfo';
 import HrInfoMaster from './HrInfoMaster';
 // assets
 const OrganizationMember = () => {
@@ -101,7 +100,7 @@ const OrganizationMember = () => {
 
   // functions
   useEffect(() => {
-    const retrieveCall = dispatch(dispatchRetrieveHrInfo('family'));
+    const retrieveCall = dispatch(dispatchRetrieveEmployee('family', 'testId123'));
     Promise.all([retrieveCall]).then(() => setLoading(false));
   }, []);
 

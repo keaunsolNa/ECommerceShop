@@ -13,7 +13,7 @@ import cartReducer from './cart';
 import kanban from './kanban';
 import invoice from './invoice';
 import vacationCrud from './vacation';
-import hrinfo from './hrinfo';
+import employee from './emp/employee';
 import organizationinfo from './organizationinfo';
 import organizationMember from './organization';
 // ==============================|| COMBINE REDUCERS ||============================== //
@@ -35,7 +35,7 @@ const reducers = combineReducers({
   kanban,
   invoice,
   vacationCrud,
-  hrinfo,
+  employee,
   organizationinfo,
   organizationMember
 });
