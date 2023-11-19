@@ -19,7 +19,7 @@ const OrganizationInfoSearchCondition = () => {
   // states
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState();
-  const [organization, setOrganization] = useState(true);
+  const [organization] = useState(true);
   // functions
 
   const handleChange = (newDate) => {

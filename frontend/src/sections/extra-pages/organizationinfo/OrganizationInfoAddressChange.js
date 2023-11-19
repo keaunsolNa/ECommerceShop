@@ -5,14 +5,12 @@ import { useEffect, useState } from 'react';
 // project import
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
-import { useOutletContext } from 'react-router';
 import VirtualizedInfiniteScrollTable from 'components/win/VirtualizedInfiniteScrollTable';
 
 // assets
 
 const OrganizationInfoAddressChange = () => {
   // states
-  const outletContext = useOutletContext();
   const [loading, setLoading] = useState(true);
 
   const data = [

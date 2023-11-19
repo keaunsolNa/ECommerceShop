@@ -75,7 +75,7 @@ function ReactTable({ columns, data, top }) {
             prepareRow(row);
             // console.log('page is :', row);
 
-            if (row.original.title == '삭제된 게시글입니다.') {
+            if (row.original.title === '삭제된 게시글입니다.') {
               // 삭제된 게시글의 경우 처리
               return null;
             } else {

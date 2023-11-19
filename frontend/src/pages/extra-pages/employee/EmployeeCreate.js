@@ -1,23 +1,20 @@
 import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 import {
   Button,
-  Divider,
-  FormControl, FormControlLabel, FormHelperText,
+  FormControl, FormHelperText,
   Grid,
   InputLabel, ListItemText,
   MenuItem,
   OutlinedInput,
   Select,
-  Stack, Switch,
-  TextField, Tooltip,
+  Stack,
+  TextField,
   Typography
 } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import IconButton from '../../../components/@extended/IconButton';
-import { DeleteFilled } from '@ant-design/icons';
 
 const EmployeeCreate = () => {
 

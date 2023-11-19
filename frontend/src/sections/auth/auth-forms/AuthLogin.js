@@ -20,8 +20,6 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 // ============================|| JWT - LOGIN ||============================ //
 
 const AuthLogin = () => {
-  const [checked, setChecked] = React.useState(false);
-
   const { login } = useAuth();
   const scriptedRef = useScriptRef();
 

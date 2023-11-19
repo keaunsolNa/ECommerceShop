@@ -16,7 +16,7 @@ import * as yup from 'yup';
 // ==============================|| PLUGINS - DROPZONE ||============================== //
 
 const Dropzone = () => {
-  const [list, setList] = useState(false);
+  const [list] = useState(false);
   const [file, setFile] = useState();
 
   useEffect(() => {
