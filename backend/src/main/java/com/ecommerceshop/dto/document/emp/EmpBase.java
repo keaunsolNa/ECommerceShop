@@ -20,13 +20,19 @@ public class EmpBase {
 
     @Id
     private String id;
+    private String email;
     @Field(type = FieldType.Keyword)
     private String state;
     private String name;
+    @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
+    private Date birth;
+    @Field(type = FieldType.Keyword)
+    private String gender;
     @Field(type = FieldType.Keyword)
     private String role;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private Date lastLogin;
-    @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
     private Date createDate;
+    @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
+    private Date lastLogin;
+    private String fileId;
 }

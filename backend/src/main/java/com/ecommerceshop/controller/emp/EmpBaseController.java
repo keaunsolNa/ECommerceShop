@@ -31,19 +31,24 @@ public class EmpBaseController {
     public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBaseDTO empBaseDTO) {
         EmpBase empBase = new EmpBase();
         empBase.setId(empBaseDTO.getId());
-        empBase.setName(empBaseDTO.getName());
-        empBase.setRole(empBaseDTO.getRole());
+        empBase.setEmail(empBaseDTO.getEmail());
         empBase.setState(empBaseDTO.getState());
-        empBase.setLastLogin(new Date());
+        empBase.setName(empBaseDTO.getName());
+        empBase.setBirth(empBaseDTO.getBirth());
+        empBase.setGender(empBaseDTO.getGender());
+        empBase.setRole(empBaseDTO.getRole());
         empBase.setCreateDate(new Date());
+        empBase.setLastLogin(new Date());
+        empBase.setFileId(empBaseDTO.getFileId());
 
         EmpSI empSI = new EmpSI();
         empSI.setId(empBaseDTO.getId());
+        empSI.setPhoneNumber(empBaseDTO.getPhoneNumber());
+        empSI.setCallNumber(empBaseDTO.getCallNumber());
         String salt = Salt.makeSalt();
         empSI.setSalt(salt);
         empSI.setPassword(SHA512.SHA512(empBaseDTO.getPassword(), salt));
-        empSI.setCallNumber(empBaseDTO.getCallNumber());
-        empSI.setPhoneNumber(empBaseDTO.getPhoneNumber());
+        empSI.setAddress(empBaseDTO.getAddress());
 
         List<UserRole> userRoleList = new ArrayList<>();
 
@@ -87,15 +92,12 @@ public class EmpBaseController {
 
     @GetMapping("/all")
     public ResponseEntity<Iterable<EmpBase>> empBaseDocumentListSearch() {
-        System.out.println("GET");
         return ResponseEntity.ok(empBaseService.empBaseDocumentListSearch());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<EmpBase> empBaseDocumentSearchById(@PathVariable String id) {
 
-        System.out.println("Controller");
-        System.out.println(id);
         try {
             return ResponseEntity.ok(empBaseService.empBaseDocumentSearchById(id));
         } catch (Exception e) {

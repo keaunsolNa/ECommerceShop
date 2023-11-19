@@ -11,10 +11,9 @@ import ReactApexChart from 'react-apexcharts';
 import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
 
-
 // ==============================|| APEXCHART - PIE ||============================== //
 
-const WinPieChart = ({series, chartOptions}) => {
+const WinPieChart = ({ series, chartOptions }) => {
   const theme = useTheme();
   const { mode } = useConfig();
 

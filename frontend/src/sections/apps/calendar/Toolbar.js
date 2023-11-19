@@ -11,14 +11,7 @@ import { format } from 'date-fns';
 import IconButton from 'components/@extended/IconButton';
 
 // assets
-import {
-  AppstoreOutlined,
-  LayoutOutlined,
-  LeftOutlined,
-  OrderedListOutlined,
-  PicCenterOutlined,
-  RightOutlined
-} from '@ant-design/icons';
+import { AppstoreOutlined, LayoutOutlined, LeftOutlined, OrderedListOutlined, PicCenterOutlined, RightOutlined } from '@ant-design/icons';
 
 // constant
 const viewOptions = [

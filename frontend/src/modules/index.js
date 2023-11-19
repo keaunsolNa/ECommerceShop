@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import userReducer from './reducer/userModules/UserLoginModule';
 
 const rootReducer = combineReducers({
-    userReducer
-    // menuReducer
+  userReducer
+  // menuReducer
 });
 
 export default rootReducer;

@@ -90,17 +90,17 @@ const Notification = () => {
   // }, []);
 
   const IconClassification = (icon) => {
-    if (icon == 'gift') {
+    if (icon === 'gift') {
       return <GiftOutlined />;
-    } else if (icon == 'setting') {
+    } else if (icon === 'setting') {
       return <SettingOutlined />;
-    } else if (icon == 'mail') {
+    } else if (icon === 'mail') {
       return <MailOutlined />;
-    } else if (icon == 'reply') {
+    } else if (icon === 'reply') {
       return <MessageOutlined />;
-    } else if (icon == 'invoice') {
+    } else if (icon === 'invoice') {
       return <FileTextOutlined />;
-    } else if (icon == 'approval') {
+    } else if (icon === 'approval') {
       return <AuditOutlined />;
     }
   };

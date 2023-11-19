@@ -10,7 +10,6 @@ import OrganizationSetting from 'sections/setting/OrganizationSetting';
 // ================================|| LOGIN ||================================ //
 
 const Setting = () => {
-
   return (
     <AuthWrapper>
       <Grid container spacing={3}>
@@ -22,7 +21,7 @@ const Setting = () => {
               variant="body1"
               sx={{ textDecoration: 'none' }}
               color="primary"
-              onClick={()=>alert('도움말 모달')}
+              onClick={() => alert('도움말 모달')}
             >
               도움말
             </Typography>

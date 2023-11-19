@@ -20,6 +20,7 @@ public class EmpSI {
     private String callNumber;
     @Field(type = FieldType.Keyword)
     private String password;
+    private String address;
     @Field(type = FieldType.Keyword)
     private String salt;
 }

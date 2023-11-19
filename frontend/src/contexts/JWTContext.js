@@ -49,7 +49,6 @@ const setSession = (serviceToken) => {
 const JWTContext = createContext(null);
 
 export const JWTProvider = ({ children }) => {
-  console.log('JWTPROVIDER')
   const [state, dispatch] = useReducer(authReducer, initialState);
   // const [tokenData, setTokenData] = useState();
 

@@ -3,18 +3,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 // material-ui
-import {
-  Box,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  Rating,
-  Skeleton,
-  Slider,
-  Stack,
-  TextField,
-  Typography
-} from '@mui/material';
+import { Box, Checkbox, FormControlLabel, Grid, Rating, Skeleton, Slider, Stack, TextField, Typography } from '@mui/material';
 
 // project imports
 import Colors from './Colors';

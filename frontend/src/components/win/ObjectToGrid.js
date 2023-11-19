@@ -64,7 +64,9 @@ const ObjectToGrid = ({ data }) => {
                     {keyTranslator(key)}
                   </Typography>
                 </RoundedCornerBox>
-                <Typography variant="h3">{(['string', 'number'].includes(typeof data[key])) && data[key] !=='' ? data[key] : '-'}</Typography>
+                <Typography variant="h3">
+                  {['string', 'number'].includes(typeof data[key]) && data[key] !== '' ? data[key] : '-'}
+                </Typography>
               </Stack>
             </Grid>
           </MainCard>

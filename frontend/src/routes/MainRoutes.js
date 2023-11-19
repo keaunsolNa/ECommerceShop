@@ -7,10 +7,8 @@ import Loadable from 'components/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
 // Sample page
-// const WebcamPage = Loadable(lazy(() => import('pages/webcam/WebcamPage')));
-const HrInfo = Loadable(lazy(() => import('pages/extra-pages/hrinfo/HrInfo')));
-const HrInfoBasic = Loadable(lazy(() => import('sections/extra-pages/hrinfo/HrInfoBasic')));
-const HrInfoFamily = Loadable(lazy(() => import('sections/extra-pages/hrinfo/HrInfoFamily')));
+const EmployeeSelf = Loadable(lazy(() => import('pages/extra-pages/employee/EmployeeSelf')));
+const EmployeeCreate = Loadable(lazy(() => import('pages/extra-pages/employee/EmployeeCreate')));
 
 // pages routing
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
@@ -34,19 +32,18 @@ const MainRoutes = {
       ),
       children: [
         {
-          path: 'hrinfo',
-          element: <HrInfo />,
+          path: 'employee',
           children: [
             {
-              path: 'basic',
-              element: <HrInfoBasic />
+              path: 'self',
+              element: <EmployeeSelf />
             },
             {
-              path: 'family',
-              element: <HrInfoFamily />
+              path: 'create',
+              element: <EmployeeCreate />
             }
           ]
-        },
+        }
       ]
     },
     {
