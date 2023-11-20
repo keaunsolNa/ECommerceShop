@@ -15,6 +15,7 @@ public class EmpBaseDTO {
     private String gender;
     private String role;
     private Date birth;
+    private Date createDate;
     private String phoneNumber;
     private String callNumber;
     private String fileId;

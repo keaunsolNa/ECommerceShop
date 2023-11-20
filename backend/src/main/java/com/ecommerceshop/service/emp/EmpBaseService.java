@@ -3,6 +3,7 @@ package com.ecommerceshop.service.emp;
 import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
+import com.ecommerceshop.dto.integrated.emp.EmpBaseDTO;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
 import com.ecommerceshop.repository.emp.EmpSIRepository;
@@ -65,9 +66,27 @@ public class EmpBaseService {
         return commonModule.getListFromSearchHit(searchHits);
     }
 
-    public EmpBase empBaseDocumentSearchById(String id) throws Exception {
+    public EmpBaseDTO empBaseDocumentSearchById(String id) throws Exception {
 
-        return empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        EmpSI empSI = empsiRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+
+        EmpBaseDTO empBaseDTO = new EmpBaseDTO();
+        empBaseDTO.setId(empBase.getId());
+        empBaseDTO.setEmail(empBase.getEmail());
+        empBaseDTO.setName(empBase.getName());
+        empBaseDTO.setBirth(commonModule.parsingDate(empBase.getBirth()));
+        empBaseDTO.setAddress(empSI.getAddress());
+        empBaseDTO.setGender(empBase.getGender());
+        empBaseDTO.setRole(empBase.getRole());
+        empBaseDTO.setState(empBase.getState());
+        empBaseDTO.setFileId(empBase.getFileId());
+        empBaseDTO.setCallNumber(empSI.getCallNumber());
+        empBaseDTO.setPhoneNumber(empSI.getPhoneNumber());
+        empBaseDTO.setCreateDate(commonModule.parsingDate(empBase.getCreateDate()));
+
+        System.out.println(empBaseDTO);
+        return empBaseDTO;
     }
 
     public EmpBase empBaseDocumentDeleteById(String id) throws Exception {

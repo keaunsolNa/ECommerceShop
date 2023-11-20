@@ -1,6 +1,6 @@
 // material-ui
 import { Divider, Grid, List, ListItem, ListItemIcon, ListItemSecondaryAction, Stack, Typography, useMediaQuery } from '@mui/material';
-
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 // third-party
 import { PatternFormat } from 'react-number-format';
 
@@ -15,11 +15,11 @@ import { useEffect, useState } from 'react';
 import { dispatch, useSelector } from '../../../store';
 import { dispatchRetrieveEmployee } from '../../../store/reducers/emp/employee';
 import Loader from '../../../components/Loader';
-
-const avatarImage = require.context('assets/images/users', true);
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { parseISO } from 'date-fns';
 // ==============================|| ACCOUNT PROFILE - BASIC ||============================== //
 
+const avatarImage = require.context('assets/images/users', true);
 const EmployeeSelf = () => {
   const matchDownMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
   const [loading, setLoading] = useState(true);
@@ -126,9 +126,16 @@ const EmployeeSelf = () => {
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
                         <Typography color="secondary">입사일자</Typography>
-                        <Typography>
-                          <PatternFormat value={retrieveMaster.createYmd} displayType="text" type="text" format="####-##-##" />
-                        </Typography>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DatePicker
+                            format="yyyy-MM-dd"
+                            value={parseISO(retrieveMaster.createDate)}
+                            sx={{
+                              '& .MuiOutlinedInput-input': { py: 0.75, px: 1, width: { xs: 80 } },
+                              '& .MuiOutlinedInput-notchedOutline': { border: 'none' }
+                            }}
+                          />
+                        </LocalizationProvider>
                       </Stack>
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -170,7 +177,7 @@ const EmployeeSelf = () => {
                         <PatternFormat
                           value={retrieveMaster.callNumber ? retrieveMaster.callNumber : '정보 없음'}
                           displayType="text"
-                          type="text"
+                          type="tel"
                           format="###-####-####"
                         />
                       </Stack>
@@ -178,14 +185,7 @@ const EmployeeSelf = () => {
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
                         <Typography color="secondary">주소</Typography>
-                        <Typography>
-                          <PatternFormat
-                            value={retrieveMaster.address ? retrieveMaster.address : '정보 없음'}
-                            displayType="text"
-                            type="text"
-                            format="###-####-####"
-                          />
-                        </Typography>
+                        <Typography>{retrieveMaster.address ? retrieveMaster.address : '정보 없음'}</Typography>
                       </Stack>
                     </Grid>
                   </Grid>

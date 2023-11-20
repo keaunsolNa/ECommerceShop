@@ -29,6 +29,7 @@ public class EmpBaseController {
 
     @PostMapping()
     public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBaseDTO empBaseDTO) {
+
         EmpBase empBase = new EmpBase();
         empBase.setId(empBaseDTO.getId());
         empBase.setEmail(empBaseDTO.getEmail());
@@ -96,10 +97,10 @@ public class EmpBaseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmpBase> empBaseDocumentSearchById(@PathVariable String id) {
+    public EmpBaseDTO empBaseDocumentSearchById(@PathVariable String id) {
 
         try {
-            return ResponseEntity.ok(empBaseService.empBaseDocumentSearchById(id));
+            return ResponseEntity.ok(empBaseService.empBaseDocumentSearchById(id)).getBody();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
