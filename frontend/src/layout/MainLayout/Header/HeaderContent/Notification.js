@@ -106,22 +106,22 @@ const Notification = () => {
   };
   const ContentsClassification = (notiLists) => {
     console.log('notiLists is : ', notiLists);
-    if (notiLists.icon == 'gift') {
+    if (notiLists.icon === 'gift') {
       const ContentsText = `${notiLists.receiver} 님의 생일입니다.`;
       return ContentsText;
-    } else if (notiLists.icon == 'setting') {
+    } else if (notiLists.icon === 'setting') {
       const ContentsText = notiLists.contents;
       return ContentsText;
-    } else if (notiLists.icon == 'mail') {
+    } else if (notiLists.icon === 'mail') {
       const ContentsText = `${notiLists.sender}님이 메일을 보냈습니다.`;
       return ContentsText;
-    } else if (notiLists.icon == 'reply') {
+    } else if (notiLists.icon === 'reply') {
       const ContentsText = `${notiLists.receiver}님의 ${notiLists.contents}의 댓글이 달렸습니다.`;
       return ContentsText;
-    } else if (notiLists.icon == 'invoice') {
+    } else if (notiLists.icon === 'invoice') {
       const ContentsText = `${notiLists.sender}님이 ${notiLists.contents}를 등록하였습니다.`;
       return ContentsText;
-    } else if (notiLists.icon == 'approval') {
+    } else if (notiLists.icon === 'approval') {
       const ContentsText = `${notiLists.sender}님이 등록한 ${notiLists.contents}`;
       return ContentsText;
     }

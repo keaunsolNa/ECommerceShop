@@ -37,6 +37,9 @@ const EditableRow = ({ value: initialValue, row, row: { index }, column: { dataT
     case 'text':
       element = <>{row.original.value1 === '' || row.original.value1 === undefined ? <TextField id={`${index}`} size="small" /> : value}</>;
       break;
+    default :
+      element = <>{row.original.value1 === '' || row.original.value1 === undefined ? <TextField id={`${index}`} size="small" /> : value}</>;
+      break;
   }
   return element;
 };

@@ -4,9 +4,11 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import {
   Button,
-  FormControl, FormHelperText,
+  FormControl,
+  FormHelperText,
   Grid,
-  InputLabel, ListItemText,
+  InputLabel,
+  ListItemText,
   MenuItem,
   OutlinedInput,
   Select,
@@ -15,13 +17,33 @@ import {
   Typography
 } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import axios from 'axios';
+import { enqueueSnackbar } from 'notistack';
 
 const EmployeeCreate = () => {
 
+  // states
   const status = ['가입 대기', '활동 계정', '휴면 계정', '탈퇴 계정', '블럭 계정'];
   const gender = ['남성', '여성'];
   const role = ['CEO', '재정관리자', '인사관리자', '일반관리자'];
 
+  // function
+  const save = async (data) => {
+    try {
+      await axios.post('http://localhost:8080/empBase', data).then(() => {
+        enqueueSnackbar('수정이 완료되었습니다.', {
+          anchorOrigin: { vertical: 'top', horizontal: 'center', color: 'primary' },
+          autoHideDuration: 1000
+        });
+      });
+    } catch (error) {
+      console.log(error);
+      enqueueSnackbar('수정에 실패하였습니다.', {
+        anchorOrigin: { vertical: 'top', horizontal: 'center', color: 'error' },
+        autoHideDuration: 1000
+      });
+    }
+  };
   const getInitialValues = () => {
     const newEmployee = {
       id: '',
@@ -62,7 +84,7 @@ const EmployeeCreate = () => {
     validationSchema: employeeSchema,
     onSubmit: (values, { setSubmitting }) => {
       try {
-        const data = [
+        const data =
           {
             id: values.id,
             password: values.password,
@@ -78,11 +100,8 @@ const EmployeeCreate = () => {
             fileId: values.fileId,
             address: values.address
           }
-        ];
-
-        console.log(data);
-
         setSubmitting(false);
+        save(data)
       } catch (error) {
         console.error(error);
       }
@@ -291,6 +310,19 @@ const EmployeeCreate = () => {
                       {...getFieldProps('callNumber')}
                       error={Boolean(touched.callNumber && errors.callNumber )}
                       helperText={touched.callNumber && errors.callNumber }
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack spacing={1.25}>
+                    <InputLabel htmlFor="callNumber">주소</InputLabel>
+                    <TextField
+                      fullWidth
+                      id="address"
+                      placeholder="주소를 입력하세요"
+                      {...getFieldProps('address')}
+                      error={Boolean(touched.address && errors.address )}
+                      helperText={touched.address && errors.address }
                     />
                   </Stack>
                 </Grid>

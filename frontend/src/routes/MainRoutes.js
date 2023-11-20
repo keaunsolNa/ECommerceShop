@@ -6,11 +6,10 @@ import CommonLayout from 'layout/CommonLayout';
 import Loadable from 'components/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
-// Sample page
+// pages routing
 const EmployeeSelf = Loadable(lazy(() => import('pages/extra-pages/employee/EmployeeSelf')));
 const EmployeeCreate = Loadable(lazy(() => import('pages/extra-pages/employee/EmployeeCreate')));
-
-// pages routing
+const EmployeeList = Loadable(lazy(() => import('pages/extra-pages/employee/EmployeeList')));
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
 const MaintenanceError500 = Loadable(lazy(() => import('pages/maintenance/500')));
 const MaintenanceUnderConstruction = Loadable(lazy(() => import('pages/maintenance/under-construction')));
@@ -41,6 +40,10 @@ const MainRoutes = {
             {
               path: 'create',
               element: <EmployeeCreate />
+            },
+            {
+              path: 'list',
+              element: <EmployeeList />
             }
           ]
         }

@@ -47,7 +47,6 @@ public class EmpBaseService {
             userRoleCreateQueryList.add(indexQuery);
         }
 
-        System.out.println(userRoleCreateQueryList);
         IndexCoordinates userRoleIndexCoordinates = IndexCoordinates.of("user-role");
 
         empBaseRepository.save(empBase);
@@ -75,7 +74,7 @@ public class EmpBaseService {
         empBaseDTO.setId(empBase.getId());
         empBaseDTO.setEmail(empBase.getEmail());
         empBaseDTO.setName(empBase.getName());
-        empBaseDTO.setBirth(commonModule.parsingDate(empBase.getBirth()));
+        empBaseDTO.setBirth(empBase.getBirth() != null ? commonModule.parsingDate(empBase.getBirth()) : null);
         empBaseDTO.setAddress(empSI.getAddress());
         empBaseDTO.setGender(empBase.getGender());
         empBaseDTO.setRole(empBase.getRole());
@@ -83,7 +82,7 @@ public class EmpBaseService {
         empBaseDTO.setFileId(empBase.getFileId());
         empBaseDTO.setCallNumber(empSI.getCallNumber());
         empBaseDTO.setPhoneNumber(empSI.getPhoneNumber());
-        empBaseDTO.setCreateDate(commonModule.parsingDate(empBase.getCreateDate()));
+        empBaseDTO.setCreateDate(empBase.getCreateDate() != null ? commonModule.parsingDate(empBase.getCreateDate()) : null);
 
         System.out.println(empBaseDTO);
         return empBaseDTO;
