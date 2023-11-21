@@ -37,6 +37,7 @@ const verifyToken = (serviceToken) => {
 const setSession = (serviceToken) => {
   if (serviceToken) {
     localStorage.setItem('serviceToken', serviceToken);
+    localStorage.setItem('id', jwtDecode(serviceToken).sub);
     axiosServices.defaults.headers.common.Authorization = `Bearer ${serviceToken}`;
   } else {
     localStorage.removeItem('serviceToken');
@@ -62,9 +63,7 @@ export const JWTProvider = ({ children }) => {
           // const response = await axiosServices.get('/api/account/me');
           // const { user } = response.data;
           const user = {
-            id: decoded.jti,
-            email: decoded.email,
-            name: decoded.name
+            id: decoded.sub
           };
           dispatch({
             type: LOGIN,
@@ -182,6 +181,7 @@ export const JWTProvider = ({ children }) => {
       dispatch({ type: LOGOUT });
     } else {
       setSession(null);
+      localStorage.clear();
       dispatch({ type: LOGOUT });
     }
   };
