@@ -2,8 +2,14 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
   app.use(
-    createProxyMiddleware('/api', {
-      target: 'http://localhost:8080', // 비즈니스 서버 URL 설정
+    createProxyMiddleware('/login', {
+      target: 'http://192.168.56.1:8080', // login 프록시
+      changeOrigin: true
+    })
+  );
+  app.use(
+    createProxyMiddleware('/empBase', {
+      target: 'http://192.168.56.1:8080', // employee 프록시
       changeOrigin: true
     })
   );

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { PropTypes } from 'prop-types';
 import Loader from '../../components/Loader';
 import EmployeeSelfGrid from '../../sections/employee/EmployeeSelfGrid';
 
@@ -11,7 +10,7 @@ const EmployeeSelf = () => {
   const id = localStorage.getItem('id');
   // functions
   useEffect(() => {
-    const retrieveCall = axios.get(`api/empBase/${id}`)
+    const retrieveCall = axios.get(`/empBase/${id}`);
     Promise.all([retrieveCall])
       .then(([response1]) => {
         setData(response1.data);
@@ -23,12 +22,7 @@ const EmployeeSelf = () => {
       });
   }, [id]);
   if (loading) return <Loader />;
-  return (
-    <EmployeeSelfGrid data={data} />
-  );
-};
-EmployeeSelf.propTypes = {
-  retrieveMaster: PropTypes.object
+  return <EmployeeSelfGrid data={data} />;
 };
 
 export default EmployeeSelf;

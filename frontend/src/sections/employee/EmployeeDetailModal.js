@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AnimateButton from 'components/@extended/AnimateButton';
 import DeleteModal from '../../pages/common/DeleteModal';
+import PropTypes from 'prop-types';
 
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
@@ -73,7 +74,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       if (values.id === '') {
         delete item.id;
       }
-      const response1 = isInsert ? axios.post('api/empBase', item) : axios.patch(`api/empBase/update`, item);
+      const response1 = isInsert ? axios.post('/empBase', item) : axios.patch(`/empBase/update`, item);
       Promise.all([response1])
         .then(() => {
           enqueueSnackbar(`저장이 완료되었습니다.`, {
@@ -98,7 +99,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 
   const deleteData = () => {
     setLoading(true);
-    const response1 = axios.delete(`api/empBase/delete?id=${selectedData.id}`);
+    const response1 = axios.delete(`/empBase/delete?id=${selectedData.id}`);
     Promise.all([response1])
       .then(() => {
         enqueueSnackbar(`삭제가 완료되었습니다.`, {
@@ -152,7 +153,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 </Stack>
               </Grid>
               <Stack spacing={1}>
-                <InputLabel>공통코드</InputLabel>
+                <InputLabel>아이디</InputLabel>
                 <TextField
                   fullWidth
                   id="id"
@@ -311,4 +312,10 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   );
 };
 
+EmployeeDetailModal.propTypes = {
+  title: PropTypes.string,
+  handleOpen: PropTypes.func,
+  handleReload: PropTypes.func,
+  selectedData: PropTypes.any
+};
 export default EmployeeDetailModal;

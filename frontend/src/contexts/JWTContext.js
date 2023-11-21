@@ -93,7 +93,7 @@ export const JWTProvider = ({ children }) => {
   // }, [tokenData]);
 
   const login = async (id, password) => {
-    const response = await axios.post('api/login', { id, password });
+    const response = await axios.post('/login', { id, password });
     const decoded = jwtDecode(response.data);
 
     const serviceToken = response.data;

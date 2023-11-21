@@ -21,7 +21,6 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 
 const EmployeeCreate = () => {
-
   // states
   const status = ['가입 대기', '활동 계정', '휴면 계정', '탈퇴 계정', '블럭 계정'];
   const gender = ['남성', '여성'];
@@ -30,7 +29,7 @@ const EmployeeCreate = () => {
   // function
   const save = async (data) => {
     try {
-      await axios.post('api/empBase', data).then(() => {
+      await axios.post('/empBase', data).then(() => {
         enqueueSnackbar('수정이 완료되었습니다.', {
           anchorOrigin: { vertical: 'top', horizontal: 'center', color: 'primary' },
           autoHideDuration: 1000
@@ -45,7 +44,7 @@ const EmployeeCreate = () => {
     }
   };
   const getInitialValues = () => {
-    const newEmployee = {
+    return {
       id: '',
       password: '',
       confirmPassword: '',
@@ -60,14 +59,19 @@ const EmployeeCreate = () => {
       fileId: '',
       address: ''
     };
-    return newEmployee;
   };
   // states
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('id is required'),
-    password: Yup.string().max(30).required('password is required'),
+    password: Yup.string()
+      .max(30)
+      .required('password is required')
+      .matches(
+        '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$',
+        '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'
+      ),
     confirmPassword: Yup.string().max(30).required('confirmPassword is required'),
-    email: Yup.string().max(255).required('email is required'),
+    email: Yup.string().max(255).required('Email is required').email('Must be a valid email'),
     state: Yup.string().max(255),
     name: Yup.string().max(255).required('name is required'),
     gender: Yup.string().max(2).required('gender is required'),
@@ -84,24 +88,23 @@ const EmployeeCreate = () => {
     validationSchema: employeeSchema,
     onSubmit: (values, { setSubmitting }) => {
       try {
-        const data =
-          {
-            id: values.id,
-            password: values.password,
-            confirmPassword: values.confirmPassword,
-            email: values.email,
-            state: values.state,
-            name: values.name,
-            gender: values.gender,
-            role: values.role,
-            birth: values.birth,
-            phoneNumber: values.phoneNumber,
-            callNumber: values.callNumber,
-            fileId: values.fileId,
-            address: values.address
-          }
+        const data = {
+          id: values.id,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+          email: values.email,
+          state: values.state,
+          name: values.name,
+          gender: values.gender,
+          role: values.role,
+          birth: values.birth,
+          phoneNumber: values.phoneNumber,
+          callNumber: values.callNumber,
+          fileId: values.fileId,
+          address: values.address
+        };
         setSubmitting(false);
-        save(data)
+        save(data);
       } catch (error) {
         console.error(error);
       }
@@ -165,8 +168,8 @@ const EmployeeCreate = () => {
                       id="email"
                       placeholder="Enter Email"
                       {...getFieldProps('email')}
-                      error={Boolean(touched.email && errors.email )}
-                      helperText={touched.email && errors.email }
+                      error={Boolean(touched.email && errors.email)}
+                      helperText={touched.email && errors.email}
                     />
                   </Stack>
                 </Grid>
@@ -209,8 +212,8 @@ const EmployeeCreate = () => {
                       id="name"
                       placeholder="Enter Name"
                       {...getFieldProps('name')}
-                      error={Boolean(touched.name && errors.name )}
-                      helperText={touched.name && errors.name }
+                      error={Boolean(touched.name && errors.name)}
+                      helperText={touched.name && errors.name}
                     />
                   </Stack>
                 </Grid>
@@ -295,8 +298,8 @@ const EmployeeCreate = () => {
                       id="phoneNumber"
                       placeholder="Enter Phone Number"
                       {...getFieldProps('phoneNumber')}
-                      error={Boolean(touched.phoneNumber && errors.phoneNumber )}
-                      helperText={touched.phoneNumber && errors.phoneNumber }
+                      error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+                      helperText={touched.phoneNumber && errors.phoneNumber}
                     />
                   </Stack>
                 </Grid>
@@ -308,8 +311,8 @@ const EmployeeCreate = () => {
                       id="callNumber"
                       placeholder="Enter Call Number"
                       {...getFieldProps('callNumber')}
-                      error={Boolean(touched.callNumber && errors.callNumber )}
-                      helperText={touched.callNumber && errors.callNumber }
+                      error={Boolean(touched.callNumber && errors.callNumber)}
+                      helperText={touched.callNumber && errors.callNumber}
                     />
                   </Stack>
                 </Grid>
@@ -321,8 +324,8 @@ const EmployeeCreate = () => {
                       id="address"
                       placeholder="주소를 입력하세요"
                       {...getFieldProps('address')}
-                      error={Boolean(touched.address && errors.address )}
-                      helperText={touched.address && errors.address }
+                      error={Boolean(touched.address && errors.address)}
+                      helperText={touched.address && errors.address}
                     />
                   </Stack>
                 </Grid>

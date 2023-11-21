@@ -14,8 +14,8 @@ const EmployeeList = () => {
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
   const [searchCodeClassify, setSearchCodeClassify] = useState('TEST_INPUT');
-  const [reload, setReload] = useState(false); // 버튼 클릭 횟수를 저장하는 상태
-  const [open, setOpen] = useState(false); // 버튼 클릭 횟수를 저장하는 상태
+  const [reload, setReload] = useState(false);
+  const [open, setOpen] = useState(false);
   const columns = useMemo(
     () => [
       {
@@ -83,12 +83,11 @@ const EmployeeList = () => {
   );
   // functions
   const handleReload = () => {
-    // 버튼 클릭 시 useEffect를 다시 실행
     setReload(!reload);
   };
   const rowSelect = (row) => {
     if (row) {
-      const retrieveCall = axios.get(`api/empBase/${row.values.id}`)
+      const retrieveCall = axios.get(`/empBase/${row.values.id}`);
       Promise.all([retrieveCall])
         .then(([response1]) => {
           setSelectedData(response1.data);
@@ -98,24 +97,23 @@ const EmployeeList = () => {
           console.error('Error fetching data:', error);
           setLoading(false);
         });
-    }
-    else setSelectedData({});
+    } else setSelectedData({});
     setOpen(!open);
   };
   const searchConditionChange = (e) => {
     setSearchCodeClassify(e.target?.value);
   };
   useEffect(() => {
-    const retrieveCall = axios.get(`api/empBase/all`);
+    const retrieveCall = axios.get(`/empBase/all`);
     Promise.all([retrieveCall])
       .then(([response1]) => {
-        console.log(response1)
+        console.log(response1);
         setData(response1.data);
         setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setLoading(false); // 오류가 발생하더라도 setLoading(false) 호출
+        setLoading(false);
       });
   }, [reload, searchCodeClassify]);
 
@@ -127,29 +125,26 @@ const EmployeeList = () => {
         title={'사원 목록'}
         secondary={
           <>
-            <TextField
-              id="searchCondition"
-              name="searchCondition"
-              placeholder="이름"
-              onChange={searchConditionChange}
-              size={'small'}
-            />
-            <Button variant="outlined" color="primary" onClick={handleReload}> 조회 </Button>
+            <TextField id="searchCondition" name="searchCondition" placeholder="이름" onChange={searchConditionChange} size={'small'} />
+            <Button variant="outlined" color="primary" onClick={handleReload}>
+              {' '}
+              조회{' '}
+            </Button>
           </>
         }
       >
         <EmployeeListTable title={'코드분류내역'} columns={columns} data={data} striped={true} rowSelect={rowSelect} />
       </MainCard>
       <Dialog
-      maxWidth="md"
-      TransitionComponent={PopupTransition}
-      onClose={() => rowSelect()}
-      open={open}
-      sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
-      aria-describedby="alert-dialog-slide-description"
-      slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
+        maxWidth="md"
+        TransitionComponent={PopupTransition}
+        onClose={() => rowSelect()}
+        open={open}
+        sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
+        aria-describedby="alert-dialog-slide-description"
+        slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
-      <EmployeeDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={rowSelect} />
+        <EmployeeDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={rowSelect} />
       </Dialog>
     </div>
   );

@@ -157,12 +157,7 @@ const EmployeeSelfGrid = ({ data }) => {
                       <Stack spacing={0.5}>
                         <Typography color="secondary">전화번호</Typography>
                         <Typography>
-                          <PatternFormat
-                            value={value?.phoneNumber}
-                            displayType="text"
-                            type="text"
-                            format="###-####-####"
-                          />
+                          <PatternFormat value={value?.phoneNumber} displayType="text" type="text" format="###-####-####" />
                         </Typography>
                       </Stack>
                     </Grid>
@@ -173,12 +168,7 @@ const EmployeeSelfGrid = ({ data }) => {
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
                         <Typography color="secondary">일반전화번호</Typography>
-                        <PatternFormat
-                          value={value?.callNumber}
-                          displayType="text"
-                          type="tel"
-                          format="###-####-####"
-                        />
+                        <PatternFormat value={value?.callNumber} displayType="text" type="tel" format="###-####-####" />
                       </Stack>
                     </Grid>
                     <Grid item xs={12} md={6}>

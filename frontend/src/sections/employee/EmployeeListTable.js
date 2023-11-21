@@ -16,9 +16,7 @@ function EmployeeListBasicTable({ columns, data, striped, rowSelect }) {
   const initialState = useMemo(
     () => ({
       filters: [],
-      hiddenColumns: [
-        'id', 'birth', 'phoneNumber', 'callNumber', 'address'
-      ],
+      hiddenColumns: ['id', 'birth', 'phoneNumber', 'callNumber', 'address'],
       columnOrder: [],
       pageIndex: 0,
       pageSize: 10
