@@ -1,14 +1,14 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Button, Dialog, TextField } from '@mui/material';
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import axios from 'axios';
-import EmployeeListTable from '../../../sections/extra-pages/employee/EmployeeListTable';
-import { PopupTransition } from '../../../components/@extended/Transitions';
-import EmployeeDetailModal from '../../../sections/extra-pages/employee/EmployeeDetailModal';
+import EmployeeListTable from '../../sections/employee/EmployeeListTable';
+import EmployeeDetailModal from '../../sections/employee/EmployeeDetailModal';
+import { PopupTransition } from '../../components/@extended/Transitions';
 
-const CommonCode = () => {
+const EmployeeList = () => {
   // states
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -88,7 +88,7 @@ const CommonCode = () => {
   };
   const rowSelect = (row) => {
     if (row) {
-      const retrieveCall = axios.get(`http://localhost:8080/empBase/${row.values.id}`)
+      const retrieveCall = axios.get(`api/empBase/${row.values.id}`)
       Promise.all([retrieveCall])
         .then(([response1]) => {
           setSelectedData(response1.data);
@@ -106,9 +106,10 @@ const CommonCode = () => {
     setSearchCodeClassify(e.target?.value);
   };
   useEffect(() => {
-    const retrieveCall = axios.get(`http://localhost:8080/empBase/all`);
+    const retrieveCall = axios.get(`api/empBase/all`);
     Promise.all([retrieveCall])
       .then(([response1]) => {
+        console.log(response1)
         setData(response1.data);
         setLoading(false);
       })
@@ -153,4 +154,4 @@ const CommonCode = () => {
     </div>
   );
 };
-export default CommonCode;
+export default EmployeeList;

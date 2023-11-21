@@ -30,7 +30,7 @@ const EmployeeCreate = () => {
   // function
   const save = async (data) => {
     try {
-      await axios.post('http://localhost:8080/empBase', data).then(() => {
+      await axios.post('api/empBase', data).then(() => {
         enqueueSnackbar('수정이 완료되었습니다.', {
           anchorOrigin: { vertical: 'top', horizontal: 'center', color: 'primary' },
           autoHideDuration: 1000

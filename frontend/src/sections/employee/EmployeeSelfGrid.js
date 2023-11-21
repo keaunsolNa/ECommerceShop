@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
+  Avatar,
   Divider,
   Grid,
   List,
@@ -10,15 +11,13 @@ import {
   Typography,
   useMediaQuery
 } from '@mui/material';
-import MainCard from '../../../components/MainCard';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
-import Avatar from '../../../components/@extended/Avatar';
 import { AimOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import { PatternFormat } from 'react-number-format';
-
+import MainCard from '../../components/MainCard';
 // ==============================|| ACCOUNT PROFILE - BASIC ||============================== //
 
 const EmployeeSelfGrid = ({ data }) => {

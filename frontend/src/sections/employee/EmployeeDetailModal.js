@@ -1,18 +1,17 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { Button, Grid, IconButton, InputLabel, Stack, TextField } from '@mui/material';
+import { Avatar, Button, Grid, IconButton, InputLabel, Stack, TextField } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
-import Loader from '../../../components/Loader';
+import Loader from '../../components/Loader';
 import { CloseOutlined, DeleteFilled } from '@ant-design/icons';
 import MainCard from 'components/MainCard';
 import dayjs from 'dayjs';
-import Avatar from '../../../components/@extended/Avatar';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AnimateButton from 'components/@extended/AnimateButton';
-import DeleteModal from '../../../pages/common/DeleteModal';
+import DeleteModal from '../../pages/common/DeleteModal';
 
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
@@ -74,7 +73,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       if (values.id === '') {
         delete item.id;
       }
-      const response1 = isInsert ? axios.post('http://localhost:8080/empBase', item) : axios.patch(`http://localhost:8080/empBase/update`, item);
+      const response1 = isInsert ? axios.post('api/empBase', item) : axios.patch(`api/empBase/update`, item);
       Promise.all([response1])
         .then(() => {
           enqueueSnackbar(`저장이 완료되었습니다.`, {
@@ -99,7 +98,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 
   const deleteData = () => {
     setLoading(true);
-    const response1 = axios.delete(`http://localhost:8080/empBase/delete?id=${selectedData.id}`);
+    const response1 = axios.delete(`api/empBase/delete?id=${selectedData.id}`);
     Promise.all([response1])
       .then(() => {
         enqueueSnackbar(`삭제가 완료되었습니다.`, {
