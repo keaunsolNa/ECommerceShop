@@ -8,7 +8,7 @@ import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import DynamicTable from 'components/win/DynamicTable';
 // project import
-import HrInfoMaster from '../../../pages/extra-pages/employee/EmployeeSelf';
+import HrInfoMaster from '../../pages/employee/EmployeeSelf';
 // assets
 const OrganizationMember = () => {
   // states

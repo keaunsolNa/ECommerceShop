@@ -7,8 +7,8 @@ import Loadable from 'components/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
 // Sample page
-const EmployeeSelf = Loadable(lazy(() => import('pages/extra-pages/employee/EmployeeSelf')));
-const EmployeeCreate = Loadable(lazy(() => import('pages/extra-pages/employee/EmployeeCreate')));
+const EmployeeSelf = Loadable(lazy(() => import('pages/employee/EmployeeSelf')));
+const EmployeeCreate = Loadable(lazy(() => import('pages/employee/EmployeeCreate')));
 
 // pages routing
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));

@@ -12,9 +12,9 @@ import Avatar from 'components/@extended/Avatar';
 import { AimOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
-import { dispatch, useSelector } from '../../../store';
-import { dispatchRetrieveEmployee } from '../../../store/reducers/emp/employee';
-import Loader from '../../../components/Loader';
+import { dispatch, useSelector } from '../../store';
+import { dispatchRetrieveEmployee } from '../../store/reducers/emp/employee';
+import Loader from '../../components/Loader';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { parseISO } from 'date-fns';
 // ==============================|| ACCOUNT PROFILE - BASIC ||============================== //

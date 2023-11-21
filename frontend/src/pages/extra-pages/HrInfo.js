@@ -8,7 +8,7 @@ import { Box, Button, Tab, Tabs } from '@mui/material';
 import MainCard from 'components/MainCard';
 
 // assets
-import HrInfoMaster from 'pages/extra-pages/employee/EmployeeSelf';
+import HrInfoMaster from 'pages/employee/EmployeeSelf';
 import { response } from './data';
 import axios from 'axios';
 
