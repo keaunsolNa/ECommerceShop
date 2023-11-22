@@ -24,4 +24,10 @@ public class ApiController {
 
         return apiService.authorityDocumentationSearch();
     }
+
+    @GetMapping("/state")
+    public List<String> userStateRequest() {
+
+        return apiService.userStateRequest();
+    }
 }

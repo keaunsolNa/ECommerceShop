@@ -55,6 +55,8 @@ public class EmpBaseController {
     @DeleteMapping ("/{id}")
     public ResponseEntity<EmpBase> empBaseDocumentDeleteById(@PathVariable String id) {
 
+        System.out.println("Controller");
+        System.out.println(id);
         try {
             empBaseService.empBaseDocumentDeleteById(id);
         } catch (Exception e) {

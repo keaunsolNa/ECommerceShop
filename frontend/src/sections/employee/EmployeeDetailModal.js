@@ -1,18 +1,18 @@
 import * as Yup from 'yup';
 import { useFormik, FormikProvider } from 'formik';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { Avatar, Button, Grid, IconButton, InputLabel, Stack, TextField } from '@mui/material';
+import { Avatar, Button, Grid, IconButton, Select, InputLabel, MenuItem, Stack, TextField, Chip } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
 import { CloseOutlined, DeleteFilled } from '@ant-design/icons';
 import MainCard from 'components/MainCard';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import AnimateButton from 'components/@extended/AnimateButton';
 import DeleteModal from '../../pages/common/DeleteModal';
 import PropTypes from 'prop-types';
+import AnimateButton from 'components/@extended/AnimateButton';
 
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
@@ -20,55 +20,72 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const isInsert = selectedData.id === undefined;
   const avatarImage = require.context('assets/images/users', true);
-
+  const [userRoleList, setUserRoleList] = useState([]);
+  const [userStateList, setUserStateList] = useState([]);
+  const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
+  const callNumberRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('id is required'),
-    password: Yup.string()
-      .max(30)
-      .required('password is required')
-      .matches(
-        '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$',
-        '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'
-      ),
-    confirmPassword: Yup.string().max(30).required('confirmPassword is required'),
+    password: !isInsert
+      ? Yup.string()
+      : Yup.string()
+        .max(30)
+        .required('password is required')
+        .matches(
+          '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$',
+          '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'
+        ),
+    confirmPassword: !isInsert
+      ? Yup.string()
+      : Yup.string()
+        .max(30)
+        .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
+        .required('confirmPassword is required'),
     email: Yup.string().max(255).required('Email is required').email('Must be a valid email'),
-    state: Yup.string().max(255),
+    state: Yup.string().max(255).required('State is required'),
     name: Yup.string().max(255).required('name is required'),
     gender: Yup.string().max(2).required('gender is required'),
     role: Yup.string().max(10).required('role is required'),
-    birth: Yup.date().required('date is required'),
-    phoneNumber: Yup.string().max(13).required('phoneNumber is required'),
-    callNumber: Yup.string().max(13),
+    birth: Yup.date().max(new Date(), '생년월일은 오늘 이전이어야 합니다.').required('date is required'),
+    phoneNumber:
+      Yup.string()
+        .max(13)
+        .matches(phoneNumberRegex, '올바른 핸드폰 번호 형식이 아닙니다. (XXX-XXXX-XXXX)')
+        .required('phoneNumber is required'),
+    callNumber: !isInsert
+      ? Yup.string()
+        .max(13)
+        .matches(callNumberRegex, '올바른 전화번호 형식이 아닙니다. (XX-XXXX-XXXX 또는 XXX-XXX-XXXX)')
+      : Yup.string(),
     fileId: Yup.string().max(200),
     address: Yup.string().max(200)
   });
   const getInitialValues = () => {
     return {
       id: isInsert ? '' : selectedData.id,
-      password: isInsert ? '' : selectedData.password,
-      confirmPassword: isInsert ? '' : selectedData.confirmPassword,
+      password: '',
+      confirmPassword: '',
       email: isInsert ? '' : selectedData.email,
       state: isInsert ? '가입 대기' : selectedData.state,
       name: isInsert ? '' : selectedData.name,
       gender: isInsert ? '' : selectedData.gender,
-      role: isInsert ? '일반관리자' : selectedData.role,
+      role: isInsert ? '일반관리자' : selectedData?.role,
       birth: isInsert ? null : dayjs(new Date(selectedData.birth)),
       phoneNumber: isInsert ? '' : selectedData.phoneNumber,
-      callNumber: isInsert ? '' : selectedData.callNumber,
-      fileId: isInsert ? '' : selectedData.fileId,
-      address: isInsert ? '' : selectedData.address
+      callNumber: isInsert ? '' : selectedData?.callNumber,
+      fileId: isInsert ? '' : selectedData?.fileId,
+      address: isInsert ? '' : selectedData?.address
     }
   }
   const formik = useFormik({
-    initialValues: getInitialValues(),
     enableReinitialize: true,
+    initialValues: getInitialValues(),
     validationSchema: employeeSchema,
-    onSubmit: (values, { setSubmitting }) => {
-
+    onSubmit: (values) => {
       const data = {
         id: values.id,
-        password: values.password,
-        confirmPassword: values.confirmPassword,
+        password: values?.password,
+        confirmPassword: values?.confirmPassword,
         email: values.email,
         state: values.state,
         name: values.name,
@@ -76,17 +93,18 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         role: values.role,
         birth: values.birth.format('YYYY-MM-DD'),
         phoneNumber: values.phoneNumber,
-        callNumber: values.callNumber,
-        fileId: values.fileId,
-        address: values.address
+        callNumber: values?.callNumber,
+        fileId: values?.fileId,
+        address: values?.address
       };
 
-      console.log(data)
+      console.log('data')
       // 제출 이후 로직 작성
       if (values.id === '') {
         delete values.id;
       }
-      const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase/update`, data);
+      console.log(data)
+      const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase`, data);
       Promise.all([response1])
         .then(() => {
           console.log('after')
@@ -94,7 +112,6 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
             anchorOrigin: { vertical: 'top', horizontal: 'center' },
             autoHideDuration: 1000
           });
-          setSubmitting();
           handleOpen();
           handleReload();
         })
@@ -112,7 +129,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 
   const deleteData = () => {
     setLoading(true);
-    const response1 = axios.delete(`/empBase/delete?id=${selectedData.id}`);
+    const response1 = axios.delete(`/empBase/${selectedData.id}`);
     Promise.all([response1])
       .then(() => {
         enqueueSnackbar(`삭제가 완료되었습니다.`, {
@@ -132,22 +149,26 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         setLoading(false);
       });
   };
-
   useEffect(() => {
-    Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
-
-    const retrieveCall = axios.get(`/api/role`);
-    Promise.all([retrieveCall])
-      .then(([rsponseRole]) => {
-        console.log(rsponseRole)
+    const retrieveRoleCall = axios.get(`/api/role`);
+    Promise.all([retrieveRoleCall])
+      .then(([response]) => {
+        setUserRoleList(response.data)
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setLoading(false);
       });
+    const retrieveStateCall = axios.get(`/api/state`);
+    Promise.all([retrieveStateCall])
+      .then(([response]) => {
+        setUserStateList(response.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+    Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
   }, []);
-
-  const { errors, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps } = formik;
+  const { isSubmitting} = formik;
   if (loading) return <Loader />;
   return (
     <MainCard
@@ -188,44 +209,42 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.id}
                     onChange={formik.handleChange}
                     error={formik.touched.id && Boolean(formik.errors.id)}
-                    helperText={formik.touched.id && formik.errors.id}
+                    helpertext={formik.touched.id && formik.errors.id}
                   />
                 </Stack>
               </Grid>
-              { isInsert ?
-                <>
-                  <Grid item xs={12}>
-                    <Stack spacing={1.25}>
-                      <InputLabel htmlFor="password">Password</InputLabel>
-                      <TextField
-                        fullWidth
-                        id="password"
-                        name="password"
-                        placeholder="비밀번호"
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        helperText={formik.touched.password && formik.errors.password}
-                      />
-                    </Stack>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Stack spacing={1.25}>
-                      <InputLabel htmlFor="confirmPassword">Password</InputLabel>
-                      <TextField
-                        fullWidth
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder="비밀번호 확인"
-                        value={formik.values.confirmPassword}
-                        onChange={formik.handleChange}
-                        error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-                        helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
-                      />
-                    </Stack>
-                  </Grid>
-                </>
-              : null}
+              <Grid item xs={12} style={{ display: !isInsert ? 'none' : 'block' }}>
+                <Stack spacing={1.25}>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <TextField
+                    fullWidth
+                    id="password"
+                    name="password"
+                    placeholder="비밀번호"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+                    helpertext={formik.touched.password && formik.errors.password}
+                    type={'password'}
+                  />
+                </Stack>
+              </Grid>
+              <Grid item xs={12} style={{ display: !isInsert ? 'none' : 'block' }}>
+                <Stack spacing={1.25}>
+                  <InputLabel htmlFor="confirmPassword">Password</InputLabel>
+                  <TextField
+                    fullWidth
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="비밀번호 확인"
+                    value={formik.values.confirmPassword}
+                    onChange={formik.handleChange}
+                    error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+                    helpertext={formik.touched.confirmPassword && formik.errors.confirmPassword}
+                    type={'password'}
+                  />
+                </Stack>
+              </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
                   <InputLabel>이메일</InputLabel>
@@ -237,14 +256,15 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.touched.email && formik.errors.email}
+                    helpertext={formik.touched.email && formik.errors.email}
+                    type={'email'}
                   />
                 </Stack>
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
                   <InputLabel>상태</InputLabel>
-                  <TextField
+                  <Select
                     fullWidth
                     id="state"
                     name="state"
@@ -252,8 +272,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.state}
                     onChange={formik.handleChange}
                     error={formik.touched.state && Boolean(formik.errors.state)}
-                    helperText={formik.touched.state && formik.errors.state}
-                  />
+                    helpertext={formik.touched.state && formik.errors.state}
+                    defaultValue={'가입 대기'}
+                  >
+                    {userStateList.map((option, idx) => (
+
+                      <MenuItem key={option} value={option} id={`${option}-${idx}`}>
+                        <Chip color="primary" label={option} size="small" variant="light" />
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Stack>
               </Grid>
               <Grid item xs={12}>
@@ -263,18 +291,18 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     fullWidth
                     id="name"
                     name="name"
-                    placeholder="코드약명"
+                    placeholder="이름"
                     value={formik.values.name}
                     onChange={formik.handleChange}
                     error={formik.touched.name && Boolean(formik.errors.name)}
-                    helperText={formik.touched.name && formik.errors.name}
+                    helpertext={formik.touched.name && formik.errors.name}
                   />
                 </Stack>
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
                   <InputLabel>성별</InputLabel>
-                  <TextField
+                  <Select
                     fullWidth
                     id="gender"
                     name="gender"
@@ -282,14 +310,22 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.gender}
                     onChange={formik.handleChange}
                     error={formik.touched.gender && Boolean(formik.errors.gender)}
-                    helperText={formik.touched.gender && formik.errors.gender}
-                  />
+                    helpertext={formik.touched.gender && formik.errors.gender}
+                    defaultValue={'남성'}
+                  >
+                    <MenuItem value="남성">
+                      <Chip color="primary" label="남성" size="small" variant="light" />
+                    </MenuItem>
+                    <MenuItem value="여성">
+                      <Chip color="primary" label="여성" size="small" variant="light" />
+                    </MenuItem>
+                  </Select>
                 </Stack>
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
                   <InputLabel>직책</InputLabel>
-                  <TextField
+                  <Select
                     fullWidth
                     id="role"
                     name="role"
@@ -297,8 +333,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.role}
                     onChange={formik.handleChange}
                     error={formik.touched.role && Boolean(formik.errors.role)}
-                    helperText={formik.touched.role && formik.errors.role}
-                  />
+                    helpertext={formik.touched.role && formik.errors.role}
+                    defaultValue={'일반 관리자'}
+                  >
+                    {userRoleList.map((option, idx) => (
+
+                      <MenuItem key={option} value={option} id={`${option}-${idx}`}>
+                        <Chip color="primary" label={option} size="small" variant="light" />
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Stack>
               </Grid>
               <Grid item xs={12}>
@@ -324,7 +368,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.phoneNumber}
                     onChange={formik.handleChange}
                     error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                    helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                    helpertext={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                    type={'tel'}
                   />
                 </Stack>
               </Grid>
@@ -339,7 +384,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.callNumber}
                     onChange={formik.handleChange}
                     error={formik.touched.callNumber && Boolean(formik.errors.callNumber)}
-                    helperText={formik.touched.callNumber && formik.errors.callNumber}
+                    helpertext={formik.touched.callNumber && formik.errors.callNumber}
+                    type={'tel'}
                   />
                 </Stack>
               </Grid>
@@ -354,13 +400,13 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     value={formik.values.address}
                     onChange={formik.handleChange}
                     error={formik.touched.address && Boolean(formik.errors.address)}
-                    helperText={formik.touched.address && formik.errors.address}
+                    helpertext={formik.touched.address && formik.errors.address}
                   />
                 </Stack>
               </Grid>
-              <Grid item pt={2} xs={12}>
+              <Grid item xs={12}>
                 <AnimateButton>
-                  <Button fullWidth variant="contained" type="submit" disabled={isSubmitting}>
+                  <Button fullWidth variant="contained" type="submit" disabled={isSubmitting}>>
                     저장
                   </Button>
                 </AnimateButton>
