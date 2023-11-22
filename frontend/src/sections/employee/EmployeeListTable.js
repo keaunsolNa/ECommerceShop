@@ -12,7 +12,7 @@ import ScrollX from 'components/ScrollX';
 
 // ==============================|| REACT TABLE ||============================== //
 
-function EmployeeListBasicTable({ columns, data, striped, rowSelect }) {
+function EmployeeListBasicTable({ columns, data, striped, handleOpen }) {
   const initialState = useMemo(
     () => ({
       filters: [],
@@ -50,7 +50,7 @@ function EmployeeListBasicTable({ columns, data, striped, rowSelect }) {
               {...row.getRowProps()}
               key={i}
               onDoubleClick={() => {
-                rowSelect(row);
+                handleOpen(row);
               }}
             >
               {row.cells.map((cell, i) => (
@@ -68,17 +68,17 @@ function EmployeeListBasicTable({ columns, data, striped, rowSelect }) {
 
 EmployeeListBasicTable.propTypes = {
   columns: PropTypes.array,
-  rowSelect: PropTypes.func,
+  handleOpen: PropTypes.func,
   data: PropTypes.array,
   striped: PropTypes.bool
 };
 
 // ==============================|| REACT TABLE - BASIC ||============================== //
 
-const EmployeeListTable = ({ columns, data, striped, rowSelect }) => {
+const EmployeeListTable = ({ columns, data, striped, handleOpen }) => {
   return (
     <ScrollX>
-      <EmployeeListBasicTable columns={columns} data={data} striped={striped} rowSelect={rowSelect} />
+      <EmployeeListBasicTable columns={columns} data={data} striped={striped} handleOpen={handleOpen} />
     </ScrollX>
   );
 };
@@ -88,7 +88,7 @@ EmployeeListTable.propTypes = {
   striped: PropTypes.bool,
   columns: PropTypes.array,
   title: PropTypes.string,
-  rowSelect: PropTypes.func
+  handleOpen: PropTypes.func
 };
 
 export default EmployeeListTable;

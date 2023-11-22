@@ -8,7 +8,6 @@ import AuthGuard from 'utils/route-guard/AuthGuard';
 
 // pages routing
 const EmployeeSelf = Loadable(lazy(() => import('pages/employee/EmployeeSelf')));
-const EmployeeCreate = Loadable(lazy(() => import('pages/employee/EmployeeCreate')));
 const EmployeeList = Loadable(lazy(() => import('pages/employee/EmployeeList')));
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
 const MaintenanceError500 = Loadable(lazy(() => import('pages/maintenance/500')));
@@ -36,10 +35,6 @@ const MainRoutes = {
             {
               path: 'self',
               element: <EmployeeSelf />
-            },
-            {
-              path: 'create',
-              element: <EmployeeCreate />
             },
             {
               path: 'list',

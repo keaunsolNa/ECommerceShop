@@ -85,8 +85,9 @@ const EmployeeList = () => {
   const handleReload = () => {
     setReload(!reload);
   };
-  const rowSelect = (row) => {
-    if (row) {
+  const handleOpen = (row) => {
+
+    if (row && row.values) {
       const retrieveCall = axios.get(`/empBase/${row.values.id}`);
       Promise.all([retrieveCall])
         .then(([response1]) => {
@@ -97,7 +98,9 @@ const EmployeeList = () => {
           console.error('Error fetching data:', error);
           setLoading(false);
         });
-    } else setSelectedData({});
+    }
+    else setSelectedData([]);
+
     setOpen(!open);
   };
   const searchConditionChange = (e) => {
@@ -107,7 +110,6 @@ const EmployeeList = () => {
     const retrieveCall = axios.get(`/empBase/all`);
     Promise.all([retrieveCall])
       .then(([response1]) => {
-        console.log(response1);
         setData(response1.data);
         setLoading(false);
       })
@@ -115,7 +117,7 @@ const EmployeeList = () => {
         console.error('Error fetching data:', error);
         setLoading(false);
       });
-  }, [reload, searchCodeClassify]);
+  }, [reload]);
 
   if (loading) return <Loader />;
   return (
@@ -127,24 +129,26 @@ const EmployeeList = () => {
           <>
             <TextField id="searchCondition" name="searchCondition" placeholder="이름" onChange={searchConditionChange} size={'small'} />
             <Button variant="outlined" color="primary" onClick={handleReload}>
-              {' '}
-              조회{' '}
+              조회
+            </Button>
+            <Button variant="outlined" color="primary" onClick={() => handleOpen()} >
+              인사 카드 생성
             </Button>
           </>
         }
       >
-        <EmployeeListTable title={'코드분류내역'} columns={columns} data={data} striped={true} rowSelect={rowSelect} />
+        <EmployeeListTable title={'코드분류내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
         maxWidth="md"
         TransitionComponent={PopupTransition}
-        onClose={() => rowSelect()}
+        onClose={() => handleOpen()}
         open={open}
         sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
         aria-describedby="alert-dialog-slide-description"
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
-        <EmployeeDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={rowSelect} />
+        <EmployeeDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
       </Dialog>
     </div>
   );

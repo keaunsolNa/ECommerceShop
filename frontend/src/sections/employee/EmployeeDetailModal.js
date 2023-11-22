@@ -16,16 +16,22 @@ import PropTypes from 'prop-types';
 
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
-  const isInsert = selectedData.id === undefined;
   const [loading, setLoading] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
+  const isInsert = selectedData.id === undefined;
   const avatarImage = require.context('assets/images/users', true);
 
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('id is required'),
-    password: Yup.string().max(30).required('password is required'),
+    password: Yup.string()
+      .max(30)
+      .required('password is required')
+      .matches(
+        '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$',
+        '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'
+      ),
     confirmPassword: Yup.string().max(30).required('confirmPassword is required'),
-    email: Yup.string().max(255).required('email is required'),
+    email: Yup.string().max(255).required('Email is required').email('Must be a valid email'),
     state: Yup.string().max(255),
     name: Yup.string().max(255).required('name is required'),
     gender: Yup.string().max(2).required('gender is required'),
@@ -40,11 +46,13 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const formik = useFormik({
     initialValues: {
       id: isInsert ? '' : selectedData.id,
+      password: isInsert ? '' : selectedData.password,
+      confirmPassword: isInsert ? '' : selectedData.confirmPassword,
       email: isInsert ? '' : selectedData.email,
-      state: isInsert ? '' : selectedData.state,
+      state: isInsert ? '가입 대기' : selectedData.state,
       name: isInsert ? '' : selectedData.name,
       gender: isInsert ? '' : selectedData.gender,
-      role: isInsert ? '' : selectedData.role,
+      role: isInsert ? '일반관리자' : selectedData.role,
       birth: isInsert ? null : dayjs(new Date(selectedData.birth)),
       phoneNumber: isInsert ? '' : selectedData.phoneNumber,
       callNumber: isInsert ? '' : selectedData.callNumber,
@@ -53,10 +61,11 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     },
     enableReinitialize: true,
     employeeSchema,
-    onSubmit: (values, { resetForm }) => {
-      //폼 제출 전 로직 후 제출
-      const item = {
+    onSubmit: (values, { setSubmitting }) => {
+      const data = {
         id: values.id,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
         email: values.commonCodeName,
         state: values.commonLanguageCode,
         name: values.commonCodeAbbreviation,
@@ -72,16 +81,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       setLoading(true);
 
       if (values.id === '') {
-        delete item.id;
+        delete values.id;
       }
-      const response1 = isInsert ? axios.post('/empBase', item) : axios.patch(`/empBase/update`, item);
+      const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase/update`, data);
       Promise.all([response1])
         .then(() => {
           enqueueSnackbar(`저장이 완료되었습니다.`, {
             anchorOrigin: { vertical: 'top', horizontal: 'center' },
             autoHideDuration: 1000
           });
-          resetForm();
+          setSubmitting();
           handleOpen();
           handleReload();
         })
@@ -122,6 +131,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 
   useEffect(() => {
     Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
+
+    const retrieveCall = axios.get(`/api/role`);
+    Promise.all([retrieveCall])
+      .then(([rsponseRole]) => {
+        console.log(rsponseRole)
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) return <Loader />;
@@ -145,14 +164,15 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       <form onSubmit={formik.handleSubmit}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Grid container spacing={2.5}>
-            <Grid item xs={3}>
-              <Grid item xs={12}>
-                <Stack direction="row" justifyContent="flex-end"></Stack>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <Stack spacing={2.5} alignItems="center">
                   <Avatar alt="Avatar 1" size="xl" src={avatarImage(`./default.png`)} />
                 </Stack>
-              </Grid>
-              <Stack spacing={1}>
+              </Stack>
+            </Grid>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>아이디</InputLabel>
                 <TextField
                   fullWidth
@@ -166,8 +186,42 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            { isInsert ?
+              <>
+                <Grid item xs={12}>
+                  <Stack spacing={1.25}>
+                    <InputLabel htmlFor="password">Password</InputLabel>
+                    <TextField
+                      fullWidth
+                      id="password"
+                      name="password"
+                      placeholder="비밀번호"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      error={formik.touched.password && Boolean(formik.errors.password)}
+                      helperText={formik.touched.password && formik.errors.password}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack spacing={1.25}>
+                    <InputLabel htmlFor="confirmPassword">Password</InputLabel>
+                    <TextField
+                      fullWidth
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      placeholder="비밀번호 확인"
+                      value={formik.values.confirmPassword}
+                      onChange={formik.handleChange}
+                      error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+                      helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+                    />
+                  </Stack>
+                </Grid>
+              </>
+            : null}
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>이메일</InputLabel>
                 <TextField
                   fullWidth
@@ -181,8 +235,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>상태</InputLabel>
                 <TextField
                   fullWidth
@@ -196,8 +250,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>이름</InputLabel>
                 <TextField
                   fullWidth
@@ -211,8 +265,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>성별</InputLabel>
                 <TextField
                   fullWidth
@@ -226,8 +280,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>직책</InputLabel>
                 <TextField
                   fullWidth
@@ -241,8 +295,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>생년월일</InputLabel>
                 <DatePicker
                   value={formik.values.birth}
@@ -253,8 +307,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>핸드폰 번호</InputLabel>
                 <TextField
                   fullWidth
@@ -268,8 +322,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>집 전화 번호</InputLabel>
                 <TextField
                   fullWidth
@@ -283,8 +337,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={3}>
-              <Stack spacing={1}>
+            <Grid item xs={12}>
+              <Stack spacing={1.25}>
                 <InputLabel>주소</InputLabel>
                 <TextField
                   fullWidth
@@ -293,7 +347,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   placeholder="주소"
                   value={formik.values.address}
                   onChange={formik.handleChange}
-                  error={formik.touched.address && Boolean(formik.errors.commonJapanese)}
+                  error={formik.touched.address && Boolean(formik.errors.address)}
                   helperText={formik.touched.address && formik.errors.address}
                 />
               </Stack>
@@ -313,9 +367,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 };
 
 EmployeeDetailModal.propTypes = {
-  title: PropTypes.string,
-  handleOpen: PropTypes.func,
+  selectedData: PropTypes.any,
   handleReload: PropTypes.func,
-  selectedData: PropTypes.any
+  handleOpen: PropTypes.func
 };
 export default EmployeeDetailModal;
