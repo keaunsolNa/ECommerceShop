@@ -2,7 +2,7 @@ package com.ecommerceshop.controller.user;
 
 import com.ecommerceshop.component.config.JwtTokenProvider;
 import com.ecommerceshop.dto.document.aut.UserRole;
-import com.ecommerceshop.dto.integrated.emp.EmpBaseDTO;
+import com.ecommerceshop.dto.integratedDTO.EmpBaseDTO;
 import com.ecommerceshop.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

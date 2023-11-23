@@ -8,13 +8,19 @@ module.exports = function (app) {
     })
   );
   app.use(
+    createProxyMiddleware('/api', {
+      target: 'http://localhost:8080', // employee 프록시
+      changeOrigin: true
+    })
+  );
+  app.use(
     createProxyMiddleware('/empBase', {
       target: 'http://localhost:8080', // employee 프록시
       changeOrigin: true
     })
   );
   app.use(
-    createProxyMiddleware('/api', {
+    createProxyMiddleware('/productBase', {
       target: 'http://localhost:8080', // employee 프록시
       changeOrigin: true
     })

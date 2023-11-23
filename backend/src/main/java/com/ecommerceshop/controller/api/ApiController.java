@@ -25,9 +25,15 @@ public class ApiController {
         return apiService.authorityDocumentationSearch();
     }
 
-    @GetMapping("/state")
+    @GetMapping("/employeeState")
     public List<String> userStateRequest() {
 
         return apiService.userStateRequest();
+    }
+
+    @GetMapping("/productState")
+    public List<String> productStateRequest() {
+
+        return apiService.productBaseStateRequest();
     }
 }

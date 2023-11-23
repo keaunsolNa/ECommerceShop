@@ -46,7 +46,18 @@ public class ApiService {
         userStateList.add("휴면 계정");
         userStateList.add("탈퇴 계정");
         userStateList.add("블랙 계정");
-
+        userStateList.add("");
         return userStateList;
+    }
+
+    public List<String> productBaseStateRequest() {
+
+        List<String> productBaseStateList = new ArrayList<>();
+        productBaseStateList.add("신규 상품");
+        productBaseStateList.add("이벤트 상품");
+        productBaseStateList.add("판매 중지 상품");
+        productBaseStateList.add("입고 대기 상품");
+        productBaseStateList.add("할인 상품");
+        return productBaseStateList;
     }
 }

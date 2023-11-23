@@ -4,17 +4,17 @@ import { Button, Dialog, TextField } from '@mui/material';
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import axios from 'axios';
-import EmployeeListTable from '../../sections/employee/EmployeeListTable';
-import EmployeeDetailModal from '../../sections/employee/EmployeeDetailModal';
 import { PopupTransition } from '../../components/@extended/Transitions';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import ProductDetailModal from '../../sections/product/ProductDetailModal';
+import ProductListTable from '../../sections/product/ProductListTable';
 
-const EmployeeList = () => {
+const ProductList = () => {
   // states
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
-  const [searchCodeClassify, setSearchCodeClassify] = useState('TEST_INPUT');
+  const [searchCondition, setSearchCondition] = useState([]);
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
   const permission = useLocalStorage('role')[0];
@@ -27,58 +27,52 @@ const EmployeeList = () => {
         accessor: 'id'
       },
       {
-        Header: '이름',
-        Footer: '이름',
-        dataType: 'text',
-        accessor: 'name'
-      },
-      {
-        Header: '이메일',
-        Footer: '이메일',
-        dataType: 'text',
-        accessor: 'email'
-      },
-      {
         Header: '상태',
         Footer: '상태',
         dataType: 'text',
         accessor: 'state'
       },
       {
-        Header: '직책',
-        Footer: '직책',
+        Header: '이름',
+        Footer: '이름',
         dataType: 'text',
-        accessor: 'role'
+        accessor: 'name'
       },
       {
-        Header: '성별',
-        Footer: '성별',
+        Header: '가격',
+        Footer: '가격',
         dataType: 'text',
-        accessor: 'gender'
+        accessor: 'price'
       },
       {
-        Header: '생년월일',
-        Footer: '생년월일',
+        Header: '재고',
+        Footer: '재고',
         dataType: 'text',
-        accessor: 'birth'
+        accessor: 'amount'
       },
       {
-        Header: '핸드폰번호',
-        Footer: '핸드폰번호',
+        Header: '조회수',
+        Footer: '조회수',
         dataType: 'text',
-        accessor: 'phoneNumber'
+        accessor: 'viewCount'
       },
       {
-        Header: '집전화번호',
-        Footer: '집전화번호',
+        Header: '설명',
+        Footer: '설명',
         dataType: 'text',
-        accessor: 'callNumber'
+        accessor: 'desc'
       },
       {
-        Header: '주소',
-        Footer: '주소',
+        Header: '생성일',
+        Footer: '생성일',
+        dataType: 'date',
+        accessor: 'createDate'
+      },
+      {
+        Header: '파일 id',
+        Footer: '파일 id',
         dataType: 'text',
-        accessor: 'address'
+        accessor: 'fileId'
       }
     ],
     []
@@ -88,8 +82,8 @@ const EmployeeList = () => {
     setReload(!reload);
   };
   const handleOpen = (row) => {
-    if (row && row.values && permission.includes(20)) {
-      const retrieveCall = axios.get(`/empBase/${row.values.id}`);
+    if (row && row.values && permission.includes(10)) {
+      const retrieveCall = axios.get(`/productBase/${row.values.id}`);
       Promise.all([retrieveCall])
         .then(([response1]) => {
           setSelectedData(response1.data);
@@ -101,15 +95,24 @@ const EmployeeList = () => {
         });
     } else setSelectedData([]);
 
-    if (permission.includes(20)) setOpen(!open);
+    if (permission.includes(10)) setOpen(!open);
   };
-  const searchConditionChange = (e) => {
-    setSearchCodeClassify(e.target?.value);
+  const searchConditionChange = (newValue) => {
+
+    setSearchCondition((prevCondition) => {
+      if (newValue.target?.id === 'searchConditionProductName') {
+        return { ...prevCondition, productName: newValue.target.value };
+      } else {
+        return { ...prevCondition };
+      }
+    });
   };
   useEffect(() => {
-    const retrieveCall = axios.get(`/empBase/all`);
+    const retrieveCall = axios.post(`/productBase/byCondition`, searchCondition);
+    console.log(searchCondition)
     Promise.all([retrieveCall])
       .then(([response1]) => {
+        console.log(response1)
         setData(response1.data);
         setLoading(false);
       })
@@ -124,22 +127,22 @@ const EmployeeList = () => {
     <div>
       <MainCard
         content={false}
-        title={'사원 목록'}
+        title={'상품 목록'}
         secondary={
           <>
-            <TextField id="searchCondition" name="searchCondition" placeholder="이름" onChange={searchConditionChange} size={'small'} />
+            <TextField id="searchConditionProductName" name="searchConditionProductName" placeholder="상품명" size={'small'} onChange={(newValue) => searchConditionChange(newValue)}  />
             <Button variant="outlined" color="primary" onClick={handleReload}>
               조회
             </Button>
-            {permission.includes(20) ? (
+            {permission.includes(10) ? (
               <Button variant="outlined" color="primary" onClick={() => handleOpen()}>
-                인사 카드 생성
+                신규 상품 생성
               </Button>
             ) : null}
           </>
         }
       >
-        <EmployeeListTable title={'코드분류내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
+        <ProductListTable title={'상품 내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
         maxWidth="md"
@@ -150,9 +153,9 @@ const EmployeeList = () => {
         aria-describedby="alert-dialog-slide-description"
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
-        <EmployeeDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
+        <ProductDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
       </Dialog>
     </div>
   );
 };
-export default EmployeeList;
+export default ProductList;

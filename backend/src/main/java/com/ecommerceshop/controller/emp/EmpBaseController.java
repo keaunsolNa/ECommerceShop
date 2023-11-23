@@ -1,7 +1,7 @@
 package com.ecommerceshop.controller.emp;
 
 import com.ecommerceshop.dto.document.emp.EmpBase;
-import com.ecommerceshop.dto.integrated.emp.EmpBaseDTO;
+import com.ecommerceshop.dto.integratedDTO.EmpBaseDTO;
 import com.ecommerceshop.service.emp.EmpBaseService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -25,12 +25,12 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
   const callNumberRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
   const employeeSchema = Yup.object().shape({
-    id: Yup.string().max(30).required('id is required'),
+    id: Yup.string().max(30).required('ID는 필수값입니다.'),
     password: !isInsert
       ? Yup.string()
       : Yup.string()
         .max(30)
-        .required('password is required')
+        .required('비밀번호는 필수값입니다.')
         .matches(
           '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$',
           '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'
@@ -40,18 +40,18 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       : Yup.string()
         .max(30)
         .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
-        .required('confirmPassword is required'),
-    email: Yup.string().max(255).required('Email is required').email('Must be a valid email'),
-    state: Yup.string().max(255).required('State is required'),
-    name: Yup.string().max(255).required('name is required'),
-    gender: Yup.string().max(2).required('gender is required'),
-    role: Yup.string().max(10).required('role is required'),
-    birth: Yup.date().max(new Date(), '생년월일은 오늘 이전이어야 합니다.').required('date is required'),
+        .required('비밀번호 일치 여부를 확인하세요'),
+    email: Yup.string().max(255).required('이메일은 필수값입니다.').email('올바른 이메일 형식이 아닙니다.'),
+    state: Yup.string().max(255).required('계정 상태를 입력하세요'),
+    name: Yup.string().max(255).required('이름은 필수값입니다.'),
+    gender: Yup.string().max(2).required('성별은 필수값입니다.'),
+    role: Yup.string().max(10).required('사용자 직책은 필수입니다.'),
+    birth: Yup.date().max(new Date(), '생년월일은 오늘 이전이어야 합니다.').required('생년월일을 입력하세요'),
     phoneNumber:
       Yup.string()
         .max(13)
         .matches(phoneNumberRegex, '올바른 핸드폰 번호 형식이 아닙니다. (XXX-XXXX-XXXX)')
-        .required('phoneNumber is required'),
+        .required('휴대폰 번호는 필수입니다.'),
     callNumber: !isInsert
       ? Yup.string()
         .max(13)
@@ -98,14 +98,12 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         address: values?.address
       };
 
-      // 제출 이후 로직 작성
       if (values.id === '') {
         delete values.id;
       }
       const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase`, data);
       Promise.all([response1])
         .then(() => {
-          console.log('after')
           enqueueSnackbar(`저장이 완료되었습니다.`, {
             anchorOrigin: { vertical: 'top', horizontal: 'center' },
             autoHideDuration: 1000
@@ -156,7 +154,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-    const retrieveStateCall = axios.get(`/api/state`);
+    const retrieveStateCall = axios.get(`/api/employeeState`);
     Promise.all([retrieveStateCall])
       .then(([response]) => {
         setUserStateList(response.data)

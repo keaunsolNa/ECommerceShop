@@ -6,9 +6,16 @@ import Loadable from 'components/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
 // pages routing
+
+// Employee
 const EmployeeSelf = Loadable(lazy(() => import('pages/employee/EmployeeSelf')));
 const EmployeeList = Loadable(lazy(() => import('pages/employee/EmployeeList')));
+
+// Product
+const ProductList = Loadable(lazy(() => import('pages/product/ProductList')));
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
+
+// Maintenance
 const MaintenanceError500 = Loadable(lazy(() => import('pages/maintenance/500')));
 const MaintenanceUnderConstruction = Loadable(lazy(() => import('pages/maintenance/under-construction')));
 const MaintenanceComingSoon = Loadable(lazy(() => import('pages/maintenance/coming-soon')));
@@ -38,6 +45,15 @@ const MainRoutes = {
             {
               path: 'list',
               element: <EmployeeList />
+            }
+          ]
+        },
+        {
+          path: 'product',
+          children: [
+            {
+              path: 'list',
+              element: <ProductList />
             }
           ]
         }

@@ -2,7 +2,7 @@ package com.ecommerceshop.service.emp;
 
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
-import com.ecommerceshop.dto.integrated.emp.EmpBaseDTO;
+import com.ecommerceshop.dto.integratedDTO.EmpBaseDTO;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.module.common.SettingUserRole;
 import com.ecommerceshop.module.employee.SettingEmpDocumentByDTO;
