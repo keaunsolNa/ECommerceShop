@@ -7,6 +7,7 @@ import axios from 'axios';
 import EmployeeListTable from '../../sections/employee/EmployeeListTable';
 import EmployeeDetailModal from '../../sections/employee/EmployeeDetailModal';
 import { PopupTransition } from '../../components/@extended/Transitions';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const EmployeeList = () => {
   // states
@@ -16,6 +17,7 @@ const EmployeeList = () => {
   const [searchCodeClassify, setSearchCodeClassify] = useState('TEST_INPUT');
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
+  const permission = useLocalStorage('role')[0];
   const columns = useMemo(
     () => [
       {
@@ -86,8 +88,7 @@ const EmployeeList = () => {
     setReload(!reload);
   };
   const handleOpen = (row) => {
-
-    if (row && row.values) {
+    if (row && row.values && permission.includes(40 || 20)) {
       const retrieveCall = axios.get(`/empBase/${row.values.id}`);
       Promise.all([retrieveCall])
         .then(([response1]) => {
@@ -98,10 +99,9 @@ const EmployeeList = () => {
           console.error('Error fetching data:', error);
           setLoading(false);
         });
-    }
-    else setSelectedData([]);
+    } else setSelectedData([]);
 
-    setOpen(!open);
+    if (permission.includes(40 || 20)) setOpen(!open);
   };
   const searchConditionChange = (e) => {
     setSearchCodeClassify(e.target?.value);
@@ -131,9 +131,11 @@ const EmployeeList = () => {
             <Button variant="outlined" color="primary" onClick={handleReload}>
               조회
             </Button>
-            <Button variant="outlined" color="primary" onClick={() => handleOpen()} >
-              인사 카드 생성
-            </Button>
+            {permission.includes(40 || 20) ? (
+              <Button variant="outlined" color="primary" onClick={() => handleOpen()}>
+                인사 카드 생성
+              </Button>
+            ) : null}
           </>
         }
       >

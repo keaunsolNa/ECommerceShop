@@ -20,7 +20,8 @@ const chance = new Chance();
 const initialState = {
   isLoggedIn: false,
   isInitialized: false,
-  user: null
+  user: null,
+  role: null
 };
 
 const verifyToken = (serviceToken) => {
@@ -37,10 +38,11 @@ const verifyToken = (serviceToken) => {
 const setSession = (serviceToken) => {
   if (serviceToken) {
     localStorage.setItem('serviceToken', serviceToken);
-    localStorage.setItem('id', jwtDecode(serviceToken).sub);
+    localStorage.setItem('id', jwtDecode(serviceToken).jti);
+    localStorage.setItem('role', jwtDecode(serviceToken).sub);
     axiosServices.defaults.headers.common.Authorization = `Bearer ${serviceToken}`;
   } else {
-    localStorage.removeItem('serviceToken');
+    localStorage.clear();
     delete axiosServices.defaults.headers.common.Authorization;
   }
 };
@@ -60,10 +62,9 @@ export const JWTProvider = ({ children }) => {
         if (serviceToken && verifyToken(serviceToken)) {
           setSession(serviceToken);
           const decoded = jwtDecode(serviceToken);
-          // const response = await axiosServices.get('/api/account/me');
-          // const { user } = response.data;
           const user = {
-            id: decoded.sub
+            id: decoded.jti,
+            role: decoded.sub
           };
           dispatch({
             type: LOGIN,
@@ -88,16 +89,13 @@ export const JWTProvider = ({ children }) => {
     init();
   }, []);
 
-  // useEffect(() => {
-  //   // console.log('tokenData is22222222222 : ', tokenData);
-  // }, [tokenData]);
-
   const login = async (id, password) => {
     const response = await axios.post('/login', { id, password });
     const decoded = jwtDecode(response.data);
 
     const serviceToken = response.data;
-    const user = decoded.sub;
+    const user = decoded.jti;
+    const role = decoded.sub;
 
     setSession(serviceToken);
 
@@ -105,7 +103,8 @@ export const JWTProvider = ({ children }) => {
       type: LOGIN,
       payload: {
         isLoggedIn: true,
-        user
+        user,
+        role
       }
     });
   };
@@ -134,8 +133,6 @@ export const JWTProvider = ({ children }) => {
   };
 
   const register = async (email, password, firstName, lastName) => {
-    // console.log('email is : ', email, 'password : ', password, 'firstName is : ', firstName, 'lastName is : ', lastName);
-    // todo: this flow need to be recode as it not verified
     const id = chance.bb_pin();
     const response = axios
       .post('/kakaologin/account/register', {

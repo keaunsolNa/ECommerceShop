@@ -83,6 +83,7 @@ public class UserService implements UserServiceInterface{
 
         List<UserRole> list = commonModule.getListFromSearchHit(searchHits);
 
+        System.out.println(list);
         return list;
     }
 

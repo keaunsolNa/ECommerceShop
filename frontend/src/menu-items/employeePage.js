@@ -40,7 +40,6 @@ const employeePage = {
       icon: icons.UserOutlined,
       children: [
         {
-          // 게시판부를 다룬 js페이지로 이동할수있게 해주는 메뉴 버튼
           id: 'employee-self',
           title: '인사기본사항',
           type: 'item',
@@ -48,7 +47,6 @@ const employeePage = {
           breadcrumbs: false
         },
         {
-          // 게시판부를 다룬 js페이지로 이동할수있게 해주는 메뉴 버튼
           id: 'employee-list',
           title: '관리자 계정 목록 조회',
           type: 'item',

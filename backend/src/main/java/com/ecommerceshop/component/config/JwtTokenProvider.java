@@ -43,12 +43,12 @@ public class JwtTokenProvider {
     // JWT 토큰 생성
     public String createToken(String userPk, List<UserRole> roles) {
 
-        Claims claims = Jwts.claims().setId(userPk); // JWT payload 에 저장되는 ID
         Date now = new Date();
 
         return Jwts.builder()
                 .signWith(key)
-                .setSubject(userPk)
+                .setSubject(roles.toString())
+                .setId(userPk)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + tokenValidTime))
                 .compact();

@@ -98,12 +98,10 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         address: values?.address
       };
 
-      console.log('data')
       // 제출 이후 로직 작성
       if (values.id === '') {
         delete values.id;
       }
-      console.log(data)
       const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase`, data);
       Promise.all([response1])
         .then(() => {

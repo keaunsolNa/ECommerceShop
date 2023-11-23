@@ -28,13 +28,11 @@ public class UserController {
     @PostMapping()
     public String login(@RequestBody EmpBaseDTO empBaseDTO) {
 
-        System.out.println("Controller");
-        String token;
         try {
 
             userService.empLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
             List<UserRole> list = userService.getAuthorityList("empId", empBaseDTO.getId());
-            return jwtTokenProvider.createToken(empBaseDTO.getId() +"",list);
+            return jwtTokenProvider.createToken(empBaseDTO.getId(),list);
 
         } catch (Exception e) {
 
@@ -42,7 +40,7 @@ public class UserController {
 
                 userService.memberLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
                 List<UserRole> list = userService.getAuthorityList("memberId", empBaseDTO.getId());
-                return jwtTokenProvider.createToken(empBaseDTO.getId() +"",list);
+                return jwtTokenProvider.createToken(empBaseDTO.getId(),list);
 
             } catch (Exception ex) {
 

@@ -1,5 +1,4 @@
 import { lazy } from 'react';
-
 // project import
 import MainLayout from 'layout/MainLayout';
 import CommonLayout from 'layout/CommonLayout';
