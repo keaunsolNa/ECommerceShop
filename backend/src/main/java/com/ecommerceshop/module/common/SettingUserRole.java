@@ -43,6 +43,13 @@ public class SettingUserRole {
                 userRole4.setEmpId(id);
                 userRole4.setAuthorityCode(10);
                 userRoleList.add(userRole4);
+
+            case "사용자":
+
+                UserRole userRole5 = new UserRole();;
+                userRole5.setUserId(id);
+                userRole5.setAuthorityCode(0);
+                userRoleList.add(userRole5);
         }
 
         return userRoleList;

@@ -5,8 +5,7 @@ import com.ecommerceshop.dto.document.emp.EmpSI;
 import com.ecommerceshop.dto.integrated.emp.EmpBaseDTO;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.module.common.SettingUserRole;
-import com.ecommerceshop.module.security.SHA512;
-import com.ecommerceshop.module.security.Salt;
+import com.ecommerceshop.module.employee.SettingEmpDocumentByDTO;
 import com.ecommerceshop.repository.aut.UserRoleRepository;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
 import com.ecommerceshop.repository.emp.EmpSIRepository;
@@ -15,8 +14,6 @@ import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 public class EmpBaseService {
@@ -27,40 +24,24 @@ public class EmpBaseService {
     private final UserRoleRepository userRoleRepository;
     private final CommonModule commonModule;
     private final SettingUserRole settingUserRole;
+    private final SettingEmpDocumentByDTO settingEmpDocumentByDTO;
 
     public EmpBaseService(EmpBaseRepository empBaseRepository, EmpSIRepository empsiRepository, UserRoleRepository userRoleRepository,
-                          CommonModule commonModule, SettingUserRole settingUserRole,
+                          CommonModule commonModule, SettingUserRole settingUserRole, SettingEmpDocumentByDTO settingEmpDocumentByDTO,
                           ElasticsearchOperations elasticsearchOperations) {
         this.empBaseRepository = empBaseRepository;
         this.empsiRepository = empsiRepository;
         this.userRoleRepository = userRoleRepository;
         this.commonModule = commonModule;
         this.settingUserRole = settingUserRole;
+        this.settingEmpDocumentByDTO = settingEmpDocumentByDTO;
         this.elasticsearchOperations = elasticsearchOperations;
     }
 
     public EmpBase empBaseDocumentCreate(EmpBaseDTO empBaseDTO) throws JsonProcessingException {
 
-        EmpBase empBase = new EmpBase();
-        empBase.setId(empBaseDTO.getId());
-        empBase.setEmail(empBaseDTO.getEmail());
-        empBase.setState(empBaseDTO.getState());
-        empBase.setName(empBaseDTO.getName());
-        empBase.setBirth(empBaseDTO.getBirth());
-        empBase.setGender(empBaseDTO.getGender());
-        empBase.setRole(empBaseDTO.getRole());
-        empBase.setCreateDate(new Date());
-        empBase.setLastLogin(new Date());
-        empBase.setFileId(empBaseDTO.getFileId());
-
-        EmpSI empSI = new EmpSI();
-        empSI.setId(empBaseDTO.getId());
-        empSI.setPhoneNumber(empBaseDTO.getPhoneNumber());
-        empSI.setCallNumber(empBaseDTO.getCallNumber());
-        String salt = Salt.makeSalt();
-        empSI.setSalt(salt);
-        empSI.setPassword(SHA512.SHA512(empBaseDTO.getPassword(), salt));
-        empSI.setAddress(empBaseDTO.getAddress());
+        EmpBase empBase = settingEmpDocumentByDTO.settingEmpDocument(empBaseDTO);
+        EmpSI empSI = settingEmpDocumentByDTO.settingEmpSIDocument(empBaseDTO);
 
         empBaseRepository.save(empBase);
         empsiRepository.save(empSI);
@@ -98,13 +79,12 @@ public class EmpBaseService {
         return empBaseDTO;
     }
 
-    public EmpBase empBaseDocumentDeleteById(String id) throws Exception {
+    public void empBaseDocumentDeleteById(String id) throws Exception {
 
         EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
         empBase.setState("탈퇴 계정");
         empBaseRepository.save(empBase);
 
-        return empBase;
     }
 
     public EmpBase empBaseDocumentUpdate(EmpBaseDTO empBaseDTO) throws Exception {
