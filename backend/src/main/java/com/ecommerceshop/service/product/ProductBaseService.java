@@ -1,6 +1,5 @@
 package com.ecommerceshop.service.product;
 
-import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.product.ProductBase;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.repository.product.ProductBaseRepository;
@@ -34,14 +33,13 @@ public class ProductBaseService {
     public ProductBase productBaseCreate(ProductBase productBase) throws JsonProcessingException {
 
         productBase.setViewCount(0);
-        productBase.setCreateDate(new Date());
+        productBase.setCreateDate(commonModule.parsingDate(new Date()));
+        productBase.getCreateDate();
         return productBaseRepository.save(productBase);
     }
 
     public Iterable<ProductBase> productBaseListSearch(ProductBase condition) {
 
-        System.out.println("Service");
-        System.out.println(condition);
         NativeQuery query = commonModule.makeMatchAllQuery();
         SearchHits<ProductBase> searchHits = elasticsearchOperations.search(query, ProductBase.class);
 
@@ -49,6 +47,11 @@ public class ProductBaseService {
 
     }
 
+    public ProductBase productBaseDocumentSearchById(String id) throws Exception {
+
+        ProductBase productBase = productBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 상품이 없습니다."));
+        return productBase;
+    }
     public void productBaseDocumentDeleteById(String id) throws Exception {
 
         ProductBase productBase = productBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
