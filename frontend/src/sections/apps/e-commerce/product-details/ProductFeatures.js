@@ -7,13 +7,13 @@ function ProductFeatures() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
-        <Typography color="textSecondary">Band :</Typography>
+        <Typography color='textSecondary'>Band :</Typography>
       </Grid>
       <Grid item xs={9}>
         <Typography>Smart Band</Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography color="textSecondary" noWrap>
+        <Typography color='textSecondary' noWrap>
           Compatible Devices :
         </Typography>
       </Grid>
@@ -21,7 +21,7 @@ function ProductFeatures() {
         <Typography>Smartphones</Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography color="textSecondary" noWrap>
+        <Typography color='textSecondary' noWrap>
           Ideal For :
         </Typography>
       </Grid>
@@ -29,7 +29,7 @@ function ProductFeatures() {
         <Typography>Unisex</Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography color="textSecondary" noWrap>
+        <Typography color='textSecondary' noWrap>
           Lifestyle :
         </Typography>
       </Grid>
@@ -37,7 +37,7 @@ function ProductFeatures() {
         <Typography noWrap>Fitness | Indoor | Sports | Swimming | Outdoor</Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography color="textSecondary" noWrap>
+        <Typography color='textSecondary' noWrap>
           Basic Features :
         </Typography>
       </Grid>
@@ -45,7 +45,7 @@ function ProductFeatures() {
         <Typography noWrap>Calendar | Date & Time | Timer/Stop Watch</Typography>
       </Grid>
       <Grid item xs={3}>
-        <Typography color="textSecondary">Health Tracker :</Typography>
+        <Typography color='textSecondary'>Health Tracker :</Typography>
       </Grid>
       <Grid item xs={9}>
         <Typography> Heart Rate | Exercise Tracker</Typography>

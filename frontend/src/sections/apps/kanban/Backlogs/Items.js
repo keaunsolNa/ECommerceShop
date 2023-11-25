@@ -106,15 +106,15 @@ const Items = ({ itemId, index }) => {
         >
           <TableCell sx={{ pl: 3, minWidth: 120, width: 120, height: 46 }} />
           <TableCell sx={{ width: 110, minWidth: 110 }}>
-            <Stack direction="row" spacing={0.75} alignItems="center">
+            <Stack direction='row' spacing={0.75} alignItems='center'>
               <ProfileOutlined style={{ color: theme.palette.info.main, marginTop: -2 }} />
-              <Typography variant="subtitle2">{item.id}</Typography>
+              <Typography variant='subtitle2'>{item.id}</Typography>
             </Stack>
           </TableCell>
-          <TableCell sx={{ maxWidth: 'calc(100vw - 850px)', minWidth: 140 }} component="th" scope="row">
+          <TableCell sx={{ maxWidth: 'calc(100vw - 850px)', minWidth: 140 }} component='th' scope='row'>
             <Link
-              underline="hover"
-              color="default"
+              underline='hover'
+              color='default'
               onClick={handlerDetails}
               sx={{
                 overflow: 'hidden',
@@ -130,22 +130,22 @@ const Items = ({ itemId, index }) => {
           </TableCell>
           <TableCell sx={{ width: 60, minWidth: 60 }}>
             <IconButton
-              className="more-button"
-              size="small"
+              className='more-button'
+              size='small'
               onClick={handleClick}
-              aria-controls="menu-comment"
-              aria-haspopup="true"
-              color="secondary"
+              aria-controls='menu-comment'
+              aria-haspopup='true'
+              color='secondary'
             >
               <MoreOutlined style={{ color: theme.palette.text.primary }} />
             </IconButton>
             <Menu
-              id="menu-comment"
+              id='menu-comment'
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              variant="selectedMenu"
+              variant='selectedMenu'
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right'
@@ -177,7 +177,10 @@ const Items = ({ itemId, index }) => {
           <TableCell sx={{ width: 90, minWidth: 90 }}>{itemColumn ? itemColumn.title : 'New'}</TableCell>
           <TableCell sx={{ width: 140, minWidth: 140 }}>{itemProfile ? itemProfile.name : ''}</TableCell>
           <TableCell sx={{ width: 85, minWidth: 85, textTransform: 'capitalize' }}>{item.priority}</TableCell>
-          <TableCell sx={{ width: 120, minWidth: 120 }}>{item.dueDate ? format(new Date(item.dueDate), 'd MMM yyyy') : ''}</TableCell>
+          <TableCell sx={{
+            width: 120,
+            minWidth: 120
+          }}>{item.dueDate ? format(new Date(item.dueDate), 'd MMM yyyy') : ''}</TableCell>
         </TableRow>
       )}
     </Draggable>

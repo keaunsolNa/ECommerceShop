@@ -1,7 +1,6 @@
 package com.ecommerceshop.module.common;
 
 import com.ecommerceshop.dto.document.aut.UserRole;
-import com.ecommerceshop.dto.document.emp.EmpBase;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
@@ -10,11 +9,11 @@ import java.util.List;
 @Configuration
 public class SettingUserRole {
 
-    public List<UserRole> settingUserRole(EmpBase empBase, String id) {
+    public List<UserRole> settingUserRole(String role, String id) {
 
         List<UserRole> userRoleList = new ArrayList<>();
 
-        switch (empBase.getRole()) {
+        switch (role) {
 
             case "CEO":
 
@@ -46,8 +45,9 @@ public class SettingUserRole {
 
             case "사용자":
 
-                UserRole userRole5 = new UserRole();;
-                userRole5.setUserId(id);
+                UserRole userRole5 = new UserRole();
+                ;
+                userRole5.setEmpId(id);
                 userRole5.setAuthorityCode(0);
                 userRoleList.add(userRole5);
         }

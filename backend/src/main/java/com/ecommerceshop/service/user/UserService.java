@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService implements UserServiceInterface{
+public class UserService implements UserServiceInterface {
 
     private final EmpBaseRepository empBaseRepository;
     private final EmpSIRepository empsiRepository;
@@ -58,7 +58,7 @@ public class UserService implements UserServiceInterface{
                 .findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("userId" + username + " not found"));
 
-        if(!(SHA512.SHA512(password, memberSi.getSalt()).equals(memberSi.getPassword())))
+        if (!(SHA512.SHA512(password, memberSi.getSalt()).equals(memberSi.getPassword())))
             throw new Exception("비밀번호를 잘못 입력하셨습니다.");
     }
 
@@ -72,11 +72,11 @@ public class UserService implements UserServiceInterface{
                 .findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("userId" + username + " not found"));
 
-        if(!(SHA512.SHA512(password, empSI.getSalt()).equals(empSI.getPassword())))
+        if (!(SHA512.SHA512(password, empSI.getSalt()).equals(empSI.getPassword())))
             throw new Exception("비밀번호를 잘못 입력하셨습니다.");
     }
 
-    public List<UserRole> getAuthorityList(String type, String pk ) {
+    public List<UserRole> getAuthorityList(String type, String pk) {
 
         NativeQuery query = commonModule.makeMatchPhraseQuery(type, pk);
         SearchHits<UserRole> searchHits = elasticsearchOperations.search(query, UserRole.class);

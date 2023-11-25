@@ -1,7 +1,7 @@
 package com.ecommerceshop.controller.emp;
 
+import com.ecommerceshop.dto.DTO.EmpBaseDTO;
 import com.ecommerceshop.dto.document.emp.EmpBase;
-import com.ecommerceshop.dto.integratedDTO.EmpBaseDTO;
 import com.ecommerceshop.service.emp.EmpBaseService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,8 @@ public class EmpBaseController {
             throw new RuntimeException(e);
         }
     }
-    @DeleteMapping ("/{id}")
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<EmpBase> empBaseDocumentDeleteById(@PathVariable String id) {
 
         try {

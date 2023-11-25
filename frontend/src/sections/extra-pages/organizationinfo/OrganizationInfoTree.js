@@ -38,8 +38,9 @@ const OrganizationInfoTree = ({ organizationinfo, setSelected }) => {
 
   if (loading) return <Loader />;
   return (
-    <MainCard title="조직트리">
-      <TreeView aria-label="file system navigator" defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
+    <MainCard title='조직트리'>
+      <TreeView aria-label='file system navigator' defaultCollapseIcon={<ExpandMoreIcon />}
+                defaultExpandIcon={<ChevronRightIcon />}>
         <RecursiveTreeItem organizationinfo={organizationinfo} />
       </TreeView>
     </MainCard>

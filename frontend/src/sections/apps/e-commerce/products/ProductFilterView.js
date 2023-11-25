@@ -25,10 +25,10 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
     <>
       {!filterIsEqual(initialState, filter) && (
         <Stack spacing={2}>
-          <Typography variant="h5">Active Filters</Typography>
+          <Typography variant='h5'>Active Filters</Typography>
           {!(initialState.search === filter.search) && (
             <Grid item>
-              <Stack direction="row" alignItems="center" sx={{ ml: '-10px' }}>
+              <Stack direction='row' alignItems='center' sx={{ ml: '-10px' }}>
                 <Chip
                   size={matchDownMD ? 'small' : undefined}
                   label={filter.search}
@@ -41,8 +41,8 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
                   }}
                 />
                 <IconButton
-                  color="secondary"
-                  size="small"
+                  color='secondary'
+                  size='small'
                   sx={{ '&:hover': { bgcolor: 'transparent' }, ml: -1.5 }}
                   onClick={() => handelFilter('search', '')}
                 >
@@ -54,8 +54,8 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
           {!(initialState.sort === filter.sort) && (
             <Grid item>
               <Stack>
-                <Typography variant="subtitle1">Sort</Typography>
-                <Stack direction="row" alignItems="center" sx={{ ml: '-10px' }}>
+                <Typography variant='subtitle1'>Sort</Typography>
+                <Stack direction='row' alignItems='center' sx={{ ml: '-10px' }}>
                   <Chip
                     size={matchDownMD ? 'small' : undefined}
                     label={filter.sort}
@@ -68,8 +68,8 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
                     }}
                   />
                   <IconButton
-                    color="secondary"
-                    size="small"
+                    color='secondary'
+                    size='small'
                     sx={{ '&:hover': { bgcolor: 'transparent' }, ml: -1.5 }}
                     onClick={() => handelFilter('sort', initialState.sort)}
                   >
@@ -82,10 +82,10 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
           {!(JSON.stringify(initialState.gender) === JSON.stringify(filter.gender)) && (
             <Grid item>
               <Stack>
-                <Typography variant="subtitle1">Gender</Typography>
+                <Typography variant='subtitle1'>Gender</Typography>
                 <Grid container item sx={{ ml: '-10px' }}>
                   {filter.gender.map((item, index) => (
-                    <Stack direction="row" alignItems="center" key={index}>
+                    <Stack direction='row' alignItems='center' key={index}>
                       <Chip
                         size={matchDownMD ? 'small' : undefined}
                         label={item}
@@ -98,8 +98,8 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
                         }}
                       />
                       <IconButton
-                        color="secondary"
-                        size="small"
+                        color='secondary'
+                        size='small'
                         sx={{ '&:hover': { bgcolor: 'transparent' }, ml: -1.5 }}
                         onClick={() => handelFilter('gender', item)}
                       >
@@ -114,10 +114,10 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
           {!(JSON.stringify(initialState.categories) === JSON.stringify(filter.categories)) && filter.categories.length > 0 && (
             <Grid item>
               <Stack>
-                <Typography variant="subtitle1">Categories</Typography>
+                <Typography variant='subtitle1'>Categories</Typography>
                 <Grid container item sx={{ ml: '-10px' }}>
                   {filter.categories.map((item, index) => (
-                    <Stack direction="row" alignItems="center" key={index}>
+                    <Stack direction='row' alignItems='center' key={index}>
                       <Chip
                         size={matchDownMD ? 'small' : undefined}
                         label={item}
@@ -130,8 +130,8 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
                         }}
                       />
                       <IconButton
-                        color="secondary"
-                        size="small"
+                        color='secondary'
+                        size='small'
                         sx={{ '&:hover': { bgcolor: 'transparent' }, ml: -1.5 }}
                         onClick={() => handelFilter('categories', item)}
                       >
@@ -146,12 +146,12 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
           {!(JSON.stringify(initialState.colors) === JSON.stringify(filter.colors)) && (
             <Grid item>
               <Stack>
-                <Typography variant="subtitle1">Colors</Typography>
+                <Typography variant='subtitle1'>Colors</Typography>
                 <Grid container item sx={{ ml: '-10px' }}>
                   {filter.colors.map((item, index) => {
                     const colorsData = getColor(item);
                     return (
-                      <Stack direction="row" alignItems="center" key={index}>
+                      <Stack direction='row' alignItems='center' key={index}>
                         <Chip
                           size={matchDownMD ? 'small' : undefined}
                           label={colorsData[0].label}
@@ -164,8 +164,8 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
                           }}
                         />
                         <IconButton
-                          color="secondary"
-                          size="small"
+                          color='secondary'
+                          size='small'
                           sx={{ '&:hover': { bgcolor: 'transparent' }, ml: -1.5 }}
                           onClick={() => handelFilter('colors', item)}
                         >
@@ -181,7 +181,7 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
           {!(initialState.price === filter.price) && (
             <Grid item>
               <Stack>
-                <Typography variant="subtitle1">Price</Typography>
+                <Typography variant='subtitle1'>Price</Typography>
                 <Grid item sx={{ ml: '-10px' }}>
                   <Chip
                     size={matchDownMD ? 'small' : undefined}
@@ -201,9 +201,9 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
           {!(initialState.rating === filter.rating) && (
             <Grid item>
               <Stack>
-                <Typography variant="subtitle1">Rating</Typography>
+                <Typography variant='subtitle1'>Rating</Typography>
                 <Grid item sx={{ ml: '-10px' }}>
-                  <Stack direction="row" alignItems="center">
+                  <Stack direction='row' alignItems='center'>
                     <Chip
                       size={matchDownMD ? 'small' : undefined}
                       label={String(filter.rating)}
@@ -216,8 +216,8 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
                       }}
                     />
                     <IconButton
-                      color="secondary"
-                      size="small"
+                      color='secondary'
+                      size='small'
                       sx={{ '&:hover': { bgcolor: 'transparent' }, ml: -1.5 }}
                       onClick={() => handelFilter('rating', '', 0)}
                     >
@@ -229,7 +229,7 @@ const ProductFilterView = ({ filter, filterIsEqual, handelFilter, initialState }
             </Grid>
           )}
           <Grid item>
-            <Button variant="text" color="primary" sx={{ ml: '-10px' }} onClick={() => handelFilter('reset', '')}>
+            <Button variant='text' color='primary' sx={{ ml: '-10px' }} onClick={() => handelFilter('reset', '')}>
               Reset all filters
             </Button>
           </Grid>

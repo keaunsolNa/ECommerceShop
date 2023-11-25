@@ -51,7 +51,7 @@ const TooltipStyle = styled(({ className, ...props }) => <MuiTooltip {...props} 
 export default function CustomTooltip({ children, arrow, labelColor = '', ...rest }) {
   const theme = useTheme();
   return (
-    <Box display="flex">
+    <Box display='flex'>
       <TooltipStyle arrow={arrow} {...rest} theme={theme} labelColor={labelColor}>
         {children}
       </TooltipStyle>

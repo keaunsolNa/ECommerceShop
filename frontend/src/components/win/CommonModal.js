@@ -15,14 +15,14 @@ export default function CommonModal({ id, modalData, open, handleClose }) {
       onClose={() => handleClose()}
       keepMounted
       TransitionComponent={PopupTransition}
-      aria-labelledby="item-delete-title"
-      aria-describedby="item-delete-description"
+      aria-labelledby='item-delete-title'
+      aria-describedby='item-delete-description'
     >
       <DialogContent sx={{ mt: 2, my: 1 }}>
-        <Stack alignItems="center" spacing={4.5}>
+        <Stack alignItems='center' spacing={4.5}>
           {modalData ? React.cloneElement(modalData, { id: id, closeModal: handleClose }) : null}
-          <Stack direction="row" spacing={0.5} sx={{ width: 1 }}>
-            <Button onClick={() => handleClose()} fullWidth color="secondary" variant="outlined">
+          <Stack direction='row' spacing={0.5} sx={{ width: 1 }}>
+            <Button onClick={() => handleClose()} fullWidth color='secondary' variant='outlined'>
               Close
             </Button>
           </Stack>

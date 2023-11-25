@@ -16,19 +16,19 @@ import { ApartmentOutlined, HomeFilled, HomeOutlined } from '@ant-design/icons';
 // ==============================|| BREADCRUMBS ||============================== //
 
 const Breadcrumbs = ({
-  card,
-  divider = true,
-  icon,
-  icons,
-  maxItems,
-  navigation,
-  rightAlign,
-  separator,
-  title,
-  titleBottom,
-  sx,
-  ...others
-}) => {
+                       card,
+                       divider = true,
+                       icon,
+                       icons,
+                       maxItems,
+                       navigation,
+                       rightAlign,
+                       separator,
+                       title,
+                       titleBottom,
+                       sx,
+                       ...others
+                     }) => {
   const theme = useTheme();
   const location = useLocation();
   const [main, setMain] = useState();
@@ -104,7 +104,8 @@ const Breadcrumbs = ({
   if (main && main.type === 'collapse' && main.breadcrumbs === true) {
     CollapseIcon = main.icon ? main.icon : ApartmentOutlined;
     mainContent = (
-      <Typography component={Link} to={document.location.pathname} variant="h6" sx={{ textDecoration: 'none' }} color="textSecondary">
+      <Typography component={Link} to={document.location.pathname} variant='h6' sx={{ textDecoration: 'none' }}
+                  color='textSecondary'>
         {icons && <CollapseIcon style={iconSX} />}
         {main.title}
       </Typography>
@@ -115,7 +116,7 @@ const Breadcrumbs = ({
         sx={card === false ? { mb: 3, bgcolor: 'transparent', ...sx } : { mb: 3, ...sx }}
         {...others}
         content={card}
-        shadow="none"
+        shadow='none'
       >
         <Grid
           container
@@ -125,8 +126,8 @@ const Breadcrumbs = ({
           spacing={1}
         >
           <Grid item>
-            <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
-              <Typography component={Link} to="/" color="textSecondary" variant="h6" sx={{ textDecoration: 'none' }}>
+            <MuiBreadcrumbs aria-label='breadcrumb' maxItems={maxItems || 8} separator={separatorIcon}>
+              <Typography component={Link} to='/' color='textSecondary' variant='h6' sx={{ textDecoration: 'none' }}>
                 {icons && <HomeOutlined style={iconSX} />}
                 {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
                 {(!icon || icons) && 'Home'}
@@ -136,7 +137,7 @@ const Breadcrumbs = ({
           </Grid>
           {title && titleBottom && (
             <Grid item sx={{ mt: card === false ? 0.25 : 1 }}>
-              <Typography variant="h2">{main.title}</Typography>
+              <Typography variant='h2'>{main.title}</Typography>
             </Grid>
           )}
         </Grid>
@@ -151,7 +152,7 @@ const Breadcrumbs = ({
 
     ItemIcon = item.icon ? item.icon : ApartmentOutlined;
     itemContent = (
-      <Typography variant="subtitle1" color="textPrimary">
+      <Typography variant='subtitle1' color='textPrimary'>
         {icons && <ItemIcon style={iconSX} />}
         {itemTitle}
       </Typography>
@@ -165,7 +166,7 @@ const Breadcrumbs = ({
           sx={card === false ? { mb: 3, bgcolor: 'transparent', ...sx } : { mb: 3, ...sx }}
           {...others}
           content={card}
-          shadow="none"
+          shadow='none'
         >
           <Grid
             container
@@ -176,12 +177,12 @@ const Breadcrumbs = ({
           >
             {title && !titleBottom && (
               <Grid item>
-                <Typography variant="h2">{item.title}</Typography>
+                <Typography variant='h2'>{item.title}</Typography>
               </Grid>
             )}
             <Grid item>
-              <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
-                <Typography component={Link} to="/" color="textSecondary" variant="h6" sx={{ textDecoration: 'none' }}>
+              <MuiBreadcrumbs aria-label='breadcrumb' maxItems={maxItems || 8} separator={separatorIcon}>
+                <Typography component={Link} to='/' color='textSecondary' variant='h6' sx={{ textDecoration: 'none' }}>
                   {icons && <HomeOutlined style={iconSX} />}
                   {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
                   {(!icon || icons) && 'Home'}
@@ -192,7 +193,7 @@ const Breadcrumbs = ({
             </Grid>
             {title && titleBottom && (
               <Grid item sx={{ mt: card === false ? 0.25 : 1 }}>
-                <Typography variant="h3">{item.title}</Typography>
+                <Typography variant='h3'>{item.title}</Typography>
               </Grid>
             )}
           </Grid>

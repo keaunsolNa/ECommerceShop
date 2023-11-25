@@ -8,14 +8,22 @@ import useLocalStorage from 'hooks/useLocalStorage';
 // initial state
 const initialState = {
   ...config,
-  onChangeContainer: () => {},
-  onChangeLocalization: () => {},
-  onChangeMode: () => {},
-  onChangePresetColor: () => {},
-  onChangeDirection: () => {},
-  onChangeMiniDrawer: () => {},
-  onChangeMenuOrientation: () => {},
-  onChangeFontFamily: () => {}
+  onChangeContainer: () => {
+  },
+  onChangeLocalization: () => {
+  },
+  onChangeMode: () => {
+  },
+  onChangePresetColor: () => {
+  },
+  onChangeDirection: () => {
+  },
+  onChangeMiniDrawer: () => {
+  },
+  onChangeMenuOrientation: () => {
+  },
+  onChangeFontFamily: () => {
+  }
 };
 
 // ==============================|| CONFIG CONTEXT & PROVIDER ||============================== //

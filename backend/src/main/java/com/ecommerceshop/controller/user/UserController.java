@@ -1,8 +1,8 @@
 package com.ecommerceshop.controller.user;
 
 import com.ecommerceshop.component.config.JwtTokenProvider;
+import com.ecommerceshop.dto.DTO.EmpBaseDTO;
 import com.ecommerceshop.dto.document.aut.UserRole;
-import com.ecommerceshop.dto.integratedDTO.EmpBaseDTO;
 import com.ecommerceshop.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +32,7 @@ public class UserController {
 
             userService.empLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
             List<UserRole> list = userService.getAuthorityList("empId", empBaseDTO.getId());
-            return jwtTokenProvider.createToken(empBaseDTO.getId(),list);
+            return jwtTokenProvider.createToken(empBaseDTO.getId(), list);
 
         } catch (Exception e) {
 
@@ -40,7 +40,7 @@ public class UserController {
 
                 userService.memberLoginMatcher(empBaseDTO.getId(), empBaseDTO.getPassword());
                 List<UserRole> list = userService.getAuthorityList("memberId", empBaseDTO.getId());
-                return jwtTokenProvider.createToken(empBaseDTO.getId(),list);
+                return jwtTokenProvider.createToken(empBaseDTO.getId(), list);
 
             } catch (Exception ex) {
 

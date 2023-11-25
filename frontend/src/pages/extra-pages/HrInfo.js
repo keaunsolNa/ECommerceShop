@@ -47,19 +47,20 @@ const HrInfo = () => {
   }, []);
 
   return (
-    <MainCard title="인사기본사항" border={false} boxShadow>
+    <MainCard title='인사기본사항' border={false} boxShadow>
       <Box>
         <Button onClick={() => handleClick('minus')}>이전</Button>
         <Button onClick={() => handleClick('plus')}>다음</Button>
         <HrInfoMaster response={response.data[responseIndex]} />
       </Box>
       <Box>
-        <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="account profile tab">
-          <Tab label="인사기본" component={Link} to="/employee/basic"></Tab>
-          <Tab label="발령" component={Link} to="/employee/appointment"></Tab>
-          <Tab label="인적사항" component={Link} to="/employee/personal"></Tab>
-          <Tab label="가족" component={Link} to="/employee/family"></Tab>
-          <Tab label="주소/전화" component={Link} to="/employee/address"></Tab>
+        <Tabs value={value} onChange={handleChange} variant='scrollable' scrollButtons='auto'
+              aria-label='account profile tab'>
+          <Tab label='인사기본' component={Link} to='/employee/basic'></Tab>
+          <Tab label='발령' component={Link} to='/employee/appointment'></Tab>
+          <Tab label='인적사항' component={Link} to='/employee/personal'></Tab>
+          <Tab label='가족' component={Link} to='/employee/family'></Tab>
+          <Tab label='주소/전화' component={Link} to='/employee/address'></Tab>
         </Tabs>
       </Box>
       <Box>

@@ -90,16 +90,16 @@ const AddColumn = () => {
       }}
       contentSX={{ p: 1.5, '&:last-of-type': { pb: 1.5 } }}
     >
-      <Grid container alignItems="center" spacing={1}>
+      <Grid container alignItems='center' spacing={1}>
         {isAddColumn && (
           <Grid item xs={12}>
             <SubCard content={false}>
               <Box sx={{ p: 2, pb: 1.5, transition: 'background-color 0.25s ease-out' }}>
-                <Grid container alignItems="center" spacing={0.5}>
+                <Grid container alignItems='center' spacing={0.5}>
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
-                      placeholder="Add Column"
+                      placeholder='Add Column'
                       value={title}
                       onChange={handleColumnTitle}
                       sx={{
@@ -123,13 +123,13 @@ const AddColumn = () => {
                   </Grid>
                   <Grid item xs zeroMinWidth />
                   <Grid item>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Tooltip title="Cancel">
-                        <IconButton size="small" color="error" onClick={handleAddColumnChange}>
+                    <Stack direction='row' alignItems='center' spacing={1}>
+                      <Tooltip title='Cancel'>
+                        <IconButton size='small' color='error' onClick={handleAddColumnChange}>
                           <CloseOutlined />
                         </IconButton>
                       </Tooltip>
-                      <Button variant="contained" color="primary" onClick={addNewColumn} size="small">
+                      <Button variant='contained' color='primary' onClick={addNewColumn} size='small'>
                         Add
                       </Button>
                     </Stack>
@@ -141,7 +141,7 @@ const AddColumn = () => {
         )}
         {!isAddColumn && (
           <Grid item xs={12}>
-            <Button variant="dashed" color="secondary" fullWidth onClick={handleAddColumnChange}>
+            <Button variant='dashed' color='secondary' fullWidth onClick={handleAddColumnChange}>
               Add Column
             </Button>
           </Grid>

@@ -44,14 +44,14 @@ export default function FilesPreview({ showList = false, files, onRemove, type }
                 overflow: 'hidden'
               }}
             >
-              {type?.includes('image') && <img alt="preview" src={preview} style={{ width: '100%' }} />}
+              {type?.includes('image') && <img alt='preview' src={preview} style={{ width: '100%' }} />}
               {!type?.includes('image') && <FileFilled style={{ width: '100%', fontSize: '1.5rem' }} />}
 
               {onRemove && (
                 <IconButton
-                  size="small"
-                  color="error"
-                  shape="rounded"
+                  size='small'
+                  color='error'
+                  shape='rounded'
                   onClick={() => onRemove(file)}
                   sx={{
                     fontSize: '0.875rem',
@@ -92,7 +92,7 @@ export default function FilesPreview({ showList = false, files, onRemove, type }
             />
 
             {onRemove && (
-              <IconButton edge="end" size="small" onClick={() => onRemove(file)}>
+              <IconButton edge='end' size='small' onClick={() => onRemove(file)}>
                 <CloseCircleFilled style={{ fontSize: '1.15rem' }} />
               </IconButton>
             )}

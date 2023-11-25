@@ -32,6 +32,6 @@ const ComponentTest = () => {
   }, []);
 
   if (loading) return <Loader />;
-  return <GiveMeProps title="Give Me Props"></GiveMeProps>;
+  return <GiveMeProps title='Give Me Props'></GiveMeProps>;
 };
 export default ComponentTest;

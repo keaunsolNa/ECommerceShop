@@ -113,11 +113,11 @@ public class CommonModule {
 
         NativeQuery query =
                 NativeQuery.builder()
-                .withQuery(q -> q.combinedFields(
-                        cf -> cf.fields(keyCd, keyNm).query(cdKind)))
-                .withMaxResults(10000)
-                .withSort(Sort.by("_score").descending())
-                .build();
+                        .withQuery(q -> q.combinedFields(
+                                cf -> cf.fields(keyCd, keyNm).query(cdKind)))
+                        .withMaxResults(10000)
+                        .withSort(Sort.by("_score").descending())
+                        .build();
         return query;
     }
 
@@ -127,16 +127,16 @@ public class CommonModule {
 
         for (SearchHit searchHit : searchHits) {
 
-            if(searchHit.getIndex().equals("emp-base")) {
+            if (searchHit.getIndex().equals("emp-base")) {
 
                 EmpBase empBase = (EmpBase) searchHit.getContent();
                 resultSet.add(empBase);
 
-            } else if(searchHit.getIndex().equals("user-role")) {
+            } else if (searchHit.getIndex().equals("user-role")) {
 
                 UserRole userRole = (UserRole) searchHit.getContent();
                 resultSet.add(userRole.getAuthorityCode());
-            } else if(searchHit.getIndex().equals("product-base")) {
+            } else if (searchHit.getIndex().equals("product-base")) {
 
                 ProductBase productBase = (ProductBase) searchHit.getContent();
                 resultSet.add(productBase);

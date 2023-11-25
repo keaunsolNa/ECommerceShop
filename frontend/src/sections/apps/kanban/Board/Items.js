@@ -100,10 +100,10 @@ const Items = ({ item, index }) => {
           {...provided.dragHandleProps}
           style={getDragWrapper(snapshot.isDragging, provided.draggableProps.style, theme, `4px`)}
         >
-          <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: itemStory ? -0.75 : 0 }}>
+          <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ mb: itemStory ? -0.75 : 0 }}>
             <Typography
               onClick={() => handlerDetails(item.id)}
-              variant="subtitle1"
+              variant='subtitle1'
               sx={{
                 display: 'inline-block',
                 width: 'calc(100% - 34px)',
@@ -120,16 +120,17 @@ const Items = ({ item, index }) => {
               {item.title}
             </Typography>
 
-            <IconButton size="small" color="secondary" onClick={handleClick} aria-controls="menu-comment" aria-haspopup="true">
+            <IconButton size='small' color='secondary' onClick={handleClick} aria-controls='menu-comment'
+                        aria-haspopup='true'>
               <MoreOutlined />
             </IconButton>
             <Menu
-              id="menu-comment"
+              id='menu-comment'
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              variant="selectedMenu"
+              variant='selectedMenu'
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right'
@@ -160,12 +161,13 @@ const Items = ({ item, index }) => {
           </Stack>
           {itemStory && (
             <>
-              <Stack direction="row" spacing={0.5} alignItems="center">
-                <Tooltip title="User Story">
+              <Stack direction='row' spacing={0.5} alignItems='center'>
+                <Tooltip title='User Story'>
                   <ClusterOutlined style={{ color: theme.palette.primary.dark, fontSize: '0.75rem' }} />
                 </Tooltip>
                 <Tooltip title={itemStory.title}>
-                  <Link variant="caption" color="primary.dark" underline="hover" onClick={editStory} sx={{ cursor: 'pointer', pt: 0.5 }}>
+                  <Link variant='caption' color='primary.dark' underline='hover' onClick={editStory}
+                        sx={{ cursor: 'pointer', pt: 0.5 }}>
                     User Story #{itemStory.id}
                   </Link>
                 </Tooltip>
@@ -174,7 +176,8 @@ const Items = ({ item, index }) => {
             </>
           )}
           {backProfile && (
-            <CardMedia component="img" image={backProfile} sx={{ width: '100%', borderRadius: 1, mt: 1.5 }} title="Slider5 image" />
+            <CardMedia component='img' image={backProfile} sx={{ width: '100%', borderRadius: 1, mt: 1.5 }}
+                       title='Slider5 image' />
           )}
         </div>
       )}

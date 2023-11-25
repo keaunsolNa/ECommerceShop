@@ -53,51 +53,51 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={8}>
-        <Stack spacing={2} alignItems="flex-end">
-          <MainCard title="Shipping information">
+        <Stack spacing={2} alignItems='flex-end'>
+          <MainCard title='Shipping information'>
             <Stack spacing={2}>
               <Grid container spacing={2}>
                 {addressResult}
               </Grid>
               <Grid container rowSpacing={2}>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid container alignItems='center' justifyContent='space-between'>
                     <Grid item xs={3}>
                       <Stack>
                         <InputLabel>First Name :</InputLabel>
                       </Stack>
                     </Grid>
                     <Grid item xs={9}>
-                      <TextField fullWidth placeholder="Enter your first name" />
+                      <TextField fullWidth placeholder='Enter your first name' />
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid container alignItems='center' justifyContent='space-between'>
                     <Grid item xs={3}>
                       <Stack>
                         <InputLabel>Last Name :</InputLabel>
                       </Stack>
                     </Grid>
                     <Grid item xs={9}>
-                      <TextField fullWidth placeholder="Enter your last name" />
+                      <TextField fullWidth placeholder='Enter your last name' />
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid container alignItems='center' justifyContent='space-between'>
                     <Grid item xs={3}>
                       <Stack>
                         <InputLabel>Email Id :</InputLabel>
                       </Stack>
                     </Grid>
                     <Grid item xs={9}>
-                      <TextField fullWidth type="email" placeholder=" Enter Email id" />
+                      <TextField fullWidth type='email' placeholder=' Enter Email id' />
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid container alignItems='center' justifyContent='space-between'>
                     <Grid item xs={3}>
                       <Stack>
                         <InputLabel>Date of Birth :</InputLabel>
@@ -106,13 +106,14 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                     <Grid item xs={9}>
                       <Grid container spacing={2}>
                         <Grid item xs={4}>
-                          <Stack direction="row" spacing={2} alignItems="center">
+                          <Stack direction='row' spacing={2} alignItems='center'>
                             <TextField
                               fullWidth
-                              placeholder="31"
+                              placeholder='31'
                               InputProps={{
                                 endAdornment: (
-                                  <InputAdornment position="end" sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
+                                  <InputAdornment position='end'
+                                                  sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
                                     <AppstoreOutlined />
                                   </InputAdornment>
                                 )
@@ -122,13 +123,14 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                           </Stack>
                         </Grid>
                         <Grid item xs={3}>
-                          <Stack direction="row" spacing={2} alignItems="center">
+                          <Stack direction='row' spacing={2} alignItems='center'>
                             <TextField
                               fullWidth
-                              placeholder="12"
+                              placeholder='12'
                               InputProps={{
                                 endAdornment: (
-                                  <InputAdornment position="end" sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
+                                  <InputAdornment position='end'
+                                                  sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
                                     <AppstoreOutlined />
                                   </InputAdornment>
                                 )
@@ -140,10 +142,11 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                         <Grid item xs={9}>
                           <TextField
                             fullWidth
-                            placeholder="2021"
+                            placeholder='2021'
                             InputProps={{
                               endAdornment: (
-                                <InputAdornment position="end" sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
+                                <InputAdornment position='end'
+                                                sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
                                   <AppstoreOutlined />
                                 </InputAdornment>
                               )
@@ -155,25 +158,26 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid container alignItems='center' justifyContent='space-between'>
                     <Grid item xs={3}>
                       <Stack>
                         <InputLabel>Phone number :</InputLabel>
                       </Stack>
                     </Grid>
                     <Grid item xs={9}>
-                      <Stack direction="row" spacing={2}>
+                      <Stack direction='row' spacing={2}>
                         <Grid item xs={2}>
-                          <TextField placeholder="+91" />
+                          <TextField placeholder='+91' />
                         </Grid>
                         <Grid item xs={10}>
                           <TextField
                             fullWidth
-                            type="number"
-                            placeholder="Enter the Phone number"
+                            type='number'
+                            placeholder='Enter the Phone number'
                             InputProps={{
                               endAdornment: (
-                                <InputAdornment position="end" sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
+                                <InputAdornment position='end'
+                                                sx={{ opacity: 0.5, display: { xs: 'none', sm: 'flex' } }}>
                                   <AppstoreOutlined />
                                 </InputAdornment>
                               )
@@ -185,29 +189,29 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid container alignItems='center' justifyContent='space-between'>
                     <Grid item xs={3}>
                       <Stack>
                         <InputLabel>City :</InputLabel>
                       </Stack>
                     </Grid>
                     <Grid item xs={9}>
-                      <TextField fullWidth placeholder="Enter City name" />
+                      <TextField fullWidth placeholder='Enter City name' />
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Stack direction="row" alignItems="center" spacing={1}>
+                  <Stack direction='row' alignItems='center' spacing={1}>
                     <Checkbox defaultChecked sx={{ p: 0 }} />
                     <Typography>Save this new address for future shipping</Typography>
                   </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                  <Stack direction="row" spacing={1} alignItems="center" justifyContent="flex-end">
-                    <Button variant="outlined" color="secondary">
+                  <Stack direction='row' spacing={1} alignItems='center' justifyContent='flex-end'>
+                    <Button variant='outlined' color='secondary'>
                       Cancel
                     </Button>
-                    <Button variant="contained" color="primary">
+                    <Button variant='contained' color='primary'>
                       Save
                     </Button>
                   </Stack>
@@ -215,8 +219,8 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
               </Grid>
             </Stack>
           </MainCard>
-          <Button variant="text" color="secondary" startIcon={<LeftOutlined />} onClick={onBack}>
-            <Typography variant="h6" color="textPrimary">
+          <Button variant='text' color='secondary' startIcon={<LeftOutlined />} onClick={onBack}>
+            <Typography variant='h6' color='textPrimary'>
               Back to Cart
             </Typography>
           </Button>
@@ -228,11 +232,11 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
             <CartDiscount />
           </MainCard>
           <Stack>
-            <MainCard title="Order Summery" sx={{ borderRadius: '4px 4px 0 0', borderBottom: 'none' }} content={false}>
+            <MainCard title='Order Summery' sx={{ borderRadius: '4px 4px 0 0', borderBottom: 'none' }} content={false}>
               {rows.map((row, index) => (
                 <List
                   key={index}
-                  component="nav"
+                  component='nav'
                   sx={{
                     '& .MuiListItemButton-root': {
                       '& .MuiListItemSecondaryAction-root': {
@@ -254,11 +258,11 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                   <ListItemButton divider>
                     <ListItemAvatar>
                       <Avatar
-                        alt="Avatar"
-                        size="lg"
-                        variant="rounded"
-                        color="secondary"
-                        type="combined"
+                        alt='Avatar'
+                        size='lg'
+                        variant='rounded'
+                        color='secondary'
+                        type='combined'
                         src={row.image ? prodImage(`./thumbs/${row.image}`) : ''}
                       />
                     </ListItemAvatar>
@@ -268,9 +272,9 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                         <Typography
                           component={Link}
                           to={`/apps/e-commerce/product-details/${row.id}`}
-                          target="_blank"
-                          variant="subtitle1"
-                          color="textPrimary"
+                          target='_blank'
+                          variant='subtitle1'
+                          color='textPrimary'
                           sx={{ textDecoration: 'none' }}
                         >
                           {row.name}
@@ -278,16 +282,17 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
                       }
                       secondary={
                         <Stack spacing={1}>
-                          <Typography color="textSecondary">{row.description}</Typography>
-                          <Stack direction="row" alignItems="center" spacing={3}>
+                          <Typography color='textSecondary'>{row.description}</Typography>
+                          <Stack direction='row' alignItems='center' spacing={3}>
                             <Typography>${row.offerPrice}</Typography>
-                            <Typography color="textSecondary">{row.quantity} items</Typography>
+                            <Typography color='textSecondary'>{row.quantity} items</Typography>
                           </Stack>
                         </Stack>
                       }
                     />
                     <ListItemSecondaryAction>
-                      <IconButton size="medium" color="secondary" sx={{ opacity: 0.5, '&:hover': { bgcolor: 'transparent' } }}>
+                      <IconButton size='medium' color='secondary'
+                                  sx={{ opacity: 0.5, '&:hover': { bgcolor: 'transparent' } }}>
                         <DeleteOutlined style={{ color: 'grey.500' }} />
                       </IconButton>
                     </ListItemSecondaryAction>
@@ -297,7 +302,8 @@ const BillingAddress = ({ checkout, onBack, billingAddressHandler, address }) =>
             </MainCard>
             <OrderSummary checkout={checkout} show={false} />
           </Stack>
-          <Button variant="contained" fullWidth sx={{ textTransform: 'none' }} onClick={() => billingAddressHandler(null)}>
+          <Button variant='contained' fullWidth sx={{ textTransform: 'none' }}
+                  onClick={() => billingAddressHandler(null)}>
             Process to Checkout
           </Button>
         </Stack>

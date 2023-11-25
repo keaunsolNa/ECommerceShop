@@ -32,4 +32,5 @@ public class ProductBase {
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
     private Date createDate;
     private String fileId;
+
 }

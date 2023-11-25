@@ -40,11 +40,11 @@ const Header = () => {
     <Toolbar>
       {!isHorizontal ? (
         <IconButton
-          aria-label="open drawer"
+          aria-label='open drawer'
           onClick={() => dispatch(openDrawer(!drawerOpen))}
-          edge="start"
-          color="secondary"
-          variant="light"
+          edge='start'
+          color='secondary'
+          variant='light'
           sx={{ color: 'text.primary', bgcolor: drawerOpen ? iconBackColorOpen : iconBackColor, ml: { xs: 0, lg: -2 } }}
         >
           {!drawerOpen ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

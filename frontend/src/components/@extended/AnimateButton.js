@@ -6,15 +6,15 @@ import { motion, useCycle } from 'framer-motion';
 // ==============================|| ANIMATION BUTTON ||============================== //
 
 export default function AnimateButton({
-  children,
-  type = 'scale',
-  direction = 'right',
-  offset = 10,
-  scale = {
-    hover: 1.05,
-    tap: 0.95
-  }
-}) {
+                                        children,
+                                        type = 'scale',
+                                        direction = 'right',
+                                        offset = 10,
+                                        scale = {
+                                          hover: 1.05,
+                                          tap: 0.95
+                                        }
+                                      }) {
   let offset1;
   let offset2;
   switch (direction) {
@@ -52,7 +52,8 @@ export default function AnimateButton({
     case 'slide':
       if (direction === 'up' || direction === 'down') {
         return (
-          <motion.div animate={{ y: y !== undefined ? y : '' }} onHoverEnd={() => cycleY()} onHoverStart={() => cycleY()}>
+          <motion.div animate={{ y: y !== undefined ? y : '' }} onHoverEnd={() => cycleY()}
+                      onHoverStart={() => cycleY()}>
             {children}
           </motion.div>
         );

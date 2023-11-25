@@ -76,8 +76,8 @@ const ProfileRadialChart = () => {
   }, [mode, grey200, grey0, grey500, textPrimary, primary]);
 
   return (
-    <Box id="chart" sx={{ bgcolor: 'transparent' }}>
-      <ReactApexChart options={options} series={series} type="radialBar" width={136} height={136} />
+    <Box id='chart' sx={{ bgcolor: 'transparent' }}>
+      <ReactApexChart options={options} series={series} type='radialBar' width={136} height={136} />
     </Box>
   );
 };

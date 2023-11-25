@@ -29,15 +29,15 @@ const AddressModal = ({ open, setOpen, handlerAddress }) => {
 
   return (
     <Dialog
-      maxWidth="sm"
+      maxWidth='sm'
       open={open}
       onClose={closeAddressModal}
       sx={{ '& .MuiDialog-paper': { p: 0 }, '& .MuiBackdrop-root': { opacity: '0.5 !important' } }}
     >
       <DialogTitle>
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Typography variant="h5">Select Address</Typography>
-          <Button startIcon={<PlusOutlined />} onClick={closeAddressModal} color="primary">
+        <Stack direction='row' justifyContent='space-between' alignItems='center'>
+          <Typography variant='h5'>Select Address</Typography>
+          <Button startIcon={<PlusOutlined />} onClick={closeAddressModal} color='primary'>
             Add New
           </Button>
         </Stack>
@@ -47,15 +47,15 @@ const AddressModal = ({ open, setOpen, handlerAddress }) => {
         <FormControl sx={{ width: '100%', pb: 2 }}>
           <TextField
             autoFocus
-            id="name"
+            id='name'
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment position='start'>
                   <SearchOutlined />
                 </InputAdornment>
               )
             }}
-            placeholder="Search"
+            placeholder='Search'
             fullWidth
           />
         </FormControl>
@@ -65,10 +65,10 @@ const AddressModal = ({ open, setOpen, handlerAddress }) => {
       </DialogContent>
       <Divider />
       <DialogActions sx={{ p: 2.5 }}>
-        <Button color="error" onClick={closeAddressModal}>
+        <Button color='error' onClick={closeAddressModal}>
           Cancel
         </Button>
-        <Button onClick={closeAddressModal} color="primary" variant="contained">
+        <Button onClick={closeAddressModal} color='primary' variant='contained'>
           Add
         </Button>
       </DialogActions>
@@ -92,16 +92,36 @@ const Address = ({ handlerAddress }) => {
       phone: '+91 1234567890',
       email: 'iacrpt65@gmail.com'
     },
-    { name: 'Belle J. Richter', address: '1300 Mine RoadQuemado, NM 87829', phone: '305-829-7809', email: 'belljrc23@gmail.com' },
-    { name: 'Ritika Yohannan', address: '3488 Arbutus DriveMiami, FL', phone: '+91 1234567890', email: 'rtyhn65@gmail.com' },
-    { name: 'Jesse G. Hassen', address: '3488 Arbutus DriveMiami, FL 33012', phone: '+91 1234567890', email: 'jessghs78@gmail.com' },
+    {
+      name: 'Belle J. Richter',
+      address: '1300 Mine RoadQuemado, NM 87829',
+      phone: '305-829-7809',
+      email: 'belljrc23@gmail.com'
+    },
+    {
+      name: 'Ritika Yohannan',
+      address: '3488 Arbutus DriveMiami, FL',
+      phone: '+91 1234567890',
+      email: 'rtyhn65@gmail.com'
+    },
+    {
+      name: 'Jesse G. Hassen',
+      address: '3488 Arbutus DriveMiami, FL 33012',
+      phone: '+91 1234567890',
+      email: 'jessghs78@gmail.com'
+    },
     {
       name: 'Christopher P. Iacovelli',
       address: '4388 House DriveWesrville, OH',
       phone: '+91 1234567890',
       email: 'crpthl643@gmail.com'
     },
-    { name: 'Thomas D. Johnson', address: '4388 House DriveWestville, OH +91', phone: '1234567890', email: 'thomshj56@gmail.com' }
+    {
+      name: 'Thomas D. Johnson',
+      address: '4388 House DriveWestville, OH +91',
+      phone: '1234567890',
+      email: 'thomshj56@gmail.com'
+    }
   ];
 
   return (
@@ -122,17 +142,17 @@ const Address = ({ handlerAddress }) => {
             }
           }}
         >
-          <Typography textAlign="left" variant="subtitle1">
+          <Typography textAlign='left' variant='subtitle1'>
             {address.name}
           </Typography>
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
-            <Typography textAlign="left" variant="body2" color="secondary">
+            <Typography textAlign='left' variant='body2' color='secondary'>
               {address.address}
             </Typography>
-            <Typography textAlign="left" variant="body2" color="secondary">
+            <Typography textAlign='left' variant='body2' color='secondary'>
               {address.phone}
             </Typography>
-            <Typography textAlign="left" variant="body2" color="secondary">
+            <Typography textAlign='left' variant='body2' color='secondary'>
               {address.email}
             </Typography>
           </Stack>

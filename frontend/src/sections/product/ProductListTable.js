@@ -87,7 +87,6 @@ ProductListTable.propTypes = {
   data: PropTypes.any,
   striped: PropTypes.bool,
   columns: PropTypes.array,
-  title: PropTypes.string,
   handleOpen: PropTypes.func
 };
 

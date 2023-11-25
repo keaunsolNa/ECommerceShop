@@ -1,27 +1,32 @@
 package com.ecommerceshop.service.api;
 
 import com.ecommerceshop.dto.document.aut.Authority;
-import com.ecommerceshop.dto.document.emp.EmpBase;
+import com.ecommerceshop.dto.document.aut.UserRole;
+import com.ecommerceshop.dto.document.product.Categories;
 import com.ecommerceshop.repository.aut.AuthorityRepository;
+import com.ecommerceshop.repository.aut.UserRoleRepository;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
+import com.ecommerceshop.repository.product.CategoriesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ApiService {
 
     private final AuthorityRepository authorityRepository;
     private final EmpBaseRepository empBaseRepository;
+    private final UserRoleRepository userRoleRepository;
+    private final CategoriesRepository categoriesRepository;
 
-    public ApiService(AuthorityRepository authorityRepository,
-                      EmpBaseRepository empBaseRepository) {
+    public ApiService(AuthorityRepository authorityRepository, UserRoleRepository userRoleRepository,
+                      EmpBaseRepository empBaseRepository, CategoriesRepository categoriesRepository) {
 
         this.authorityRepository = authorityRepository;
+        this.userRoleRepository = userRoleRepository;
         this.empBaseRepository = empBaseRepository;
+        this.categoriesRepository = categoriesRepository;
     }
 
     public List<String> authorityDocumentationSearch() {
@@ -29,8 +34,8 @@ public class ApiService {
         Iterable<Authority> authorityList = authorityRepository.findAll();
         List<String> authorityStringList = new ArrayList<>();
 
-        for (Authority authority: authorityList
-             ) {
+        for (Authority authority : authorityList
+        ) {
             authorityStringList.add(authority.getAuthorityName());
         }
 
@@ -46,7 +51,6 @@ public class ApiService {
         userStateList.add("휴면 계정");
         userStateList.add("탈퇴 계정");
         userStateList.add("블랙 계정");
-        userStateList.add("");
         return userStateList;
     }
 
@@ -59,5 +63,23 @@ public class ApiService {
         productBaseStateList.add("입고 대기 상품");
         productBaseStateList.add("할인 상품");
         return productBaseStateList;
+    }
+
+    public Iterable<UserRole> userRoleRequest() {
+
+        return userRoleRepository.findAll();
+    }
+
+    public List<String> categoriesRequest() {
+
+        Iterable<Categories> categories = categoriesRepository.findAll();
+
+        List<String> categorieList = new ArrayList<>();
+        for (Categories categorieslist : categories) {
+
+            categorieList.add(categorieslist.getName());
+        }
+
+        return categorieList;
     }
 }

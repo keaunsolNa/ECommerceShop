@@ -94,20 +94,21 @@ const Columns = ({ column, index }) => {
           {...provided.dragHandleProps}
           style={getDragWrapper(snapshot.isDragging, provided.draggableProps.style, theme, `4px`)}
         >
-          <Droppable droppableId={column.id} type="item">
+          <Droppable droppableId={column.id} type='item'>
             {(providedDrop, snapshotDrop) => (
               <div
                 ref={providedDrop.innerRef}
                 {...providedDrop.droppableProps}
                 style={getDropWrapper(snapshotDrop.isDraggingOver, theme, `4px`)}
               >
-                <Grid container alignItems="center" spacing={3}>
+                <Grid container alignItems='center' spacing={3}>
                   <Grid item xs zeroMinWidth>
                     <EditColumn column={column} />
                   </Grid>
                   <Grid item sx={{ mb: 1.5 }}>
-                    <Tooltip title="Delete Column">
-                      <IconButton onClick={handleColumnDelete} aria-controls="menu-simple-card" aria-haspopup="true" color="error">
+                    <Tooltip title='Delete Column'>
+                      <IconButton onClick={handleColumnDelete} aria-controls='menu-simple-card' aria-haspopup='true'
+                                  color='error'>
                         <DeleteOutlined />
                       </IconButton>
                     </Tooltip>

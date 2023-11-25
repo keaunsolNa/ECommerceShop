@@ -26,16 +26,16 @@ ReactTable.propTypes = {
 };
 
 function ReactTable({
-  tableType,
-  getTableProps,
-  getTableBodyProps,
-  headerGroups,
-  prepareRow,
-  rows,
-  footerGroups,
-  openModal,
-  setOpenModal
-}) {
+                      tableType,
+                      getTableProps,
+                      getTableBodyProps,
+                      headerGroups,
+                      prepareRow,
+                      rows,
+                      footerGroups,
+                      openModal,
+                      setOpenModal
+                    }) {
   const theme = useTheme();
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -69,10 +69,10 @@ function ReactTable({
                     row.values['rowStatus'] === '입력'
                       ? alpha(theme.palette.primary.lighter, 0.9)
                       : row.values['rowStatus'] === '수정'
-                      ? alpha(theme.palette.warning.lighter, 0.9)
-                      : row.values['rowStatus'] === '삭제'
-                      ? alpha(theme.palette.error.lighter, 0.9)
-                      : 'inherit'
+                        ? alpha(theme.palette.warning.lighter, 0.9)
+                        : row.values['rowStatus'] === '삭제'
+                          ? alpha(theme.palette.error.lighter, 0.9)
+                          : 'inherit'
                 }}
                 key={row.id}
                 {...row.getRowProps()}

@@ -85,16 +85,16 @@ const AddItem = ({ columnId }) => {
   };
 
   return (
-    <Grid container alignItems="center" spacing={1} sx={{ marginTop: 1 }}>
+    <Grid container alignItems='center' spacing={1} sx={{ marginTop: 1 }}>
       {addTaskBox && (
         <Grid item xs={12}>
           <SubCard content={false}>
             <Box sx={{ p: 2, pb: 1.5, transition: 'background-color 0.25s ease-out' }}>
-              <Grid container alignItems="center" spacing={0.5}>
+              <Grid container alignItems='center' spacing={0.5}>
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    placeholder="Add Task"
+                    placeholder='Add Task'
                     value={title}
                     onChange={handleTaskTitle}
                     sx={{
@@ -128,13 +128,13 @@ const AddItem = ({ columnId }) => {
                 </Grid>
                 <Grid item xs zeroMinWidth />
                 <Grid item>
-                  <Stack direction="row" alignItems="center" spacing={1}>
-                    <Tooltip title="Cancel">
-                      <IconButton size="small" color="error" onClick={handleAddTaskChange}>
+                  <Stack direction='row' alignItems='center' spacing={1}>
+                    <Tooltip title='Cancel'>
+                      <IconButton size='small' color='error' onClick={handleAddTaskChange}>
                         <CloseOutlined />
                       </IconButton>
                     </Tooltip>
-                    <Button variant="contained" color="primary" onClick={addTask} size="small">
+                    <Button variant='contained' color='primary' onClick={addTask} size='small'>
                       Add
                     </Button>
                   </Stack>
@@ -146,7 +146,7 @@ const AddItem = ({ columnId }) => {
       )}
       {!addTaskBox && (
         <Grid item xs={12}>
-          <Button variant="dashed" color="secondary" fullWidth onClick={handleAddTaskChange}>
+          <Button variant='dashed' color='secondary' fullWidth onClick={handleAddTaskChange}>
             Add Task
           </Button>
         </Grid>

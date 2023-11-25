@@ -29,7 +29,9 @@ const NavItem = ({ item, level }) => {
     itemTarget = '_blank';
   }
 
-  let listItemProps = { component: forwardRef((props, ref) => <Link {...props} to={item.url} target={itemTarget} ref={ref} />) };
+  let listItemProps = {
+    component: forwardRef((props, ref) => <Link {...props} to={item.url} target={itemTarget} ref={ref} />)
+  };
   if (item?.external) {
     listItemProps = { component: 'a', href: item.url, target: itemTarget };
   }
@@ -136,7 +138,7 @@ const NavItem = ({ item, level }) => {
           {(drawerOpen || (!drawerOpen && level !== 1)) && (
             <ListItemText
               primary={
-                <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor }}>
+                <Typography variant='h6' sx={{ color: isSelected ? iconSelectedColor : textColor }}>
                   {item.title}
                 </Typography>
               }
@@ -238,7 +240,7 @@ const NavItem = ({ item, level }) => {
           )}
           <ListItemText
             primary={
-              <Typography variant="h6" color="inherit">
+              <Typography variant='h6' color='inherit'>
                 {item.title}
               </Typography>
             }

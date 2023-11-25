@@ -51,14 +51,14 @@ const ProductsHeader = ({ filter, handleDrawerOpen, setFilter }) => {
         sx={{ p: 2 }}
         spacing={2}
       >
-        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={0.5}>
+        <Stack direction='row' alignItems='center' justifyContent='space-between' spacing={0.5}>
           <Button
             disableRipple
             onClick={handleDrawerOpen}
-            color="secondary"
+            color='secondary'
             startIcon={<FilterOutlined style={{ color: 'secondary.200' }} />}
           >
-            <Typography variant="h6" color="textPrimary">
+            <Typography variant='h6' color='textPrimary'>
               Filter
             </Typography>
           </Button>
@@ -67,34 +67,34 @@ const ProductsHeader = ({ filter, handleDrawerOpen, setFilter }) => {
             sx={{ '& .MuiOutlinedInput-input': { pl: 0 } }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment position='start'>
                   <SearchOutlined style={{ fontSize: 'small' }} />
                 </InputAdornment>
               )
             }}
             value={filter.search}
-            placeholder="Search Product"
-            size="medium"
+            placeholder='Search Product'
+            size='medium'
             onChange={handleSearch}
           />
         </Stack>
         <Button
-          id="demo-positioned-button"
-          aria-controls="demo-positioned-menu"
-          aria-haspopup="true"
+          id='demo-positioned-button'
+          aria-controls='demo-positioned-menu'
+          aria-haspopup='true'
           aria-expanded={openSort ? 'true' : undefined}
           onClick={handleClickListItem}
-          variant="outlined"
-          size="large"
-          color="secondary"
+          variant='outlined'
+          size='large'
+          color='secondary'
           endIcon={<DownOutlined style={{ fontSize: 'small' }} />}
           sx={{ color: 'text.primary' }}
         >
           {sortLabel.length > 0 && sortLabel[0].label}
         </Button>
         <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
+          id='demo-positioned-menu'
+          aria-labelledby='demo-positioned-button'
           anchorEl={anchorEl}
           open={openSort}
           onClose={handleClose}

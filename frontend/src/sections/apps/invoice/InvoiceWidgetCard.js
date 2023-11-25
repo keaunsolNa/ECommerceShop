@@ -26,16 +26,19 @@ const TableWidgetCard = ({ color, title, count, percentage, isLoss, invoice, isA
       <Grid container spacing={1.25}>
         <Grid item xs={12}>
           <Stack
-            direction="row"
-            alignItems="center"
-            sx={{ justifyContent: theme.direction === ThemeDirection.RTL ? 'flex-end' : 'space-between', flexWrap: 'wrap' }}
+            direction='row'
+            alignItems='center'
+            sx={{
+              justifyContent: theme.direction === ThemeDirection.RTL ? 'flex-end' : 'space-between',
+              flexWrap: 'wrap'
+            }}
           >
-            <Typography variant="subtitle1">{title}</Typography>
+            <Typography variant='subtitle1'>{title}</Typography>
             {percentage && (
-              <Stack sx={{ ml: 1.25, pl: 1 }} direction="row" alignItems="center" spacing={1}>
+              <Stack sx={{ ml: 1.25, pl: 1 }} direction='row' alignItems='center' spacing={1}>
                 {!isLoss && <CaretUpOutlined style={{ fontSize: '0.75rem', color: color }} />}
                 {isLoss && <CaretDownOutlined style={{ fontSize: '0.75rem', color: color }} />}
-                <Typography color="secondary" variant="h5" sx={{ fontWeight: 500 }}>
+                <Typography color='secondary' variant='h5' sx={{ fontWeight: 500 }}>
                   {percentage}%
                 </Typography>
               </Stack>
@@ -44,10 +47,10 @@ const TableWidgetCard = ({ color, title, count, percentage, isLoss, invoice, isA
         </Grid>
         <Grid item xs={12}>
           <Stack spacing={0.25}>
-            <Typography variant="h5">{count}</Typography>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h5">{invoice}</Typography>
-              <Typography color="secondary">invoices</Typography>
+            <Typography variant='h5'>{count}</Typography>
+            <Stack direction='row' spacing={1} alignItems='center'>
+              <Typography variant='h5'>{invoice}</Typography>
+              <Typography color='secondary'>invoices</Typography>
             </Stack>
           </Stack>
         </Grid>
@@ -169,7 +172,7 @@ export const WidgetChart = ({ color, data }) => {
     }
   ]);
 
-  return <ReactApexChart options={options} series={series} type="area" height={80} />;
+  return <ReactApexChart options={options} series={series} type='area' height={80} />;
 };
 
 WidgetChart.propTypes = {

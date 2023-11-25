@@ -128,7 +128,7 @@ const ListCard = ({ customer }) => {
   const theme = useTheme();
   return (
     <Document title={`${customer?.fatherName}`}>
-      <Page size="A4" style={styles.page}>
+      <Page size='A4' style={styles.page}>
         <View style={styles.container}>
           <View style={styles.row}>
             <Image style={styles.image} src={avatarImage(`./avatar-${!customer.avatar ? 1 : customer.avatar}.png`)} />
@@ -192,7 +192,8 @@ const ListCard = ({ customer }) => {
                     <View style={[styles.row, styles.IconRow]}>
                       <Text style={styles.mainTitle}>Job Responsibility</Text>
                       <Text style={styles.iconTitle}>
-                        Perform task related to project manager with the 100+ team under my observation. Team management is key role in this
+                        Perform task related to project manager with the 100+ team under my observation. Team management
+                        is key role in this
                         company.
                       </Text>
                     </View>

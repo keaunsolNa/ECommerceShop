@@ -1,22 +1,20 @@
 import * as Yup from 'yup';
-import { useFormik, Form, FormikProvider } from 'formik';
+import { Form, FormikProvider, useFormik } from 'formik';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import {
   Button,
+  Chip,
+  FormControl,
+  FormHelperText,
   Grid,
   IconButton,
-  Select,
+  InputLabel,
+  ListItemText,
   MenuItem,
+  Select,
   Stack,
   TextField,
-  Chip,
-  InputLabel,
-  FormHelperText,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Typography,
-  ListItemText
+  Typography
 } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
@@ -29,7 +27,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import DeleteModal from '../../pages/common/DeleteModal';
 import PropTypes from 'prop-types';
 import Avatar from 'components/@extended/Avatar';
-import AnimateButton from 'components/@extended/AnimateButton';
 
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
@@ -37,8 +34,8 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const isInsert = selectedData.id === undefined;
   const avatarImage = require.context('assets/images/users', true);
-  const [userRoleList, setUserRoleList] = useState([]);
-  const [userStateList, setUserStateList] = useState([]);
+  const [userRoleList, setUserRoleList] = useState(['일반관리자']);
+  const [userStateList, setUserStateList] = useState(['가입 대기']);
   const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
   const callNumberRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
   const employeeSchema = Yup.object().shape({
@@ -73,7 +70,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   });
   const getInitialValues = () => {
     return {
-      id: isInsert ? '' : selectedData.id,
+      id: isInsert ? 'create' : selectedData.id,
       password: '',
       confirmPassword: '',
       email: isInsert ? '' : selectedData.email,
@@ -179,29 +176,30 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   if (loading) return <Loader />;
   return (
     <MainCard
-      title="인사 기록 카드"
+      title='인사 기록 카드'
       secondary={
         <Stack direction={'row'} spacing={2}>
           {isInsert ? null : (
-            <IconButton color="error" onClick={() => setDeleteModal(true)} size="small" sx={{ fontSize: '1.1rem' }}>
+            <IconButton color='error' onClick={() => setDeleteModal(true)} size='small' sx={{ fontSize: '1.1rem' }}>
               <DeleteFilled />
             </IconButton>
           )}
-          <IconButton color="secondary" onClick={() => handleOpen()} size="small" sx={{ fontSize: '1.1rem' }}>
+          <IconButton color='secondary' onClick={() => handleOpen()} size='small' sx={{ fontSize: '1.1rem' }}>
             <CloseOutlined />
           </IconButton>
-          <DeleteModal title={'인사기록카드'} open={deleteModal} handleClose={() => setDeleteModal(!deleteModal)} deleteData={deleteData} />
+          <DeleteModal title={'인사기록카드'} open={deleteModal} handleClose={() => setDeleteModal(!deleteModal)}
+                       deleteData={deleteData} />
         </Stack>
       }
     >
       <FormikProvider value={formik}>
-        <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Grid container spacing={2.5}>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
-                  <Stack spacing={2.5} alignItems="center">
-                    <Avatar alt="Avatar 1" size="xl" src={avatarImage(`./default.png`)} />
+                  <Stack spacing={2.5} alignItems='center'>
+                    <Avatar alt='Avatar 1' size='xl' src={avatarImage(`./default.png`)} />
                   </Stack>
                 </Stack>
               </Grid>
@@ -210,9 +208,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>아이디</InputLabel>
                   <TextField
                     fullWidth
-                    id="id"
+                    id='id'
                     {...getFieldProps('id')}
-                    placeholder="ID"
+                    placeholder='ID'
                     onChange={formik.handleChange}
                     error={Boolean(touched.id && errors.id)}
                     helperText={touched.id && errors.id}
@@ -221,12 +219,12 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
               </Grid>
               <Grid item xs={12} style={{ display: !isInsert ? 'none' : 'block' }}>
                 <Stack spacing={1.25}>
-                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <InputLabel htmlFor='password'>Password</InputLabel>
                   <TextField
                     fullWidth
-                    id="password"
+                    id='password'
                     {...getFieldProps('password')}
-                    placeholder="비밀번호"
+                    placeholder='비밀번호'
                     onChange={formik.handleChange}
                     error={Boolean(touched.password && errors.password)}
                     helperText={touched.password && errors.password}
@@ -236,12 +234,12 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
               </Grid>
               <Grid item xs={12} style={{ display: !isInsert ? 'none' : 'block' }}>
                 <Stack spacing={1.25}>
-                  <InputLabel htmlFor="confirmPassword">Password</InputLabel>
+                  <InputLabel htmlFor='confirmPassword'>Password</InputLabel>
                   <TextField
                     fullWidth
-                    id="confirmPassword"
+                    id='confirmPassword'
                     {...getFieldProps('confirmPassword')}
-                    placeholder="비밀번호 확인"
+                    placeholder='비밀번호 확인'
                     onChange={formik.handleChange}
                     error={Boolean(touched.confirmPassword && errors.confirmPassword)}
                     helperText={touched.confirmPassword && errors.confirmPassword}
@@ -254,9 +252,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>이메일</InputLabel>
                   <TextField
                     fullWidth
-                    id="email"
+                    id='email'
                     {...getFieldProps('email')}
-                    placeholder="이메일"
+                    placeholder='이메일'
                     onChange={formik.handleChange}
                     error={Boolean(touched.email && errors.email)}
                     helperText={touched.email && errors.email}
@@ -269,15 +267,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>상태</InputLabel>
                   <FormControl fullWidth>
                     <Select
-                      id="state"
+                      id='state'
                       {...getFieldProps('state')}
                       onChange={formik.handleChange}
+                      defaultValue={'가입 대기'}
                       renderValue={(selected) => {
                         if (!selected) {
-                          return <Typography variant="subtitle1">Select Status</Typography>;
+                          return <Typography variant='subtitle1'>Select Status</Typography>;
                         }
 
-                        return <Typography variant="subtitle2">{selected}</Typography>;
+                        return <Typography variant='subtitle2'>{selected}</Typography>;
                       }}
                     >
                       {userStateList.map((option, idx) => (
@@ -288,7 +287,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     </Select>
                   </FormControl>
                   {touched.state && errors.state && (
-                    <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
+                    <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
                       {errors.state}
                     </FormHelperText>
                   )}
@@ -299,9 +298,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>이름</InputLabel>
                   <TextField
                     fullWidth
-                    id="name"
+                    id='name'
                     {...getFieldProps('name')}
-                    placeholder="이름"
+                    placeholder='이름'
                     onChange={formik.handleChange}
                     error={Boolean(touched.name && errors.name)}
                     helperText={touched.name && errors.name}
@@ -309,67 +308,67 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 </Stack>
               </Grid>
               <Grid item xs={12}>
-                {/*<Stack spacing={1.25}>*/}
-                {/*  <InputLabel>성별</InputLabel>*/}
-                {/*  <FormControl fullWidth>*/}
-                {/*    <Select*/}
-                {/*      id="gender"*/}
-                {/*      {...getFieldProps('gender')}*/}
-                {/*      placeholder="성별"*/}
-                {/*      onChange={formik.handleChange}*/}
-                {/*      renderValue={(selected) => {*/}
-                {/*        if (!selected) {*/}
-                {/*          return <Typography variant="subtitle1">Select Status</Typography>;*/}
-                {/*        }*/}
+                <Stack spacing={1.25}>
+                  <InputLabel>성별</InputLabel>
+                  <FormControl fullWidth>
+                    <Select
+                      id='gender'
+                      {...getFieldProps('gender')}
+                      placeholder='성별'
+                      onChange={formik.handleChange}
+                      defaultValue={'남성'}
+                      renderValue={(selected) => {
+                        if (!selected) {
+                          return <Typography variant='subtitle1'>Select Status</Typography>;
+                        }
 
-                {/*        return <Typography variant="subtitle2">{selected}</Typography>;*/}
-                {/*      }}*/}
-                {/*    >*/}
-                {/*      <MenuItem value="남성">*/}
-                {/*        <Chip color="primary" label="남성" size="small" variant="light" />*/}
-                {/*      </MenuItem>*/}
-                {/*      <MenuItem value="여성">*/}
-                {/*        <Chip color="primary" label="여성" size="small" variant="light" />*/}
-                {/*      </MenuItem>*/}
-                {/*    </Select>*/}
-                {/*  </FormControl>*/}
-                {/*  {touched.gender && errors.gender && (*/}
-                {/*    <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>*/}
-                {/*      {errors.gender}*/}
-                {/*    </FormHelperText>*/}
-                {/*  )}*/}
-                {/*</Stack>*/}
+                        return <Typography variant='subtitle2'>{selected}</Typography>;
+                      }}
+                    >
+                      <MenuItem value='남성'>
+                        <Chip color='primary' label='남성' size='small' variant='light' />
+                      </MenuItem>
+                      <MenuItem value='여성'>
+                        <Chip color='primary' label='여성' size='small' variant='light' />
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                  {touched.gender && errors.gender && (
+                    <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      {errors.gender}
+                    </FormHelperText>
+                  )}
+                </Stack>
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
-                  {/*<InputLabel>직책</InputLabel>*/}
-                  {/*<FormControl fullWidth>*/}
-                  {/*  <Select*/}
-                  {/*    id="role"*/}
-                  {/*    {...getFieldProps('role')}*/}
-                  {/*    placeholder="직책"*/}
-                  {/*    onChange={formik.handleChange}*/}
-                  {/*    renderValue={(selected) => {*/}
-                  {/*      if (!selected) {*/}
-                  {/*        return <Typography variant="subtitle1">Select Status</Typography>;*/}
-                  {/*      }*/}
+                  <InputLabel>직책</InputLabel>
+                  <FormControl fullWidth>
+                    <Select
+                      id='role'
+                      {...getFieldProps('role')}
+                      onChange={formik.handleChange}
+                      defaultValue={'일반관리자'}
+                      renderValue={(selected) => {
+                        if (!selected) {
+                          return <Typography variant='subtitle1'>Select Status</Typography>;
+                        }
 
-                  {/*      return <Typography variant="subtitle2">{selected}</Typography>;*/}
-                  {/*    }}*/}
-                  {/*  >*/}
-                  {/*    >*/}
-                  {/*    {userRoleList.map((option, idx) => (*/}
-                  {/*      <MenuItem key={option} value={option} id={`${option}-${idx}`}>*/}
-                  {/*        <ListItemText primary={option} />*/}
-                  {/*      </MenuItem>*/}
-                  {/*    ))}*/}
-                  {/*  </Select>*/}
-                  {/*</FormControl>*/}
-                  {/*{touched.role && errors.role && (*/}
-                  {/*  <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>*/}
-                  {/*    {errors.role}*/}
-                  {/*  </FormHelperText>*/}
-                  {/*)}*/}
+                        return <Typography variant='subtitle2'>{selected}</Typography>;
+                      }}
+                    >
+                      {userRoleList.map((option, idx) => (
+                        <MenuItem key={option} value={option} id={`${option}-${idx}`}>
+                          <ListItemText primary={option} />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  {touched.role && errors.role && (
+                    <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      {errors.role}
+                    </FormHelperText>
+                  )}
                 </Stack>
               </Grid>
               <Grid item xs={12}>
@@ -377,7 +376,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>생년월일</InputLabel>
                   <DatePicker
                     value={formik.values.birth}
-                    format="YYYY-MM-DD"
+                    format='YYYY-MM-DD'
                     onChange={(date) => {
                       formik.setFieldValue('birth', date);
                     }}
@@ -389,9 +388,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>핸드폰 번호</InputLabel>
                   <TextField
                     fullWidth
-                    id="phoneNumber"
+                    id='phoneNumber'
                     {...getFieldProps('phoneNumber')}
-                    placeholder="핸드폰 번호를 입력하세요"
+                    placeholder='핸드폰 번호를 입력하세요'
                     onChange={formik.handleChange}
                     error={Boolean(touched.phoneNumber && errors.phoneNumber)}
                     helperText={touched.phoneNumber && errors.phoneNumber}
@@ -403,9 +402,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>집 전화 번호</InputLabel>
                   <TextField
                     fullWidth
-                    id="callNumber"
+                    id='callNumber'
                     {...getFieldProps('callNumber')}
-                    placeholder="자택번호를 입력하세요"
+                    placeholder='자택번호를 입력하세요'
                     onChange={formik.handleChange}
                     error={Boolean(touched.callNumber && errors.callNumber)}
                     helperText={touched.callNumber && errors.callNumber}
@@ -417,9 +416,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>주소</InputLabel>
                   <TextField
                     fullWidth
-                    id="address"
+                    id='address'
                     {...getFieldProps('address')}
-                    placeholder="주소를 입력하세요"
+                    placeholder='주소를 입력하세요'
                     onChange={formik.handleChange}
                     error={Boolean(touched.address && errors.address)}
                     helperText={touched.address && errors.address}
@@ -427,11 +426,14 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 </Stack>
               </Grid>
               <Grid item xs={12}>
-                <AnimateButton>
-                  <Button fullWidth variant="contained" type="submit" disabled={isSubmitting}>
-                    > 저장
-                  </Button>
-                </AnimateButton>
+                <Button fullWidth variant='contained' color='error' type='button' onClick={handleOpen}>
+                  닫기
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <Button fullWidth variant='contained' type='submit' disabled={isSubmitting}>
+                  저장
+                </Button>
               </Grid>
             </Grid>
           </LocalizationProvider>

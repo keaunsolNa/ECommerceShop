@@ -1,8 +1,8 @@
 package com.ecommerceshop.service.emp;
 
+import com.ecommerceshop.dto.DTO.EmpBaseDTO;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
-import com.ecommerceshop.dto.integratedDTO.EmpBaseDTO;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.module.common.SettingUserRole;
 import com.ecommerceshop.module.employee.SettingEmpDocumentByDTO;
@@ -45,7 +45,7 @@ public class EmpBaseService {
 
         empBaseRepository.save(empBase);
         empsiRepository.save(empSI);
-        userRoleRepository.saveAll(settingUserRole.settingUserRole(empBase, empBaseDTO.getId()));
+        userRoleRepository.saveAll(settingUserRole.settingUserRole(empBaseDTO.getRole(), empBaseDTO.getId()));
 
         return empBase;
     }
@@ -79,14 +79,6 @@ public class EmpBaseService {
         return empBaseDTO;
     }
 
-    public void empBaseDocumentDeleteById(String id) throws Exception {
-
-        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
-        empBase.setState("탈퇴 계정");
-        empBaseRepository.save(empBase);
-
-    }
-
     public EmpBase empBaseDocumentUpdate(EmpBaseDTO empBaseDTO) throws Exception {
 
         EmpBase empBase = empBaseRepository.findById(empBaseDTO.getId()).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
@@ -98,18 +90,27 @@ public class EmpBaseService {
         empSI.setCallNumber(empBaseDTO.getCallNumber() != null ? empBaseDTO.getCallNumber() : empSI.getCallNumber());
         empSI.setAddress(empBaseDTO.getAddress() != null ? empBaseDTO.getAddress() : empSI.getAddress());
 
-        if(empBaseDTO.getRole() != null) {
+        if (!empBaseDTO.getRole().equals(empBase.getRole())) {
 
             empBase.setRole(empBaseDTO.getRole());
-            userRoleRepository.saveAll(settingUserRole.settingUserRole(empBase, empBaseDTO.getId()));
-
-        } else empBase.setRole(empBase.getRole());
+            userRoleRepository.deleteAllByEmpId(empBaseDTO.getId());
+            userRoleRepository.saveAll(settingUserRole.settingUserRole(empBaseDTO.getRole(), empBaseDTO.getId()));
+        }
 
         empBaseRepository.save(empBase);
         empsiRepository.save(empSI);
 
         return empBase;
     }
+
+    public void empBaseDocumentDeleteById(String id) throws Exception {
+
+        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        empBase.setState("탈퇴 계정");
+        empBaseRepository.save(empBase);
+
+    }
+
 
     public EmpBase empBaseDocumentSearchForTest() {
         NativeQuery query = commonModule.makeMatchAllQuery();

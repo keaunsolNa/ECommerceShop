@@ -112,7 +112,7 @@ const ListSmallCard = ({ customer }) => {
   const theme = useTheme();
   return (
     <Document title={`${customer?.fatherName}`}>
-      <Page size="A4" style={styles.page}>
+      <Page size='A4' style={styles.page}>
         <View style={styles.container}>
           <View style={styles.row}>
             <Image style={styles.image} src={avatarImage(`./avatar-${!customer.avatar ? 1 : customer.avatar}.png`)} />

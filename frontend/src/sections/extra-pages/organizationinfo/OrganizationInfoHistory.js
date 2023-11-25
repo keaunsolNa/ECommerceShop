@@ -14,9 +14,30 @@ const OrganizationInfoHistory = () => {
   // states
   const [loading, setLoading] = useState(true);
   const data = [
-    { id: 1, localeCode: '부산', postalCode: '730-906', address: '서울시 서초구 서초동', startDate: '1900.01.01', endDate: '2999.12.31' },
-    { id: 2, localeCode: '울산', postalCode: '730-906', address: '서울시 서초구 서초동', startDate: '1900.01.01', endDate: '2999.12.31' },
-    { id: 3, localeCode: '제주', postalCode: '730-906', address: '서울시 서초구 서초동', startDate: '1900.01.01', endDate: '2999.12.31' },
+    {
+      id: 1,
+      localeCode: '부산',
+      postalCode: '730-906',
+      address: '서울시 서초구 서초동',
+      startDate: '1900.01.01',
+      endDate: '2999.12.31'
+    },
+    {
+      id: 2,
+      localeCode: '울산',
+      postalCode: '730-906',
+      address: '서울시 서초구 서초동',
+      startDate: '1900.01.01',
+      endDate: '2999.12.31'
+    },
+    {
+      id: 3,
+      localeCode: '제주',
+      postalCode: '730-906',
+      address: '서울시 서초구 서초동',
+      startDate: '1900.01.01',
+      endDate: '2999.12.31'
+    },
     {
       localeCode: '2서울',
       postalCode: '730-906',
@@ -220,7 +241,7 @@ const OrganizationInfoHistory = () => {
   if (loading) return <Loader />;
   return (
     <>
-      <MainCard title="주소변경내역" content={false}>
+      <MainCard title='주소변경내역' content={false}>
         <VirtualizedInfiniteScrollTable
           data={scrollData}
           columns={columns}
@@ -229,7 +250,7 @@ const OrganizationInfoHistory = () => {
           setSelected={setSelected}
         />
       </MainCard>
-      <MainCard title="조직이력 상세" content={false}>
+      <MainCard title='조직이력 상세' content={false}>
         {selected && <ObjectToGrid data={data.find((item) => item.id === selected)} />}
       </MainCard>
     </>

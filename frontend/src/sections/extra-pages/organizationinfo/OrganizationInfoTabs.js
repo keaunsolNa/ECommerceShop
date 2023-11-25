@@ -49,10 +49,11 @@ const OrganizationInfoTabs = ({ selected }) => {
   if (loading) return <Loader />;
   return (
     <MainCard sx={{ height: 800 }}>
-      <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="account profile tab" sx={{ mb: 1 }}>
-        <Tab label="조직기본" component={Link} to="/organizationinfo/basic"></Tab>
-        <Tab label="변경이력" component={Link} to="/organizationinfo/history"></Tab>
-        <Tab label="주소변경" component={Link} to="/organizationinfo/addresschange"></Tab>
+      <Tabs value={value} onChange={handleChange} variant='scrollable' scrollButtons='auto'
+            aria-label='account profile tab' sx={{ mb: 1 }}>
+        <Tab label='조직기본' component={Link} to='/organizationinfo/basic'></Tab>
+        <Tab label='변경이력' component={Link} to='/organizationinfo/history'></Tab>
+        <Tab label='주소변경' component={Link} to='/organizationinfo/addresschange'></Tab>
       </Tabs>
       <Box>
         <Outlet context={selected} />

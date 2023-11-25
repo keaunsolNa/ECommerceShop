@@ -14,13 +14,18 @@ const avatarImage = require.context('assets/images/users', true);
 
 const UserAvatar = ({ user }) => (
   <Badge
-    overlap="circular"
+    overlap='circular'
     badgeContent={<AvatarStatus status={user.online_status} />}
     anchorOrigin={{
       vertical: 'top',
       horizontal: 'right'
     }}
-    sx={{ '& .MuiBox-root': { width: 6, height: 6 }, padding: 0, minWidth: 12, '& svg': { background: '#fff', borderRadius: '50%' } }}
+    sx={{
+      '& .MuiBox-root': { width: 6, height: 6 },
+      padding: 0,
+      minWidth: 12,
+      '& svg': { background: '#fff', borderRadius: '50%' }
+    }}
   >
     <Avatar alt={user.name} src={user.avatar && avatarImage(`./${user.avatar}`)} />
   </Badge>

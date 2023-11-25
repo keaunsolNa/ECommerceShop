@@ -57,6 +57,7 @@ export function dispatchCondition(date, organization) {
     }
   };
 }
+
 export function dispatchRetrieve() {
   return async () => {
     dispatch(organizationinfo.actions.loading());

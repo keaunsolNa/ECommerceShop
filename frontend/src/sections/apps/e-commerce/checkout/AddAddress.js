@@ -90,8 +90,8 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
       TransitionComponent={PopupTransition}
       keepMounted
       onClose={handleClose}
-      aria-labelledby="alert-dialog-slide-title"
-      aria-describedby="alert-dialog-slide-description"
+      aria-labelledby='alert-dialog-slide-title'
+      aria-describedby='alert-dialog-slide-description'
       sx={{
         '& .MuiDialog-paper': {
           p: 0
@@ -99,9 +99,9 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
       }}
     >
       <MainCard
-        title="Edit Billing Address"
+        title='Edit Billing Address'
         secondary={
-          <IconButton onClick={handleClose} size="large">
+          <IconButton onClick={handleClose} size='large'>
             <CloseCircleTwoTone style={{ fontSize: 'small' }} />
           </IconButton>
         }
@@ -110,12 +110,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-name">Name</InputLabel>
+                <InputLabel htmlFor='address-name'>Name</InputLabel>
                 <TextField
                   fullWidth
-                  id="name"
-                  name="name"
-                  placeholder="Name"
+                  id='name'
+                  name='name'
+                  placeholder='Name'
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   error={formik.touched.name && Boolean(formik.errors.name)}
@@ -125,18 +125,18 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-destination">Destination</InputLabel>
+                <InputLabel htmlFor='address-destination'>Destination</InputLabel>
                 <FormControl>
                   <RadioGroup
                     row
-                    aria-label="destination"
+                    aria-label='destination'
                     value={formik.values.destination}
                     onChange={formik.handleChange}
-                    name="destination"
-                    id="destination"
+                    name='destination'
+                    id='destination'
                   >
                     <FormControlLabel
-                      value="home"
+                      value='home'
                       control={
                         <Radio
                           sx={{
@@ -145,10 +145,10 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
                           }}
                         />
                       }
-                      label="Home"
+                      label='Home'
                     />
                     <FormControlLabel
-                      value="office"
+                      value='office'
                       control={
                         <Radio
                           sx={{
@@ -157,12 +157,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
                           }}
                         />
                       }
-                      label="Office"
+                      label='Office'
                     />
                   </RadioGroup>
                 </FormControl>
                 {formik.errors.destination && (
-                  <FormHelperText error id="standard-weight-helper-text-name-login">
+                  <FormHelperText error id='standard-weight-helper-text-name-login'>
                     {formik.errors.destination}
                   </FormHelperText>
                 )}
@@ -170,12 +170,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-building">Building No./Name</InputLabel>
+                <InputLabel htmlFor='address-building'>Building No./Name</InputLabel>
                 <TextField
                   fullWidth
-                  id="building"
-                  name="building"
-                  placeholder="Building No./Name"
+                  id='building'
+                  name='building'
+                  placeholder='Building No./Name'
                   value={formik.values.building}
                   onChange={formik.handleChange}
                   error={formik.touched.building && Boolean(formik.errors.building)}
@@ -185,12 +185,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-street">Street</InputLabel>
+                <InputLabel htmlFor='address-street'>Street</InputLabel>
                 <TextField
                   fullWidth
-                  id="street"
-                  name="street"
-                  placeholder="Street"
+                  id='street'
+                  name='street'
+                  placeholder='Street'
                   value={formik.values.street}
                   onChange={formik.handleChange}
                   error={formik.touched.building && Boolean(formik.errors.street)}
@@ -200,12 +200,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={6}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-city">City</InputLabel>
+                <InputLabel htmlFor='address-city'>City</InputLabel>
                 <TextField
                   fullWidth
-                  id="city"
-                  name="city"
-                  placeholder="City"
+                  id='city'
+                  name='city'
+                  placeholder='City'
                   value={formik.values.city}
                   onChange={formik.handleChange}
                   error={formik.touched.building && Boolean(formik.errors.city)}
@@ -215,12 +215,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={6}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-state">State</InputLabel>
+                <InputLabel htmlFor='address-state'>State</InputLabel>
                 <TextField
                   fullWidth
-                  id="state"
-                  name="state"
-                  placeholder="State"
+                  id='state'
+                  name='state'
+                  placeholder='State'
                   value={formik.values.state}
                   onChange={formik.handleChange}
                   error={formik.touched.building && Boolean(formik.errors.state)}
@@ -230,12 +230,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={6}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-country">Country</InputLabel>
+                <InputLabel htmlFor='address-country'>Country</InputLabel>
                 <TextField
                   fullWidth
-                  id="country"
-                  name="country"
-                  placeholder="Country"
+                  id='country'
+                  name='country'
+                  placeholder='Country'
                   value={formik.values.country}
                   onChange={formik.handleChange}
                   error={formik.touched.building && Boolean(formik.errors.country)}
@@ -245,12 +245,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={6}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-area-code">Area Code</InputLabel>
+                <InputLabel htmlFor='address-area-code'>Area Code</InputLabel>
                 <TextField
                   fullWidth
-                  id="post"
-                  name="post"
-                  placeholder="Area Code"
+                  id='post'
+                  name='post'
+                  placeholder='Area Code'
                   value={formik.values.post}
                   onChange={formik.handleChange}
                   error={formik.touched.building && Boolean(formik.errors.post)}
@@ -260,12 +260,12 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
             </Grid>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="address-contact">Contact</InputLabel>
+                <InputLabel htmlFor='address-contact'>Contact</InputLabel>
                 <TextField
                   fullWidth
-                  id="phone"
-                  name="phone"
-                  placeholder="Contact"
+                  id='phone'
+                  name='phone'
+                  placeholder='Contact'
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   error={formik.touched.building && Boolean(formik.errors.phone)}
@@ -277,23 +277,23 @@ const AddAddress = ({ address, open, handleClose, editAddress }) => {
               <FormControlLabel
                 control={
                   <Switch
-                    id="isDefault"
-                    name="isDefault"
+                    id='isDefault'
+                    name='isDefault'
                     checked={formik.values.isDefault}
                     onChange={formik.handleChange}
                     inputProps={{ 'aria-label': 'controlled' }}
                   />
                 }
-                label="Default"
+                label='Default'
               />
             </Grid>
             <Grid item xs={12}>
-              <Stack direction="row" spacing={1} justifyContent="flex-end">
-                <Button color="error" onClick={handleClose}>
+              <Stack direction='row' spacing={1} justifyContent='flex-end'>
+                <Button color='error' onClick={handleClose}>
                   Cancel
                 </Button>
                 <AnimateButton>
-                  <Button variant="contained" type="submit">
+                  <Button variant='contained' type='submit'>
                     Submit
                   </Button>
                 </AnimateButton>

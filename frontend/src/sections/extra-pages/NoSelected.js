@@ -22,7 +22,7 @@ const NoSelected = () => {
   if (loading) return <Loader />;
   return (
     <MainCard>
-      <Typography variant="h5" color="primary">
+      <Typography variant='h5' color='primary'>
         상위항목을 선택해주세요.
       </Typography>
     </MainCard>

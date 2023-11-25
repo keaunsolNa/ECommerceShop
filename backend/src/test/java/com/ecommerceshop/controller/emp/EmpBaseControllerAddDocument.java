@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class EmpBaseControllerTest {
+public class EmpBaseControllerAddDocument {
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,8 +25,8 @@ public class EmpBaseControllerTest {
     void empBaseDocumentCreate() throws Exception {
 
         mockMvc.perform(post("/empBase")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"key\":\"value\"}"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"key\":\"value\"}"))
                 .andExpect(status().isOk());
     }
 
@@ -34,7 +34,7 @@ public class EmpBaseControllerTest {
     void empBaseDocumentListSearch() throws Exception {
 
         mockMvc.perform(get("/empBase")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
     }
@@ -45,7 +45,7 @@ public class EmpBaseControllerTest {
         EmpBase empBase = empBaseServiceTemp.empBaseDocumentSearchForTest();
 
         mockMvc.perform(get("/empBase/" + empBase.getId())
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -56,10 +56,10 @@ public class EmpBaseControllerTest {
 
         EmpBase empBase = empBaseServiceTemp.empBaseDocumentSearchForTest();
 
-       mockMvc.perform(patch("/empBase/" + empBase.getId())
-               .contentType(MediaType.APPLICATION_JSON))
-               .andExpect(status().isOk())
-               .andReturn();
+        mockMvc.perform(patch("/empBase/" + empBase.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
 
 
     }

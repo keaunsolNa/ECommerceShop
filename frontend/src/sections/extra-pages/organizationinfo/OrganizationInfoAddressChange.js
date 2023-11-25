@@ -217,7 +217,7 @@ const OrganizationInfoAddressChange = () => {
 
   if (loading) return <Loader />;
   return (
-    <MainCard title="주소변경내역" content={false}>
+    <MainCard title='주소변경내역' content={false}>
       <VirtualizedInfiniteScrollTable data={scrollData} columns={columns} fetchMoreData={fetchMoreData} height={500} />
     </MainCard>
   );

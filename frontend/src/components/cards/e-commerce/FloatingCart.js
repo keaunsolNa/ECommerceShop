@@ -22,8 +22,8 @@ const FloatingCart = () => {
   return (
     <Fab
       component={Link}
-      to="/apps/e-commerce/checkout"
-      size="large"
+      to='/apps/e-commerce/checkout'
+      size='large'
       sx={{
         top: '75%',
         position: 'fixed',
@@ -45,7 +45,7 @@ const FloatingCart = () => {
         }
       }}
     >
-      <Badge showZero badgeContent={totalQuantity} color="error">
+      <Badge showZero badgeContent={totalQuantity} color='error'>
         <ShoppingCartOutlined style={{ color: theme.palette.primary.main, fontSize: '1.5rem' }} />
       </Badge>
     </Fab>

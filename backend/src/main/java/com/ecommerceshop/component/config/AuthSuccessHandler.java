@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Configuration
 @Service
-public class AuthSuccessHandler implements AuthenticationSuccessHandler{
+public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,

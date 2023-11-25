@@ -89,18 +89,19 @@ const MultiFileUpload = ({ error, showList = false, files, setFieldValue, sx, ty
             <PlaceholderContent type={type} />
           </DropzoneWrapper>
           {type === 'STANDARD' && files && files.length > 1 && (
-            <Button variant="contained" color="error" size="extraSmall" onClick={onRemoveAll}>
+            <Button variant='contained' color='error' size='extraSmall' onClick={onRemoveAll}>
               Remove all
             </Button>
           )}
         </Stack>
         {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />}
-        {files && files.length > 0 && <FilesPreview files={files} showList={showList} onRemove={onRemove} type={type} />}
+        {files && files.length > 0 &&
+          <FilesPreview files={files} showList={showList} onRemove={onRemove} type={type} />}
       </Box>
 
       {type !== 'STANDARD' && files && files.length > 0 && (
-        <Stack direction="row" justifyContent="flex-end" spacing={1.5} sx={{ mt: 1.5 }}>
-          <Button color="inherit" size="small" onClick={onRemoveAll}>
+        <Stack direction='row' justifyContent='flex-end' spacing={1.5} sx={{ mt: 1.5 }}>
+          <Button color='inherit' size='small' onClick={onRemoveAll}>
             Remove all
           </Button>
           {/* <Button size="small" variant="contained" onClick={onUpload}>

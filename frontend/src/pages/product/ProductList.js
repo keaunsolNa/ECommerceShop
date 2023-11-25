@@ -109,10 +109,10 @@ const ProductList = () => {
   };
   useEffect(() => {
     const retrieveCall = axios.post(`/productBase/byCondition`, searchCondition);
-    console.log(searchCondition)
+    console.log(searchCondition);
     Promise.all([retrieveCall])
       .then(([response1]) => {
-        console.log(response1)
+        console.log(response1);
         setData(response1.data);
         setLoading(false);
       })
@@ -130,12 +130,13 @@ const ProductList = () => {
         title={'상품 목록'}
         secondary={
           <>
-            <TextField id="searchConditionProductName" name="searchConditionProductName" placeholder="상품명" size={'small'} onChange={(newValue) => searchConditionChange(newValue)}  />
-            <Button variant="outlined" color="primary" onClick={handleReload}>
+            <TextField id='searchConditionProductName' name='searchConditionProductName' placeholder='상품명'
+                       size={'small'} onChange={(newValue) => searchConditionChange(newValue)} />
+            <Button variant='outlined' color='primary' onClick={handleReload}>
               조회
             </Button>
             {permission.includes(10) ? (
-              <Button variant="outlined" color="primary" onClick={() => handleOpen()}>
+              <Button variant='outlined' color='primary' onClick={() => handleOpen()}>
                 신규 상품 생성
               </Button>
             ) : null}
@@ -145,12 +146,12 @@ const ProductList = () => {
         <ProductListTable title={'상품 내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
-        maxWidth="md"
+        maxWidth='md'
         TransitionComponent={PopupTransition}
         onClose={() => handleOpen()}
         open={open}
         sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
-        aria-describedby="alert-dialog-slide-description"
+        aria-describedby='alert-dialog-slide-description'
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
         <ProductDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />

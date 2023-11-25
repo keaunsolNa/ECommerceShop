@@ -57,7 +57,7 @@ const validationSchema = yup.object({
   date: yup.date().required('Invoice date is required'),
   due_date: yup
     .date()
-    .when('date', (date, schema) => date && schema.min(date, "Due date can't be before invoice date"))
+    .when('date', (date, schema) => date && schema.min(date, 'Due date can\'t be before invoice date'))
     .nullable()
     .required('Due date is required'),
   customerInfo: yup
@@ -194,9 +194,9 @@ const CreateInvoice = () => {
                       <TextField
                         required
                         disabled
-                        type="number"
-                        name="invoice_id"
-                        id="invoice_id"
+                        type='number'
+                        name='invoice_id'
+                        id='invoice_id'
                         value={values.invoice_id}
                         onChange={handleChange}
                       />
@@ -210,7 +210,7 @@ const CreateInvoice = () => {
                       <Select
                         value={values.status}
                         displayEmpty
-                        name="status"
+                        name='status'
                         renderValue={(selected) => {
                           if (selected.length === 0) {
                             return <Box sx={{ color: 'secondary.400' }}>Select status</Box>;
@@ -221,12 +221,12 @@ const CreateInvoice = () => {
                         onChange={handleChange}
                         error={Boolean(errors.status && touched.status)}
                       >
-                        <MenuItem disabled value="">
+                        <MenuItem disabled value=''>
                           Select status
                         </MenuItem>
-                        <MenuItem value="Paid">Paid</MenuItem>
-                        <MenuItem value="Unpaid">Unpaid</MenuItem>
-                        <MenuItem value="Cancelled">Cancelled</MenuItem>
+                        <MenuItem value='Paid'>Paid</MenuItem>
+                        <MenuItem value='Unpaid'>Unpaid</MenuItem>
+                        <MenuItem value='Cancelled'>Cancelled</MenuItem>
                       </Select>
                     </FormControl>
                   </Stack>
@@ -237,7 +237,8 @@ const CreateInvoice = () => {
                     <InputLabel>Date</InputLabel>
                     <FormControl sx={{ width: '100%' }} error={Boolean(touched.date && errors.date)}>
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker format="dd/MM/yyyy" value={values.date} onChange={(newValue) => setFieldValue('date', newValue)} />
+                        <DatePicker format='dd/MM/yyyy' value={values.date}
+                                    onChange={(newValue) => setFieldValue('date', newValue)} />
                       </LocalizationProvider>
                     </FormControl>
                   </Stack>
@@ -249,14 +250,15 @@ const CreateInvoice = () => {
                     <FormControl sx={{ width: '100%' }} error={Boolean(touched.due_date && errors.due_date)}>
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
-                          format="dd/MM/yyyy"
+                          format='dd/MM/yyyy'
                           value={values.due_date}
                           onChange={(newValue) => setFieldValue('due_date', newValue)}
                         />
                       </LocalizationProvider>
                     </FormControl>
                   </Stack>
-                  {touched.due_date && errors.due_date && <FormHelperText error={true}>{errors.due_date}</FormHelperText>}
+                  {touched.due_date && errors.due_date &&
+                    <FormHelperText error={true}>{errors.due_date}</FormHelperText>}
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
@@ -264,21 +266,21 @@ const CreateInvoice = () => {
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={8}>
                         <Stack spacing={2}>
-                          <Typography variant="h5">From:</Typography>
+                          <Typography variant='h5'>From:</Typography>
                           <Stack sx={{ width: '100%' }}>
-                            <Typography variant="subtitle1">{values?.cashierInfo?.name}</Typography>
-                            <Typography color="secondary">{values?.cashierInfo?.address}</Typography>
-                            <Typography color="secondary">{values?.cashierInfo?.phone}</Typography>
-                            <Typography color="secondary">{values?.cashierInfo?.email}</Typography>
+                            <Typography variant='subtitle1'>{values?.cashierInfo?.name}</Typography>
+                            <Typography color='secondary'>{values?.cashierInfo?.address}</Typography>
+                            <Typography color='secondary'>{values?.cashierInfo?.phone}</Typography>
+                            <Typography color='secondary'>{values?.cashierInfo?.email}</Typography>
                           </Stack>
                         </Stack>
                       </Grid>
                       <Grid item xs={12} sm={4}>
-                        <Box textAlign={{ xs: 'left', sm: 'right' }} color="grey.200">
+                        <Box textAlign={{ xs: 'left', sm: 'right' }} color='grey.200'>
                           <Button
-                            variant="outlined"
+                            variant='outlined'
                             startIcon={<EditOutlined />}
-                            color="secondary"
+                            color='secondary'
                             onClick={() =>
                               dispatch(
                                 toggleCustomerPopup({
@@ -286,7 +288,7 @@ const CreateInvoice = () => {
                                 })
                               )
                             }
-                            size="small"
+                            size='small'
                           >
                             Change
                           </Button>
@@ -311,22 +313,22 @@ const CreateInvoice = () => {
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={8}>
                         <Stack spacing={2}>
-                          <Typography variant="h5">To:</Typography>
+                          <Typography variant='h5'>To:</Typography>
                           <Stack sx={{ width: '100%' }}>
-                            <Typography variant="subtitle1">{values?.customerInfo?.name}</Typography>
-                            <Typography color="secondary">{values?.customerInfo?.address}</Typography>
-                            <Typography color="secondary">{values?.customerInfo?.phone}</Typography>
-                            <Typography color="secondary">{values?.customerInfo?.email}</Typography>
+                            <Typography variant='subtitle1'>{values?.customerInfo?.name}</Typography>
+                            <Typography color='secondary'>{values?.customerInfo?.address}</Typography>
+                            <Typography color='secondary'>{values?.customerInfo?.phone}</Typography>
+                            <Typography color='secondary'>{values?.customerInfo?.email}</Typography>
                           </Stack>
                         </Stack>
                       </Grid>
                       <Grid item xs={12} sm={4}>
-                        <Box textAlign="right" color="grey.200">
+                        <Box textAlign='right' color='grey.200'>
                           <Button
-                            size="small"
+                            size='small'
                             startIcon={<PlusOutlined />}
-                            color="secondary"
-                            variant="outlined"
+                            color='secondary'
+                            variant='outlined'
                             onClick={() =>
                               dispatch(
                                 customerPopup({
@@ -358,11 +360,11 @@ const CreateInvoice = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Typography variant="h5">Detail</Typography>
+                  <Typography variant='h5'>Detail</Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <FieldArray
-                    name="invoice_detail"
+                    name='invoice_detail'
                     render={({ remove, push }) => {
                       return (
                         <>
@@ -375,8 +377,8 @@ const CreateInvoice = () => {
                                   <TableCell>Description</TableCell>
                                   <TableCell>Qty</TableCell>
                                   <TableCell>Price</TableCell>
-                                  <TableCell align="right">Amount</TableCell>
-                                  <TableCell align="right">Action</TableCell>
+                                  <TableCell align='right'>Amount</TableCell>
+                                  <TableCell align='right'>Action</TableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -404,15 +406,15 @@ const CreateInvoice = () => {
                           </TableContainer>
                           <Divider />
                           {touched.invoice_detail && errors.invoice_detail && !Array.isArray(errors?.invoice_detail) && (
-                            <Stack direction="row" justifyContent="center" sx={{ p: 1.5 }}>
+                            <Stack direction='row' justifyContent='center' sx={{ p: 1.5 }}>
                               <FormHelperText error={true}>{errors.invoice_detail}</FormHelperText>
                             </Stack>
                           )}
-                          <Grid container justifyContent="space-between">
+                          <Grid container justifyContent='space-between'>
                             <Grid item xs={12} md={8}>
                               <Box sx={{ pt: 2.5, pr: 2.5, pb: 2.5, pl: 0 }}>
                                 <Button
-                                  color="primary"
+                                  color='primary'
                                   startIcon={<PlusOutlined />}
                                   onClick={() =>
                                     push({
@@ -423,7 +425,7 @@ const CreateInvoice = () => {
                                       price: '1.00'
                                     })
                                   }
-                                  variant="dashed"
+                                  variant='dashed'
                                   sx={{ bgcolor: 'transparent !important' }}
                                 >
                                   Add Item
@@ -431,16 +433,16 @@ const CreateInvoice = () => {
                               </Box>
                             </Grid>
                             <Grid item xs={12} md={4}>
-                              <Grid container justifyContent="space-between" spacing={2} sx={{ pt: 2.5, pb: 2.5 }}>
+                              <Grid container justifyContent='space-between' spacing={2} sx={{ pt: 2.5, pb: 2.5 }}>
                                 <Grid item xs={6}>
                                   <Stack spacing={1}>
                                     <InputLabel>Discount(%)</InputLabel>
                                     <TextField
-                                      type="number"
+                                      type='number'
                                       fullWidth
-                                      name="discount"
-                                      id="discount"
-                                      placeholder="0.0"
+                                      name='discount'
+                                      id='discount'
+                                      placeholder='0.0'
                                       value={values.discount}
                                       onChange={handleChange}
                                       inputProps={{
@@ -453,11 +455,11 @@ const CreateInvoice = () => {
                                   <Stack spacing={1}>
                                     <InputLabel>Tax(%)</InputLabel>
                                     <TextField
-                                      type="number"
+                                      type='number'
                                       fullWidth
-                                      name="tax"
-                                      id="tax"
-                                      placeholder="0.0"
+                                      name='tax'
+                                      id='tax'
+                                      placeholder='0.0'
                                       value={values.tax}
                                       onChange={handleChange}
                                       inputProps={{
@@ -469,23 +471,23 @@ const CreateInvoice = () => {
                               </Grid>
                               <Grid item xs={12}>
                                 <Stack spacing={2}>
-                                  <Stack direction="row" justifyContent="space-between">
+                                  <Stack direction='row' justifyContent='space-between'>
                                     <Typography color={theme.palette.grey[500]}>Sub Total:</Typography>
                                     <Typography>{country?.prefix + '' + subtotal.toFixed(2)}</Typography>
                                   </Stack>
-                                  <Stack direction="row" justifyContent="space-between">
+                                  <Stack direction='row' justifyContent='space-between'>
                                     <Typography color={theme.palette.grey[500]}>Discount:</Typography>
-                                    <Typography variant="h6" color={theme.palette.success.main}>
+                                    <Typography variant='h6' color={theme.palette.success.main}>
                                       {country?.prefix + '' + discountRate.toFixed(2)}
                                     </Typography>
                                   </Stack>
-                                  <Stack direction="row" justifyContent="space-between">
+                                  <Stack direction='row' justifyContent='space-between'>
                                     <Typography color={theme.palette.grey[500]}>Tax:</Typography>
                                     <Typography>{country?.prefix + '' + taxRate.toFixed(2)}</Typography>
                                   </Stack>
-                                  <Stack direction="row" justifyContent="space-between">
-                                    <Typography variant="subtitle1">Grand Total:</Typography>
-                                    <Typography variant="subtitle1">
+                                  <Stack direction='row' justifyContent='space-between'>
+                                    <Typography variant='subtitle1'>Grand Total:</Typography>
+                                    <Typography variant='subtitle1'>
                                       {total % 1 === 0 ? country?.prefix + '' + total : country?.prefix + '' + total.toFixed(2)}
                                     </Typography>
                                   </Stack>
@@ -502,11 +504,11 @@ const CreateInvoice = () => {
                   <Stack spacing={1}>
                     <InputLabel>Notes</InputLabel>
                     <TextField
-                      placeholder="Address"
+                      placeholder='Address'
                       rows={3}
                       value={values.notes}
                       multiline
-                      name="notes"
+                      name='notes'
                       onChange={handleChange}
                       inputProps={{
                         maxLength: notesLimit
@@ -528,7 +530,7 @@ const CreateInvoice = () => {
                     <InputLabel>Set Currency*</InputLabel>
                     <FormControl sx={{ width: { xs: '100%', sm: 250 } }}>
                       <Autocomplete
-                        id="country-select-demo"
+                        id='country-select-demo'
                         fullWidth
                         options={countries}
                         defaultValue={countries[2]}
@@ -543,9 +545,10 @@ const CreateInvoice = () => {
                         autoHighlight
                         getOptionLabel={(option) => option.label}
                         renderOption={(props, option) => (
-                          <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                          <Box component='li' sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
                             {option.code && (
-                              <img loading="lazy" width="20" src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`} alt="" />
+                              <img loading='lazy' width='20'
+                                   src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`} alt='' />
                             )}
                             {option.label}
                           </Box>
@@ -555,8 +558,8 @@ const CreateInvoice = () => {
                           return (
                             <TextField
                               {...params}
-                              name="phoneCode"
-                              placeholder="Select"
+                              name='phoneCode'
+                              placeholder='Select'
                               InputProps={{
                                 ...params.InputProps,
                                 startAdornment: (
@@ -564,10 +567,10 @@ const CreateInvoice = () => {
                                     {selected && selected.code !== '' && (
                                       <img
                                         style={{ marginRight: 6 }}
-                                        loading="lazy"
-                                        width="20"
+                                        loading='lazy'
+                                        width='20'
                                         src={`https://flagcdn.com/w20/${selected.code.toLowerCase()}.png`}
-                                        alt=""
+                                        alt=''
                                       />
                                     )}
                                   </>
@@ -585,10 +588,11 @@ const CreateInvoice = () => {
                   </Stack>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <Stack direction="row" justifyContent="flex-end" alignItems="flex-end" spacing={2} sx={{ height: '100%' }}>
+                  <Stack direction='row' justifyContent='flex-end' alignItems='flex-end' spacing={2}
+                         sx={{ height: '100%' }}>
                     <Button
-                      variant="outlined"
-                      color="secondary"
+                      variant='outlined'
+                      color='secondary'
                       disabled={values.status === '' || !isValid}
                       sx={{ color: 'secondary.dark' }}
                       onClick={() =>
@@ -601,10 +605,10 @@ const CreateInvoice = () => {
                     >
                       Preview
                     </Button>
-                    <Button variant="outlined" color="secondary" sx={{ color: 'secondary.dark' }}>
+                    <Button variant='outlined' color='secondary' sx={{ color: 'secondary.dark' }}>
                       Save
                     </Button>
-                    <Button color="primary" variant="contained" type="submit">
+                    <Button color='primary' variant='contained' type='submit'>
                       Create & Send
                     </Button>
                     <InvoiceModal

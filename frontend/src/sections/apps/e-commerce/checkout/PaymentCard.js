@@ -38,14 +38,14 @@ const PaymentCard = ({ type, paymentType, cardHandler }) => {
         }}
         onClick={() => cardHandler(type)}
       >
-        <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
+        <Stack direction='row' alignItems='flex-start' justifyContent='space-between'>
           <Stack spacing={0}>
-            <Typography variant="h5">{type === 'visa' ? 'Jennifer winget' : 'John Smith'}</Typography>
-            <Stack direction="row" alignItems="flex-start" spacing={1}>
-              <Typography variant="h2" color="inherit" sx={{ lineHeight: '0.5rem', fontFamily: 'auto' }}>
+            <Typography variant='h5'>{type === 'visa' ? 'Jennifer winget' : 'John Smith'}</Typography>
+            <Stack direction='row' alignItems='flex-start' spacing={1}>
+              <Typography variant='h2' color='inherit' sx={{ lineHeight: '0.5rem', fontFamily: 'auto' }}>
                 .... .... ....
               </Typography>
-              <Typography variant="h5" color="inherit">
+              <Typography variant='h5' color='inherit'>
                 {type === 'visa' ? 5674 : 6790}
               </Typography>
             </Stack>
@@ -61,20 +61,20 @@ const PaymentCard = ({ type, paymentType, cardHandler }) => {
           />
         </Stack>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Stack spacing={1} direction="row">
-            <Typography variant="caption" color="inherit" sx={{ opacity: 0.3 }}>
+        <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          <Stack spacing={1} direction='row'>
+            <Typography variant='caption' color='inherit' sx={{ opacity: 0.3 }}>
               CVV
             </Typography>
-            <Typography variant="body2" color="inherit">
+            <Typography variant='body2' color='inherit'>
               {type === 'visa' ? 678 : 760}
             </Typography>
           </Stack>
-          <Stack spacing={1} direction="row">
-            <Typography variant="caption" color="inherit" sx={{ opacity: 0.3 }}>
+          <Stack spacing={1} direction='row'>
+            <Typography variant='caption' color='inherit' sx={{ opacity: 0.3 }}>
               Expire Date
             </Typography>
-            <Typography variant="body2" color="inherit">
+            <Typography variant='body2' color='inherit'>
               {type === 'visa' ? '3 / 25' : '10 / 22'}
             </Typography>
           </Stack>

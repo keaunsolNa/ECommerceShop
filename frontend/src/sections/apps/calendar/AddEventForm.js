@@ -234,18 +234,18 @@ const AddEventFrom = ({ event, range, onCancel }) => {
   return (
     <FormikProvider value={formik}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
           <DialogTitle>{event ? 'Edit Event' : 'Add Event'}</DialogTitle>
           <Divider />
           <DialogContent sx={{ p: 2.5 }}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
-                  <InputLabel htmlFor="cal-title">Title</InputLabel>
+                  <InputLabel htmlFor='cal-title'>Title</InputLabel>
                   <TextField
                     fullWidth
-                    id="cal-title"
-                    placeholder="Title"
+                    id='cal-title'
+                    placeholder='Title'
                     {...getFieldProps('title')}
                     error={Boolean(touched.title && errors.title)}
                     helperText={touched.title && errors.title}
@@ -254,13 +254,13 @@ const AddEventFrom = ({ event, range, onCancel }) => {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
-                  <InputLabel htmlFor="cal-description">Description</InputLabel>
+                  <InputLabel htmlFor='cal-description'>Description</InputLabel>
                   <TextField
                     fullWidth
-                    id="cal-description"
+                    id='cal-description'
                     multiline
                     rows={3}
-                    placeholder="Description"
+                    placeholder='Description'
                     {...getFieldProps('description')}
                     error={Boolean(touched.description && errors.description)}
                     helperText={touched.description && errors.description}
@@ -268,20 +268,21 @@ const AddEventFrom = ({ event, range, onCancel }) => {
                 </Stack>
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel control={<Switch checked={values.allDay} {...getFieldProps('allDay')} />} label="All day" />
+                <FormControlLabel control={<Switch checked={values.allDay} {...getFieldProps('allDay')} />}
+                                  label='All day' />
               </Grid>
               <Grid item xs={12} md={6}>
                 <Stack spacing={1.25}>
-                  <InputLabel htmlFor="cal-start-date">Start Date</InputLabel>
+                  <InputLabel htmlFor='cal-start-date'>Start Date</InputLabel>
                   <MobileDateTimePicker
                     value={new Date(values.start)}
-                    format="dd/MM/yyyy hh:mm a"
+                    format='dd/MM/yyyy hh:mm a'
                     onChange={(date) => setFieldValue('start', date)}
                     slotProps={{
                       textField: {
                         InputProps: {
                           endAdornment: (
-                            <InputAdornment position="end" sx={{ cursor: 'pointer' }}>
+                            <InputAdornment position='end' sx={{ cursor: 'pointer' }}>
                               <CalendarOutlined />
                             </InputAdornment>
                           )
@@ -294,16 +295,16 @@ const AddEventFrom = ({ event, range, onCancel }) => {
               </Grid>
               <Grid item xs={12} md={6}>
                 <Stack spacing={1.25}>
-                  <InputLabel htmlFor="cal-end-date">End Date</InputLabel>
+                  <InputLabel htmlFor='cal-end-date'>End Date</InputLabel>
                   <MobileDateTimePicker
                     value={new Date(values.end)}
-                    format="dd/MM/yyyy hh:mm a"
+                    format='dd/MM/yyyy hh:mm a'
                     onChange={(date) => setFieldValue('end', date)}
                     slotProps={{
                       textField: {
                         InputProps: {
                           endAdornment: (
-                            <InputAdornment position="end" sx={{ cursor: 'pointer' }}>
+                            <InputAdornment position='end' sx={{ cursor: 'pointer' }}>
                               <CalendarOutlined />
                             </InputAdornment>
                           )
@@ -317,16 +318,16 @@ const AddEventFrom = ({ event, range, onCancel }) => {
               <Grid item xs={12}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <Typography variant="subtitle1">Background Color</Typography>
+                    <Typography variant='subtitle1'>Background Color</Typography>
                   </Grid>
                   <Grid item xs={12}>
                     <FormControl>
                       <RadioGroup
                         row
-                        aria-label="color"
+                        aria-label='color'
                         {...getFieldProps('color')}
                         onChange={(e) => setFieldValue('color', e.target.value)}
-                        name="color-radio-buttons-group"
+                        name='color-radio-buttons-group'
                         sx={{ '& .MuiFormControlLabel-root': { mr: 2 } }}
                       >
                         {backgroundColor.map((item, index) => (
@@ -340,16 +341,16 @@ const AddEventFrom = ({ event, range, onCancel }) => {
               <Grid item xs={12}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <Typography variant="subtitle1">Text Color</Typography>
+                    <Typography variant='subtitle1'>Text Color</Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <FormControl component="fieldset">
+                    <FormControl component='fieldset'>
                       <RadioGroup
                         row
-                        aria-label="textColor"
+                        aria-label='textColor'
                         {...getFieldProps('textColor')}
                         onChange={(e) => setFieldValue('textColor', e.target.value)}
-                        name="text-color-radio-buttons-group"
+                        name='text-color-radio-buttons-group'
                         sx={{ '& .MuiFormControlLabel-root': { mr: 2 } }}
                       >
                         {textColor.map((item, index) => (
@@ -364,22 +365,22 @@ const AddEventFrom = ({ event, range, onCancel }) => {
           </DialogContent>
           <Divider />
           <DialogActions sx={{ p: 2.5 }}>
-            <Grid container justifyContent="space-between" alignItems="center">
+            <Grid container justifyContent='space-between' alignItems='center'>
               <Grid item>
                 {!isCreating && (
-                  <Tooltip title="Delete Event" placement="top">
-                    <IconButton onClick={deleteHandler} size="large" color="error">
+                  <Tooltip title='Delete Event' placement='top'>
+                    <IconButton onClick={deleteHandler} size='large' color='error'>
                       <DeleteFilled />
                     </IconButton>
                   </Tooltip>
                 )}
               </Grid>
               <Grid item>
-                <Stack direction="row" spacing={2} alignItems="center">
-                  <Button color="error" onClick={onCancel}>
+                <Stack direction='row' spacing={2} alignItems='center'>
+                  <Button color='error' onClick={onCancel}>
                     Cancel
                   </Button>
-                  <Button type="submit" variant="contained" disabled={isSubmitting}>
+                  <Button type='submit' variant='contained' disabled={isSubmitting}>
                     {event ? 'Edit' : 'Add'}
                   </Button>
                 </Stack>

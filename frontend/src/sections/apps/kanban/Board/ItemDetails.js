@@ -87,8 +87,8 @@ const ItemDetails = () => {
           borderRadius: '0px'
         }
       }}
-      variant="temporary"
-      anchor="right"
+      variant='temporary'
+      anchor='right'
       open={open}
       ModalProps={{ keepMounted: true }}
       onClose={handleDrawerOpen}
@@ -103,11 +103,11 @@ const ItemDetails = () => {
           {selectedData && (
             <>
               <Box sx={{ p: 3 }}>
-                <Grid container alignItems="center" spacing={0.5} justifyContent="space-between">
+                <Grid container alignItems='center' spacing={0.5} justifyContent='space-between'>
                   <Grid item sx={{ width: 'calc(100% - 64px)' }}>
-                    <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="space-between">
+                    <Stack direction='row' spacing={0.5} alignItems='center' justifyContent='space-between'>
                       <Typography
-                        variant="h4"
+                        variant='h4'
                         sx={{
                           display: 'inline-block',
                           width: 'calc(100% - 34px)',
@@ -123,14 +123,16 @@ const ItemDetails = () => {
                   </Grid>
 
                   <Grid item>
-                    <Stack direction="row" alignItems="center">
-                      <Tooltip title="Delete Task">
-                        <IconButton color="error" onClick={() => setOpenModal(true)} size="small" sx={{ fontSize: '0.875rem' }}>
+                    <Stack direction='row' alignItems='center'>
+                      <Tooltip title='Delete Task'>
+                        <IconButton color='error' onClick={() => setOpenModal(true)} size='small'
+                                    sx={{ fontSize: '0.875rem' }}>
                           <DeleteFilled />
                         </IconButton>
                       </Tooltip>
-                      <Tooltip title="Close">
-                        <IconButton color="secondary" onClick={handleDrawerOpen} size="small" sx={{ fontSize: '0.875rem' }}>
+                      <Tooltip title='Close'>
+                        <IconButton color='secondary' onClick={handleDrawerOpen} size='small'
+                                    sx={{ fontSize: '0.875rem' }}>
                           <CloseOutlined />
                         </IconButton>
                       </Tooltip>
@@ -162,8 +164,8 @@ const ItemDetails = () => {
             </>
           )}
           {!selectedData && (
-            <Stack justifyContent="center" alignItems="center" sx={{ height: '100vh' }}>
-              <Typography variant="h5" color="error">
+            <Stack justifyContent='center' alignItems='center' sx={{ height: '100vh' }}>
+              <Typography variant='h5' color='error'>
                 No item found
               </Typography>
             </Stack>

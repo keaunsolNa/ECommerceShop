@@ -23,11 +23,11 @@ const InvoiceCard = () => {
       <Grid container spacing={3}>
         <Grid item xs={4} sm={2} lg={6}>
           <MainCard content={false} boxShadow sx={{ py: 2.5 }}>
-            <Stack alignItems="center" spacing={2}>
-              <Avatar size="md" type="filled">
+            <Stack alignItems='center' spacing={2}>
+              <Avatar size='md' type='filled'>
                 <FileTextFilled />
               </Avatar>
-              <Typography variant="subtitle1" color="secondary">
+              <Typography variant='subtitle1' color='secondary'>
                 All Invoices
               </Typography>
             </Stack>
@@ -35,11 +35,11 @@ const InvoiceCard = () => {
         </Grid>
         <Grid item xs={4} sm={2} lg={6}>
           <MainCard boxShadow>
-            <Stack alignItems="center" spacing={2}>
-              <Avatar size="md" type="filled" color="info">
+            <Stack alignItems='center' spacing={2}>
+              <Avatar size='md' type='filled' color='info'>
                 <ReconciliationFilled />
               </Avatar>
-              <Typography variant="subtitle1" color="secondary">
+              <Typography variant='subtitle1' color='secondary'>
                 Reports
               </Typography>
             </Stack>
@@ -47,11 +47,11 @@ const InvoiceCard = () => {
         </Grid>
         <Grid item xs={4} sm={2} lg={6}>
           <MainCard boxShadow>
-            <Stack alignItems="center" spacing={2}>
-              <Avatar size="md" type="filled" color="success">
+            <Stack alignItems='center' spacing={2}>
+              <Avatar size='md' type='filled' color='success'>
                 <DollarCircleFilled />
               </Avatar>
-              <Typography variant="subtitle1" color="secondary">
+              <Typography variant='subtitle1' color='secondary'>
                 Paid
               </Typography>
             </Stack>
@@ -59,11 +59,11 @@ const InvoiceCard = () => {
         </Grid>
         <Grid item xs={4} sm={2} lg={6}>
           <MainCard boxShadow>
-            <Stack alignItems="center" spacing={2}>
-              <Avatar size="md" type="filled" color="warning">
+            <Stack alignItems='center' spacing={2}>
+              <Avatar size='md' type='filled' color='warning'>
                 <HourglassFilled />
               </Avatar>
-              <Typography variant="subtitle1" color="secondary">
+              <Typography variant='subtitle1' color='secondary'>
                 Pending
               </Typography>
             </Stack>
@@ -71,11 +71,11 @@ const InvoiceCard = () => {
         </Grid>
         <Grid item xs={4} sm={2} lg={6}>
           <MainCard boxShadow>
-            <Stack alignItems="center" spacing={2}>
-              <Avatar size="md" type="filled" color="error">
+            <Stack alignItems='center' spacing={2}>
+              <Avatar size='md' type='filled' color='error'>
                 <CloseCircleFilled />
               </Avatar>
-              <Typography variant="subtitle1" color="secondary">
+              <Typography variant='subtitle1' color='secondary'>
                 Cancelled
               </Typography>
             </Stack>
@@ -83,11 +83,11 @@ const InvoiceCard = () => {
         </Grid>
         <Grid item xs={4} sm={2} lg={6}>
           <MainCard boxShadow>
-            <Stack alignItems="center" spacing={2}>
-              <Avatar size="md" type="filled">
+            <Stack alignItems='center' spacing={2}>
+              <Avatar size='md' type='filled'>
                 <ShoppingFilled />
               </Avatar>
-              <Typography variant="subtitle1" color="secondary">
+              <Typography variant='subtitle1' color='secondary'>
                 Draft
               </Typography>
             </Stack>

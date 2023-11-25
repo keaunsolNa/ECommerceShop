@@ -31,7 +31,7 @@ const LoaderWrapper = styled('div')(({ theme }) => ({
 
 const Loader = () => (
   <LoaderWrapper>
-    <LinearProgress color="primary" />
+    <LinearProgress color='primary' />
   </LoaderWrapper>
 );
 
@@ -56,8 +56,8 @@ const CommonLayout = ({ layout = 'blank' }) => {
       )}
       {layout === 'component' && (
         <Suspense fallback={<Loader />}>
-          <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
-            <Header handleDrawerOpen={handleDrawerOpen} layout="component" />
+          <Container maxWidth='lg' sx={{ px: { xs: 0, sm: 2 } }}>
+            <Header handleDrawerOpen={handleDrawerOpen} layout='component' />
             <Toolbar sx={{ my: 2 }} />
           </Container>
         </Suspense>

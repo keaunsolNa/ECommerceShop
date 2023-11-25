@@ -57,19 +57,19 @@ const MegaMenuSection = () => {
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <IconButton
-        color="secondary"
-        variant="light"
+        color='secondary'
+        variant='light'
         sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
-        aria-label="open profile"
+        aria-label='open profile'
         ref={anchorRef}
         aria-controls={open ? 'profile-grow' : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         onClick={handleToggle}
       >
         <WindowsOutlined />
       </IconButton>
       <Popper
-        placement="bottom"
+        placement='bottom'
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
@@ -87,7 +87,7 @@ const MegaMenuSection = () => {
         }}
       >
         {({ TransitionProps }) => (
-          <Transitions type="grow" position="top" in={open} {...TransitionProps}>
+          <Transitions type='grow' position='top' in={open} {...TransitionProps}>
             <Paper
               sx={{
                 boxShadow: theme.customShadows.z1,
@@ -112,17 +112,17 @@ const MegaMenuSection = () => {
                     >
                       <Box sx={{ p: 4.5, pb: 3 }}>
                         <Stack sx={{ color: 'background.paper' }}>
-                          <Typography variant="h2" sx={{ fontSize: '1.875rem', mb: 1 }}>
+                          <Typography variant='h2' sx={{ fontSize: '1.875rem', mb: 1 }}>
                             Explore Components
                           </Typography>
-                          <Typography variant="h6">
+                          <Typography variant='h6'>
                             Try our pre made component pages to check how it feels and suits as per your need.
                           </Typography>
-                          <Stack direction="row" justifyContent="space-between" alignItems="flex-end" sx={{ mt: -1 }}>
+                          <Stack direction='row' justifyContent='space-between' alignItems='flex-end' sx={{ mt: -1 }}>
                             <AnimateButton>
                               <Button
-                                variant="contained"
-                                color="secondary"
+                                variant='contained'
+                                color='secondary'
                                 sx={{
                                   bgcolor: 'background.paper',
                                   color: 'text.primary',
@@ -130,13 +130,14 @@ const MegaMenuSection = () => {
                                 }}
                                 endIcon={<ArrowRightOutlined />}
                                 component={Link}
-                                to="/components-overview/buttons"
-                                target="_blank"
+                                to='/components-overview/buttons'
+                                target='_blank'
                               >
                                 View All
                               </Button>
                             </AnimateButton>
-                            <CardMedia component="img" src={imageChart} alt="Chart" sx={{ mr: -2.5, mb: -2.5, width: 124 }} />
+                            <CardMedia component='img' src={imageChart} alt='Chart'
+                                       sx={{ mr: -2.5, mb: -2.5, width: 124 }} />
                           </Stack>
                         </Stack>
                       </Box>
@@ -166,121 +167,124 @@ const MegaMenuSection = () => {
                         <Grid container spacing={6}>
                           <Grid item xs={4}>
                             <List
-                              component="nav"
-                              aria-labelledby="nested-list-user"
+                              component='nav'
+                              aria-labelledby='nested-list-user'
                               subheader={
-                                <ListSubheader id="nested-list-user">
-                                  <Typography variant="subtitle1" color="textPrimary">
+                                <ListSubheader id='nested-list-user'>
+                                  <Typography variant='subtitle1' color='textPrimary'>
                                     Authentication
                                   </Typography>
                                 </ListSubheader>
                               }
                             >
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/auth/login">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/auth/login'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Login" />
+                                <ListItemText primary='Login' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/auth/register">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/auth/register'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Register" />
+                                <ListItemText primary='Register' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/auth/reset-password">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/auth/reset-password'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Reset Password" />
+                                <ListItemText primary='Reset Password' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/auth/forgot-password">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/auth/forgot-password'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Forgot Password" />
+                                <ListItemText primary='Forgot Password' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/auth/code-verification">
+                              <ListItemButton disableRipple component={Link} target='_blank'
+                                              to='/auth/code-verification'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Verification Code" />
+                                <ListItemText primary='Verification Code' />
                               </ListItemButton>
                             </List>
                           </Grid>
                           <Grid item xs={4}>
                             <List
-                              component="nav"
-                              aria-labelledby="nested-list-user"
+                              component='nav'
+                              aria-labelledby='nested-list-user'
                               subheader={
-                                <ListSubheader id="nested-list-user">
-                                  <Typography variant="subtitle1" color="textPrimary">
+                                <ListSubheader id='nested-list-user'>
+                                  <Typography variant='subtitle1' color='textPrimary'>
                                     Other Pages
                                   </Typography>
                                 </ListSubheader>
                               }
                             >
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="About us" />
+                                <ListItemText primary='About us' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/contact-us">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/contact-us'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Contact us" />
+                                <ListItemText primary='Contact us' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} to="/pricing">
+                              <ListItemButton disableRipple component={Link} to='/pricing'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Pricing" />
+                                <ListItemText primary='Pricing' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} to="/apps/profiles/user/payment">
+                              <ListItemButton disableRipple component={Link} to='/apps/profiles/user/payment'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Payment" />
+                                <ListItemText primary='Payment' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/maintenance/under-construction">
+                              <ListItemButton disableRipple component={Link} target='_blank'
+                                              to='/maintenance/under-construction'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Construction" />
+                                <ListItemText primary='Construction' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/maintenance/coming-soon">
+                              <ListItemButton disableRipple component={Link} target='_blank'
+                                              to='/maintenance/coming-soon'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Coming Soon" />
+                                <ListItemText primary='Coming Soon' />
                               </ListItemButton>
                             </List>
                           </Grid>
                           <Grid item xs={4}>
                             <List
-                              component="nav"
-                              aria-labelledby="nested-list-user"
+                              component='nav'
+                              aria-labelledby='nested-list-user'
                               subheader={
-                                <ListSubheader id="nested-list-user">
-                                  <Typography variant="subtitle1" color="textPrimary">
+                                <ListSubheader id='nested-list-user'>
+                                  <Typography variant='subtitle1' color='textPrimary'>
                                     SAAS Pages
                                   </Typography>
                                 </ListSubheader>
                               }
                             >
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/maintenance/404">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/maintenance/404'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="404 Error" />
+                                <ListItemText primary='404 Error' />
                               </ListItemButton>
-                              <ListItemButton disableRipple component={Link} target="_blank" to="/">
+                              <ListItemButton disableRipple component={Link} target='_blank' to='/'>
                                 <ListItemIcon>
-                                  <Dot size={7} color="secondary" variant="outlined" />
+                                  <Dot size={7} color='secondary' variant='outlined' />
                                 </ListItemIcon>
-                                <ListItemText primary="Landing" />
+                                <ListItemText primary='Landing' />
                               </ListItemButton>
                             </List>
                           </Grid>

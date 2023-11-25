@@ -20,8 +20,9 @@ const PaymentSelect = ({ item }) => {
           control={<Radio />}
           label={
             <Stack spacing={0.5} sx={{ width: '100%' }}>
-              <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2.5} sx={{ width: '100%' }}>
-                <Typography variant="subtitle1">{item.title}</Typography>
+              <Stack direction='row' alignItems='center' justifyContent='space-between' spacing={2.5}
+                     sx={{ width: '100%' }}>
+                <Typography variant='subtitle1'>{item.title}</Typography>
                 <Box
                   sx={{
                     backgroundImage: `url(${item.image})`,
@@ -32,7 +33,7 @@ const PaymentSelect = ({ item }) => {
                   }}
                 />
               </Stack>
-              <Typography variant="caption" color="textSecondary">
+              <Typography variant='caption' color='textSecondary'>
                 {item.caption}
               </Typography>
             </Stack>

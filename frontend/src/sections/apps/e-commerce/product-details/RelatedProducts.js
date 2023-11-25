@@ -59,32 +59,33 @@ const ListProduct = ({ product }) => {
     <ListItemButton divider onClick={() => linkHandler(product.id)}>
       <ListItemAvatar>
         <Avatar
-          alt="Avatar"
-          size="xl"
-          color="secondary"
-          variant="rounded"
-          type="combined"
+          alt='Avatar'
+          size='xl'
+          color='secondary'
+          variant='rounded'
+          type='combined'
           src={product.image ? prodImage(`./thumbs/${product.image}`) : ''}
           sx={{ borderColor: theme.palette.divider, mr: 1 }}
         />
       </ListItemAvatar>
       <ListItemText
         disableTypography
-        primary={<Typography variant="h5">{product.name}</Typography>}
+        primary={<Typography variant='h5'>{product.name}</Typography>}
         secondary={
           <Stack spacing={1}>
-            <Typography color="textSecondary">{product.description}</Typography>
+            <Typography color='textSecondary'>{product.description}</Typography>
             <Stack spacing={1}>
-              <Stack direction="row" alignItems="center" spacing={0.5}>
-                <Typography variant="h5">{product.salePrice ? `$${product.salePrice}` : `$${product.offerPrice}`}</Typography>
+              <Stack direction='row' alignItems='center' spacing={0.5}>
+                <Typography
+                  variant='h5'>{product.salePrice ? `$${product.salePrice}` : `$${product.offerPrice}`}</Typography>
                 {product.salePrice && (
-                  <Typography variant="h6" color="textSecondary" sx={{ textDecoration: 'line-through' }}>
+                  <Typography variant='h6' color='textSecondary' sx={{ textDecoration: 'line-through' }}>
                     ${product.offerPrice}
                   </Typography>
                 )}
               </Stack>
               <Rating
-                name="simple-controlled"
+                name='simple-controlled'
                 value={product.rating < 4 ? product.rating + 1 : product.rating}
                 icon={<StarFilled style={{ fontSize: 'small' }} />}
                 emptyIcon={<StarOutlined style={{ fontSize: 'small' }} />}
@@ -97,8 +98,8 @@ const ListProduct = ({ product }) => {
       />
       <ListItemSecondaryAction>
         <IconButton
-          size="medium"
-          color="secondary"
+          size='medium'
+          color='secondary'
           sx={{ opacity: wishlisted ? 1 : 0.5, '&:hover': { bgcolor: 'transparent' } }}
           onClick={addToFavourite}
         >
@@ -137,7 +138,7 @@ const RelatedProducts = ({ id }) => {
   if (related) {
     productResult = (
       <List
-        component="nav"
+        component='nav'
         sx={{
           '& .MuiListItemButton-root': {
             '& .MuiListItemSecondaryAction-root': {
@@ -168,7 +169,7 @@ const RelatedProducts = ({ id }) => {
       <Grid item>
         <Stack>
           {productResult}
-          <Button color="secondary" variant="outlined" sx={{ mx: 2, my: 4, textTransform: 'none' }}>
+          <Button color='secondary' variant='outlined' sx={{ mx: 2, my: 4, textTransform: 'none' }}>
             View all Products
           </Button>
         </Stack>

@@ -45,30 +45,34 @@ const ProfileTab = () => {
   }, [pathname]);
 
   return (
-    <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32, color: theme.palette.grey[500] } }}>
-      <ListItemButton selected={selectedIndex === 0} onClick={() => handleListItemClick(0, '/apps/profiles/user/personal')}>
+    <List component='nav' sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32, color: theme.palette.grey[500] } }}>
+      <ListItemButton selected={selectedIndex === 0}
+                      onClick={() => handleListItemClick(0, '/apps/profiles/user/personal')}>
         <ListItemIcon>
           <UserOutlined />
         </ListItemIcon>
-        <ListItemText primary="Personal Information" />
+        <ListItemText primary='Personal Information' />
       </ListItemButton>
-      <ListItemButton selected={selectedIndex === 1} onClick={() => handleListItemClick(1, '/apps/profiles/user/payment')}>
+      <ListItemButton selected={selectedIndex === 1}
+                      onClick={() => handleListItemClick(1, '/apps/profiles/user/payment')}>
         <ListItemIcon>
           <CreditCardOutlined />
         </ListItemIcon>
-        <ListItemText primary="Payment" />
+        <ListItemText primary='Payment' />
       </ListItemButton>
-      <ListItemButton selected={selectedIndex === 2} onClick={() => handleListItemClick(2, '/apps/profiles/user/password')}>
+      <ListItemButton selected={selectedIndex === 2}
+                      onClick={() => handleListItemClick(2, '/apps/profiles/user/password')}>
         <ListItemIcon>
           <LockOutlined />
         </ListItemIcon>
-        <ListItemText primary="Change Password" />
+        <ListItemText primary='Change Password' />
       </ListItemButton>
-      <ListItemButton selected={selectedIndex === 3} onClick={() => handleListItemClick(3, '/apps/profiles/user/settings')}>
+      <ListItemButton selected={selectedIndex === 3}
+                      onClick={() => handleListItemClick(3, '/apps/profiles/user/settings')}>
         <ListItemIcon>
           <SettingOutlined />
         </ListItemIcon>
-        <ListItemText primary="Settings" />
+        <ListItemText primary='Settings' />
       </ListItemButton>
     </List>
   );

@@ -80,8 +80,8 @@ const ProductImages = () => {
   const ArrowUp = (props) => (
     <Box
       {...props}
-      color="secondary"
-      className="prev"
+      color='secondary'
+      className='prev'
       sx={{
         cursor: 'pointer',
         '&:hover': { bgcolor: 'transparent' },
@@ -105,8 +105,8 @@ const ProductImages = () => {
   const ArrowDown = (props) => (
     <Box
       {...props}
-      color="secondary"
-      className="prev"
+      color='secondary'
+      className='prev'
       sx={{
         cursor: 'pointer',
         '&:hover': { bgcolor: 'transparent' },
@@ -149,7 +149,7 @@ const ProductImages = () => {
             content={false}
             border={false}
             boxShadow={false}
-            shadow="0"
+            shadow='0'
             sx={{
               m: '0 auto',
               height: '100%',
@@ -166,20 +166,21 @@ const ProductImages = () => {
                   <TransformComponent>
                     <CardMedia
                       onClick={() => setModal(!modal)}
-                      component="img"
+                      component='img'
                       image={selected}
-                      title="Scroll Zoom"
+                      title='Scroll Zoom'
                       sx={{ borderRadius: `4px`, position: 'relative' }}
                     />
                   </TransformComponent>
-                  <Stack direction="row" className="tools" sx={{ position: 'absolute', bottom: 10, right: 10, zIndex: 1 }}>
-                    <IconButton color="secondary" onClick={() => zoomIn()}>
+                  <Stack direction='row' className='tools'
+                         sx={{ position: 'absolute', bottom: 10, right: 10, zIndex: 1 }}>
+                    <IconButton color='secondary' onClick={() => zoomIn()}>
                       <ZoomInOutlined style={{ fontSize: '1.15rem' }} />
                     </IconButton>
-                    <IconButton color="secondary" onClick={() => zoomOut()}>
+                    <IconButton color='secondary' onClick={() => zoomOut()}>
                       <ZoomOutOutlined style={{ fontSize: '1.15rem' }} />
                     </IconButton>
-                    <IconButton color="secondary" onClick={() => resetTransform()}>
+                    <IconButton color='secondary' onClick={() => resetTransform()}>
                       <RedoOutlined style={{ fontSize: '1.15rem' }} />
                     </IconButton>
                   </Stack>
@@ -187,7 +188,7 @@ const ProductImages = () => {
               )}
             </TransformWrapper>
             <IconButton
-              color="secondary"
+              color='secondary'
               sx={{ ml: 'auto', position: 'absolute', top: 5, right: 5, '&:hover': { background: 'transparent' } }}
               onClick={addToFavourite}
             >
@@ -238,7 +239,7 @@ const ProductImages = () => {
                   <Avatar
                     size={matchDownLG ? 'xl' : 'md'}
                     src={prodImage(`./thumbs/prod-${item}.png`)}
-                    variant="rounded"
+                    variant='rounded'
                     sx={{
                       m: '0 auto',
                       cursor: 'pointer',

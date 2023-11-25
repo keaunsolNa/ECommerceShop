@@ -31,16 +31,16 @@ const MainDrawer = ({ window }) => {
   const drawerHeader = useMemo(() => <DrawerHeader open={drawerOpen} />, [drawerOpen]);
 
   return (
-    <Box component="nav" sx={{ flexShrink: { md: 0 }, zIndex: 1200 }} aria-label="mailbox folders">
+    <Box component='nav' sx={{ flexShrink: { md: 0 }, zIndex: 1200 }} aria-label='mailbox folders'>
       {!matchDownMD ? (
-        <MiniDrawerStyled variant="permanent" open={drawerOpen}>
+        <MiniDrawerStyled variant='permanent' open={drawerOpen}>
           {drawerHeader}
           {drawerContent}
         </MiniDrawerStyled>
       ) : (
         <Drawer
           container={container}
-          variant="temporary"
+          variant='temporary'
           open={drawerOpen}
           onClose={() => dispatch(openDrawer(!drawerOpen))}
           ModalProps={{ keepMounted: true }}

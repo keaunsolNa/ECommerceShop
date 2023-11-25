@@ -12,16 +12,17 @@ import AnimateButton from 'components/@extended/AnimateButton';
 
 const NavCard = () => (
   <MainCard sx={{ bgcolor: 'grey.50', m: 3 }}>
-    <Stack alignItems="center" spacing={2.5}>
-      <CardMedia component="img" image={avatar} />
-      <Stack alignItems="center">
-        <Typography variant="h5">Help?</Typography>
-        <Typography variant="h6" color="secondary">
+    <Stack alignItems='center' spacing={2.5}>
+      <CardMedia component='img' image={avatar} />
+      <Stack alignItems='center'>
+        <Typography variant='h5'>Help?</Typography>
+        <Typography variant='h6' color='secondary'>
           Get to resolve query
         </Typography>
       </Stack>
       <AnimateButton>
-        <Button variant="shadow" size="small" component={Link} href="https://codedthemes.support-hub.io/" target="_blank">
+        <Button variant='shadow' size='small' component={Link} href='https://codedthemes.support-hub.io/'
+                target='_blank'>
           Support
         </Button>
       </AnimateButton>

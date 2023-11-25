@@ -297,7 +297,14 @@ export function addItem(columnId, columns, item, items, storyId, userStory) {
 export function editItem(columnId, columns, item, items, storyId, userStory) {
   return async () => {
     try {
-      const response = await axios.post('/api/kanban/edit-item', { items, item, userStory, storyId, columns, columnId });
+      const response = await axios.post('/api/kanban/edit-item', {
+        items,
+        item,
+        userStory,
+        storyId,
+        columns,
+        columnId
+      });
       dispatch(slice.actions.editItemSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error));

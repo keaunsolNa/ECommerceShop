@@ -1,4 +1,4 @@
-package com.ecommerceshop.dto.integratedDTO;
+package com.ecommerceshop.dto.DTO;
 
 import lombok.Data;
 

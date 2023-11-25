@@ -78,7 +78,11 @@ export default function PaginationItem(theme) {
         contained: {
           '&.Mui-selected': {
             '&.MuiPaginationItem-containedPrimary': getColorStyle({ variant: 'contained', color: 'primary', theme }),
-            '&.MuiPaginationItem-containedSecondary': getColorStyle({ variant: 'contained', color: 'secondary', theme }),
+            '&.MuiPaginationItem-containedSecondary': getColorStyle({
+              variant: 'contained',
+              color: 'secondary',
+              theme
+            }),
             '&.MuiPaginationItem-containedError': getColorStyle({ variant: 'contained', color: 'error', theme }),
             '&.MuiPaginationItem-containedSuccess': getColorStyle({ variant: 'contained', color: 'success', theme }),
             '&.MuiPaginationItem-containedInfo': getColorStyle({ variant: 'contained', color: 'info', theme }),

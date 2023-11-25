@@ -60,11 +60,11 @@ const ObjectToGrid = ({ data }) => {
             <Grid item>
               <Stack spacing={1}>
                 <RoundedCornerBox>
-                  <Typography variant="h5" color="white">
+                  <Typography variant='h5' color='white'>
                     {keyTranslator(key)}
                   </Typography>
                 </RoundedCornerBox>
-                <Typography variant="h3">
+                <Typography variant='h3'>
                   {['string', 'number'].includes(typeof data[key]) && data[key] !== '' ? data[key] : '-'}
                 </Typography>
               </Stack>

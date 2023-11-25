@@ -51,19 +51,19 @@ const MobileSection = () => {
       <Box sx={{ flexShrink: 0, ml: 0.75 }}>
         <IconButton
           sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
-          aria-label="open more menu"
+          aria-label='open more menu'
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
+          aria-haspopup='true'
           onClick={handleToggle}
-          color="secondary"
-          variant="light"
+          color='secondary'
+          variant='light'
         >
           <MoreOutlined />
         </IconButton>
       </Box>
       <Popper
-        placement="bottom-end"
+        placement='bottom-end'
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
@@ -82,10 +82,10 @@ const MobileSection = () => {
         }}
       >
         {({ TransitionProps }) => (
-          <Transitions type="fade" in={open} {...TransitionProps}>
+          <Transitions type='fade' in={open} {...TransitionProps}>
             <Paper sx={{ boxShadow: theme.customShadows.z1 }}>
               <ClickAwayListener onClickAway={handleClose}>
-                <AppBar color="inherit">
+                <AppBar color='inherit'>
                   <Toolbar>
                     <Search />
                     <Profile />

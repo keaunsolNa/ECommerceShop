@@ -76,11 +76,11 @@ const AddStoryComment = ({ storyId }) => {
 
   return (
     <Box sx={{ p: 2, pb: 1.5, border: `1px solid ${theme.palette.divider}` }}>
-      <Grid container alignItems="center" spacing={0.5}>
+      <Grid container alignItems='center' spacing={0.5}>
         <Grid item xs={12}>
           <TextField
             fullWidth
-            placeholder="Add Comment"
+            placeholder='Add Comment'
             value={comment}
             onChange={handleStoryComment}
             sx={{
@@ -119,7 +119,7 @@ const AddStoryComment = ({ storyId }) => {
         </Grid>
         <Grid item xs zeroMinWidth />
         <Grid item>
-          <Button size="small" variant="contained" color="primary" onClick={addNewStoryComment}>
+          <Button size='small' variant='contained' color='primary' onClick={addNewStoryComment}>
             Comment
           </Button>
         </Grid>

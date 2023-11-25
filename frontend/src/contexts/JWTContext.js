@@ -183,9 +183,11 @@ export const JWTProvider = ({ children }) => {
     }
   };
 
-  const resetPassword = async () => {};
+  const resetPassword = async () => {
+  };
 
-  const updateProfile = () => {};
+  const updateProfile = () => {
+  };
 
   if (state.isInitialized !== undefined && !state.isInitialized) {
     return <Loader />;

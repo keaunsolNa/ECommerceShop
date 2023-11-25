@@ -151,15 +151,15 @@ const AddCustomer = ({ customer, onCancel }) => {
     <>
       <FormikProvider value={formik}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+          <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
             <DialogTitle>{customer ? 'Edit Customer' : 'New Customer'}</DialogTitle>
             <Divider />
             <DialogContent sx={{ p: 2.5 }}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={3}>
-                  <Stack direction="row" justifyContent="center" sx={{ mt: 3 }}>
+                  <Stack direction='row' justifyContent='center' sx={{ mt: 3 }}>
                     <FormLabel
-                      htmlFor="change-avtar"
+                      htmlFor='change-avtar'
                       sx={{
                         position: 'relative',
                         borderRadius: '50%',
@@ -168,7 +168,7 @@ const AddCustomer = ({ customer, onCancel }) => {
                         cursor: 'pointer'
                       }}
                     >
-                      <Avatar alt="Avatar 1" src={avatar} sx={{ width: 72, height: 72, border: '1px dashed' }} />
+                      <Avatar alt='Avatar 1' src={avatar} sx={{ width: 72, height: 72, border: '1px dashed' }} />
                       <Box
                         sx={{
                           position: 'absolute',
@@ -183,17 +183,17 @@ const AddCustomer = ({ customer, onCancel }) => {
                           justifyContent: 'center'
                         }}
                       >
-                        <Stack spacing={0.5} alignItems="center">
+                        <Stack spacing={0.5} alignItems='center'>
                           <CameraOutlined style={{ color: theme.palette.secondary.lighter, fontSize: '2rem' }} />
                           <Typography sx={{ color: 'secondary.lighter' }}>Upload</Typography>
                         </Stack>
                       </Box>
                     </FormLabel>
                     <TextField
-                      type="file"
-                      id="change-avtar"
-                      placeholder="Outlined"
-                      variant="outlined"
+                      type='file'
+                      id='change-avtar'
+                      placeholder='Outlined'
+                      variant='outlined'
                       sx={{ display: 'none' }}
                       onChange={(e) => setSelectedImage(e.target.files?.[0])}
                     />
@@ -203,11 +203,11 @@ const AddCustomer = ({ customer, onCancel }) => {
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
                       <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-name">Name</InputLabel>
+                        <InputLabel htmlFor='customer-name'>Name</InputLabel>
                         <TextField
                           fullWidth
-                          id="customer-name"
-                          placeholder="Enter Customer Name"
+                          id='customer-name'
+                          placeholder='Enter Customer Name'
                           {...getFieldProps('name')}
                           error={Boolean(touched.name && errors.name)}
                           helperText={touched.name && errors.name}
@@ -216,11 +216,11 @@ const AddCustomer = ({ customer, onCancel }) => {
                     </Grid>
                     <Grid item xs={12}>
                       <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-email">Email</InputLabel>
+                        <InputLabel htmlFor='customer-email'>Email</InputLabel>
                         <TextField
                           fullWidth
-                          id="customer-email"
-                          placeholder="Enter Customer Email"
+                          id='customer-email'
+                          placeholder='Enter Customer Email'
                           {...getFieldProps('email')}
                           error={Boolean(touched.email && errors.email)}
                           helperText={touched.email && errors.email}
@@ -229,20 +229,20 @@ const AddCustomer = ({ customer, onCancel }) => {
                     </Grid>
                     <Grid item xs={12}>
                       <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-orderStatus">Status</InputLabel>
+                        <InputLabel htmlFor='customer-orderStatus'>Status</InputLabel>
                         <FormControl fullWidth>
                           <Select
-                            id="column-hiding"
+                            id='column-hiding'
                             displayEmpty
                             {...getFieldProps('orderStatus')}
                             onChange={(event) => setFieldValue('orderStatus', event.target.value)}
-                            input={<OutlinedInput id="select-column-hiding" placeholder="Sort by" />}
+                            input={<OutlinedInput id='select-column-hiding' placeholder='Sort by' />}
                             renderValue={(selected) => {
                               if (!selected) {
-                                return <Typography variant="subtitle1">Select Status</Typography>;
+                                return <Typography variant='subtitle1'>Select Status</Typography>;
                               }
 
-                              return <Typography variant="subtitle2">{selected}</Typography>;
+                              return <Typography variant='subtitle2'>{selected}</Typography>;
                             }}
                           >
                             {allStatus.map((column) => (
@@ -253,7 +253,7 @@ const AddCustomer = ({ customer, onCancel }) => {
                           </Select>
                         </FormControl>
                         {touched.orderStatus && errors.orderStatus && (
-                          <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
+                          <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
                             {errors.orderStatus}
                           </FormHelperText>
                         )}
@@ -261,13 +261,13 @@ const AddCustomer = ({ customer, onCancel }) => {
                     </Grid>
                     <Grid item xs={12}>
                       <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-location">Location</InputLabel>
+                        <InputLabel htmlFor='customer-location'>Location</InputLabel>
                         <TextField
                           fullWidth
-                          id="customer-location"
+                          id='customer-location'
                           multiline
                           rows={2}
-                          placeholder="Enter Location"
+                          placeholder='Enter Location'
                           {...getFieldProps('location')}
                           error={Boolean(touched.location && errors.location)}
                           helperText={touched.location && errors.location}
@@ -275,24 +275,25 @@ const AddCustomer = ({ customer, onCancel }) => {
                       </Stack>
                     </Grid>
                     <Grid item xs={12}>
-                      <Stack direction="row" justifyContent="space-between" alignItems="flex-start">
+                      <Stack direction='row' justifyContent='space-between' alignItems='flex-start'>
                         <Stack spacing={0.5}>
-                          <Typography variant="subtitle1">Make Contact Info Public</Typography>
-                          <Typography variant="caption" color="textSecondary">
+                          <Typography variant='subtitle1'>Make Contact Info Public</Typography>
+                          <Typography variant='caption' color='textSecondary'>
                             Means that anyone viewing your profile will be able to see your contacts details
                           </Typography>
                         </Stack>
-                        <FormControlLabel control={<Switch defaultChecked sx={{ mt: 0 }} />} label="" labelPlacement="start" />
+                        <FormControlLabel control={<Switch defaultChecked sx={{ mt: 0 }} />} label=''
+                                          labelPlacement='start' />
                       </Stack>
                       <Divider sx={{ my: 2 }} />
-                      <Stack direction="row" justifyContent="space-between" alignItems="flex-start">
+                      <Stack direction='row' justifyContent='space-between' alignItems='flex-start'>
                         <Stack spacing={0.5}>
-                          <Typography variant="subtitle1">Available to hire</Typography>
-                          <Typography variant="caption" color="textSecondary">
+                          <Typography variant='subtitle1'>Available to hire</Typography>
+                          <Typography variant='caption' color='textSecondary'>
                             Toggling this will let your teammates know that you are available for acquiring new projects
                           </Typography>
                         </Stack>
-                        <FormControlLabel control={<Switch sx={{ mt: 0 }} />} label="" labelPlacement="start" />
+                        <FormControlLabel control={<Switch sx={{ mt: 0 }} />} label='' labelPlacement='start' />
                       </Stack>
                     </Grid>
                   </Grid>
@@ -301,22 +302,22 @@ const AddCustomer = ({ customer, onCancel }) => {
             </DialogContent>
             <Divider />
             <DialogActions sx={{ p: 2.5 }}>
-              <Grid container justifyContent="space-between" alignItems="center">
+              <Grid container justifyContent='space-between' alignItems='center'>
                 <Grid item>
                   {!isCreating && (
-                    <Tooltip title="Delete Customer" placement="top">
-                      <IconButton onClick={() => setOpenAlert(true)} size="large" color="error">
+                    <Tooltip title='Delete Customer' placement='top'>
+                      <IconButton onClick={() => setOpenAlert(true)} size='large' color='error'>
                         <DeleteFilled />
                       </IconButton>
                     </Tooltip>
                   )}
                 </Grid>
                 <Grid item>
-                  <Stack direction="row" spacing={2} alignItems="center">
-                    <Button color="error" onClick={onCancel}>
+                  <Stack direction='row' spacing={2} alignItems='center'>
+                    <Button color='error' onClick={onCancel}>
                       Cancel
                     </Button>
-                    <Button type="submit" variant="contained" disabled={isSubmitting}>
+                    <Button type='submit' variant='contained' disabled={isSubmitting}>
                       {customer ? 'Edit' : 'Add'}
                     </Button>
                   </Stack>
@@ -326,7 +327,8 @@ const AddCustomer = ({ customer, onCancel }) => {
           </Form>
         </LocalizationProvider>
       </FormikProvider>
-      {!isCreating && <AlertCustomerDelete title={customer.fatherName} open={openAlert} handleClose={handleAlertClose} />}
+      {!isCreating &&
+        <AlertCustomerDelete title={customer.fatherName} open={openAlert} handleClose={handleAlertClose} />}
     </>
   );
 };

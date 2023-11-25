@@ -16,15 +16,15 @@ import { format, parseISO } from 'date-fns';
 import LinearWithLabel from '../@extended/progress/LinearWithLabel';
 
 const CommonCellEdit = ({
-  value: initialValue,
-  originalData,
-  rows,
-  row: { index, values },
-  column: { id, dataType },
-  updateData,
-  columns,
-  setOpenModal
-}) => {
+                          value: initialValue,
+                          originalData,
+                          rows,
+                          row: { index, values },
+                          column: { id, dataType },
+                          updateData,
+                          columns,
+                          setOpenModal
+                        }) => {
   const [value, setValue] = useState(initialValue);
   const [showSelect, setShowSelect] = useState(false);
   const comboList = new Map();
@@ -106,14 +106,15 @@ const CommonCellEdit = ({
             }}
             enableReinitialize
             validationSchema={userInfoSchema}
-            onSubmit={() => {}}
+            onSubmit={() => {
+            }}
           >
             {({ handleBlur, errors, touched }) => (
               <Form>
                 <TextField
                   value={`${index + 1}`}
                   id={`${index}-${id}`}
-                  name="userInfo"
+                  name='userInfo'
                   disabled
                   onBlur={(e) => {
                     handleBlur(e);
@@ -137,7 +138,7 @@ const CommonCellEdit = ({
         <TextField
           value={values['rowStatus']}
           id={`${index}-${id}`}
-          name="rowStatus"
+          name='rowStatus'
           sx={{
             '& .MuiOutlinedInput-input': { py: 0.75, px: 1, width: { xs: 80 } },
             '& .MuiOutlinedInput-notchedOutline': { border: 'none' }
@@ -154,14 +155,15 @@ const CommonCellEdit = ({
             }}
             enableReinitialize
             validationSchema={userInfoSchema}
-            onSubmit={() => {}}
+            onSubmit={() => {
+            }}
           >
             {({ values, handleChange, handleBlur, errors, touched }) => (
               <Form>
                 <TextField
                   value={values.userInfo}
                   id={`${index}-${id}`}
-                  name="userInfo"
+                  name='userInfo'
                   onChange={(e) => {
                     handleChange(e);
                     onChange(e);
@@ -192,7 +194,8 @@ const CommonCellEdit = ({
             }}
             enableReinitialize
             validationSchema={userInfoSchema}
-            onSubmit={() => {}}
+            onSubmit={() => {
+            }}
           >
             {({ values }) => (
               <Form>
@@ -229,15 +232,16 @@ const CommonCellEdit = ({
             }}
             enableReinitialize
             validationSchema={userInfoSchema}
-            onSubmit={() => {}}
+            onSubmit={() => {
+            }}
           >
             {({ values, errors, touched }) => (
               <Form>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     id={`${index}-${id}`}
-                    name="userInfo"
-                    format="yyyy-MM-dd"
+                    name='userInfo'
+                    format='yyyy-MM-dd'
                     value={parseISO(values.userInfo)}
                     onChange={(newValue) => {
                       const formattedDate = format(newValue, 'yyyy-MM-dd');
@@ -267,18 +271,18 @@ const CommonCellEdit = ({
       element = (
         <>
           <Select
-            labelId="editable-select-status-label"
+            labelId='editable-select-status-label'
             sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 }, svg: { display: 'none' } }}
-            id="editable-select-status"
+            id='editable-select-status'
             value={value}
             onChange={onChange}
             onBlur={onBlur}
           >
-            <MenuItem value="true">
-              <Chip color="success" label="예" size="small" variant="light" />
+            <MenuItem value='true'>
+              <Chip color='success' label='예' size='small' variant='light' />
             </MenuItem>
-            <MenuItem value="false">
-              <Chip color="error" label="아니오" size="small" variant="light" />
+            <MenuItem value='false'>
+              <Chip color='error' label='아니오' size='small' variant='light' />
             </MenuItem>
           </Select>
         </>
@@ -293,7 +297,7 @@ const CommonCellEdit = ({
             </Box>
           ) : (
             <>
-              <Stack direction="row" alignItems="center" spacing={1} sx={{ pl: 1, minWidth: 120 }}>
+              <Stack direction='row' alignItems='center' spacing={1} sx={{ pl: 1, minWidth: 120 }}>
                 <Slider
                   value={value}
                   min={0}
@@ -303,8 +307,8 @@ const CommonCellEdit = ({
                   onChange={(event, newValue) => {
                     setValue(newValue);
                   }}
-                  valueLabelDisplay="auto"
-                  aria-labelledby="non-linear-slider"
+                  valueLabelDisplay='auto'
+                  aria-labelledby='non-linear-slider'
                 />
                 <Tooltip title={'Submit'}>
                   <IconButton onClick={() => setShowSelect(false)}>
@@ -320,7 +324,7 @@ const CommonCellEdit = ({
     case 'modalBtn':
       element = (
         <IconButton
-          color="primary"
+          color='primary'
           onClick={() => {
             setOpenModal(true);
           }}

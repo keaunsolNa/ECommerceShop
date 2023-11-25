@@ -45,6 +45,7 @@ const employee = createSlice({
 });
 
 export default employee.reducer;
+
 export function dispatchRetrieveEmployee(target, id) {
   return async () => {
     dispatch(employee.actions.loading());
@@ -62,6 +63,7 @@ export function dispatchRetrieveEmployee(target, id) {
     }
   };
 }
+
 // E : 주소/전화 조회
 
 export function update(path, data) {

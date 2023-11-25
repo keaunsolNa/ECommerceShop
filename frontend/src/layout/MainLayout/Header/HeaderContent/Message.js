@@ -71,13 +71,13 @@ const Message = () => {
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <IconButton
-        color="secondary"
-        variant="light"
+        color='secondary'
+        variant='light'
         sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
-        aria-label="open profile"
+        aria-label='open profile'
         ref={anchorRef}
         aria-controls={open ? 'profile-grow' : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         onClick={handleToggle}
       >
         <MailOutlined />
@@ -105,7 +105,7 @@ const Message = () => {
         }}
       >
         {({ TransitionProps }) => (
-          <Transitions type="grow" position={matchesXs ? 'top' : 'top-right'} in={open} {...TransitionProps}>
+          <Transitions type='grow' position={matchesXs ? 'top' : 'top-right'} in={open} {...TransitionProps}>
             <Paper
               sx={{
                 boxShadow: theme.customShadows.z1,
@@ -119,18 +119,18 @@ const Message = () => {
             >
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard
-                  title="Message"
+                  title='Message'
                   elevation={0}
                   border={false}
                   content={false}
                   secondary={
-                    <IconButton size="small" onClick={handleToggle}>
+                    <IconButton size='small' onClick={handleToggle}>
                       <CloseOutlined />
                     </IconButton>
                   }
                 >
                   <List
-                    component="nav"
+                    component='nav'
                     sx={{
                       p: 0,
                       '& .MuiListItemButton-root': {
@@ -142,22 +142,22 @@ const Message = () => {
                   >
                     <ListItemButton>
                       <ListItemAvatar>
-                        <Avatar alt="profile user" src={avatar2} />
+                        <Avatar alt='profile user' src={avatar2} />
                       </ListItemAvatar>
                       <ListItemText
                         primary={
-                          <Typography variant="h6">
+                          <Typography variant='h6'>
                             It&apos;s{' '}
-                            <Typography component="span" variant="subtitle1">
+                            <Typography component='span' variant='subtitle1'>
                               Cristina danny&apos;s
                             </Typography>{' '}
                             birthday today.
                           </Typography>
                         }
-                        secondary="2 min ago"
+                        secondary='2 min ago'
                       />
                       <ListItemSecondaryAction>
-                        <Typography variant="caption" noWrap>
+                        <Typography variant='caption' noWrap>
                           3:00 AM
                         </Typography>
                       </ListItemSecondaryAction>
@@ -165,21 +165,21 @@ const Message = () => {
                     <Divider />
                     <ListItemButton>
                       <ListItemAvatar>
-                        <Avatar alt="profile user" src={avatar3} />
+                        <Avatar alt='profile user' src={avatar3} />
                       </ListItemAvatar>
                       <ListItemText
                         primary={
-                          <Typography variant="h6">
-                            <Typography component="span" variant="subtitle1">
+                          <Typography variant='h6'>
+                            <Typography component='span' variant='subtitle1'>
                               Aida Burg
                             </Typography>{' '}
                             commented your post.
                           </Typography>
                         }
-                        secondary="5 August"
+                        secondary='5 August'
                       />
                       <ListItemSecondaryAction>
-                        <Typography variant="caption" noWrap>
+                        <Typography variant='caption' noWrap>
                           6:00 PM
                         </Typography>
                       </ListItemSecondaryAction>
@@ -187,18 +187,18 @@ const Message = () => {
                     <Divider />
                     <ListItemButton>
                       <ListItemAvatar>
-                        <Avatar alt="profile user" src={avatar4} />
+                        <Avatar alt='profile user' src={avatar4} />
                       </ListItemAvatar>
                       <ListItemText
                         primary={
-                          <Typography component="span" variant="subtitle1">
+                          <Typography component='span' variant='subtitle1'>
                             There was a failure to your setup.
                           </Typography>
                         }
-                        secondary="7 hours ago"
+                        secondary='7 hours ago'
                       />
                       <ListItemSecondaryAction>
-                        <Typography variant="caption" noWrap>
+                        <Typography variant='caption' noWrap>
                           2:45 PM
                         </Typography>
                       </ListItemSecondaryAction>
@@ -206,24 +206,24 @@ const Message = () => {
                     <Divider />
                     <ListItemButton>
                       <ListItemAvatar>
-                        <Avatar alt="profile user" src={avatar5} />
+                        <Avatar alt='profile user' src={avatar5} />
                       </ListItemAvatar>
                       <ListItemText
                         primary={
-                          <Typography variant="h6">
-                            <Typography component="span" variant="subtitle1">
+                          <Typography variant='h6'>
+                            <Typography component='span' variant='subtitle1'>
                               Cristina Danny
                             </Typography>{' '}
                             invited to join{' '}
-                            <Typography component="span" variant="subtitle1">
+                            <Typography component='span' variant='subtitle1'>
                               Meeting.
                             </Typography>
                           </Typography>
                         }
-                        secondary="Daily scrum meeting time"
+                        secondary='Daily scrum meeting time'
                       />
                       <ListItemSecondaryAction>
-                        <Typography variant="caption" noWrap>
+                        <Typography variant='caption' noWrap>
                           9:10 PM
                         </Typography>
                       </ListItemSecondaryAction>
@@ -232,7 +232,7 @@ const Message = () => {
                     <ListItemButton sx={{ textAlign: 'center' }}>
                       <ListItemText
                         primary={
-                          <Typography variant="h6" color="primary">
+                          <Typography variant='h6' color='primary'>
                             View All
                           </Typography>
                         }

@@ -83,7 +83,8 @@ function ProductFilterDrawer({ filter, initialState, handleDrawerOpen, openFilte
 
   const drawerContent = (
     <Stack sx={{ p: 3 }} spacing={0.5}>
-      <ProductFilterView filter={filter} filterIsEqual={filterIsEqual} handelFilter={handelFilter} initialState={initialState} />
+      <ProductFilterView filter={filter} filterIsEqual={filterIsEqual} handelFilter={handelFilter}
+                         initialState={initialState} />
       <ProductFilter filter={filter} handelFilter={handelFilter} />
     </Stack>
   );
@@ -104,13 +105,13 @@ function ProductFilterDrawer({ filter, initialState, handleDrawerOpen, openFilte
         }
       }}
       variant={matchDownLG ? 'temporary' : 'persistent'}
-      anchor="left"
+      anchor='left'
       open={openFilterDrawer}
       ModalProps={{ keepMounted: true }}
       onClose={handleDrawerOpen}
     >
       <MainCard
-        title="Filter"
+        title='Filter'
         sx={{
           bgcolor: matchDownLG ? 'transparent' : drawerBG,
           borderRadius: '4px 0 0 4px',

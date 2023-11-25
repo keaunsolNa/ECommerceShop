@@ -57,14 +57,14 @@ function ReactTable({ columns, data, update, height, getHeaderProps, setSelected
   Object.keys(sortedData).forEach((key) => sortedData[Number(key)] === undefined && delete sortedData[Number(key)]);
   return (
     <Stack spacing={10}>
-      <ScrollX sx={{ height: height }} id="scrollableDiv">
+      <ScrollX sx={{ height: height }} id='scrollableDiv'>
         <InfiniteScroll
           dataLength={rows.length}
           next={update}
           hasMore={true}
           loader={<h4>Loading more 20 items...</h4>}
           scrollThreshold={0.5}
-          scrollableTarget="scrollableDiv"
+          scrollableTarget='scrollableDiv'
         >
           <TableWrapper>
             <Table {...getTableProps()} stickyHeader>
@@ -89,7 +89,8 @@ function ReactTable({ columns, data, update, height, getHeaderProps, setSelected
                 {rows.map((row, index) => {
                   prepareRow(row);
                   return (
-                    <TableRow key={index} {...row.getRowProps()} onClick={() => (setSelected ? setSelected(row.values.id) : null)}>
+                    <TableRow key={index} {...row.getRowProps()}
+                              onClick={() => (setSelected ? setSelected(row.values.id) : null)}>
                       {row.cells.map((cell, i) => {
                         return (
                           <TableCell
@@ -127,12 +128,12 @@ ReactTable.propTypes = {
 const StatusCell = ({ value }) => {
   switch (value) {
     case 'Complicated':
-      return <Chip color="error" label="Complicated" size="small" variant="light" />;
+      return <Chip color='error' label='Complicated' size='small' variant='light' />;
     case 'Relationship':
-      return <Chip color="success" label="Relationship" size="small" variant="light" />;
+      return <Chip color='success' label='Relationship' size='small' variant='light' />;
     case 'Single':
     default:
-      return <Chip color="info" label="Single" size="small" variant="light" />;
+      return <Chip color='info' label='Single' size='small' variant='light' />;
   }
 };
 

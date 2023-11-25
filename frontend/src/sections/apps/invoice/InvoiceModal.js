@@ -34,6 +34,7 @@ import { DownloadOutlined } from '@ant-design/icons';
 
 const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice }) => {
   const theme = useTheme();
+
   function closeModal() {
     setIsOpen(false);
   }
@@ -65,7 +66,7 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
     <Dialog
       open={isOpen}
       onClose={closeModal}
-      maxWidth="md"
+      maxWidth='md'
       sx={{
         '& .MuiDialog-paper': { p: 0, minWidth: { xl: 1200, sm: 'calc(100% - 20%)' } },
         '& .MuiBackdrop-root': { opacity: '0.5 !important' }
@@ -73,25 +74,25 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
     >
       <Box sx={{ pb: 2.5 }}>
         {/* This element is to trick the browser into centering the modal contents. */}
-        <span aria-hidden="true">&#8203;</span>
-        <Box id="print" sx={{ p: 2.5 }}>
+        <span aria-hidden='true'>&#8203;</span>
+        <Box id='print' sx={{ p: 2.5 }}>
           <Box sx={{ pb: 2.5 }}>
-            <Stack sx={{ flexDirection: { xs: 'column', sm: 'row' } }} justifyContent="space-between">
+            <Stack sx={{ flexDirection: { xs: 'column', sm: 'row' } }} justifyContent='space-between'>
               <Box sx={{ pt: 2.5 }}>
-                <Stack direction="row" spacing={2}>
-                  <Logo /> <Chip label="Paid" variant="light" color="success" />
+                <Stack direction='row' spacing={2}>
+                  <Logo /> <Chip label='Paid' variant='light' color='success' />
                 </Stack>
-                <Typography color="secondary">{invoiceInfo.invoice_id}</Typography>
+                <Typography color='secondary'>{invoiceInfo.invoice_id}</Typography>
               </Box>
               <Box sx={{ pt: 2.5, pb: 1.75 }}>
-                <Stack direction="row" justifyContent="space-between">
-                  <Typography sx={{ pl: 4 }} variant="subtitle1">
+                <Stack direction='row' justifyContent='space-between'>
+                  <Typography sx={{ pl: 4 }} variant='subtitle1'>
                     Date{' '}
                   </Typography>
                   <Typography>{date}</Typography>
                 </Stack>
-                <Stack direction="row" justifyContent="space-between">
-                  <Typography sx={{ pr: 2, overflow: 'hidden' }} variant="subtitle1">
+                <Stack direction='row' justifyContent='space-between'>
+                  <Typography sx={{ pr: 2, overflow: 'hidden' }} variant='subtitle1'>
                     Due Date
                   </Typography>
                   <Typography>{dueDate}</Typography>
@@ -99,17 +100,17 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
               </Box>
             </Stack>
             <Box sx={{ pt: 2.5 }}>
-              <Grid container spacing={2} justifyContent="space-between" direction="row">
+              <Grid container spacing={2} justifyContent='space-between' direction='row'>
                 <Grid item xs={12} sm={6}>
                   <Box sx={{ border: 1, minHeight: 168, borderColor: 'grey.200', borderRadius: 0.5, p: 2.5 }}>
-                    <Grid container direction="row">
+                    <Grid container direction='row'>
                       <Grid item md={8}>
-                        <Typography variant="h5">From:</Typography>
+                        <Typography variant='h5'>From:</Typography>
                         <FormControl sx={{ width: '100%' }}>
-                          <Typography variant="subtitle1">{invoiceInfo.cashierInfo.name}</Typography>
-                          <Typography color="secondary">{invoiceInfo.cashierInfo.address}</Typography>
-                          <Typography color="secondary">{invoiceInfo.cashierInfo.phone}</Typography>
-                          <Typography color="secondary">{invoiceInfo.cashierInfo.email}</Typography>
+                          <Typography variant='subtitle1'>{invoiceInfo.cashierInfo.name}</Typography>
+                          <Typography color='secondary'>{invoiceInfo.cashierInfo.address}</Typography>
+                          <Typography color='secondary'>{invoiceInfo.cashierInfo.phone}</Typography>
+                          <Typography color='secondary'>{invoiceInfo.cashierInfo.email}</Typography>
                         </FormControl>
                       </Grid>
                     </Grid>
@@ -117,14 +118,14 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Box sx={{ border: 1, minHeight: 168, borderColor: 'grey.200', borderRadius: 0.5, p: 2.5 }}>
-                    <Grid container direction="row">
+                    <Grid container direction='row'>
                       <Grid item md={8}>
-                        <Typography variant="h5">To:</Typography>
+                        <Typography variant='h5'>To:</Typography>
                         <FormControl sx={{ width: '100%' }}>
-                          <Typography variant="subtitle1">{invoiceInfo.customerInfo.name}</Typography>
-                          <Typography color="secondary">{invoiceInfo.customerInfo.address}</Typography>
-                          <Typography color="secondary">{invoiceInfo.customerInfo.phone}</Typography>
-                          <Typography color="secondary">{invoiceInfo.customerInfo.email}</Typography>
+                          <Typography variant='subtitle1'>{invoiceInfo.customerInfo.name}</Typography>
+                          <Typography color='secondary'>{invoiceInfo.customerInfo.address}</Typography>
+                          <Typography color='secondary'>{invoiceInfo.customerInfo.phone}</Typography>
+                          <Typography color='secondary'>{invoiceInfo.customerInfo.email}</Typography>
                         </FormControl>
                       </Grid>
                     </Grid>
@@ -140,9 +141,9 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
                   <TableCell>#</TableCell>
                   <TableCell>Name</TableCell>
                   <TableCell>Description</TableCell>
-                  <TableCell align="right">Qty</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">Amount</TableCell>
+                  <TableCell align='right'>Qty</TableCell>
+                  <TableCell align='right'>Price</TableCell>
+                  <TableCell align='right'>Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -151,37 +152,37 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
                     <TableCell>{items.indexOf(item) + 1}</TableCell>
                     <TableCell>{item.name}</TableCell>
                     <TableCell>{item.description}</TableCell>
-                    <TableCell align="right">{item.qty}</TableCell>
-                    <TableCell align="right">${Number(item.price).toFixed(2)}</TableCell>
-                    <TableCell align="right">${Number(item.price * item.qty).toFixed(2)}</TableCell>
+                    <TableCell align='right'>{item.qty}</TableCell>
+                    <TableCell align='right'>${Number(item.price).toFixed(2)}</TableCell>
+                    <TableCell align='right'>${Number(item.price * item.qty).toFixed(2)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
           <Box sx={{ p: 2.5 }}>
-            <Grid container direction="row" justifyContent="flex-end">
+            <Grid container direction='row' justifyContent='flex-end'>
               <Grid item md={4}>
                 <Stack spacing={2}>
-                  <Stack direction="row" justifyContent="space-between">
-                    <Typography color="secondary">Sub Total:</Typography>
-                    <Typography variant="h6">${subtotal.toFixed(2)}</Typography>
+                  <Stack direction='row' justifyContent='space-between'>
+                    <Typography color='secondary'>Sub Total:</Typography>
+                    <Typography variant='h6'>${subtotal.toFixed(2)}</Typography>
                   </Stack>
-                  <Stack direction="row" justifyContent="space-between">
-                    <Typography color="secondary">Discount:</Typography>
-                    <Typography variant="h6" color={theme.palette.success.main}>
+                  <Stack direction='row' justifyContent='space-between'>
+                    <Typography color='secondary'>Discount:</Typography>
+                    <Typography variant='h6' color={theme.palette.success.main}>
                       ${discountRate.toFixed(2)}
                     </Typography>
                   </Stack>
-                  <Stack direction="row" justifyContent="space-between">
+                  <Stack direction='row' justifyContent='space-between'>
                     <Typography color={theme.palette.grey[500]}>Tax:</Typography>
-                    <Typography variant="h6">${taxRate.toFixed(2)}</Typography>
+                    <Typography variant='h6'>${taxRate.toFixed(2)}</Typography>
                   </Stack>
-                  <Stack direction="row" justifyContent="space-between">
-                    <Typography sx={{ pr: 2 }} variant="subtitle1">
+                  <Stack direction='row' justifyContent='space-between'>
+                    <Typography sx={{ pr: 2 }} variant='subtitle1'>
                       Grand Total:
                     </Typography>
-                    <Typography variant="h6">${total % 1 === 0 ? total : total.toFixed(2)}</Typography>
+                    <Typography variant='h6'>${total % 1 === 0 ? total : total.toFixed(2)}</Typography>
                   </Stack>
                 </Stack>
               </Grid>
@@ -191,8 +192,8 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
         <Box sx={{ p: 2.5 }}>
           <Typography>Notes: {invoiceInfo.notes}</Typography>
         </Box>
-        <Stack direction="row" justifyContent="flex-end" spacing={2} sx={{ p: 2.5 }}>
-          <Button color="secondary" onClick={addNextInvoiceHandler}>
+        <Stack direction='row' justifyContent='flex-end' spacing={2} sx={{ p: 2.5 }}>
+          <Button color='secondary' onClick={addNextInvoiceHandler}>
             Cancel
           </Button>
           <PDFDownloadLink
@@ -202,7 +203,7 @@ const InvoiceModal = ({ isOpen, setIsOpen, invoiceInfo, items, onAddNextInvoice 
             }.pdf`}
             style={{ textDecoration: 'none' }}
           >
-            <Button startIcon={<DownloadOutlined />} variant="contained" color="primary">
+            <Button startIcon={<DownloadOutlined />} variant='contained' color='primary'>
               Download
             </Button>
           </PDFDownloadLink>

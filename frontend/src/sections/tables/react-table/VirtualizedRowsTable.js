@@ -74,9 +74,9 @@ function ReactTable({ columns, data, getHeaderProps }) {
   return (
     <Stack spacing={10}>
       <MainCard
-        title="가족사항"
+        title='가족사항'
         content={false}
-        secondary={<CSVExport data={data} filename="virtualized-row-table.csv" />}
+        secondary={<CSVExport data={data} filename='virtualized-row-table.csv' />}
         sx={{ maxWidth: 1205 }}
       >
         <ScrollX>
@@ -99,7 +99,7 @@ function ReactTable({ columns, data, getHeaderProps }) {
               </TableHead>
 
               <TableBody {...getTableBodyProps()}>
-                <FixedSizeList height={600} itemCount={rows.length} itemSize={60} width="100%">
+                <FixedSizeList height={600} itemCount={rows.length} itemSize={60} width='100%'>
                   {RenderRow}
                 </FixedSizeList>
               </TableBody>
@@ -120,12 +120,12 @@ ReactTable.propTypes = {
 const StatusCell = ({ value }) => {
   switch (value) {
     case 'Complicated':
-      return <Chip color="error" label="Complicated" size="small" variant="light" />;
+      return <Chip color='error' label='Complicated' size='small' variant='light' />;
     case 'Relationship':
-      return <Chip color="success" label="Relationship" size="small" variant="light" />;
+      return <Chip color='success' label='Relationship' size='small' variant='light' />;
     case 'Single':
     default:
-      return <Chip color="info" label="Single" size="small" variant="light" />;
+      return <Chip color='info' label='Single' size='small' variant='light' />;
   }
 };
 

@@ -62,8 +62,8 @@ const Colors = ({ checked, colorsData }) => {
           }}
         >
           <Avatar
-            color="inherit"
-            size="sm"
+            color='inherit'
+            size='sm'
             sx={{
               bgcolor: colorsData[0]?.bg,
               color: theme.palette.mode === ThemeMode.DARK ? theme.palette.grey[800] : theme.palette.grey[50],
@@ -147,20 +147,20 @@ const ProductInfo = ({ product }) => {
 
   return (
     <Stack spacing={1}>
-      <Stack direction="row" spacing={1} alignItems="center">
+      <Stack direction='row' spacing={1} alignItems='center'>
         <Rating
-          name="simple-controlled"
+          name='simple-controlled'
           value={product.rating}
           icon={<StarFilled style={{ fontSize: 'inherit' }} />}
           emptyIcon={<StarOutlined style={{ fontSize: 'inherit' }} />}
           precision={0.1}
           readOnly
         />
-        <Typography color="textSecondary">({product.rating?.toFixed(1)})</Typography>
+        <Typography color='textSecondary'>({product.rating?.toFixed(1)})</Typography>
       </Stack>
-      <Typography variant="h3">{product.name}</Typography>
+      <Typography variant='h3'>{product.name}</Typography>
       <Chip
-        size="small"
+        size='small'
         label={product.isStock ? 'In Stock' : 'Out of Stock'}
         sx={{
           width: 'fit-content',
@@ -169,13 +169,14 @@ const ProductInfo = ({ product }) => {
           bgcolor: product.isStock ? 'success.lighter' : 'error.lighter'
         }}
       />
-      <Typography color="textSecondary">{product.about}</Typography>
+      <Typography color='textSecondary'>{product.about}</Typography>
       <FormikProvider value={formik}>
-        <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
           <Stack spacing={2.5}>
-            <Stack direction="row" spacing={8} alignItems="center">
-              <Typography color="textSecondary">Color</Typography>
-              <RadioGroup row value={values.color} onChange={handleChange} aria-label="colors" name="color" id="color" sx={{ ml: 1 }}>
+            <Stack direction='row' spacing={8} alignItems='center'>
+              <Typography color='textSecondary'>Color</Typography>
+              <RadioGroup row value={values.color} onChange={handleChange} aria-label='colors' name='color' id='color'
+                          sx={{ ml: 1 }}>
                 {product.colors &&
                   product.colors.map((item, index) => {
                     const colorsData = getColor(item);
@@ -191,23 +192,23 @@ const ProductInfo = ({ product }) => {
                             icon={<Colors colorsData={colorsData} />}
                           />
                         }
-                        label=""
+                        label=''
                       />
                     );
                   })}
               </RadioGroup>
             </Stack>
             {errors.color && (
-              <FormHelperText error id="standard-label-color">
+              <FormHelperText error id='standard-label-color'>
                 {errors.color}
               </FormHelperText>
             )}
-            <Stack direction="row" alignItems="center" spacing={4.5}>
-              <Typography color="textSecondary">Quantity</Typography>
-              <Stack justifyContent="flex-end">
-                <Stack direction="row">
+            <Stack direction='row' alignItems='center' spacing={4.5}>
+              <Typography color='textSecondary'>Quantity</Typography>
+              <Stack justifyContent='flex-end'>
+                <Stack direction='row'>
                   <TextField
-                    name="rty-incre"
+                    name='rty-incre'
                     value={value > 0 ? value : ''}
                     onChange={(e) => setValue(Number(e.target.value))}
                     sx={{
@@ -218,9 +219,9 @@ const ProductInfo = ({ product }) => {
                   />
                   <Stack>
                     <Button
-                      key="one"
-                      color="secondary"
-                      variant="outlined"
+                      key='one'
+                      color='secondary'
+                      variant='outlined'
                       onClick={() => setValue(value + 1)}
                       sx={{
                         px: 0.5,
@@ -235,9 +236,9 @@ const ProductInfo = ({ product }) => {
                       <UpOutlined style={{ fontSize: 'small' }} />
                     </Button>
                     <Button
-                      key="three"
-                      color="secondary"
-                      variant="outlined"
+                      key='three'
+                      color='secondary'
+                      variant='outlined'
                       disabled={value <= 1}
                       onClick={() => setValue(value - 1)}
                       sx={{
@@ -264,25 +265,28 @@ const ProductInfo = ({ product }) => {
                   </Stack>
                 </Stack>
                 {value === 0 && (
-                  <FormHelperText sx={{ color: theme.palette.error.main }}>Please select quantity more than 0</FormHelperText>
+                  <FormHelperText sx={{ color: theme.palette.error.main }}>Please select quantity more than
+                    0</FormHelperText>
                 )}
               </Stack>
             </Stack>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Typography variant="h3">${product.offerPrice}</Typography>
+            <Stack direction='row' alignItems='center' spacing={1}>
+              <Typography variant='h3'>${product.offerPrice}</Typography>
               {product.salePrice && (
-                <Typography variant="h4" color="textSecondary" sx={{ textDecoration: 'line-through', opacity: 0.5, fontWeight: 400 }}>
+                <Typography variant='h4' color='textSecondary'
+                            sx={{ textDecoration: 'line-through', opacity: 0.5, fontWeight: 400 }}>
                   ${product.salePrice}
                 </Typography>
               )}
             </Stack>
           </Stack>
-          <Stack direction="row" alignItems="center" spacing={2} sx={{ mt: 4 }}>
-            <Button type="submit" fullWidth disabled={value < 1 || !product.isStock} color="primary" variant="contained" size="large">
+          <Stack direction='row' alignItems='center' spacing={2} sx={{ mt: 4 }}>
+            <Button type='submit' fullWidth disabled={value < 1 || !product.isStock} color='primary' variant='contained'
+                    size='large'>
               {!product.isStock ? 'Sold Out' : 'Buy Now'}
             </Button>
             {product.isStock && value > 0 && (
-              <Button fullWidth color="secondary" variant="outlined" size="large" onClick={addCart}>
+              <Button fullWidth color='secondary' variant='outlined' size='large' onClick={addCart}>
                 Add to Cart
               </Button>
             )}

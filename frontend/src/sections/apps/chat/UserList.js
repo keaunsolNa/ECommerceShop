@@ -62,7 +62,7 @@ function UserList({ setUser, search }) {
   }, [search]);
 
   return (
-    <List component="nav">
+    <List component='nav'>
       {data.map((user) => (
         <Fragment key={user.id}>
           <ListItemButton
@@ -76,10 +76,10 @@ function UserList({ setUser, search }) {
             </ListItemAvatar>
             <ListItemText
               primary={
-                <Stack component="span" direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+                <Stack component='span' direction='row' alignItems='center' justifyContent='space-between' spacing={1}>
                   <Typography
-                    variant="h5"
-                    color="inherit"
+                    variant='h5'
+                    color='inherit'
                     sx={{
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
@@ -88,16 +88,16 @@ function UserList({ setUser, search }) {
                   >
                     {user.name}
                   </Typography>
-                  <Typography component="span" color="textSecondary" variant="caption">
+                  <Typography component='span' color='textSecondary' variant='caption'>
                     {user.lastMessage}
                   </Typography>
                 </Stack>
               }
               secondary={
-                <Stack component="span" direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+                <Stack component='span' direction='row' alignItems='center' justifyContent='space-between' spacing={1}>
                   <Typography
-                    variant="caption"
-                    color="textSecondary"
+                    variant='caption'
+                    color='textSecondary'
                     sx={{
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
@@ -107,10 +107,11 @@ function UserList({ setUser, search }) {
                     {user.status}
                   </Typography>
                   {user.unReadChatCount ? (
-                    <Dot color="primary" />
+                    <Dot color='primary' />
                   ) : (
                     // chance.bool() - use for last send msg was read or unread
-                    <CheckOutlined style={{ color: chance.bool() ? theme.palette.grey[400] : theme.palette.primary.main }} />
+                    <CheckOutlined
+                      style={{ color: chance.bool() ? theme.palette.grey[400] : theme.palette.primary.main }} />
                   )}
                 </Stack>
               }

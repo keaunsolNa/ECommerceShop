@@ -122,10 +122,10 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
 
   const getImage = (type) => {
     if (type === 'visa') {
-      return <img src={master} alt="card" />;
+      return <img src={master} alt='card' />;
     }
     if (type === 'mastercard') {
-      return <img src={paypalcard} alt="card" />;
+      return <img src={paypalcard} alt='card' />;
     }
     return null;
   };
@@ -133,8 +133,8 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6} lg={8} xl={9}>
-        <Stack spacing={2} alignItems="flex-end">
-          <MainCard title="Payment Method">
+        <Stack spacing={2} alignItems='flex-end'>
+          <MainCard title='Payment Method'>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <AddressCard change address={checkout.billing} handleClickOpen={handleClickOpen} />
@@ -142,12 +142,12 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
               <Grid item xs={12}>
                 <FormControl>
                   <RadioGroup
-                    aria-label="delivery-options"
+                    aria-label='delivery-options'
                     value={payment}
                     onChange={(e) => handlePaymentMethod(e.target.value)}
-                    name="delivery-options"
+                    name='delivery-options'
                   >
-                    <Grid container spacing={2} alignItems="center">
+                    <Grid container spacing={2} alignItems='center'>
                       {PaymentOptions.map((item, index) => (
                         <Grid item xs={12} sm={6} lg={4} key={index}>
                           <PaymentSelect item={item} />
@@ -165,7 +165,7 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                         <Grid item xs={5}>
                           <Stack>
                             <InputLabel>Card Number :</InputLabel>
-                            <Typography color="caption" sx={{ display: { xs: 'none', sm: 'flex' } }}>
+                            <Typography color='caption' sx={{ display: { xs: 'none', sm: 'flex' } }}>
                               Enter the 16 digit card number on the card
                             </Typography>
                           </Stack>
@@ -173,11 +173,12 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                         <Grid item xs={7}>
                           <TextField
                             fullWidth
-                            type="password"
+                            type='password'
                             InputProps={{
-                              startAdornment: type !== 'cod' ? <InputAdornment position="start">{getImage(type)}</InputAdornment> : null,
+                              startAdornment: type !== 'cod' ?
+                                <InputAdornment position='start'>{getImage(type)}</InputAdornment> : null,
                               endAdornment: (
-                                <InputAdornment position="end">
+                                <InputAdornment position='end'>
                                   <CheckOutlined />
                                 </InputAdornment>
                               )
@@ -191,7 +192,7 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                         <Grid item xs={5}>
                           <Stack>
                             <InputLabel>Expiry Date :</InputLabel>
-                            <Typography color="caption" sx={{ display: { xs: 'none', sm: 'flex' } }}>
+                            <Typography color='caption' sx={{ display: { xs: 'none', sm: 'flex' } }}>
                               Enter the expiration on the card
                             </Typography>
                           </Stack>
@@ -199,13 +200,13 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                         <Grid item xs={7}>
                           <Grid container spacing={2}>
                             <Grid item xs={6}>
-                              <Stack direction="row" spacing={2} alignItems="center">
-                                <TextField fullWidth placeholder="12" />
+                              <Stack direction='row' spacing={2} alignItems='center'>
+                                <TextField fullWidth placeholder='12' />
                                 <InputLabel>/</InputLabel>
                               </Stack>
                             </Grid>
                             <Grid item xs={6}>
-                              <TextField fullWidth placeholder="2021" />
+                              <TextField fullWidth placeholder='2021' />
                             </Grid>
                           </Grid>
                         </Grid>
@@ -216,7 +217,7 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                         <Grid item xs={5}>
                           <Stack>
                             <InputLabel>CVV Number :</InputLabel>
-                            <Typography color="caption" sx={{ display: { xs: 'none', sm: 'flex' } }}>
+                            <Typography color='caption' sx={{ display: { xs: 'none', sm: 'flex' } }}>
                               Enter the 3 or 4 digit number on the card
                             </Typography>
                           </Stack>
@@ -226,8 +227,8 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                             fullWidth
                             InputProps={{
                               startAdornment: (
-                                <InputAdornment position="start">
-                                  <img src={cvv} alt="CVV" />
+                                <InputAdornment position='start'>
+                                  <img src={cvv} alt='CVV' />
                                 </InputAdornment>
                               )
                             }}
@@ -240,7 +241,7 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                         <Grid item xs={5}>
                           <Stack>
                             <InputLabel>Password :</InputLabel>
-                            <Typography color="caption" sx={{ display: { xs: 'none', sm: 'flex' } }}>
+                            <Typography color='caption' sx={{ display: { xs: 'none', sm: 'flex' } }}>
                               Enter your dynamic password
                             </Typography>
                           </Stack>
@@ -250,8 +251,8 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                             fullWidth
                             InputProps={{
                               startAdornment: (
-                                <InputAdornment position="start">
-                                  <img src={lock} alt="icon" />
+                                <InputAdornment position='start'>
+                                  <img src={lock} alt='icon' />
                                 </InputAdornment>
                               )
                             }}
@@ -264,18 +265,18 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
               )}
               {type !== 'cod' && (
                 <Grid item xs={12}>
-                  <Stack direction="row" spacing={1} justifyContent="flex-end">
-                    <Button variant="outlined" color="secondary">
+                  <Stack direction='row' spacing={1} justifyContent='flex-end'>
+                    <Button variant='outlined' color='secondary'>
                       Cancel
                     </Button>
-                    <Button variant="contained" color="primary">
+                    <Button variant='contained' color='primary'>
                       Save
                     </Button>
                   </Stack>
                 </Grid>
               )}
               <Grid item xs={12}>
-                <Stack direction="row" spacing={0} alignItems="center">
+                <Stack direction='row' spacing={0} alignItems='center'>
                   <Grid item xs={6}>
                     <Divider />
                   </Grid>
@@ -288,17 +289,17 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
               <Grid item xs={12} sm={12} lg={10}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6} lg={5}>
-                    <PaymentCard type="mastercard" paymentType={type} cards={cards} cardHandler={cardHandler} />
+                    <PaymentCard type='mastercard' paymentType={type} cards={cards} cardHandler={cardHandler} />
                   </Grid>
                   <Grid item xs={12} sm={6} lg={5}>
-                    <PaymentCard type="visa" paymentType={type} cards={cards} cardHandler={cardHandler} />
+                    <PaymentCard type='visa' paymentType={type} cards={cards} cardHandler={cardHandler} />
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </MainCard>
-          <Button variant="text" color="secondary" startIcon={<LeftOutlined />} onClick={onBack}>
-            <Typography variant="h6" color="textPrimary">
+          <Button variant='text' color='secondary' startIcon={<LeftOutlined />} onClick={onBack}>
+            <Typography variant='h6' color='textPrimary'>
               Back to Shipping Information
             </Typography>
           </Button>
@@ -309,11 +310,11 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
           <MainCard sx={{ mb: 3 }}>
             <CartDiscount />
           </MainCard>
-          <MainCard title="Order Summery" sx={{ borderRadius: '4px 4px 0 0', borderBottom: 'none' }} content={false}>
+          <MainCard title='Order Summery' sx={{ borderRadius: '4px 4px 0 0', borderBottom: 'none' }} content={false}>
             {rows.map((row, index) => (
               <List
                 key={index}
-                component="nav"
+                component='nav'
                 sx={{
                   '& .MuiListItemButton-root': {
                     '& .MuiListItemSecondaryAction-root': {
@@ -335,11 +336,11 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                 <ListItemButton divider>
                   <ListItemAvatar>
                     <Avatar
-                      alt="Avatar"
-                      size="lg"
-                      variant="rounded"
-                      color="secondary"
-                      type="combined"
+                      alt='Avatar'
+                      size='lg'
+                      variant='rounded'
+                      color='secondary'
+                      type='combined'
                       src={row.image ? prodImage(`./thumbs/${row.image}`) : ''}
                     />
                   </ListItemAvatar>
@@ -349,9 +350,9 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                       <Typography
                         component={Link}
                         to={`/apps/e-commerce/product-details/${row.id}`}
-                        target="_blank"
-                        variant="subtitle1"
-                        color="textPrimary"
+                        target='_blank'
+                        variant='subtitle1'
+                        color='textPrimary'
                         sx={{ textDecoration: 'none' }}
                       >
                         {row.name}
@@ -359,16 +360,17 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
                     }
                     secondary={
                       <Stack spacing={1}>
-                        <Typography color="textSecondary">{row.description}</Typography>
-                        <Stack direction="row" alignItems="center" spacing={3}>
+                        <Typography color='textSecondary'>{row.description}</Typography>
+                        <Stack direction='row' alignItems='center' spacing={3}>
                           <Typography>${row.offerPrice}</Typography>
-                          <Typography color="textSecondary">{row.quantity} items</Typography>
+                          <Typography color='textSecondary'>{row.quantity} items</Typography>
                         </Stack>
                       </Stack>
                     }
                   />
                   <ListItemSecondaryAction>
-                    <IconButton size="medium" color="secondary" sx={{ opacity: 0.5, '&:hover': { bgcolor: 'transparent' } }}>
+                    <IconButton size='medium' color='secondary'
+                                sx={{ opacity: 0.5, '&:hover': { bgcolor: 'transparent' } }}>
                       <DeleteOutlined style={{ color: 'grey.500' }} />
                     </IconButton>
                   </ListItemSecondaryAction>
@@ -377,7 +379,7 @@ const Payment = ({ checkout, onBack, onNext, editAddress }) => {
             ))}
           </MainCard>
           <OrderSummary checkout={checkout} show={false} />
-          <Button variant="contained" sx={{ textTransform: 'none', mt: 3 }} onClick={completeHandler} fullWidth>
+          <Button variant='contained' sx={{ textTransform: 'none', mt: 3 }} onClick={completeHandler} fullWidth>
             Process to Checkout
           </Button>
           <OrderComplete open={complete} />

@@ -114,16 +114,16 @@ const DynamicTable = ({ name, columns, data, tableType }) => {
                   preGlobalFilteredRows={preGlobalFilteredRows}
                   globalFilter={globalFilter}
                   setGlobalFilter={setGlobalFilter}
-                  size="middle"
+                  size='middle'
                 />
               ) : null}
               {tableType.input ? (
-                <Button color="success" variant="outlined" onClick={() => addRow()}>
+                <Button color='success' variant='outlined' onClick={() => addRow()}>
                   입력
                 </Button>
               ) : null}
               {tableType.save ? (
-                <Button variant="outlined" onClick={() => save()}>
+                <Button variant='outlined' onClick={() => save()}>
                   저장
                 </Button>
               ) : null}

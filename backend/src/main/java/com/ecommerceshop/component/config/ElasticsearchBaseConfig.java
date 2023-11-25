@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "com.ecommerceshop.repository.*")
-@ComponentScan(basePackages = { "com.ecommerceshop.*" })
+@ComponentScan(basePackages = {"com.ecommerceshop.*"})
 public class ElasticsearchBaseConfig extends ElasticsearchConfiguration {
 
     @Value("${elasticsearch.host}")

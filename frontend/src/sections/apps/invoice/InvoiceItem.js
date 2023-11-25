@@ -89,15 +89,15 @@ const InvoiceItem = ({ id, name, description, qty, price, onDeleteItem, onEditIt
         );
       })}
       <TableCell>
-        <Stack direction="column" justifyContent="flex-end" alignItems="flex-end" spacing={2}>
+        <Stack direction='column' justifyContent='flex-end' alignItems='flex-end' spacing={2}>
           <Box sx={{ pr: 2, pl: 2 }}>
             <Typography>{country?.prefix + '' + (price * qty).toFixed(2)}</Typography>
           </Box>
         </Stack>
       </TableCell>
       <TableCell>
-        <Tooltip title="Remove Item">
-          <Button color="error" onClick={() => setOpen(true)}>
+        <Tooltip title='Remove Item'>
+          <Button color='error' onClick={() => setOpen(true)}>
             <DeleteOutlined />
           </Button>
         </Tooltip>

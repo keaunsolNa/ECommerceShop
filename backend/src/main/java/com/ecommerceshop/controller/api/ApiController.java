@@ -1,5 +1,6 @@
 package com.ecommerceshop.controller.api;
 
+import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.service.api.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,5 +36,17 @@ public class ApiController {
     public List<String> productStateRequest() {
 
         return apiService.productBaseStateRequest();
+    }
+
+    @GetMapping("/userRole")
+    public Iterable<UserRole> userRoleRequest() {
+
+        return apiService.userRoleRequest();
+    }
+
+    @GetMapping("/categories")
+    public List<String> categoriesRequest() {
+
+        return apiService.categoriesRequest();
     }
 }
