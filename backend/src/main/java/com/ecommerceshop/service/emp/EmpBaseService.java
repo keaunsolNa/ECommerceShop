@@ -15,6 +15,8 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+
 @Service
 public class EmpBaseService {
 
@@ -86,6 +88,7 @@ public class EmpBaseService {
 
         empBase.setEmail(empBaseDTO.getEmail() != null ? empBaseDTO.getEmail() : empBase.getEmail());
         empBase.setName(empBaseDTO.getName() != null ? empBaseDTO.getName() : empBase.getName());
+        empBase.setFileId(empBaseDTO.getFileId().split(",")[1]);
         empSI.setPhoneNumber(empBaseDTO.getPhoneNumber() != null ? empBaseDTO.getPhoneNumber() : empSI.getPhoneNumber());
         empSI.setCallNumber(empBaseDTO.getCallNumber() != null ? empBaseDTO.getCallNumber() : empSI.getCallNumber());
         empSI.setAddress(empBaseDTO.getAddress() != null ? empBaseDTO.getAddress() : empSI.getAddress());

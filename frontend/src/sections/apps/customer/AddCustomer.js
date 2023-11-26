@@ -81,7 +81,7 @@ const AddCustomer = ({ customer, onCancel }) => {
   const theme = useTheme();
   const isCreating = !customer;
 
-  const [selectedImage, setSelectedImage] = useState(undefined);
+
   const [avatar, setAvatar] = useState(avatarImage(`./avatar-${isCreating && !customer?.avatar ? 1 : customer.avatar}.png`));
 
   useEffect(() => {

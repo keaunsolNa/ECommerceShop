@@ -2,10 +2,11 @@ import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import {
+  Box,
   Button,
   Chip,
   FormControl,
-  FormHelperText,
+  FormHelperText, FormLabel,
   Grid,
   IconButton,
   InputLabel,
@@ -20,22 +21,26 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
-import { CloseOutlined, DeleteFilled } from '@ant-design/icons';
+import { CameraOutlined, CloseOutlined, DeleteFilled } from '@ant-design/icons';
 import MainCard from 'components/MainCard';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import DeleteModal from '../../pages/common/DeleteModal';
 import PropTypes from 'prop-types';
 import Avatar from 'components/@extended/Avatar';
+import { ThemeMode } from '../../config';
+import { useTheme } from '@mui/material/styles';
 
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
   const [loading, setLoading] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
-  const isInsert = selectedData.id === undefined;
-  const avatarImage = require.context('assets/images/users', true);
+  const [selectedImage, setSelectedImage] = useState(undefined);
   const [userRoleList, setUserRoleList] = useState(['일반관리자']);
   const [userStateList, setUserStateList] = useState(['가입 대기']);
+  const isInsert = selectedData.id === undefined;
+  const avatarImage = require.context('assets/images/users', true);
+  const theme = useTheme();
   const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
   const callNumberRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
   const employeeSchema = Yup.object().shape({
@@ -65,12 +70,12 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     callNumber: !isInsert
       ? Yup.string().max(13).matches(callNumberRegex, '올바른 전화번호 형식이 아닙니다. (XX-XXXX-XXXX 또는 XXX-XXX-XXXX)')
       : Yup.string(),
-    fileId: Yup.string().max(200),
     address: Yup.string().max(200)
   });
+
   const getInitialValues = () => {
     return {
-      id: isInsert ? 'create' : selectedData.id,
+      id: isInsert ? '' : selectedData.id,
       password: '',
       confirmPassword: '',
       email: isInsert ? '' : selectedData.email,
@@ -89,7 +94,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     enableReinitialize: true,
     initialValues: getInitialValues(),
     validationSchema: employeeSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+
+      const base64File = await convertBase64(selectedImage);
       const data = {
         id: values.id,
         password: values?.password,
@@ -102,10 +109,11 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         birth: values.birth.format('YYYY-MM-DD'),
         phoneNumber: values.phoneNumber,
         callNumber: values?.callNumber,
-        fileId: values?.fileId,
+        fileId: base64File,
         address: values?.address
       };
 
+      console.log(data)
       if (values.id === '') {
         delete values.id;
       }
@@ -131,6 +139,18 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     }
   });
 
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      }
+      fileReader.onerror = (error) => {
+        reject(error);
+      }
+    })
+  }
   const deleteData = () => {
     setLoading(true);
     const response1 = axios.delete(`/empBase/${selectedData.id}`);
@@ -153,6 +173,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         setLoading(false);
       });
   };
+  const [avatar, setAvatar] = useState(avatarImage(`./default.png`));
   useEffect(() => {
     const retrieveRoleCall = axios.get(`/api/role`);
     Promise.all([retrieveRoleCall])
@@ -170,8 +191,14 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
+
+    console.log(selectedImage)
+    console.log(avatar)
+    if (selectedImage) {
+      setAvatar(URL.createObjectURL(selectedImage));
+    }
     Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
-  }, []);
+  }, [selectedImage]);
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
   if (loading) return <Loader />;
   return (
@@ -199,7 +226,46 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
                   <Stack spacing={2.5} alignItems='center'>
-                    <Avatar alt='Avatar 1' size='xl' src={avatarImage(`./default.png`)} />
+                    <FormLabel
+                      htmlFor='change-avtar'
+                      sx={{
+                        position: 'relative',
+                        borderRadius: '50%',
+                        overflow: 'hidden',
+                        '&:hover .MuiBox-root': { opacity: 1 },
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <img src ={selectedData.fileId}/>
+                      {/*<Avatar alt='Avatar 1' src={avatar} sx={{ width: 72, height: 72, border: '1px dashed' }} />*/}
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          backgroundColor: theme.palette.mode === ThemeMode.DARK ? 'rgba(255, 255, 255, .75)' : 'rgba(0,0,0,.65)',
+                          width: '100%',
+                          height: '100%',
+                          opacity: 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <Stack spacing={0.5} alignItems='center'>
+                          <CameraOutlined style={{ color: theme.palette.secondary.lighter, fontSize: '2rem' }} />
+                          <Typography sx={{ color: 'secondary.lighter' }}>Upload</Typography>
+                        </Stack>
+                      </Box>
+                    </FormLabel>
+                    <TextField
+                      type='file'
+                      id='change-avtar'
+                      placeholder='Outlined'
+                      variant='outlined'
+                      sx={{ display: 'none' }}
+                      onChange={(e) => setSelectedImage(e.target.files?.[0])}
+                    />
                   </Stack>
                 </Stack>
               </Grid>
@@ -214,6 +280,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     onChange={formik.handleChange}
                     error={Boolean(touched.id && errors.id)}
                     helperText={touched.id && errors.id}
+                    disabled={!isInsert}
                   />
                 </Stack>
               </Grid>
@@ -304,6 +371,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     onChange={formik.handleChange}
                     error={Boolean(touched.name && errors.name)}
                     helperText={touched.name && errors.name}
+                    disabled={!isInsert}
                   />
                 </Stack>
               </Grid>
@@ -317,6 +385,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                       placeholder='성별'
                       onChange={formik.handleChange}
                       defaultValue={'남성'}
+                      disabled={!isInsert}
                       renderValue={(selected) => {
                         if (!selected) {
                           return <Typography variant='subtitle1'>Select Status</Typography>;
@@ -377,6 +446,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <DatePicker
                     value={formik.values.birth}
                     format='YYYY-MM-DD'
+                    disabled={!isInsert}
                     onChange={(date) => {
                       formik.setFieldValue('birth', date);
                     }}

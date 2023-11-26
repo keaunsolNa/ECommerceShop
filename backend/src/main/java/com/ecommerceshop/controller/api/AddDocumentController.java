@@ -24,9 +24,6 @@ public class AddDocumentController {
     @PostMapping("/categories")
     public Iterable<Categories> categoriesAddRequest(@RequestBody List<Categories> categoriesList) {
 
-        System.out.println("Controller");
-        System.out.println(categoriesList);
-        System.out.println("Controller");
         return addDocumentService.addNewCategories(categoriesList);
     }
 }

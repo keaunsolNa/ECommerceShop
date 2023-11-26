@@ -299,6 +299,7 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <DatePicker
                     value={formik.values.createDate}
                     format='YYYY-MM-DD'
+                    disabled={!isInsert}
                     onChange={(date) => {
                       formik.setFieldValue('createDate', date);
                     }}
