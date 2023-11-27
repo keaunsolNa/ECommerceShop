@@ -13,12 +13,6 @@ import java.util.Date;
 @Configuration
 public class SettingEmpDocumentByDTO {
 
-    private SettingUserRole settingUserRole;
-
-    public SettingEmpDocumentByDTO(SettingUserRole settingUserRole) {
-        this.settingUserRole = settingUserRole;
-    }
-
     public EmpBase settingEmpDocument(EmpBaseDTO empBaseDTO) {
 
         EmpBase empBase = new EmpBase();
@@ -31,7 +25,7 @@ public class SettingEmpDocumentByDTO {
         empBase.setRole(empBaseDTO.getRole());
         empBase.setCreateDate(new Date());
         empBase.setLastLogin(new Date());
-//        empBase.setFileId(empBaseDTO.getFileId());
+        empBase.setFileId(empBaseDTO.getFileId());
 
         return empBase;
     }

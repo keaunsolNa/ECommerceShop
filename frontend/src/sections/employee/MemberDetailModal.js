@@ -27,17 +27,17 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import DeleteModal from '../../pages/common/DeleteModal';
 import PropTypes from 'prop-types';
+import { CheckBox } from '@mui/icons-material';
 
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
   const [loading, setLoading] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
-  const [userRoleList, setUserRoleList] = useState(['일반관리자']);
-  const [userStateList, setUserStateList] = useState(['가입 대기']);
+  const [userStateList, setUserStateList] = useState(['활동 계정']);
   const isInsert = selectedData.id === undefined;
   const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
   const callNumberRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
-  const employeeSchema = Yup.object().shape({
+  const memberSchema = Yup.object().shape({
     id: Yup.string().max(30).required('ID는 필수값입니다.'),
     password: !isInsert
       ? Yup.string()
@@ -52,11 +52,12 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
         .required('비밀번호 일치 여부를 확인하세요'),
     email: Yup.string().max(255).required('이메일은 필수값입니다.').email('올바른 이메일 형식이 아닙니다.'),
-    state: Yup.string().max(255).required('계정 상태를 입력하세요'),
     name: Yup.string().max(255).required('이름은 필수값입니다.'),
     gender: Yup.string().max(2).required('성별은 필수값입니다.'),
-    role: Yup.string().max(10).required('사용자 직책은 필수입니다.'),
     birth: Yup.date().max(new Date(), '생년월일은 오늘 이전이어야 합니다.').required('생년월일을 입력하세요'),
+    agreePiu: Yup.bool(),
+    agreeTou: Yup.bool().isTrue('이용 약관 동의에 동의가 필요합니다.'),
+    agreeMcc: Yup.bool(),
     phoneNumber: Yup.string()
       .max(13)
       .matches(phoneNumberRegex, '올바른 핸드폰 번호 형식이 아닙니다. (XXX-XXXX-XXXX)')
@@ -73,11 +74,13 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       password: '',
       confirmPassword: '',
       email: isInsert ? '' : selectedData.email,
-      state: isInsert ? '가입 대기' : selectedData.state,
+      state: isInsert ? '활동 계정' : selectedData.state,
       name: isInsert ? '' : selectedData.name,
       gender: isInsert ? '' : selectedData.gender,
-      role: isInsert ? '일반관리자' : selectedData?.role,
       birth: isInsert ? null : dayjs(new Date(selectedData.birth)),
+      agreePiu: isInsert ? null : selectedData.agreePiu,
+      agreeTou: isInsert ? null : selectedData.agreeTou,
+      agreeMcc: isInsert ? null : selectedData.agreeMcc,
       phoneNumber: isInsert ? '' : selectedData.phoneNumber,
       callNumber: isInsert ? '' : selectedData?.callNumber,
       address: isInsert ? '' : selectedData?.address
@@ -86,7 +89,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: getInitialValues(),
-    validationSchema: employeeSchema,
+    validationSchema: memberSchema,
     onSubmit: async (values) => {
 
       const data = {
@@ -97,8 +100,10 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         state: values.state,
         name: values.name,
         gender: values.gender,
-        role: values.role,
         birth: values.birth.format('YYYY-MM-DD'),
+        agreePiu: values.agreePiu,
+        agreeTou: values.agreeTou,
+        agreeMcc: values.agreeMcc,
         phoneNumber: values.phoneNumber,
         callNumber: values?.callNumber,
         address: values?.address
@@ -107,7 +112,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       if (values.id === '') {
         delete values.id;
       }
-      const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase`, data);
+      const response1 = isInsert ? axios.post('/member', data) : axios.patch(`/member`, data);
       Promise.all([response1])
         .then(() => {
           enqueueSnackbar(`저장이 완료되었습니다.`, {
@@ -131,7 +136,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 
   const deleteData = () => {
     setLoading(true);
-    const response1 = axios.delete(`/empBase/${selectedData.id}`);
+    const response1 = axios.delete(`/member/${selectedData.id}`);
     Promise.all([response1])
       .then(() => {
         enqueueSnackbar(`삭제가 완료되었습니다.`, {
@@ -152,14 +157,6 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       });
   };
   useEffect(() => {
-    const retrieveRoleCall = axios.get(`/api/role`);
-    Promise.all([retrieveRoleCall])
-      .then(([response]) => {
-        setUserRoleList(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
     const retrieveStateCall = axios.get(`/api/employeeState`);
     Promise.all([retrieveStateCall])
       .then(([response]) => {
@@ -171,12 +168,13 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 
     Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
   }, []);
+  
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
   if (loading) return <Loader />;
   return (
     <ScrollX>
       <MainCard
-        title='인사 기록 카드'
+        title='회원 정보 카드'
         secondary={
           <Stack direction={'row'} spacing={2}>
             {isInsert ? null : (
@@ -187,7 +185,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
             <IconButton color='secondary' onClick={() => handleOpen()} size='small' sx={{ fontSize: '1.1rem' }}>
               <CloseOutlined />
             </IconButton>
-            <DeleteModal title={'인사기록카드'} open={deleteModal} handleClose={() => setDeleteModal(!deleteModal)}
+            <DeleteModal title={'회원정보카드'} open={deleteModal} handleClose={() => setDeleteModal(!deleteModal)}
                          deleteData={deleteData} />
           </Stack>
         }
@@ -264,7 +262,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                         id='state'
                         {...getFieldProps('state')}
                         onChange={formik.handleChange}
-                        defaultValue={'가입 대기'}
+                        defaultValue={'활동 계정'}
                         renderValue={(selected) => {
                           if (!selected) {
                             return <Typography variant='subtitle1'>Select Status</Typography>;
@@ -338,37 +336,6 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Stack spacing={1.25}>
-                    <InputLabel>직책</InputLabel>
-                    <FormControl fullWidth>
-                      <Select
-                        id='role'
-                        {...getFieldProps('role')}
-                        onChange={formik.handleChange}
-                        defaultValue={'일반관리자'}
-                        renderValue={(selected) => {
-                          if (!selected) {
-                            return <Typography variant='subtitle1'>Select Status</Typography>;
-                          }
-
-                          return <Typography variant='subtitle2'>{selected}</Typography>;
-                        }}
-                      >
-                        {userRoleList.map((option, idx) => (
-                          <MenuItem key={option} value={option} id={`${option}-${idx}`}>
-                            <ListItemText primary={option} />
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                    {touched.role && errors.role && (
-                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
-                        {errors.role}
-                      </FormHelperText>
-                    )}
-                  </Stack>
-                </Grid>
-                <Grid item xs={12}>
-                  <Stack spacing={1.25}>
                     <InputLabel>생년월일</InputLabel>
                     <DatePicker
                       value={formik.values.birth}
@@ -419,6 +386,36 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                       onChange={formik.handleChange}
                       error={Boolean(touched.address && errors.address)}
                       helperText={touched.address && errors.address}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack spacing={1.25}>
+                    <InputLabel>이용약관 동의</InputLabel>
+                    <CheckBox
+                      value={formik.values.agreeTou}
+                      {...getFieldProps('agreeTou')}
+                      checked={formik.values.agreeTou}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack spacing={1.25}>
+                    <InputLabel>개인정보수집 동의</InputLabel>
+                    <CheckBox
+                      value={formik.values.agreePiu}
+                      {...getFieldProps('agreePiu')}
+                      checked={formik.values.agreePiu}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Stack spacing={1.25}>
+                    <InputLabel>마케팅 수집 동의</InputLabel>
+                    <CheckBox
+                      value={formik.values.agreeMcc}
+                      {...getFieldProps('agreeMcc')}
+                      checked={formik.values.agreeMcc}
                     />
                   </Stack>
                 </Grid>

@@ -3,6 +3,7 @@ package com.ecommerceshop.module;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.document.emp.EmpBase;
+import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.dto.document.product.ProductBase;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Sort;
@@ -136,10 +137,16 @@ public class CommonModule {
 
                 UserRole userRole = (UserRole) searchHit.getContent();
                 resultSet.add(userRole.getAuthorityCode());
+
             } else if (searchHit.getIndex().equals("product-base")) {
 
                 ProductBase productBase = (ProductBase) searchHit.getContent();
                 resultSet.add(productBase);
+
+            } else if (searchHit.getIndex().equals("member-base")) {
+
+                MemberBase memberBase = (MemberBase) searchHit.getContent();
+                resultSet.add(memberBase);
             }
 
         }

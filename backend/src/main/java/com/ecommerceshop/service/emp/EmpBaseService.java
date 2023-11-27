@@ -1,21 +1,24 @@
 package com.ecommerceshop.service.emp;
 
 import com.ecommerceshop.dto.DTO.EmpBaseDTO;
+import com.ecommerceshop.dto.DTO.MemberDTO;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
+import com.ecommerceshop.dto.document.member.MemberBase;
+import com.ecommerceshop.dto.document.member.MemberSI;
 import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.module.common.SettingUserRole;
 import com.ecommerceshop.module.employee.SettingEmpDocumentByDTO;
 import com.ecommerceshop.repository.aut.UserRoleRepository;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
 import com.ecommerceshop.repository.emp.EmpSIRepository;
+import com.ecommerceshop.repository.member.MemberBaseRepository;
+import com.ecommerceshop.repository.member.MemberSIRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
-
-import java.util.Base64;
 
 @Service
 public class EmpBaseService {
@@ -23,16 +26,21 @@ public class EmpBaseService {
     private final ElasticsearchOperations elasticsearchOperations;
     private final EmpBaseRepository empBaseRepository;
     private final EmpSIRepository empsiRepository;
+    private final MemberBaseRepository memberBaseRepository;
+    private final MemberSIRepository memberSIRepository;
     private final UserRoleRepository userRoleRepository;
     private final CommonModule commonModule;
     private final SettingUserRole settingUserRole;
     private final SettingEmpDocumentByDTO settingEmpDocumentByDTO;
 
     public EmpBaseService(EmpBaseRepository empBaseRepository, EmpSIRepository empsiRepository, UserRoleRepository userRoleRepository,
+                          MemberBaseRepository memberBaseRepository, MemberSIRepository memberSIRepository,
                           CommonModule commonModule, SettingUserRole settingUserRole, SettingEmpDocumentByDTO settingEmpDocumentByDTO,
                           ElasticsearchOperations elasticsearchOperations) {
         this.empBaseRepository = empBaseRepository;
         this.empsiRepository = empsiRepository;
+        this.memberBaseRepository = memberBaseRepository;
+        this.memberSIRepository = memberSIRepository;
         this.userRoleRepository = userRoleRepository;
         this.commonModule = commonModule;
         this.settingUserRole = settingUserRole;
@@ -40,6 +48,7 @@ public class EmpBaseService {
         this.elasticsearchOperations = elasticsearchOperations;
     }
 
+    // 직원 카드 생성
     public EmpBase empBaseDocumentCreate(EmpBaseDTO empBaseDTO) throws JsonProcessingException {
 
         EmpBase empBase = settingEmpDocumentByDTO.settingEmpDocument(empBaseDTO);
@@ -52,6 +61,7 @@ public class EmpBaseService {
         return empBase;
     }
 
+    // 직원 목록 전체 조회
     public Iterable<EmpBase> empBaseDocumentListSearch() {
 
         NativeQuery query = commonModule.makeMatchAllQuery();
@@ -59,6 +69,7 @@ public class EmpBaseService {
         return commonModule.getListFromSearchHit(searchHits);
     }
 
+    // 아이디로 직원 상세 조회
     public EmpBaseDTO empBaseDocumentSearchById(String id) throws Exception {
 
         EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
@@ -81,6 +92,39 @@ public class EmpBaseService {
         return empBaseDTO;
     }
 
+    // 회원 목록 조회
+    public Iterable<MemberBase> memberDocumentListSearch() {
+
+        NativeQuery query = commonModule.makeMatchAllQuery();
+        SearchHits<MemberBase> searchHits = elasticsearchOperations.search(query, MemberBase.class);
+        return commonModule.getListFromSearchHit(searchHits);
+    }
+
+    // 아이디로 회원 상세 조회
+    public MemberDTO memberBaseDocumemtSearchById(String id) throws Exception {
+
+        MemberBase memberBase = memberBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        MemberSI memberSI = memberSIRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setAgreePiu(memberBase.getAgreePiu());
+        memberDTO.setAgreeMcc(memberBase.getAgreeMcc());
+        memberDTO.setAgreeTou(memberBase.getAgreeTou());
+        memberDTO.setCellNumber(memberSI.getCellNumber());
+        memberDTO.setBirth(commonModule.parsingDate(memberBase.getBirth()));
+        memberDTO.setAddress(memberSI.getAddress());
+        memberDTO.setId(memberBase.getId());
+        memberDTO.setGender(memberBase.getGender());
+        memberDTO.setLastLogin(commonModule.parsingDate(memberBase.getLastLogin()));
+        memberDTO.setCreateDate(commonModule.parsingDate(memberBase.getCreateDate()));
+        memberDTO.setPointHave(memberBase.getPointHave());
+        memberDTO.setState(memberBase.getState());
+        memberDTO.setName(memberBase.getName());
+        memberDTO.setPhoneNumber(memberSI.getPhoneNumber());
+
+        return memberDTO;
+    }
+    // 직원 정보 수정
     public EmpBase empBaseDocumentUpdate(EmpBaseDTO empBaseDTO) throws Exception {
 
         EmpBase empBase = empBaseRepository.findById(empBaseDTO.getId()).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
@@ -106,6 +150,7 @@ public class EmpBaseService {
         return empBase;
     }
 
+    // 직원 탈퇴 계정으로 전환
     public void empBaseDocumentDeleteById(String id) throws Exception {
 
         EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
@@ -114,7 +159,7 @@ public class EmpBaseService {
 
     }
 
-
+    // test용
     public EmpBase empBaseDocumentSearchForTest() {
         NativeQuery query = commonModule.makeMatchAllQuery();
         SearchHits<EmpBase> searchHits = elasticsearchOperations.search(query, EmpBase.class);

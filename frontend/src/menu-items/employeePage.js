@@ -52,6 +52,13 @@ const employeePage = {
           type: 'item',
           url: '/employee/list',
           breadcrumbs: false
+        },
+        {
+          id: 'employee-member',
+          title: '회원 목록 조회',
+          type: 'item',
+          url: '/employee/member',
+          breadcrumbs: false
         }
       ]
     }

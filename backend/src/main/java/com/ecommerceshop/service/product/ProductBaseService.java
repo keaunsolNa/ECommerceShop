@@ -63,11 +63,10 @@ public class ProductBaseService {
 
     }
 
-    public Iterable<ProductBase> productBaseListSearch(ProductBase condition) {
+    public Iterable<ProductBase> productBaseListSearch() {
 
         NativeQuery query = commonModule.makeMatchAllQuery();
         SearchHits<ProductBase> searchHits = elasticsearchOperations.search(query, ProductBase.class);
-
         return commonModule.getListFromSearchHit(searchHits);
 
     }

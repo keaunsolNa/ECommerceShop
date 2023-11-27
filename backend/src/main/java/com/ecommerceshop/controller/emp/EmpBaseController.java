@@ -1,7 +1,9 @@
 package com.ecommerceshop.controller.emp;
 
 import com.ecommerceshop.dto.DTO.EmpBaseDTO;
+import com.ecommerceshop.dto.DTO.MemberDTO;
 import com.ecommerceshop.dto.document.emp.EmpBase;
+import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.service.emp.EmpBaseService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,20 @@ public class EmpBaseController {
         }
     }
 
+    @GetMapping("/memberList")
+    public ResponseEntity<Iterable<MemberBase>>  memberBaseDocumentListSearch() {
+        return ResponseEntity.ok(empBaseService.memberDocumentListSearch());
+    }
+
+    @GetMapping("/memberList/{id}")
+    public MemberDTO memberBaseDocumentSearchById(@PathVariable String id) {
+
+        try {
+            return ResponseEntity.ok(empBaseService.memberBaseDocumemtSearchById(id)).getBody();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     @PatchMapping()
     public ResponseEntity<EmpBase> empBaseDocumentUpdate(@RequestBody EmpBaseDTO empBaseDTO) {
 

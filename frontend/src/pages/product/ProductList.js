@@ -7,14 +7,13 @@ import axios from 'axios';
 import { PopupTransition } from '../../components/@extended/Transitions';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import ProductDetailModal from '../../sections/product/ProductDetailModal';
-import ProductListTable from '../../sections/product/ProductListTable';
+import CommonSortTable from '../../components/CommonSortTable';
 
 const ProductList = () => {
   // states
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
-  const [searchCondition, setSearchCondition] = useState([]);
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
   const permission = useLocalStorage('role')[0];
@@ -67,12 +66,6 @@ const ProductList = () => {
         Footer: '생성일',
         dataType: 'date',
         accessor: 'createDate'
-      },
-      {
-        Header: '파일 id',
-        Footer: '파일 id',
-        dataType: 'text',
-        accessor: 'fileId'
       }
     ],
     []
@@ -97,19 +90,9 @@ const ProductList = () => {
 
     if (permission.includes(10)) setOpen(!open);
   };
-  const searchConditionChange = (newValue) => {
 
-    setSearchCondition((prevCondition) => {
-      if (newValue.target?.id === 'searchConditionProductName') {
-        return { ...prevCondition, productName: newValue.target.value };
-      } else {
-        return { ...prevCondition };
-      }
-    });
-  };
   useEffect(() => {
-    const retrieveCall = axios.post(`/productBase/byCondition`, searchCondition);
-    console.log(searchCondition);
+    const retrieveCall = axios.get(`/productBase/all`);
     Promise.all([retrieveCall])
       .then(([response1]) => {
         console.log(response1);
@@ -130,10 +113,8 @@ const ProductList = () => {
         title={'상품 목록'}
         secondary={
           <>
-            <TextField id='searchConditionProductName' name='searchConditionProductName' placeholder='상품명'
-                       size={'small'} onChange={(newValue) => searchConditionChange(newValue)} />
             <Button variant='outlined' color='primary' onClick={handleReload}>
-              조회
+              재조회
             </Button>
             {permission.includes(10) ? (
               <Button variant='outlined' color='primary' onClick={() => handleOpen()}>
@@ -143,7 +124,7 @@ const ProductList = () => {
           </>
         }
       >
-        <ProductListTable title={'상품 내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
+        <CommonSortTable title={'상품 내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
         maxWidth='md'

@@ -4,12 +4,12 @@ import { Button, Dialog, TextField } from '@mui/material';
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import axios from 'axios';
+import MemberDetailModal from '../../sections/employee/MemberDetailModal';
 import { PopupTransition } from '../../components/@extended/Transitions';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import EmployeeDetailModal from '../../sections/employee/EmployeeDetailModal';
 import CommonSortTable from '../../components/CommonSortTable';
 
-const EmployeeList = () => {
+const MemberList = () => {
   // states
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -44,12 +44,6 @@ const EmployeeList = () => {
         accessor: 'state'
       },
       {
-        Header: '직책',
-        Footer: '직책',
-        dataType: 'text',
-        accessor: 'role'
-      },
-      {
         Header: '성별',
         Footer: '성별',
         dataType: 'text',
@@ -61,6 +55,7 @@ const EmployeeList = () => {
         dataType: 'text',
         accessor: 'birth'
       }
+
     ],
     []
   );
@@ -70,7 +65,7 @@ const EmployeeList = () => {
   };
   const handleOpen = (row) => {
     if (row && row.values && permission.includes(20)) {
-      const retrieveCall = axios.get(`/empBase/${row.values.id}`);
+      const retrieveCall = axios.get(`/empBase/member/${row.values.id}`);
       Promise.all([retrieveCall])
         .then(([response1]) => {
           setSelectedData(response1.data);
@@ -86,7 +81,7 @@ const EmployeeList = () => {
   };
 
   useEffect(() => {
-    const retrieveCall = axios.get(`/empBase/all`);
+    const retrieveCall = axios.get(`/empBase/memberList`);
     Promise.all([retrieveCall])
       .then(([response1]) => {
         setData(response1.data);
@@ -103,7 +98,7 @@ const EmployeeList = () => {
     <div>
       <MainCard
         content={false}
-        title={'사원 목록'}
+        title={'회원 목록'}
         secondary={
           <>
             <Button variant='outlined' color='primary' onClick={handleReload}>
@@ -117,7 +112,7 @@ const EmployeeList = () => {
           </>
         }
       >
-        <CommonSortTable title={'직원 목록'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
+        <CommonSortTable title={'회원 목록'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
         maxWidth='md'
@@ -128,9 +123,9 @@ const EmployeeList = () => {
         aria-describedby='alert-dialog-slide-description'
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
-        <EmployeeDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
+        <MemberDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
       </Dialog>
     </div>
   );
 };
-export default EmployeeList;
+export default MemberList;

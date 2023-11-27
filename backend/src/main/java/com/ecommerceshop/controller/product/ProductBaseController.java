@@ -29,9 +29,9 @@ public class ProductBaseController {
         }
     }
 
-    @PostMapping("/byCondition")
-    public ResponseEntity<Iterable<ProductBase>> productBaseDocumentListSearch(ProductBase searchCondition) {
-        return ResponseEntity.ok(productBaseService.productBaseListSearch(searchCondition));
+    @GetMapping("/all")
+    public ResponseEntity<Iterable<ProductBase>> productBaseDocumentListSearch() {
+        return ResponseEntity.ok(productBaseService.productBaseListSearch());
     }
 
     @GetMapping("/{id}")

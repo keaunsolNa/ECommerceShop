@@ -22,8 +22,9 @@ public class MemberBase {
     @Field(type = FieldType.Keyword)
     private String state;
     private String name;
+    private String email;
     @Field(type = FieldType.Date, format = DateFormat.epoch_millis)
-    private String birthDate;
+    private Date birth;
     @Field(type = FieldType.Keyword)
     private String gender;
     @Field(type = FieldType.Keyword)

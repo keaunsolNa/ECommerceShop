@@ -10,7 +10,7 @@ import AuthGuard from 'utils/route-guard/AuthGuard';
 // Employee
 const EmployeeSelf = Loadable(lazy(() => import('pages/employee/EmployeeSelf')));
 const EmployeeList = Loadable(lazy(() => import('pages/employee/EmployeeList')));
-
+const MemberList = Loadable(lazy(() => import('pages/employee/MemberList')));
 // Product
 const ProductList = Loadable(lazy(() => import('pages/product/ProductList')));
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
@@ -45,6 +45,10 @@ const MainRoutes = {
             {
               path: 'list',
               element: <EmployeeList />
+            },
+            {
+              path: 'member',
+              element: <MemberList />
             }
           ]
         },

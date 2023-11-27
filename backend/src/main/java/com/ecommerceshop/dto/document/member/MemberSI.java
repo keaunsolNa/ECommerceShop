@@ -16,8 +16,6 @@ public class MemberSI {
 
     @Id
     private String id;
-    @Field(type = FieldType.Keyword)
-    private String userId;
     private String phoneNumber;
     private String cellNumber;
     @Field(type = FieldType.Keyword)
