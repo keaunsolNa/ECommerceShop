@@ -46,7 +46,6 @@ public class SettingUserRole {
             case "사용자":
 
                 UserRole userRole5 = new UserRole();
-                ;
                 userRole5.setEmpId(id);
                 userRole5.setAuthorityCode(0);
                 userRoleList.add(userRole5);

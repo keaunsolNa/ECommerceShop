@@ -25,4 +25,10 @@ module.exports = function(app) {
       changeOrigin: true
     })
   );
+  app.use(
+    createProxyMiddleware('/memberBase', {
+      target: 'http://localhost:8080', // employee 프록시
+      changeOrigin: true
+    })
+  );
 };
