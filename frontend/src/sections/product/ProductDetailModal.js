@@ -139,11 +139,11 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
   }, []);
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
   if (loading) return <Loader />;
   return (
     <MainCard
-      title='상품 카드'
+      title={isInsert ? '상품 카드 등록' : '상품 카드 수정'}
       secondary={
         <Stack direction={'row'} spacing={2}>
           {isInsert ? null : (

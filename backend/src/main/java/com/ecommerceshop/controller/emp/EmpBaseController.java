@@ -55,7 +55,7 @@ public class EmpBaseController {
     public MemberDTO memberBaseDocumentSearchById(@PathVariable String id) {
 
         try {
-            return ResponseEntity.ok(empBaseService.memberBaseDocumemtSearchById(id)).getBody();
+            return ResponseEntity.ok(empBaseService.memberBaseDocumentSearchById(id)).getBody();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

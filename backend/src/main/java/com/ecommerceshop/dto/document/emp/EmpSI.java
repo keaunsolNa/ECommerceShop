@@ -17,10 +17,18 @@ public class EmpSI {
     @Id
     private String id;
     private String phoneNumber;
+    private String frontPhoneNumber;
+    private String middlePhoneNumber;
+    private String lastPhoneNumber;
     private String callNumber;
+    private String frontCallNumber;
+    private String middleCallNumber;
+    private String lastCallNumber;
     @Field(type = FieldType.Keyword)
     private String password;
+    private String zipCode;
     private String address;
+    private String detailAddress;
     @Field(type = FieldType.Keyword)
     private String salt;
 }

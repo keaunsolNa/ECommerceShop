@@ -17,8 +17,16 @@ public class EmpBaseDTO {
     private Date birth;
     private Date createDate;
     private String phoneNumber;
+    private String frontPhoneNumber;
+    private String middlePhoneNumber;
+    private String lastPhoneNumber;
     private String callNumber;
+    private String frontCallNumber;
+    private String middleCallNumber;
+    private String lastCallNumber;
     private String fileId;
+    private String zipCode;
     private String address;
+    private String detailAddress;
 
 }

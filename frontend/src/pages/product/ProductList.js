@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Button, Dialog, TextField } from '@mui/material';
+import { Button, Dialog } from '@mui/material';
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import axios from 'axios';
@@ -19,54 +19,15 @@ const ProductList = () => {
   const permission = useLocalStorage('role')[0];
   const columns = useMemo(
     () => [
-      {
-        Header: 'ID',
-        Footer: 'ID',
-        dataType: 'id',
-        accessor: 'id'
-      },
-      {
-        Header: '상태',
-        Footer: '상태',
-        dataType: 'text',
-        accessor: 'state'
-      },
-      {
-        Header: '이름',
-        Footer: '이름',
-        dataType: 'text',
-        accessor: 'name'
-      },
-      {
-        Header: '가격',
-        Footer: '가격',
-        dataType: 'text',
-        accessor: 'price'
-      },
-      {
-        Header: '재고',
-        Footer: '재고',
-        dataType: 'text',
-        accessor: 'amount'
-      },
-      {
-        Header: '조회수',
-        Footer: '조회수',
-        dataType: 'text',
-        accessor: 'viewCount'
-      },
-      {
-        Header: '설명',
-        Footer: '설명',
-        dataType: 'text',
-        accessor: 'desc'
-      },
-      {
-        Header: '생성일',
-        Footer: '생성일',
-        dataType: 'date',
-        accessor: 'createDate'
-      }
+      { Header: '#', accessor: (row, index) => index + 1 },
+      { Header: 'ID', accessor: 'id' },
+      { Header: '상태', accessor: 'state' },
+      { Header: '이름', accessor: 'name' },
+      { Header: '가격', accessor: 'price' },
+      { Header: '재고', accessor: 'amount' },
+      { Header: '조회수', accessor: 'viewCount' },
+      { Header: '설명', accessor: 'desc' },
+      { Header: '생성일', accessor: 'createDate' }
     ],
     []
   );

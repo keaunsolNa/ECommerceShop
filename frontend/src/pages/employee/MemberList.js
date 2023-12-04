@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Button, Dialog, TextField } from '@mui/material';
+import { Button, Dialog } from '@mui/material';
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import axios from 'axios';
@@ -19,43 +19,13 @@ const MemberList = () => {
   const permission = useLocalStorage('role')[0];
   const columns = useMemo(
     () => [
-      {
-        Header: 'ID',
-        Footer: 'ID',
-        dataType: 'id',
-        accessor: 'id'
-      },
-      {
-        Header: '이름',
-        Footer: '이름',
-        dataType: 'text',
-        accessor: 'name'
-      },
-      {
-        Header: '이메일',
-        Footer: '이메일',
-        dataType: 'text',
-        accessor: 'email'
-      },
-      {
-        Header: '상태',
-        Footer: '상태',
-        dataType: 'text',
-        accessor: 'state'
-      },
-      {
-        Header: '성별',
-        Footer: '성별',
-        dataType: 'text',
-        accessor: 'gender'
-      },
-      {
-        Header: '생년월일',
-        Footer: '생년월일',
-        dataType: 'text',
-        accessor: 'birth'
-      }
-
+      { Header: '#', accessor: (row, index) => index + 1 },
+      { Header: 'ID', accessor: 'id' },
+      { Header: '이름', accessor: 'name' },
+      { Header: '이메일', accessor: 'email' },
+      { Header: '상태', accessor: 'state' },
+      { Header: '성별', accessor: 'gender' },
+      { Header: '생년월일', accessor: 'birth' }
     ],
     []
   );
@@ -101,9 +71,6 @@ const MemberList = () => {
         title={'회원 목록'}
         secondary={
           <>
-            <Button variant='outlined' color='primary' onClick={handleReload}>
-              재조회
-            </Button>
             {permission.includes(20) ? (
               <Button variant='outlined' color='primary' onClick={() => handleOpen()}>
                 인사 카드 생성

@@ -80,13 +80,21 @@ public class EmpBaseService {
         empBaseDTO.setEmail(empBase.getEmail());
         empBaseDTO.setName(empBase.getName());
         empBaseDTO.setBirth(empBase.getBirth());
+        empBaseDTO.setZipCode(empSI.getZipCode());
+        empBaseDTO.setDetailAddress(empSI.getDetailAddress());
         empBaseDTO.setAddress(empSI.getAddress());
         empBaseDTO.setGender(empBase.getGender());
         empBaseDTO.setRole(empBase.getRole());
         empBaseDTO.setState(empBase.getState());
         empBaseDTO.setFileId(empBase.getFileId());
         empBaseDTO.setCallNumber(empSI.getCallNumber());
+        empBaseDTO.setFrontPhoneNumber(empSI.getFrontPhoneNumber());
+        empBaseDTO.setMiddleCallNumber(empSI.getMiddleCallNumber());
+        empBaseDTO.setLastCallNumber(empSI.getLastCallNumber());
         empBaseDTO.setPhoneNumber(empSI.getPhoneNumber());
+        empBaseDTO.setFrontCallNumber(empSI.getFrontCallNumber());
+        empBaseDTO.setMiddlePhoneNumber(empSI.getMiddlePhoneNumber());
+        empBaseDTO.setLastPhoneNumber(empSI.getLastPhoneNumber());
         empBaseDTO.setCreateDate(commonModule.parsingDate(empBase.getCreateDate()));
 
         return empBaseDTO;
@@ -101,7 +109,7 @@ public class EmpBaseService {
     }
 
     // 아이디로 회원 상세 조회
-    public MemberDTO memberBaseDocumemtSearchById(String id) throws Exception {
+    public MemberDTO memberBaseDocumentSearchById(String id) throws Exception {
 
         MemberBase memberBase = memberBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
         MemberSI memberSI = memberSIRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
@@ -132,9 +140,18 @@ public class EmpBaseService {
 
         empBase.setEmail(empBaseDTO.getEmail() != null ? empBaseDTO.getEmail() : empBase.getEmail());
         empBase.setName(empBaseDTO.getName() != null ? empBaseDTO.getName() : empBase.getName());
-        empBase.setFileId(empBaseDTO.getFileId().split(",")[1]);
-        empSI.setPhoneNumber(empBaseDTO.getPhoneNumber() != null ? empBaseDTO.getPhoneNumber() : empSI.getPhoneNumber());
-        empSI.setCallNumber(empBaseDTO.getCallNumber() != null ? empBaseDTO.getCallNumber() : empSI.getCallNumber());
+        empBase.setFileId(empBaseDTO.getFileId() != null ? empBaseDTO.getFileId().split(",")[1] : empBaseDTO.getFileId());
+
+        empSI.setPhoneNumber(empBaseDTO.getPhoneNumber() != null ? empBaseDTO.getFrontPhoneNumber() + "-" + empBaseDTO.getMiddlePhoneNumber() + "-" + empBaseDTO.getLastPhoneNumber() : empSI.getPhoneNumber());
+        empSI.setFrontPhoneNumber(empBaseDTO.getFrontPhoneNumber());
+        empSI.setMiddlePhoneNumber(empBaseDTO.getMiddlePhoneNumber());
+        empSI.setLastPhoneNumber(empBaseDTO.getLastPhoneNumber());
+
+        empSI.setCallNumber(empBaseDTO.getFrontCallNumber() + "-" + (empBaseDTO.getMiddleCallNumber() != null ? empBaseDTO.getMiddleCallNumber() : "") + "-" + (empBaseDTO.getLastCallNumber() != null ? empBaseDTO.getLastCallNumber() : ""));
+        empSI.setFrontCallNumber(empBaseDTO.getFrontCallNumber());
+        empSI.setMiddleCallNumber(empBaseDTO.getMiddleCallNumber() != null ? empBaseDTO.getMiddleCallNumber() : "");
+        empSI.setLastCallNumber(empBaseDTO.getLastCallNumber() != null ? empBaseDTO.getLastCallNumber() : "");
+
         empSI.setAddress(empBaseDTO.getAddress() != null ? empBaseDTO.getAddress() : empSI.getAddress());
 
         if (!empBaseDTO.getRole().equals(empBase.getRole())) {

@@ -7,36 +7,44 @@ import {
   FormControl,
   FormHelperText,
   Grid,
-  IconButton,
+  IconButton, InputAdornment,
   InputLabel,
   ListItemText,
   MenuItem,
   Select,
   Stack,
   TextField,
-  Typography
+  Typography,
+  Dialog
 } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
 import ScrollX from '../../components/ScrollX'
-import { CloseOutlined, DeleteFilled } from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 import MainCard from 'components/MainCard';
+import AnimateButton from 'components/@extended/AnimateButton';
+import { PopupTransition } from '../../components/@extended/Transitions';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import SearchIcon from '@mui/icons-material/Search';
 import DeleteModal from '../../pages/common/DeleteModal';
 import PropTypes from 'prop-types';
-
+import SearchAddressModal from '../../components/search/SearchAddressModal';
+import DaumPostcode from 'react-daum-postcode';
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
   const [loading, setLoading] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
   const [userRoleList, setUserRoleList] = useState(['일반관리자']);
   const [userStateList, setUserStateList] = useState(['가입 대기']);
+  const [findAddressOpen, setFindAddressOpen] = useState(false);
   const isInsert = selectedData.id === undefined;
-  const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
-  const callNumberRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
+  const [searchCondition, setSearchCondition] = useState({
+    zipCode: '',
+    address: ''
+  });
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('ID는 필수값입니다.'),
     password: !isInsert
@@ -57,16 +65,38 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     gender: Yup.string().max(2).required('성별은 필수값입니다.'),
     role: Yup.string().max(10).required('사용자 직책은 필수입니다.'),
     birth: Yup.date().max(new Date(), '생년월일은 오늘 이전이어야 합니다.').required('생년월일을 입력하세요'),
-    phoneNumber: Yup.string()
-      .max(13)
-      .matches(phoneNumberRegex, '올바른 핸드폰 번호 형식이 아닙니다. (XXX-XXXX-XXXX)')
-      .required('휴대폰 번호는 필수입니다.'),
-    callNumber: !isInsert
-      ? Yup.string().max(13).matches(callNumberRegex, '올바른 전화번호 형식이 아닙니다. (XX-XXXX-XXXX 또는 XXX-XXX-XXXX)')
-      : Yup.string(),
-    address: Yup.string().max(200)
+    frontPhoneNumber: Yup.string()
+      .max(3)
+      .matches(/^(010|011|016)$/, '올바른 휴대폰 번호를 입력하세요.')
+      .required('통신사 번호는 필수입니다.'),
+    middlePhoneNumber: Yup.string()
+      .max(4)
+      .matches(/^\d{4}$/, '올바른 중간 번호를 입력하세요.')
+      .required('휴대폰 번호를 입력하세요.'),
+    frontCallNumber: Yup.string()
+      .max(3)
+      .matches(/^(02|031|033)$/, '올바른 휴대폰 번호를 입력하세요.'),
+    middleCallNumber: Yup.string()
+      .max(4)
+      .matches(/^\d{4}$/, '올바른 중간 번호를 입력하세요.'),
+    lastCallNumber: Yup.string()
+      .max(4)
+      .matches(/^\d{4}$/, '올바른 끝 번호를 입력하세요.'),
+    zipCode: Yup.string(),
+    address: Yup.string().max(200),
+    detailAddress: Yup.string().max(200)
   });
 
+  const handleFindAddressOpen = (row) => {
+    if (row?.values && !isInsert) {
+      selectedData.address = row.values.address;
+      selectedData.zipCode = row.values.zipCode;
+    } else if (row?.values && isInsert) {
+      formik.setFieldValue('address', row.values.address);
+      formik.setFieldValue('zipCode', row.values.zipCode);
+    }
+    setFindAddressOpen(!findAddressOpen);
+  };
   const getInitialValues = () => {
     return {
       id: isInsert ? '' : selectedData.id,
@@ -78,9 +108,15 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       gender: isInsert ? '' : selectedData.gender,
       role: isInsert ? '일반관리자' : selectedData?.role,
       birth: isInsert ? null : dayjs(new Date(selectedData.birth)),
-      phoneNumber: isInsert ? '' : selectedData.phoneNumber,
-      callNumber: isInsert ? '' : selectedData?.callNumber,
-      address: isInsert ? '' : selectedData?.address
+      frontPhoneNumber: isInsert ? '010' : selectedData.frontPhoneNumber,
+      middlePhoneNumber: isInsert ? '' : selectedData.middlePhoneNumber,
+      lastPhoneNumber: isInsert ? '' : selectedData.lastPhoneNumber,
+      frontCallNumber: isInsert ? '02' : selectedData?.frontCallNumber,
+      middleCallNumber: isInsert ? '' : selectedData?.middleCallNumber,
+      lastCallNumber: isInsert ? '' : selectedData?.lastCallNumber,
+      zipCode: isInsert ? '' : selectedData?.zipCode,
+      address: isInsert ? '' : selectedData?.address,
+      detailAddress: isInsert ? '' : selectedData?.detailAddress
     };
   };
   const formik = useFormik({
@@ -98,10 +134,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         name: values.name,
         gender: values.gender,
         role: values.role,
-        birth: values.birth.format('YYYY-MM-DD'),
-        phoneNumber: values.phoneNumber,
-        callNumber: values?.callNumber,
-        address: values?.address
+        birth: values.birth,
+        frontPhoneNumber: values.frontPhoneNumber,
+        middlePhoneNumber : values.middlePhoneNumber,
+        lastPhoneNumber: values.lastPhoneNumber,
+        frontCallNumber: values?.frontCallNumber,
+        middleCallNumber: values?.middleCallNumber,
+        lastCallNumber: values?.lastCallNumber,
+        zipCode: values?.zipCode,
+        address: values?.address,
+        detailAddress: values?.detailAddress
       };
 
       if (values.id === '') {
@@ -171,25 +213,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
 
     Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
   }, []);
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
   if (loading) return <Loader />;
   return (
     <ScrollX>
       <MainCard
-        title='인사 기록 카드'
+        title={isInsert ? '인사 기록 카드 등록' : '인사 기록 카드 수정'}
         secondary={
-          <Stack direction={'row'} spacing={2}>
-            {isInsert ? null : (
-              <IconButton color='error' onClick={() => setDeleteModal(true)} size='small' sx={{ fontSize: '1.1rem' }}>
-                <DeleteFilled />
-              </IconButton>
-            )}
-            <IconButton color='secondary' onClick={() => handleOpen()} size='small' sx={{ fontSize: '1.1rem' }}>
-              <CloseOutlined />
-            </IconButton>
-            <DeleteModal title={'인사기록카드'} open={deleteModal} handleClose={() => setDeleteModal(!deleteModal)}
-                         deleteData={deleteData} />
-          </Stack>
+          <IconButton color='secondary' onClick={() => handleOpen()} size='small' sx={{ fontSize: '1.1rem' }}>
+            <CloseOutlined />
+          </IconButton>
         }
       >
         <FormikProvider value={formik}>
@@ -380,57 +413,215 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     />
                   </Stack>
                 </Grid>
-                <Grid item xs={12}>
-                  <Stack spacing={1.25}>
+                <Grid item xs={4}>
+                  <Stack spacing={1}>
                     <InputLabel>핸드폰 번호</InputLabel>
-                    <TextField
-                      fullWidth
-                      id='phoneNumber'
-                      {...getFieldProps('phoneNumber')}
-                      placeholder='핸드폰 번호를 입력하세요'
-                      onChange={formik.handleChange}
-                      error={Boolean(touched.phoneNumber && errors.phoneNumber)}
-                      helperText={touched.phoneNumber && errors.phoneNumber}
-                    />
+                    <FormControl fullWidth>
+                      <Select
+                        id='frontPhoneNumber'
+                        {...getFieldProps('frontPhoneNumber')}
+                        placeholder='통신사 종류'
+                        onChange={formik.handleChange}
+                        defaultValue={'010'}
+                        renderValue={(selected) => {
+                          if (!selected) {
+                            return <Typography variant='subtitle1'>Select Status</Typography>;
+                          }
+
+                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                        }}
+                      >
+                        <MenuItem value='010'>
+                          <Chip color='primary' label='010' size='small' variant='light' />
+                        </MenuItem>
+                        <MenuItem value='011'>
+                          <Chip color='primary' label='011' size='small' variant='light' />
+                        </MenuItem>
+                        <MenuItem value='016'>
+                          <Chip color='primary' label='016' size='small' variant='light' />
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
+                    {touched.frontPhoneNumber && errors.frontPhoneNumber && (
+                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                        {errors.frontPhoneNumber}
+                      </FormHelperText>
+                    )}
                   </Stack>
                 </Grid>
-                <Grid item xs={12}>
-                  <Stack spacing={1.25}>
+                <Grid item xs={4}>
+                  <TextField
+                    fullWidth
+                    id='middlePhoneNumber'
+                    {...getFieldProps('middlePhoneNumber')}
+                    placeholder='핸드폰 번호를 입력하세요'
+                    onChange={formik.handleChange}
+                    error={Boolean(touched.middlePhoneNumber && errors.middlePhoneNumber)}
+                    helperText={touched.middlePhoneNumber && errors.middlePhoneNumber}
+                    sx={{ mb: { xs: -0.5, sm: 0.5 }, marginTop: 3 }}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <TextField
+                    fullWidth
+                    id='lastPhoneNumber'
+                    {...getFieldProps('lastPhoneNumber')}
+                    placeholder='핸드폰 번호를 입력하세요'
+                    onChange={formik.handleChange}
+                    error={Boolean(touched.lastPhoneNumber && errors.lastPhoneNumber)}
+                    helperText={touched.lastPhoneNumber && errors.lastPhoneNumber}
+                    sx={{ mb: { xs: -0.5, sm: 0.5 }, marginTop: 3 }}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <Stack spacing={1}>
                     <InputLabel>집 전화 번호</InputLabel>
-                    <TextField
-                      fullWidth
-                      id='callNumber'
-                      {...getFieldProps('callNumber')}
-                      placeholder='자택번호를 입력하세요'
-                      onChange={formik.handleChange}
-                      error={Boolean(touched.callNumber && errors.callNumber)}
-                      helperText={touched.callNumber && errors.callNumber}
-                    />
+                    <FormControl fullWidth>
+                      <Select
+                        id='frontCallNumber'
+                        {...getFieldProps('frontCallNumber')}
+                        placeholder='지역번호'
+                        onChange={formik.handleChange}
+                        defaultValue={'02'}
+                        renderValue={(selected) => {
+                          if (!selected) {
+                            return <Typography variant='subtitle1'>지역 번호</Typography>;
+                          }
+
+                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                        }}
+                      >
+                        <MenuItem value='02'>
+                          <Chip color='primary' label='02' size='small' variant='light' />
+                        </MenuItem>
+                        <MenuItem value='031'>
+                          <Chip color='primary' label='031' size='small' variant='light' />
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
+                    {touched.frontCallNumber && errors.frontCallNumber && (
+                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                        {errors.frontCallNumber}
+                      </FormHelperText>
+                    )}
                   </Stack>
                 </Grid>
-                <Grid item xs={12}>
-                  <Stack spacing={1.25}>
+                <Grid item xs={4}>
+                  <TextField
+                    fullWidth
+                    id='middleCallNumber'
+                    {...getFieldProps('middleCallNumber')}
+                    placeholder='집 전화번호를 입력하세요'
+                    onChange={formik.handleChange}
+                    error={Boolean(touched.middleCallNumber && errors.middleCallNumber)}
+                    helperText={touched.middleCallNumber && errors.middleCallNumber}
+                    sx={{ mb: { xs: -0.5, sm: 0.5 }, marginTop: 3 }}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <TextField
+                    fullWidth
+                    id='lastCallNumber'
+                    {...getFieldProps('lastCallNumber')}
+                    placeholder='집 전화번호를 입력하세요'
+                    onChange={formik.handleChange}
+                    error={Boolean(touched.lastCallNumber && errors.lastCallNumber)}
+                    helperText={touched.lastCallNumber && errors.lastCallNumber}
+                    sx={{ mb: { xs: -0.5, sm: 0.5 }, marginTop: 3 }}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <Stack spacing={1}>
                     <InputLabel>주소</InputLabel>
                     <TextField
                       fullWidth
-                      id='address'
-                      {...getFieldProps('address')}
+                      id='zipCode'
+                      {...getFieldProps('zipCode')}
                       placeholder='주소를 입력하세요'
+                      disable={true}
                       onChange={formik.handleChange}
-                      error={Boolean(touched.address && errors.address)}
-                      helperText={touched.address && errors.address}
+                      error={Boolean(touched.zipCode && errors.zipCode)}
+                      helperText={touched.zipCode && errors.zipCode}
                     />
                   </Stack>
                 </Grid>
-                <Grid item xs={12}>
-                  <Button fullWidth variant='contained' color='error' type='button' onClick={handleOpen}>
-                    닫기
-                  </Button>
+                <Grid item xs={4}>
+                  <TextField
+                    fullWidth
+                    id='address'
+                    {...getFieldProps('address')}
+                    placeholder='주소를 입력하세요'
+                    onChange={formik.handleChange}
+                    error={Boolean(touched.address && errors.address)}
+                    helperText={touched.address && errors.address}
+                    sx={{ mb: { xs: -0.5, sm: 0.5 }, marginTop: 3 }}
+                    InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                        <IconButton color="primary" aria-label="Search" onClick={handleFindAddressOpen}>
+                        <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                      )
+                    }}
+                  />
+                  <Dialog
+                  maxWidth="md"
+                  TransitionComponent={PopupTransition}
+                  onClose={() => handleFindAddressOpen()}
+                  open={findAddressOpen}
+                  sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
+                  aria-describedby="alert-dialog-slide-description"
+                  slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
+                  >
+                  {/*<SearchAddressModal*/}
+                  {/*searchCondition={searchCondition}*/}
+                  {/*setSearchCondition={setSearchCondition}*/}
+                  {/*handleReload={handleReload}*/}
+                  {/*handleOpen={handleFindAddressOpen}*/}
+                  {/*/>*/}
+                    <DaumPostcode
+                      onComplete={handleFindAddressOpen}  // 값을 선택할 경우 실행되는 이벤트
+                      autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                      defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어
+                    />
+                </Dialog>
                 </Grid>
-                <Grid item xs={12}>
-                  <Button fullWidth variant='contained' type='submit' disabled={isSubmitting}>
-                    저장
-                  </Button>
+                <Grid item xs={4}>
+                  <TextField
+                    fullWidth
+                    id='detailAddress'
+                    {...getFieldProps('detailAddress')}
+                    placeholder='주소를 입력하세요'
+                    onChange={formik.handleChange}
+                    error={Boolean(touched.detailAddress && errors.detailAddress)}
+                    helperText={touched.detailAddress && errors.detailAddress}
+                    sx={{ mb: { xs: -0.5, sm: 0.5 }, marginTop: 3 }}
+                  />
+                </Grid>
+                <Grid item pt={2} xs={12}>
+                  <Grid container justifyContent="flex-end" alignItems="center">
+                    <Grid item>
+                      <Stack direction="row" spacing={2} alignItems="center">
+                        {isInsert ? null : (
+                          <AnimateButton>
+                            <Button fullWidth variant="contained" type="button" color={'error'} onClick={() => setDeleteModal(true)}>
+                              삭제
+                            </Button>
+                           </AnimateButton>
+                        )}
+                        <DeleteModal
+                          title={'인사기록카드'}
+                          open={deleteModal}
+                          handleClose={() => setDeleteModal(!deleteModal)}
+                          deleteData={deleteData}
+                        />
+                        <Button fullWidth variant='contained' type='submit' disabled={isSubmitting}>
+                          저장
+                        </Button>
+                      </Stack>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </LocalizationProvider>

@@ -34,12 +34,20 @@ public class SettingEmpDocumentByDTO {
 
         EmpSI empSI = new EmpSI();
         empSI.setId(empBaseDTO.getId());
-        empSI.setPhoneNumber(empBaseDTO.getPhoneNumber());
-        empSI.setCallNumber(empBaseDTO.getCallNumber());
+        empSI.setPhoneNumber(empBaseDTO.getFrontPhoneNumber() + "-" + empBaseDTO.getMiddlePhoneNumber() + "-" + empBaseDTO.getLastPhoneNumber());
+        empSI.setFrontPhoneNumber(empBaseDTO.getFrontPhoneNumber());
+        empSI.setMiddlePhoneNumber(empBaseDTO.getMiddlePhoneNumber());
+        empSI.setLastPhoneNumber(empBaseDTO.getLastPhoneNumber());
+        empSI.setCallNumber(empBaseDTO.getFrontCallNumber() + "-" + empBaseDTO.getMiddleCallNumber() + "-" + empBaseDTO.getLastCallNumber());
+        empSI.setFrontCallNumber(empBaseDTO.getFrontCallNumber());
+        empSI.setMiddleCallNumber(empBaseDTO.getMiddleCallNumber());
+        empSI.setLastCallNumber(empBaseDTO.getLastCallNumber());
         String salt = Salt.makeSalt();
         empSI.setSalt(salt);
         empSI.setPassword(SHA512.SHA512(empBaseDTO.getPassword(), salt));
+        empSI.setZipCode(empBaseDTO.getZipCode());
         empSI.setAddress(empBaseDTO.getAddress());
+        empSI.setDetailAddress(empBaseDTO.getDetailAddress());
 
         return empSI;
     }
