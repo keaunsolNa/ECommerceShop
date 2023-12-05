@@ -31,7 +31,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteModal from '../../pages/common/DeleteModal';
 import PropTypes from 'prop-types';
-import SearchAddressModal from '../../components/search/SearchAddressModal';
 import DaumPostcode from 'react-daum-postcode';
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
@@ -41,10 +40,6 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const [userStateList, setUserStateList] = useState(['가입 대기']);
   const [findAddressOpen, setFindAddressOpen] = useState(false);
   const isInsert = selectedData.id === undefined;
-  const [searchCondition, setSearchCondition] = useState({
-    zipCode: '',
-    address: ''
-  });
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('ID는 필수값입니다.'),
     password: !isInsert
@@ -87,13 +82,13 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     detailAddress: Yup.string().max(200)
   });
 
-  const handleFindAddressOpen = (row) => {
-    if (row?.values && !isInsert) {
-      selectedData.address = row.values.address;
-      selectedData.zipCode = row.values.zipCode;
-    } else if (row?.values && isInsert) {
-      formik.setFieldValue('address', row.values.address);
-      formik.setFieldValue('zipCode', row.values.zipCode);
+  const handleFindAddressOpen = (data) => {
+    if (data && !isInsert) {
+      selectedData.address = data.roadAddress;
+      selectedData.zipCode = data.zonecode;
+    } else if (data && isInsert) {
+      formik.setFieldValue('address', data.roadAddress);
+      formik.setFieldValue('zipCode', data.zonecode);
     }
     setFindAddressOpen(!findAddressOpen);
   };
@@ -537,7 +532,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                       fullWidth
                       id='zipCode'
                       {...getFieldProps('zipCode')}
-                      placeholder='주소를 입력하세요'
+                      placeholder='우편번호를 입력하세요'
                       disable={true}
                       onChange={formik.handleChange}
                       error={Boolean(touched.zipCode && errors.zipCode)}
@@ -574,17 +569,13 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   aria-describedby="alert-dialog-slide-description"
                   slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
                   >
-                  {/*<SearchAddressModal*/}
-                  {/*searchCondition={searchCondition}*/}
-                  {/*setSearchCondition={setSearchCondition}*/}
-                  {/*handleReload={handleReload}*/}
-                  {/*handleOpen={handleFindAddressOpen}*/}
-                  {/*/>*/}
-                    <DaumPostcode
-                      onComplete={handleFindAddressOpen}  // 값을 선택할 경우 실행되는 이벤트
-                      autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                      defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어
-                    />
+                  <DaumPostcode
+                    onComplete={(data) => handleFindAddressOpen(data)}  // 값을 선택할 경우 실행되는 이벤트
+                    autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                    defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어
+                    width={500}
+                    height="300px"
+                  />
                 </Dialog>
                 </Grid>
                 <Grid item xs={4}>

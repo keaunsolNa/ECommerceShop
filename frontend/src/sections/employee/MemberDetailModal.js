@@ -169,7 +169,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
   }, []);
   
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
   if (loading) return <Loader />;
   return (
     <ScrollX>

@@ -21,13 +21,11 @@ import Loader from '../../components/Loader';
 import ScrollX from '../../components/ScrollX'
 import MainCard from 'components/MainCard';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import PropTypes from 'prop-types';
 
 const CreateMemberAccount = () => {
   // states
   const [loading, setLoading] = useState(true);
   const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
-  const callNumberRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('ID는 필수값입니다.'),
     password: Yup.string()
@@ -109,7 +107,7 @@ const CreateMemberAccount = () => {
   useEffect(() => {
     Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
   }, []);
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
   if (loading) return <Loader />;
   return (
     <ScrollX>
