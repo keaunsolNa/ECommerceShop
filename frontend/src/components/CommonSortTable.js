@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 // material-ui
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Grid, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 // third-party
 import { useFilters, useGlobalFilter, useSortBy, useTable } from 'react-table';
@@ -38,7 +38,7 @@ function CommonBasicTable({ columns, data, striped, handleOpen }) {
   );
 
   return (
-    <>
+    <Grid style={{ display: 'flex', flexDirection: 'column' }}>
       <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
@@ -78,7 +78,7 @@ function CommonBasicTable({ columns, data, striped, handleOpen }) {
           })}
         </TableBody>
       </Table>
-    </>
+    </Grid>
   );
 }
 

@@ -74,9 +74,6 @@ const ProductList = () => {
         title={'상품 목록'}
         secondary={
           <>
-            <Button variant='outlined' color='primary' onClick={handleReload}>
-              재조회
-            </Button>
             {permission.includes(10) ? (
               <Button variant='outlined' color='primary' onClick={() => handleOpen()}>
                 신규 상품 생성
