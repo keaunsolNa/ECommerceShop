@@ -38,12 +38,6 @@ public class EmpBaseController {
         return ResponseEntity.ok(empBaseService.empBaseDocumentListSearch());
     }
 
-    // id로 중복 체크
-    @GetMapping("/dupCheck/{id}")
-    public boolean empIdDupCheck(@PathVariable String id) {
-        return empBaseService.empBaseDupCheck(id);
-    }
-
     // id로 상세 조회
     @GetMapping("/{id}")
     public EmpBaseDTO empBaseDocumentSearchById(@PathVariable String id) {

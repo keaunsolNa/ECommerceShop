@@ -9,7 +9,6 @@ import { dispatch, useSelector } from 'store';
 // project import
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
-import DynamicTable from 'components/win/DynamicTable';
 import { dispatchRetrieveByDepartment } from 'store/reducers/organization';
 
 // assets
@@ -109,13 +108,13 @@ const OrganizationMember = () => {
         </Grid>
         <Grid item xs={8} sx={{ mb: -2.25 }}>
           <MainCard sx={{ mt: 2 }} content={false}>
-            <DynamicTable
-              name={'조직원조회'}
-              columns={column}
-              data={organizationMember.retrieve}
-              tableType={tableType}
-              popups={'http://localhost:3000/hrinfo/basic'}
-            />
+            {/*<DynamicTable*/}
+            {/*  name={'조직원조회'}*/}
+            {/*  columns={column}*/}
+            {/*  data={organizationMember.retrieve}*/}
+            {/*  tableType={tableType}*/}
+            {/*  popups={'http://localhost:3000/hrinfo/basic'}*/}
+            {/*/>*/}
           </MainCard>
         </Grid>
       </Grid>

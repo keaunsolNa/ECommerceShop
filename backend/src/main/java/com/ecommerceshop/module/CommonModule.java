@@ -131,6 +131,7 @@ public class CommonModule {
             if (searchHit.getIndex().equals("emp-base")) {
 
                 EmpBase empBase = (EmpBase) searchHit.getContent();
+                empBase.setBirth(parsingDate(empBase.getBirth()));
                 resultSet.add(empBase);
 
             } else if (searchHit.getIndex().equals("user-role")) {
@@ -141,11 +142,13 @@ public class CommonModule {
             } else if (searchHit.getIndex().equals("product-base")) {
 
                 ProductBase productBase = (ProductBase) searchHit.getContent();
+                productBase.setCreateDate(parsingDate(productBase.getCreateDate()));
                 resultSet.add(productBase);
 
             } else if (searchHit.getIndex().equals("member-base")) {
 
                 MemberBase memberBase = (MemberBase) searchHit.getContent();
+                memberBase.setBirth(parsingDate(memberBase.getBirth()));
                 resultSet.add(memberBase);
             }
 

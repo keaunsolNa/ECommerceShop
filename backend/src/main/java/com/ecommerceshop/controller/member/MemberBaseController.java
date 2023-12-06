@@ -20,6 +20,7 @@ public class MemberBaseController {
     @Autowired
     public MemberBaseController(MemberBaseService memberBaseService) { this.memberBaseService = memberBaseService; }
 
+    // 회원 가입
     @PostMapping()
     public ResponseEntity<MemberBase> memberBaseDocumentCreate(@RequestBody MemberDTO memberDTO) {
 

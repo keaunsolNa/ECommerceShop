@@ -17,10 +17,18 @@ public class MemberSI {
     @Id
     private String id;
     private String phoneNumber;
+    private String frontPhoneNumber;
+    private String middlePhoneNumber;
+    private String lastPhoneNumber;
     private String cellNumber;
+    private String frontCallNumber;
+    private String middleCallNumber;
+    private String lastCallNumber;
     @Field(type = FieldType.Keyword)
     private String password;
     @Field(type = FieldType.Keyword)
     private String salt;
+    private String zipCode;
     private String address;
+    private String detailAddress;
 }

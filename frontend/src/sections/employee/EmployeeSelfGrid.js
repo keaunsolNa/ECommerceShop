@@ -134,7 +134,8 @@ const EmployeeSelfGrid = ({ data }) => {
                               '& .MuiOutlinedInput-input': { py: 0.75, px: 1, width: { xs: 80 } },
                               '& .MuiOutlinedInput-notchedOutline': { border: 'none' }
                             }}
-                            disabled={true}
+                            disableOpenPicker={true}
+                            readOnly={true}
                           />
                         </LocalizationProvider>
                       </Stack>

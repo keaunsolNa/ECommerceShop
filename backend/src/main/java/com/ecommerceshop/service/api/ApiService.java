@@ -2,10 +2,13 @@ package com.ecommerceshop.service.api;
 
 import com.ecommerceshop.dto.document.aut.Authority;
 import com.ecommerceshop.dto.document.aut.UserRole;
+import com.ecommerceshop.dto.document.emp.EmpBase;
+import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.dto.document.product.Categories;
 import com.ecommerceshop.repository.aut.AuthorityRepository;
 import com.ecommerceshop.repository.aut.UserRoleRepository;
 import com.ecommerceshop.repository.emp.EmpBaseRepository;
+import com.ecommerceshop.repository.member.MemberBaseRepository;
 import com.ecommerceshop.repository.product.CategoriesRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +20,18 @@ public class ApiService {
 
     private final AuthorityRepository authorityRepository;
     private final EmpBaseRepository empBaseRepository;
+    private final MemberBaseRepository memberBaseRepository;
     private final UserRoleRepository userRoleRepository;
     private final CategoriesRepository categoriesRepository;
 
     public ApiService(AuthorityRepository authorityRepository, UserRoleRepository userRoleRepository,
-                      EmpBaseRepository empBaseRepository, CategoriesRepository categoriesRepository) {
+                      EmpBaseRepository empBaseRepository, MemberBaseRepository memberBaseRepository,
+                      CategoriesRepository categoriesRepository) {
 
         this.authorityRepository = authorityRepository;
         this.userRoleRepository = userRoleRepository;
         this.empBaseRepository = empBaseRepository;
+        this.memberBaseRepository = memberBaseRepository;
         this.categoriesRepository = categoriesRepository;
     }
 
@@ -81,5 +87,24 @@ public class ApiService {
         }
 
         return categorieList;
+    }
+
+    // 아이디 중복 체크
+    public boolean idDupCheck(String id) {
+
+        boolean dupCheck = false;
+        try {
+            EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        } catch (Exception e) {
+
+            try {
+                MemberBase memberBase = memberBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+            } catch (Exception exception) {
+                dupCheck = true;
+            }
+        }
+
+        System.out.println(dupCheck);
+        return dupCheck;
     }
 }

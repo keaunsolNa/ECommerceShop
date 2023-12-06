@@ -61,7 +61,11 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     name: Yup.string().max(255).required('이름은 필수값입니다.'),
     gender: Yup.string().max(2).required('성별은 필수값입니다.'),
     role: Yup.string().max(10).required('사용자 직책은 필수입니다.'),
-    birth: Yup.date().max(new Date(), '생년월일은 오늘 이전이어야 합니다.').required('생년월일을 입력하세요'),
+    birth: Yup.date()
+      .nullable()
+      .max(new Date(), '생년월일은 오늘 이후여야 합니다')
+      .transform((v) => (v instanceof Date && !isNaN(v) ? v : null))
+      .required('생년월일은 필수입니다.'),
     frontPhoneNumber: Yup.string()
       .max(3)
       .matches(/^(010|011|016)$/, '올바른 휴대폰 번호를 입력하세요.')
@@ -96,15 +100,15 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   };
 
   const handleIdDupCheck = () => {
-    if(!formik.values.id) return;
-    const retrieveDupCall = axios.get(`/empBase/dupCheck/${formik.values.id}`);
+    if (!formik.values.id) return;
+    const retrieveDupCall = axios.get(`/api/dupCheck/${formik.values.id}`);
     Promise.all([retrieveDupCall])
       .then(([response]) => {
-        setDupCheck(!response.data)
+        setDupCheck(response.data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-      })
+      });
   };
   const getInitialValues = () => {
     return {
@@ -142,7 +146,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         name: values.name,
         gender: values.gender,
         role: values.role,
-        birth: values.birth,
+        birth: values.birth.format('YYYY-MM-DD'),
         frontPhoneNumber: values.frontPhoneNumber,
         middlePhoneNumber: values.middlePhoneNumber,
         lastPhoneNumber: values.lastPhoneNumber,
@@ -157,7 +161,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       if (values.id === '') {
         delete values.id;
       }
-      if(!dupCheck) return
+
+      console.log(data)
+      if (!dupCheck) return;
       const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase`, data);
       Promise.all([response1])
         .then(() => {
@@ -254,28 +260,28 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                       helperText={touched.id && errors.id}
                       disabled={!isInsert}
                       InputProps={
-                        isInsert && !dupCheck
-                          ? {
+                        isInsert && !dupCheck ? (
+                          {
                             endAdornment: (
                               <InputAdornment position="end">
-                                <Button color={dupCheck ? "success" : "error"} aria-label="Search" onClick={() => handleIdDupCheck()} >
+                                <Button color={dupCheck ? 'success' : 'error'} aria-label="Search" onClick={() => handleIdDupCheck()}>
                                   Id 중복체크
                                 </Button>
                               </InputAdornment>
                             )
                           }
-                          : <InputLabel  sx={{ color: 'success' }}>가입 가능</InputLabel>
+                        ) : (
+                          <InputLabel sx={{ color: 'success' }}>가입 가능</InputLabel>
+                        )
                       }
                     />
                   </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                <Stack spacing={1.25}>
-                  {!dupCheck && isInsert ? (
-                    <InputLabel  sx={{ color: 'red' }}>아이디 중복을 확인 하세요</InputLabel>
-                  ) : null}
-                </Stack>
-              </Grid>
+                  <Stack spacing={1.25}>
+                    {!dupCheck && isInsert ? <InputLabel sx={{ color: 'red' }}>아이디 중복을 확인 하세요</InputLabel> : null}
+                  </Stack>
+                </Grid>
                 <Grid item xs={12} style={{ display: !isInsert ? 'none' : 'block' }}>
                   <Stack spacing={1.25}>
                     <InputLabel htmlFor="password">Password</InputLabel>
@@ -443,6 +449,11 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                         formik.setFieldValue('birth', date);
                       }}
                     />
+                    {touched.birth && errors.birth && (
+                      <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
+                        {errors.birth}
+                      </FormHelperText>
+                    )}
                   </Stack>
                 </Grid>
                 <Grid item xs={4}>
@@ -570,7 +581,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                       id="zipCode"
                       {...getFieldProps('zipCode')}
                       placeholder="우편번호를 입력하세요"
-                      disable={true}
+                      disabled={true}
                       onChange={formik.handleChange}
                       error={Boolean(touched.zipCode && errors.zipCode)}
                       helperText={touched.zipCode && errors.zipCode}
