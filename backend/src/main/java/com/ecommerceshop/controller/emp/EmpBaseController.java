@@ -21,6 +21,7 @@ public class EmpBaseController {
         this.empBaseService = empBaseService;
     }
 
+    // 직원 카드 생성
     @PostMapping()
     public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBaseDTO empBaseDTO) {
 
@@ -31,11 +32,19 @@ public class EmpBaseController {
         }
     }
 
+    // 모든 직원 조회
     @GetMapping("/all")
     public ResponseEntity<Iterable<EmpBase>> empBaseDocumentListSearch() {
         return ResponseEntity.ok(empBaseService.empBaseDocumentListSearch());
     }
 
+    // id로 중복 체크
+    @GetMapping("/dupCheck/{id}")
+    public boolean empIdDupCheck(@PathVariable String id) {
+        return empBaseService.empBaseDupCheck(id);
+    }
+
+    // id로 상세 조회
     @GetMapping("/{id}")
     public EmpBaseDTO empBaseDocumentSearchById(@PathVariable String id) {
 
@@ -46,11 +55,13 @@ public class EmpBaseController {
         }
     }
 
+    // 회원 전체 조회
     @GetMapping("/memberList")
     public ResponseEntity<Iterable<MemberBase>>  memberBaseDocumentListSearch() {
         return ResponseEntity.ok(empBaseService.memberDocumentListSearch());
     }
 
+    // 회원 상세 조회
     @GetMapping("/memberList/{id}")
     public MemberDTO memberBaseDocumentSearchById(@PathVariable String id) {
 
@@ -60,6 +71,8 @@ public class EmpBaseController {
             throw new RuntimeException(e);
         }
     }
+    
+    // 직원 정보 수정
     @PatchMapping()
     public ResponseEntity<EmpBase> empBaseDocumentUpdate(@RequestBody EmpBaseDTO empBaseDTO) {
 
@@ -70,6 +83,7 @@ public class EmpBaseController {
         }
     }
 
+    // 직원 탈퇴 처리
     @DeleteMapping("/{id}")
     public ResponseEntity<EmpBase> empBaseDocumentDeleteById(@PathVariable String id) {
 

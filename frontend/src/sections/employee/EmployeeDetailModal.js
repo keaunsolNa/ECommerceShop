@@ -7,7 +7,8 @@ import {
   FormControl,
   FormHelperText,
   Grid,
-  IconButton, InputAdornment,
+  IconButton,
+  InputAdornment,
   InputLabel,
   ListItemText,
   MenuItem,
@@ -21,7 +22,7 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
-import ScrollX from '../../components/ScrollX'
+import ScrollX from '../../components/ScrollX';
 import { CloseOutlined } from '@ant-design/icons';
 import MainCard from 'components/MainCard';
 import AnimateButton from 'components/@extended/AnimateButton';
@@ -39,6 +40,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const [userRoleList, setUserRoleList] = useState(['일반관리자']);
   const [userStateList, setUserStateList] = useState(['가입 대기']);
   const [findAddressOpen, setFindAddressOpen] = useState(false);
+  const [dupCheck, setDupCheck] = useState(false);
   const isInsert = selectedData.id === undefined;
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('ID는 필수값입니다.'),
@@ -92,6 +94,18 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     }
     setFindAddressOpen(!findAddressOpen);
   };
+
+  const handleIdDupCheck = () => {
+    if(!formik.values.id) return;
+    const retrieveDupCall = axios.get(`/empBase/dupCheck/${formik.values.id}`);
+    Promise.all([retrieveDupCall])
+      .then(([response]) => {
+        setDupCheck(!response.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      })
+  };
   const getInitialValues = () => {
     return {
       id: isInsert ? '' : selectedData.id,
@@ -119,7 +133,6 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     initialValues: getInitialValues(),
     validationSchema: employeeSchema,
     onSubmit: async (values) => {
-
       const data = {
         id: values.id,
         password: values?.password,
@@ -131,7 +144,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         role: values.role,
         birth: values.birth,
         frontPhoneNumber: values.frontPhoneNumber,
-        middlePhoneNumber : values.middlePhoneNumber,
+        middlePhoneNumber: values.middlePhoneNumber,
         lastPhoneNumber: values.lastPhoneNumber,
         frontCallNumber: values?.frontCallNumber,
         middleCallNumber: values?.middleCallNumber,
@@ -144,6 +157,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       if (values.id === '') {
         delete values.id;
       }
+      if(!dupCheck) return
       const response1 = isInsert ? axios.post('/empBase', data) : axios.patch(`/empBase`, data);
       Promise.all([response1])
         .then(() => {
@@ -215,13 +229,13 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       <MainCard
         title={isInsert ? '인사 기록 카드 등록' : '인사 기록 카드 수정'}
         secondary={
-          <IconButton color='secondary' onClick={() => handleOpen()} size='small' sx={{ fontSize: '1.1rem' }}>
+          <IconButton color="secondary" onClick={() => handleOpen()} size="small" sx={{ fontSize: '1.1rem' }}>
             <CloseOutlined />
           </IconButton>
         }
       >
         <FormikProvider value={formik}>
-          <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
+          <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Grid container spacing={2.5}>
                 <Grid item xs={12}>
@@ -229,24 +243,47 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>아이디</InputLabel>
                     <TextField
                       fullWidth
-                      id='id'
+                      id="id"
                       {...getFieldProps('id')}
-                      placeholder='ID'
-                      onChange={formik.handleChange}
+                      placeholder="ID"
+                      onChange={(event) => {
+                        formik.handleChange(event);
+                        setDupCheck(false);
+                      }}
                       error={Boolean(touched.id && errors.id)}
                       helperText={touched.id && errors.id}
                       disabled={!isInsert}
+                      InputProps={
+                        isInsert && !dupCheck
+                          ? {
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <Button color={dupCheck ? "success" : "error"} aria-label="Search" onClick={() => handleIdDupCheck()} >
+                                  Id 중복체크
+                                </Button>
+                              </InputAdornment>
+                            )
+                          }
+                          : <InputLabel  sx={{ color: 'success' }}>가입 가능</InputLabel>
+                      }
                     />
                   </Stack>
                 </Grid>
+                <Grid item xs={12}>
+                <Stack spacing={1.25}>
+                  {!dupCheck && isInsert ? (
+                    <InputLabel  sx={{ color: 'red' }}>아이디 중복을 확인 하세요</InputLabel>
+                  ) : null}
+                </Stack>
+              </Grid>
                 <Grid item xs={12} style={{ display: !isInsert ? 'none' : 'block' }}>
                   <Stack spacing={1.25}>
-                    <InputLabel htmlFor='password'>Password</InputLabel>
+                    <InputLabel htmlFor="password">Password</InputLabel>
                     <TextField
                       fullWidth
-                      id='password'
+                      id="password"
                       {...getFieldProps('password')}
-                      placeholder='비밀번호'
+                      placeholder="비밀번호"
                       onChange={formik.handleChange}
                       error={Boolean(touched.password && errors.password)}
                       helperText={touched.password && errors.password}
@@ -256,12 +293,12 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 </Grid>
                 <Grid item xs={12} style={{ display: !isInsert ? 'none' : 'block' }}>
                   <Stack spacing={1.25}>
-                    <InputLabel htmlFor='confirmPassword'>Password</InputLabel>
+                    <InputLabel htmlFor="confirmPassword">Password</InputLabel>
                     <TextField
                       fullWidth
-                      id='confirmPassword'
+                      id="confirmPassword"
                       {...getFieldProps('confirmPassword')}
-                      placeholder='비밀번호 확인'
+                      placeholder="비밀번호 확인"
                       onChange={formik.handleChange}
                       error={Boolean(touched.confirmPassword && errors.confirmPassword)}
                       helperText={touched.confirmPassword && errors.confirmPassword}
@@ -274,9 +311,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>이메일</InputLabel>
                     <TextField
                       fullWidth
-                      id='email'
+                      id="email"
                       {...getFieldProps('email')}
-                      placeholder='이메일'
+                      placeholder="이메일"
                       onChange={formik.handleChange}
                       error={Boolean(touched.email && errors.email)}
                       helperText={touched.email && errors.email}
@@ -289,16 +326,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>상태</InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        id='state'
+                        id="state"
                         {...getFieldProps('state')}
                         onChange={formik.handleChange}
                         defaultValue={'가입 대기'}
                         renderValue={(selected) => {
                           if (!selected) {
-                            return <Typography variant='subtitle1'>Select Status</Typography>;
+                            return <Typography variant="subtitle1">Select Status</Typography>;
                           }
 
-                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                          return <Typography variant="subtitle2">{selected}</Typography>;
                         }}
                       >
                         {userStateList.map((option, idx) => (
@@ -309,7 +346,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                       </Select>
                     </FormControl>
                     {touched.state && errors.state && (
-                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                         {errors.state}
                       </FormHelperText>
                     )}
@@ -320,9 +357,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>이름</InputLabel>
                     <TextField
                       fullWidth
-                      id='name'
+                      id="name"
                       {...getFieldProps('name')}
-                      placeholder='이름'
+                      placeholder="이름"
                       onChange={formik.handleChange}
                       error={Boolean(touched.name && errors.name)}
                       helperText={touched.name && errors.name}
@@ -335,30 +372,30 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>성별</InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        id='gender'
+                        id="gender"
                         {...getFieldProps('gender')}
-                        placeholder='성별'
+                        placeholder="성별"
                         onChange={formik.handleChange}
                         defaultValue={'남성'}
                         disabled={!isInsert}
                         renderValue={(selected) => {
                           if (!selected) {
-                            return <Typography variant='subtitle1'>Select Status</Typography>;
+                            return <Typography variant="subtitle1">Select Status</Typography>;
                           }
 
-                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                          return <Typography variant="subtitle2">{selected}</Typography>;
                         }}
                       >
-                        <MenuItem value='남성'>
-                          <Chip color='primary' label='남성' size='small' variant='light' />
+                        <MenuItem value="남성">
+                          <Chip color="primary" label="남성" size="small" variant="light" />
                         </MenuItem>
-                        <MenuItem value='여성'>
-                          <Chip color='primary' label='여성' size='small' variant='light' />
+                        <MenuItem value="여성">
+                          <Chip color="primary" label="여성" size="small" variant="light" />
                         </MenuItem>
                       </Select>
                     </FormControl>
                     {touched.gender && errors.gender && (
-                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                         {errors.gender}
                       </FormHelperText>
                     )}
@@ -369,16 +406,16 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>직책</InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        id='role'
+                        id="role"
                         {...getFieldProps('role')}
                         onChange={formik.handleChange}
                         defaultValue={'일반관리자'}
                         renderValue={(selected) => {
                           if (!selected) {
-                            return <Typography variant='subtitle1'>Select Status</Typography>;
+                            return <Typography variant="subtitle1">Select Status</Typography>;
                           }
 
-                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                          return <Typography variant="subtitle2">{selected}</Typography>;
                         }}
                       >
                         {userRoleList.map((option, idx) => (
@@ -389,7 +426,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                       </Select>
                     </FormControl>
                     {touched.role && errors.role && (
-                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                         {errors.role}
                       </FormHelperText>
                     )}
@@ -400,7 +437,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>생년월일</InputLabel>
                     <DatePicker
                       value={formik.values.birth}
-                      format='YYYY-MM-DD'
+                      format="YYYY-MM-DD"
                       disabled={!isInsert}
                       onChange={(date) => {
                         formik.setFieldValue('birth', date);
@@ -413,32 +450,32 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>핸드폰 번호</InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        id='frontPhoneNumber'
+                        id="frontPhoneNumber"
                         {...getFieldProps('frontPhoneNumber')}
-                        placeholder='통신사 종류'
+                        placeholder="통신사 종류"
                         onChange={formik.handleChange}
                         defaultValue={'010'}
                         renderValue={(selected) => {
                           if (!selected) {
-                            return <Typography variant='subtitle1'>Select Status</Typography>;
+                            return <Typography variant="subtitle1">Select Status</Typography>;
                           }
 
-                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                          return <Typography variant="subtitle2">{selected}</Typography>;
                         }}
                       >
-                        <MenuItem value='010'>
-                          <Chip color='primary' label='010' size='small' variant='light' />
+                        <MenuItem value="010">
+                          <Chip color="primary" label="010" size="small" variant="light" />
                         </MenuItem>
-                        <MenuItem value='011'>
-                          <Chip color='primary' label='011' size='small' variant='light' />
+                        <MenuItem value="011">
+                          <Chip color="primary" label="011" size="small" variant="light" />
                         </MenuItem>
-                        <MenuItem value='016'>
-                          <Chip color='primary' label='016' size='small' variant='light' />
+                        <MenuItem value="016">
+                          <Chip color="primary" label="016" size="small" variant="light" />
                         </MenuItem>
                       </Select>
                     </FormControl>
                     {touched.frontPhoneNumber && errors.frontPhoneNumber && (
-                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                         {errors.frontPhoneNumber}
                       </FormHelperText>
                     )}
@@ -447,9 +484,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 <Grid item xs={4}>
                   <TextField
                     fullWidth
-                    id='middlePhoneNumber'
+                    id="middlePhoneNumber"
                     {...getFieldProps('middlePhoneNumber')}
-                    placeholder='핸드폰 번호를 입력하세요'
+                    placeholder="핸드폰 번호를 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.middlePhoneNumber && errors.middlePhoneNumber)}
                     helperText={touched.middlePhoneNumber && errors.middlePhoneNumber}
@@ -459,9 +496,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 <Grid item xs={4}>
                   <TextField
                     fullWidth
-                    id='lastPhoneNumber'
+                    id="lastPhoneNumber"
                     {...getFieldProps('lastPhoneNumber')}
-                    placeholder='핸드폰 번호를 입력하세요'
+                    placeholder="핸드폰 번호를 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.lastPhoneNumber && errors.lastPhoneNumber)}
                     helperText={touched.lastPhoneNumber && errors.lastPhoneNumber}
@@ -473,29 +510,29 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>집 전화 번호</InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        id='frontCallNumber'
+                        id="frontCallNumber"
                         {...getFieldProps('frontCallNumber')}
-                        placeholder='지역번호'
+                        placeholder="지역번호"
                         onChange={formik.handleChange}
                         defaultValue={'02'}
                         renderValue={(selected) => {
                           if (!selected) {
-                            return <Typography variant='subtitle1'>지역 번호</Typography>;
+                            return <Typography variant="subtitle1">지역 번호</Typography>;
                           }
 
-                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                          return <Typography variant="subtitle2">{selected}</Typography>;
                         }}
                       >
-                        <MenuItem value='02'>
-                          <Chip color='primary' label='02' size='small' variant='light' />
+                        <MenuItem value="02">
+                          <Chip color="primary" label="02" size="small" variant="light" />
                         </MenuItem>
-                        <MenuItem value='031'>
-                          <Chip color='primary' label='031' size='small' variant='light' />
+                        <MenuItem value="031">
+                          <Chip color="primary" label="031" size="small" variant="light" />
                         </MenuItem>
                       </Select>
                     </FormControl>
                     {touched.frontCallNumber && errors.frontCallNumber && (
-                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                         {errors.frontCallNumber}
                       </FormHelperText>
                     )}
@@ -504,9 +541,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 <Grid item xs={4}>
                   <TextField
                     fullWidth
-                    id='middleCallNumber'
+                    id="middleCallNumber"
                     {...getFieldProps('middleCallNumber')}
-                    placeholder='집 전화번호를 입력하세요'
+                    placeholder="집 전화번호를 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.middleCallNumber && errors.middleCallNumber)}
                     helperText={touched.middleCallNumber && errors.middleCallNumber}
@@ -516,9 +553,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 <Grid item xs={4}>
                   <TextField
                     fullWidth
-                    id='lastCallNumber'
+                    id="lastCallNumber"
                     {...getFieldProps('lastCallNumber')}
-                    placeholder='집 전화번호를 입력하세요'
+                    placeholder="집 전화번호를 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.lastCallNumber && errors.lastCallNumber)}
                     helperText={touched.lastCallNumber && errors.lastCallNumber}
@@ -530,9 +567,9 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     <InputLabel>주소</InputLabel>
                     <TextField
                       fullWidth
-                      id='zipCode'
+                      id="zipCode"
                       {...getFieldProps('zipCode')}
-                      placeholder='우편번호를 입력하세요'
+                      placeholder="우편번호를 입력하세요"
                       disable={true}
                       onChange={formik.handleChange}
                       error={Boolean(touched.zipCode && errors.zipCode)}
@@ -543,47 +580,47 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 <Grid item xs={4}>
                   <TextField
                     fullWidth
-                    id='address'
+                    id="address"
                     {...getFieldProps('address')}
-                    placeholder='주소를 입력하세요'
+                    placeholder="주소를 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.address && errors.address)}
                     helperText={touched.address && errors.address}
                     sx={{ mb: { xs: -0.5, sm: 0.5 }, marginTop: 3 }}
                     InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                        <IconButton color="primary" aria-label="Search" onClick={handleFindAddressOpen}>
-                        <SearchIcon />
-                        </IconButton>
-                      </InputAdornment>
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton color="primary" aria-label="Search" onClick={handleFindAddressOpen}>
+                            <SearchIcon />
+                          </IconButton>
+                        </InputAdornment>
                       )
                     }}
                   />
                   <Dialog
-                  maxWidth="md"
-                  TransitionComponent={PopupTransition}
-                  onClose={() => handleFindAddressOpen()}
-                  open={findAddressOpen}
-                  sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
-                  aria-describedby="alert-dialog-slide-description"
-                  slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
+                    maxWidth="md"
+                    TransitionComponent={PopupTransition}
+                    onClose={() => handleFindAddressOpen()}
+                    open={findAddressOpen}
+                    sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
+                    aria-describedby="alert-dialog-slide-description"
+                    slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
                   >
-                  <DaumPostcode
-                    onComplete={(data) => handleFindAddressOpen(data)}  // 값을 선택할 경우 실행되는 이벤트
-                    autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                    defaultQuery='판교역로 235' // 팝업을 열때 기본적으로 입력되는 검색어
-                    width={500}
-                    height="300px"
-                  />
-                </Dialog>
+                    <DaumPostcode
+                      onComplete={(data) => handleFindAddressOpen(data)} // 값을 선택할 경우 실행되는 이벤트
+                      autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                      defaultQuery="" // 팝업을 열때 기본적으로 입력되는 검색어
+                      width={1200}
+                      height="600px"
+                    />
+                  </Dialog>
                 </Grid>
                 <Grid item xs={4}>
                   <TextField
                     fullWidth
-                    id='detailAddress'
+                    id="detailAddress"
                     {...getFieldProps('detailAddress')}
-                    placeholder='주소를 입력하세요'
+                    placeholder="주소를 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.detailAddress && errors.detailAddress)}
                     helperText={touched.detailAddress && errors.detailAddress}
@@ -599,7 +636,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                             <Button fullWidth variant="contained" type="button" color={'error'} onClick={() => setDeleteModal(true)}>
                               삭제
                             </Button>
-                           </AnimateButton>
+                          </AnimateButton>
                         )}
                         <DeleteModal
                           title={'인사기록카드'}
@@ -607,7 +644,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                           handleClose={() => setDeleteModal(!deleteModal)}
                           deleteData={deleteData}
                         />
-                        <Button fullWidth variant='contained' type='submit' disabled={isSubmitting}>
+                        <Button fullWidth variant="contained" type="submit" disabled={isSubmitting}>
                           저장
                         </Button>
                       </Stack>

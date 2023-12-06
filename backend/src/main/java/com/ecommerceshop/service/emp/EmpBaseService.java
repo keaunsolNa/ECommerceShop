@@ -69,6 +69,22 @@ public class EmpBaseService {
         return commonModule.getListFromSearchHit(searchHits);
     }
 
+    // 아이디 중복 체크
+    public boolean empBaseDupCheck(String id) {
+
+        System.out.println(id);
+
+        boolean dupCheck = true;
+        try {
+            EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+            System.out.println(empBase);
+        } catch (Exception e) {
+            dupCheck = false;
+        }
+
+        System.out.println(dupCheck);
+        return dupCheck;
+    }
     // 아이디로 직원 상세 조회
     public EmpBaseDTO empBaseDocumentSearchById(String id) throws Exception {
 
