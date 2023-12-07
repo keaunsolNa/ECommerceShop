@@ -56,7 +56,7 @@ public class EmpBaseController {
     }
 
     // 회원 상세 조회
-    @GetMapping("/memberList/{id}")
+    @GetMapping("/member/{id}")
     public MemberDTO memberBaseDocumentSearchById(@PathVariable String id) {
 
         try {

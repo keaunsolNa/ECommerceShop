@@ -115,20 +115,19 @@ public class EmpBaseService {
         MemberSI memberSI = memberSIRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
 
         MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setId(memberBase.getId());
+        memberDTO.setEmail(memberBase.getEmail());
+        memberDTO.setState(memberBase.getState());
+        memberDTO.setName(memberBase.getName());
+        memberDTO.setGender(memberBase.getGender());
+        memberDTO.setBirth(commonModule.parsingDate(memberBase.getBirth()));
+        memberDTO.setCellNumber(memberSI.getCellNumber());
+        memberDTO.setPhoneNumber(memberSI.getPhoneNumber());
+        memberDTO.setAddress(memberSI.getAddress());
         memberDTO.setAgreePiu(memberBase.getAgreePiu());
         memberDTO.setAgreeMcc(memberBase.getAgreeMcc());
         memberDTO.setAgreeTou(memberBase.getAgreeTou());
-        memberDTO.setCellNumber(memberSI.getCellNumber());
-        memberDTO.setBirth(commonModule.parsingDate(memberBase.getBirth()));
-        memberDTO.setAddress(memberSI.getAddress());
-        memberDTO.setId(memberBase.getId());
-        memberDTO.setGender(memberBase.getGender());
-        memberDTO.setLastLogin(commonModule.parsingDate(memberBase.getLastLogin()));
-        memberDTO.setCreateDate(commonModule.parsingDate(memberBase.getCreateDate()));
         memberDTO.setPointHave(memberBase.getPointHave());
-        memberDTO.setState(memberBase.getState());
-        memberDTO.setName(memberBase.getName());
-        memberDTO.setPhoneNumber(memberSI.getPhoneNumber());
 
         return memberDTO;
     }
