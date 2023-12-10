@@ -1,10 +1,14 @@
 package com.ecommerceshop.module;
 
+import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.dto.document.product.ProductBase;
+import org.elasticsearch.search.sort.FieldSortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
@@ -77,10 +81,11 @@ public class CommonModule {
         return null;
     }
 
-    public NativeQuery makeMatchAllQuery() {
+    public NativeQuery makeMatchAllQuery(String sort) {
 
         NativeQuery query = NativeQuery.builder()
                 .withQuery(q -> q.matchAll(new MatchAllQuery.Builder().build()))
+                .withSort(Sort.by(sort).ascending())
                 .build();
 
         return query;

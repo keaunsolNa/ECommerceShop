@@ -14,7 +14,6 @@ import kanban from './kanban';
 import invoice from './invoice';
 import vacationCrud from './vacation';
 import employee from './emp/employee';
-import organizationinfo from './organizationinfo';
 import organizationMember from './organization';
 // ==============================|| COMBINE REDUCERS ||============================== //
 
@@ -36,7 +35,6 @@ const reducers = combineReducers({
   invoice,
   vacationCrud,
   employee,
-  organizationinfo,
   organizationMember
 });
 

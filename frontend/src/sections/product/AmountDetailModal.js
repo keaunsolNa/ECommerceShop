@@ -35,7 +35,6 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   const avatarImage = require.context('assets/images/users', true);
   const [productStateList, setProductStateList] = useState(['신규 상품']);
   const [categoriesList, setCategoriesList] = useState(['상의']);
-
   const productSchema = Yup.object().shape({
     id: Yup.string(),
     name: Yup.string().max(255).required('이름은 필수값입니다.'),

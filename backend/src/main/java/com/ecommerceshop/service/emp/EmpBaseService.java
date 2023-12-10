@@ -64,7 +64,7 @@ public class EmpBaseService {
     // 직원 목록 전체 조회
     public Iterable<EmpBase> empBaseDocumentListSearch() {
 
-        NativeQuery query = commonModule.makeMatchAllQuery();
+        NativeQuery query = commonModule.makeMatchAllQuery("id");
         SearchHits<EmpBase> searchHits = elasticsearchOperations.search(query, EmpBase.class);
         return commonModule.getListFromSearchHit(searchHits);
     }
@@ -103,7 +103,7 @@ public class EmpBaseService {
     // 회원 목록 조회
     public Iterable<MemberBase> memberDocumentListSearch() {
 
-        NativeQuery query = commonModule.makeMatchAllQuery();
+        NativeQuery query = commonModule.makeMatchAllQuery("id");
         SearchHits<MemberBase> searchHits = elasticsearchOperations.search(query, MemberBase.class);
         return commonModule.getListFromSearchHit(searchHits);
     }
@@ -177,7 +177,7 @@ public class EmpBaseService {
 
     // test용
     public EmpBase empBaseDocumentSearchForTest() {
-        NativeQuery query = commonModule.makeMatchAllQuery();
+        NativeQuery query = commonModule.makeMatchAllQuery("id");
         SearchHits<EmpBase> searchHits = elasticsearchOperations.search(query, EmpBase.class);
         return searchHits.getSearchHit(0).getContent();
     }

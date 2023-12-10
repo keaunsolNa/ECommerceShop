@@ -27,29 +27,22 @@ const icons = {
   SmileOutlined
 };
 
-const productPage = {
-  id: 'productPage',
+const supplyPage = {
+  id: 'supplyPage',
   title: '',
   type: 'group',
   children: [
     {
-      id: 'product',
-      title: '상품',
+      id: 'supply',
+      title: '발주처',
       type: 'collapse',
       icon: icons.UserOutlined,
       children: [
         {
-          id: 'productManagement',
-          title: '상품 관리',
+          id: 'supplyManagement',
+          title: '발주처 목록 관리',
           type: 'item',
-          url: '/product/productManagement',
-          breadcrumbs: false
-        },
-        {
-          id: 'amountManagement',
-          title: '재고 관리',
-          type: 'item',
-          url: '/product/amountManagement',
+          url: '/supply/supplyManagement',
           breadcrumbs: false
         }
       ]
@@ -57,4 +50,4 @@ const productPage = {
   ]
 };
 
-export default productPage;
+export default supplyPage;

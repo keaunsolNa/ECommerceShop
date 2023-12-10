@@ -29,11 +29,10 @@ const icons = {
 
 const employeePage = {
   id: 'employeePage',
-  title: 'employeePage',
+  title: '',
   type: 'group',
   children: [
     {
-      // 게시판부를 다룬 js페이지로 이동할수있게 해주는 메뉴 버튼
       id: 'employee',
       title: '인사',
       type: 'collapse',

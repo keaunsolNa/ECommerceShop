@@ -74,6 +74,10 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       .max(4)
       .matches(/^\d{4}$/, '올바른 중간 번호를 입력하세요.')
       .required('휴대폰 번호를 입력하세요.'),
+    lastPhoneNumber: Yup.string()
+      .max(4)
+      .matches(/^\d{4}$/, '올바른 번호를 입력하세요.')
+      .required('휴대폰 번호를 입력하세요.'),
     frontCallNumber: Yup.string()
       .max(3)
       .matches(/^(02|031|033)$/, '올바른 휴대폰 번호를 입력하세요.'),
@@ -88,6 +92,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     detailAddress: Yup.string().max(200)
   });
 
+  // functions
   const handleFindAddressOpen = (data) => {
     if (data && !isInsert) {
       selectedData.address = data.roadAddress;
@@ -98,7 +103,6 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     }
     setFindAddressOpen(!findAddressOpen);
   };
-
   const handleIdDupCheck = () => {
     if (!formik.values.id) return;
     const retrieveDupCall = axios.get(`/api/dupCheck/${formik.values.id}`);
@@ -226,7 +230,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
         console.error('Error fetching data:', error);
       });
 
-    Promise.all([]).then(() => setLoading(false)); // 모든 비동기 작업이 종료되면, 화면을 그린다
+    Promise.all([]).then(() => setLoading(false));
   }, []);
   const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
   if (loading) return <Loader />;

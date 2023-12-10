@@ -4,18 +4,18 @@ import MainLayout from 'layout/MainLayout';
 import CommonLayout from 'layout/CommonLayout';
 import Loadable from 'components/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
-
 // pages routing
-
 // Employee
 const EmployeeSelf = Loadable(lazy(() => import('pages/employee/EmployeeSelf')));
 const EmployeeList = Loadable(lazy(() => import('pages/employee/EmployeeList')));
 const MemberList = Loadable(lazy(() => import('pages/employee/MemberList')));
 // Product
-const ProductList = Loadable(lazy(() => import('pages/product/ProductList')));
-const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
-
+const ProductManagement = Loadable(lazy(() => import('pages/product/ProductManagement')));
+const AmountManagement = Loadable(lazy(() => import('pages/product/AmountManagement')));
+// Supply
+const SupplyManagement = Loadable(lazy(() => import('pages/supply/SupplyManagement')));
 // Maintenance
+const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/404')));
 const MaintenanceError500 = Loadable(lazy(() => import('pages/maintenance/500')));
 const MaintenanceUnderConstruction = Loadable(lazy(() => import('pages/maintenance/under-construction')));
 const MaintenanceComingSoon = Loadable(lazy(() => import('pages/maintenance/coming-soon')));
@@ -56,8 +56,21 @@ const MainRoutes = {
           path: 'product',
           children: [
             {
-              path: 'list',
-              element: <ProductList />
+              path: 'productManagement',
+              element: <ProductManagement />
+            },
+            {
+              path: 'amountManagement',
+              element: <AmountManagement />
+            }
+          ]
+        },
+        {
+          path: 'supply',
+          children: [
+            {
+              path: 'supplyManagement',
+              element: <SupplyManagement />
             }
           ]
         }

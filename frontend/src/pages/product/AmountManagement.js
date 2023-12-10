@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Button, Dialog } from '@mui/material';
+import { Dialog } from '@mui/material';
 import Loader from 'components/Loader';
 import MainCard from 'components/MainCard';
 import axios from 'axios';
 import { PopupTransition } from '../../components/@extended/Transitions';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import ProductDetailModal from '../../sections/product/ProductDetailModal';
+import AmountDetailModal from '../../sections/product/AmountDetailModal';
 import CommonSortTable from '../../components/CommonSortTable';
 
-const ProductList = () => {
+const AmountManagement = () => {
   // states
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -53,10 +53,9 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    const retrieveCall = axios.get(`/productBase/all`);
+    const retrieveCall = axios.get(`/productBase/all/amount`);
     Promise.all([retrieveCall])
       .then(([response1]) => {
-        console.log(response1);
         setData(response1.data);
         setLoading(false);
       })
@@ -72,15 +71,6 @@ const ProductList = () => {
       <MainCard
         content={false}
         title={'상품 목록'}
-        secondary={
-          <>
-            {permission.includes(10) ? (
-              <Button variant='outlined' color='primary' onClick={() => handleOpen()}>
-                신규 상품 생성
-              </Button>
-            ) : null}
-          </>
-        }
       >
         <CommonSortTable title={'상품 내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
@@ -93,9 +83,9 @@ const ProductList = () => {
         aria-describedby='alert-dialog-slide-description'
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
-        <ProductDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
+        <AmountDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
       </Dialog>
     </div>
   );
 };
-export default ProductList;
+export default AmountManagement;

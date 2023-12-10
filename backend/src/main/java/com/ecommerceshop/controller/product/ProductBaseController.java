@@ -4,6 +4,7 @@ import com.ecommerceshop.dto.DTO.ProductDTO;
 import com.ecommerceshop.dto.document.product.ProductBase;
 import com.ecommerceshop.service.product.ProductBaseService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,12 @@ public class ProductBaseController {
 
     @GetMapping("/all")
     public ResponseEntity<Iterable<ProductBase>> productBaseDocumentListSearch() {
-        return ResponseEntity.ok(productBaseService.productBaseListSearch());
+        return ResponseEntity.ok(productBaseService.productBaseListSearch("id"));
+    }
+
+    @GetMapping("/all/{sort}")
+    public ResponseEntity<Iterable<ProductBase>> productBaseDocumentListSearchByAmount(@PathVariable String sort) {
+        return ResponseEntity.ok(productBaseService.productBaseListSearch(sort));
     }
 
     @GetMapping("/{id}")
