@@ -25,7 +25,7 @@ import {
   Typography
 } from '@mui/material';
 import { CloseOutlined } from '@ant-design/icons';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import SearchIcon from '@mui/icons-material/Search';
 import { PopupTransition } from '../../components/@extended/Transitions';

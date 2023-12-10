@@ -4,6 +4,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import {
   Button,
   Chip,
+  Dialog,
   FormControl,
   FormHelperText,
   Grid,
@@ -15,8 +16,7 @@ import {
   Select,
   Stack,
   TextField,
-  Typography,
-  Dialog
+  Typography
 } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
@@ -33,6 +33,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import DeleteModal from '../../pages/common/DeleteModal';
 import PropTypes from 'prop-types';
 import DaumPostcode from 'react-daum-postcode';
+
 const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
   // states
   const [loading, setLoading] = useState(true);

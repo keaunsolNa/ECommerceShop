@@ -3,7 +3,6 @@ package com.ecommerceshop.module.employee;
 import com.ecommerceshop.dto.DTO.EmpBaseDTO;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.emp.EmpSI;
-import com.ecommerceshop.module.common.SettingUserRole;
 import com.ecommerceshop.module.security.SHA512;
 import com.ecommerceshop.module.security.Salt;
 import org.springframework.context.annotation.Configuration;

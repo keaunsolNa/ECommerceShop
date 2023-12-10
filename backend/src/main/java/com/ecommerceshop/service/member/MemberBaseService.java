@@ -10,7 +10,6 @@ import com.ecommerceshop.module.member.SettingMemberDocumentByDTO;
 import com.ecommerceshop.repository.aut.UserRoleRepository;
 import com.ecommerceshop.repository.member.MemberBaseRepository;
 import com.ecommerceshop.repository.member.MemberSIRepository;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,6 @@ import com.ecommerceshop.dto.DTO.ProductDTO;
 import com.ecommerceshop.dto.document.product.ProductBase;
 import com.ecommerceshop.service.product.ProductBaseService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -18,7 +18,7 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
-import ScrollX from '../../components/ScrollX'
+import ScrollX from '../../components/ScrollX';
 import MainCard from 'components/MainCard';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
