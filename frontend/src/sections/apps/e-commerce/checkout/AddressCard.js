@@ -32,22 +32,21 @@ const AddressCard = ({ address, change, handleClickOpen, billingAddressHandler }
       {address && (
         <Grid container spacing={0.5}>
           <Grid item xs={12}>
-            <Stack direction='row' justifyContent='space-between'>
-              <Stack direction='row' alignItems='center' spacing={0.5}>
-                <Typography variant='subtitle1'>{address.name}</Typography>
-                <Typography variant='caption' color='textSecondary' sx={{ textTransform: 'capitalize' }}>
+            <Stack direction="row" justifyContent="space-between">
+              <Stack direction="row" alignItems="center" spacing={0.5}>
+                <Typography variant="subtitle1">{address.name}</Typography>
+                <Typography variant="caption" color="textSecondary" sx={{ textTransform: 'capitalize' }}>
                   ({address.destination})
                 </Typography>
                 {address.isDefault && (
-                  <Chip sx={{ color: 'primary.main', bgcolor: 'primary.lighter', borderRadius: '10px' }} label='Default'
-                        size='small' />
+                  <Chip sx={{ color: 'primary.main', bgcolor: 'primary.lighter', borderRadius: '10px' }} label="Default" size="small" />
                 )}
               </Stack>
               {change && (
                 <Button
-                  variant='outlined'
-                  size='small'
-                  color='secondary'
+                  variant="outlined"
+                  size="small"
+                  color="secondary"
                   startIcon={<EditOutlined />}
                   onClick={() => {
                     if (handleClickOpen) {
@@ -62,10 +61,10 @@ const AddressCard = ({ address, change, handleClickOpen, billingAddressHandler }
           </Grid>
           <Grid item xs={12}>
             <Stack spacing={2}>
-              <Typography variant='body2' color='textSecondary'>
+              <Typography variant="body2" color="textSecondary">
                 {`${address.building}, ${address.street}, ${address.city}, ${address.state}, ${address.country} - ${address.post}`}
               </Typography>
-              <Typography variant='caption' color='textSecondary'>
+              <Typography variant="caption" color="textSecondary">
                 {address.phone}
               </Typography>
             </Stack>

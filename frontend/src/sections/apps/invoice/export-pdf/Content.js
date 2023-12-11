@@ -173,8 +173,7 @@ const Content = ({ list }) => {
         <Text style={styles.caption}>Notes </Text>
         <Text style={styles.tableCell}>
           {' '}
-          It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance
-          projects. Thank You!
+          It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!
         </Text>
       </View>
     </View>

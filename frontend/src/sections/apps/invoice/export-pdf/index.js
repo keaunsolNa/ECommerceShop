@@ -28,7 +28,7 @@ const ExportPDFView = ({ list }) => {
 
   return (
     <Document title={`${title} ${customer_name}`}>
-      <Page size='A4' style={styles.page}>
+      <Page size="A4" style={styles.page}>
         <Header list={list} />
         <View style={styles.container}>
           <Content list={list} />

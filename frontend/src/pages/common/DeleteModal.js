@@ -19,21 +19,21 @@ export default function DeleteModal({ title, open, handleClose, deleteData }) {
       onClose={() => handleClose(false)}
       keepMounted
       TransitionComponent={PopupTransition}
-      maxWidth='xs'
-      aria-labelledby='item-delete-title'
-      aria-describedby='item-delete-description'
+      maxWidth="xs"
+      aria-labelledby="item-delete-title"
+      aria-describedby="item-delete-description"
     >
       <DialogContent sx={{ mt: 2, my: 1 }}>
-        <Stack alignItems='center' spacing={3.5}>
-          <Avatar color='error' sx={{ width: 72, height: 72, fontSize: '1.75rem' }}>
+        <Stack alignItems="center" spacing={3.5}>
+          <Avatar color="error" sx={{ width: 72, height: 72, fontSize: '1.75rem' }}>
             <DeleteFilled />
           </Avatar>
           <Stack spacing={2}>
-            <Typography variant='h4' align='center'>
+            <Typography variant="h4" align="center">
               정말로 삭제하시겠습니까?
             </Typography>
-            <Typography align='center'>
-              <Typography variant='subtitle1' component='span'>
+            <Typography align="center">
+              <Typography variant="subtitle1" component="span">
                 {' '}
                 &quot;{title}&quot;{' '}
               </Typography>
@@ -41,11 +41,11 @@ export default function DeleteModal({ title, open, handleClose, deleteData }) {
             </Typography>
           </Stack>
 
-          <Stack direction='row' spacing={2} sx={{ width: 1 }}>
-            <Button fullWidth onClick={() => handleClose(false)} color='secondary' variant='outlined'>
+          <Stack direction="row" spacing={2} sx={{ width: 1 }}>
+            <Button fullWidth onClick={() => handleClose(false)} color="secondary" variant="outlined">
               Cancel
             </Button>
-            <Button fullWidth color='error' variant='contained' onClick={() => deleteData()} autoFocus>
+            <Button fullWidth color="error" variant="contained" onClick={() => deleteData()} autoFocus>
               Delete
             </Button>
           </Stack>

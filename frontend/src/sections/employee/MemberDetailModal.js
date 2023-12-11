@@ -48,15 +48,15 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
     password: !isInsert
       ? Yup.string()
       : Yup.string()
-        .max(30)
-        .required('비밀번호는 필수값입니다.')
-        .matches('^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$', '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'),
+          .max(30)
+          .required('비밀번호는 필수값입니다.')
+          .matches('^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$', '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'),
     confirmPassword: !isInsert
       ? Yup.string()
       : Yup.string()
-        .max(30)
-        .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
-        .required('비밀번호 일치 여부를 확인하세요'),
+          .max(30)
+          .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
+          .required('비밀번호 일치 여부를 확인하세요'),
     email: Yup.string().max(255).required('이메일은 필수값입니다.').email('올바른 이메일 형식이 아닙니다.'),
     name: Yup.string().max(255).required('이름은 필수값입니다.'),
     gender: Yup.string().max(2).required('성별은 필수값입니다.'),

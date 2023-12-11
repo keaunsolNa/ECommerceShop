@@ -68,11 +68,10 @@ export default function Checkbox(theme) {
     MuiCheckbox: {
       defaultProps: {
         className: 'size-small',
-        icon: <Box className='icon'
-                   sx={{ width: 16, height: 16, border: '1px solid', borderColor: 'inherit', borderRadius: 0.25 }} />,
+        icon: <Box className="icon" sx={{ width: 16, height: 16, border: '1px solid', borderColor: 'inherit', borderRadius: 0.25 }} />,
         checkedIcon: (
           <Box
-            className='icon'
+            className="icon"
             sx={{
               width: 16,
               height: 16,
@@ -82,12 +81,12 @@ export default function Checkbox(theme) {
               position: 'relative'
             }}
           >
-            <CheckSquareFilled className='filled' style={{ position: 'absolute' }} />
+            <CheckSquareFilled className="filled" style={{ position: 'absolute' }} />
           </Box>
         ),
         indeterminateIcon: (
           <Box
-            className='icon'
+            className="icon"
             sx={{
               width: 16,
               height: 16,
@@ -97,7 +96,7 @@ export default function Checkbox(theme) {
               position: 'relative'
             }}
           >
-            <MinusSquareFilled className='filled' style={{ position: 'absolute' }} />
+            <MinusSquareFilled className="filled" style={{ position: 'absolute' }} />
           </Box>
         )
       },

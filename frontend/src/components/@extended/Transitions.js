@@ -6,13 +6,7 @@ import { Box, Collapse, Fade, Grow, Slide, Zoom } from '@mui/material';
 
 // ==============================|| TRANSITIONS ||============================== //
 
-const Transitions = forwardRef(({
-                                  children,
-                                  position = 'top-left',
-                                  type = 'grow',
-                                  direction = 'up',
-                                  ...others
-                                }, ref) => {
+const Transitions = forwardRef(({ children, position = 'top-left', type = 'grow', direction = 'up', ...others }, ref) => {
   let positionSX = {
     transformOrigin: '0 0 0'
   };

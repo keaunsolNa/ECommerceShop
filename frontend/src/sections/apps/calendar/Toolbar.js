@@ -11,14 +11,7 @@ import { format } from 'date-fns';
 import IconButton from 'components/@extended/IconButton';
 
 // assets
-import {
-  AppstoreOutlined,
-  LayoutOutlined,
-  LeftOutlined,
-  OrderedListOutlined,
-  PicCenterOutlined,
-  RightOutlined
-} from '@ant-design/icons';
+import { AppstoreOutlined, LayoutOutlined, LeftOutlined, OrderedListOutlined, PicCenterOutlined, RightOutlined } from '@ant-design/icons';
 
 // constant
 const viewOptions = [
@@ -61,19 +54,18 @@ const Toolbar = ({ date, view, onClickNext, onClickPrev, onClickToday, onChangeV
   }, [matchDownSM]);
 
   return (
-    <Grid alignItems='center' container justifyContent='space-between' spacing={matchDownSM ? 1 : 3} {...others}
-          sx={{ pb: 3 }}>
+    <Grid alignItems="center" container justifyContent="space-between" spacing={matchDownSM ? 1 : 3} {...others} sx={{ pb: 3 }}>
       <Grid item>
-        <Button variant='outlined' onClick={onClickToday} size={matchDownSM ? 'small' : 'medium'}>
+        <Button variant="outlined" onClick={onClickToday} size={matchDownSM ? 'small' : 'medium'}>
           Today
         </Button>
       </Grid>
       <Grid item>
-        <Stack direction='row' alignItems='center' spacing={matchDownSM ? 1 : 3}>
+        <Stack direction="row" alignItems="center" spacing={matchDownSM ? 1 : 3}>
           <IconButton onClick={onClickPrev} size={matchDownSM ? 'small' : 'large'}>
             <LeftOutlined />
           </IconButton>
-          <Typography variant={matchDownSM ? 'h5' : 'h3'} color='textPrimary'>
+          <Typography variant={matchDownSM ? 'h5' : 'h3'} color="textPrimary">
             {format(date, 'MMMM yyyy')}
           </Typography>
           <IconButton onClick={onClickNext} size={matchDownSM ? 'small' : 'large'}>
@@ -82,7 +74,7 @@ const Toolbar = ({ date, view, onClickNext, onClickPrev, onClickToday, onChangeV
         </Stack>
       </Grid>
       <Grid item>
-        <ButtonGroup variant='outlined' aria-label='outlined button group'>
+        <ButtonGroup variant="outlined" aria-label="outlined button group">
           {viewFilter.map((viewOption) => {
             const Icon = viewOption.icon;
             return (

@@ -1,19 +1,7 @@
 import * as Yup from 'yup';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import {
-  Button,
-  Chip,
-  FormControl,
-  FormHelperText,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  TextField,
-  Typography
-} from '@mui/material';
+import { Button, Chip, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react';
@@ -29,13 +17,13 @@ const CreateMemberAccount = () => {
   const employeeSchema = Yup.object().shape({
     id: Yup.string().max(30).required('ID는 필수값입니다.'),
     password: Yup.string()
-        .max(30)
-        .required('비밀번호는 필수값입니다.')
-        .matches('^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$', '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'),
+      .max(30)
+      .required('비밀번호는 필수값입니다.')
+      .matches('^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,}$', '비밀번호는 최소 8자의 문자, 숫자, 특수문자가 포함되어야 합니다.'),
     confirmPassword: Yup.string()
-        .max(30)
-        .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
-        .required('비밀번호 일치 여부를 확인하세요'),
+      .max(30)
+      .oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
+      .required('비밀번호 일치 여부를 확인하세요'),
     email: Yup.string().max(255).required('이메일은 필수값입니다.').email('올바른 이메일 형식이 아닙니다.'),
     name: Yup.string().max(255).required('이름은 필수값입니다.'),
     gender: Yup.string().max(2).required('성별은 필수값입니다.'),
@@ -53,10 +41,10 @@ const CreateMemberAccount = () => {
       id: '',
       password: '',
       confirmPassword: '',
-      email:'',
-      name:'',
+      email: '',
+      name: '',
       gender: '',
-      birth:null,
+      birth: null,
       phoneNumber: '',
       callNumber: '',
       address: ''
@@ -67,7 +55,6 @@ const CreateMemberAccount = () => {
     initialValues: getInitialValues(),
     validationSchema: employeeSchema,
     onSubmit: async (values) => {
-
       const data = {
         id: values.id,
         password: values?.password,
@@ -111,11 +98,9 @@ const CreateMemberAccount = () => {
   if (loading) return <Loader />;
   return (
     <ScrollX>
-      <MainCard
-        title='회원 가입 페이지'
-      >
+      <MainCard title="회원 가입 페이지">
         <FormikProvider value={formik}>
-          <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
+          <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Grid container spacing={2.5}>
                 <Grid item xs={12}>
@@ -123,9 +108,9 @@ const CreateMemberAccount = () => {
                     <InputLabel>아이디</InputLabel>
                     <TextField
                       fullWidth
-                      id='id'
+                      id="id"
                       {...getFieldProps('id')}
-                      placeholder='ID'
+                      placeholder="ID"
                       onChange={formik.handleChange}
                       error={Boolean(touched.id && errors.id)}
                       helperText={touched.id && errors.id}
@@ -134,12 +119,12 @@ const CreateMemberAccount = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Stack spacing={1.25}>
-                    <InputLabel htmlFor='password'>Password</InputLabel>
+                    <InputLabel htmlFor="password">Password</InputLabel>
                     <TextField
                       fullWidth
-                      id='password'
+                      id="password"
                       {...getFieldProps('password')}
-                      placeholder='비밀번호'
+                      placeholder="비밀번호"
                       onChange={formik.handleChange}
                       error={Boolean(touched.password && errors.password)}
                       helperText={touched.password && errors.password}
@@ -149,12 +134,12 @@ const CreateMemberAccount = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Stack spacing={1.25}>
-                    <InputLabel htmlFor='confirmPassword'>Password</InputLabel>
+                    <InputLabel htmlFor="confirmPassword">Password</InputLabel>
                     <TextField
                       fullWidth
-                      id='confirmPassword'
+                      id="confirmPassword"
                       {...getFieldProps('confirmPassword')}
-                      placeholder='비밀번호 확인'
+                      placeholder="비밀번호 확인"
                       onChange={formik.handleChange}
                       error={Boolean(touched.confirmPassword && errors.confirmPassword)}
                       helperText={touched.confirmPassword && errors.confirmPassword}
@@ -167,9 +152,9 @@ const CreateMemberAccount = () => {
                     <InputLabel>이메일</InputLabel>
                     <TextField
                       fullWidth
-                      id='email'
+                      id="email"
                       {...getFieldProps('email')}
-                      placeholder='이메일'
+                      placeholder="이메일"
                       onChange={formik.handleChange}
                       error={Boolean(touched.email && errors.email)}
                       helperText={touched.email && errors.email}
@@ -182,9 +167,9 @@ const CreateMemberAccount = () => {
                     <InputLabel>이름</InputLabel>
                     <TextField
                       fullWidth
-                      id='name'
+                      id="name"
                       {...getFieldProps('name')}
-                      placeholder='이름'
+                      placeholder="이름"
                       onChange={formik.handleChange}
                       error={Boolean(touched.name && errors.name)}
                       helperText={touched.name && errors.name}
@@ -196,29 +181,29 @@ const CreateMemberAccount = () => {
                     <InputLabel>성별</InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        id='gender'
+                        id="gender"
                         {...getFieldProps('gender')}
-                        placeholder='성별'
+                        placeholder="성별"
                         onChange={formik.handleChange}
                         defaultValue={'남성'}
                         renderValue={(selected) => {
                           if (!selected) {
-                            return <Typography variant='subtitle1'>Select Status</Typography>;
+                            return <Typography variant="subtitle1">Select Status</Typography>;
                           }
 
-                          return <Typography variant='subtitle2'>{selected}</Typography>;
+                          return <Typography variant="subtitle2">{selected}</Typography>;
                         }}
                       >
-                        <MenuItem value='남성'>
-                          <Chip color='primary' label='남성' size='small' variant='light' />
+                        <MenuItem value="남성">
+                          <Chip color="primary" label="남성" size="small" variant="light" />
                         </MenuItem>
-                        <MenuItem value='여성'>
-                          <Chip color='primary' label='여성' size='small' variant='light' />
+                        <MenuItem value="여성">
+                          <Chip color="primary" label="여성" size="small" variant="light" />
                         </MenuItem>
                       </Select>
                     </FormControl>
                     {touched.gender && errors.gender && (
-                      <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                      <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                         {errors.gender}
                       </FormHelperText>
                     )}
@@ -229,7 +214,7 @@ const CreateMemberAccount = () => {
                     <InputLabel>생년월일</InputLabel>
                     <DatePicker
                       value={formik.values.birth}
-                      format='YYYY-MM-DD'
+                      format="YYYY-MM-DD"
                       onChange={(date) => {
                         formik.setFieldValue('birth', date);
                       }}
@@ -241,9 +226,9 @@ const CreateMemberAccount = () => {
                     <InputLabel>핸드폰 번호</InputLabel>
                     <TextField
                       fullWidth
-                      id='phoneNumber'
+                      id="phoneNumber"
                       {...getFieldProps('phoneNumber')}
-                      placeholder='핸드폰 번호를 입력하세요'
+                      placeholder="핸드폰 번호를 입력하세요"
                       onChange={formik.handleChange}
                       error={Boolean(touched.phoneNumber && errors.phoneNumber)}
                       helperText={touched.phoneNumber && errors.phoneNumber}
@@ -255,9 +240,9 @@ const CreateMemberAccount = () => {
                     <InputLabel>집 전화 번호</InputLabel>
                     <TextField
                       fullWidth
-                      id='callNumber'
+                      id="callNumber"
                       {...getFieldProps('callNumber')}
-                      placeholder='자택번호를 입력하세요'
+                      placeholder="자택번호를 입력하세요"
                       onChange={formik.handleChange}
                       error={Boolean(touched.callNumber && errors.callNumber)}
                       helperText={touched.callNumber && errors.callNumber}
@@ -269,9 +254,9 @@ const CreateMemberAccount = () => {
                     <InputLabel>주소</InputLabel>
                     <TextField
                       fullWidth
-                      id='address'
+                      id="address"
                       {...getFieldProps('address')}
-                      placeholder='주소를 입력하세요'
+                      placeholder="주소를 입력하세요"
                       onChange={formik.handleChange}
                       error={Boolean(touched.address && errors.address)}
                       helperText={touched.address && errors.address}
@@ -284,7 +269,7 @@ const CreateMemberAccount = () => {
                   {/*</Button>*/}
                 </Grid>
                 <Grid item xs={12}>
-                  <Button fullWidth variant='contained' type='submit' disabled={isSubmitting}>
+                  <Button fullWidth variant="contained" type="submit" disabled={isSubmitting}>
                     신규 가입
                   </Button>
                 </Grid>

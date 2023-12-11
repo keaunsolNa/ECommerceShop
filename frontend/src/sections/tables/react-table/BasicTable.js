@@ -63,12 +63,12 @@ ReactTable.propTypes = {
 const StatusCell = ({ value }) => {
   switch (value) {
     case 'Complicated':
-      return <Chip color='error' label='Complicated' size='small' variant='light' />;
+      return <Chip color="error" label="Complicated" size="small" variant="light" />;
     case 'Relationship':
-      return <Chip color='success' label='Relationship' size='small' variant='light' />;
+      return <Chip color="success" label="Relationship" size="small" variant="light" />;
     case 'Single':
     default:
-      return <Chip color='info' label='Single' size='small' variant='light' />;
+      return <Chip color="info" label="Single" size="small" variant="light" />;
   }
 };
 
@@ -123,7 +123,7 @@ const BasicTable = ({ data, striped, title }) => {
       title={title}
       secondary={<CSVExport data={data.slice(0, 10)} filename={striped ? 'striped-table.csv' : 'basic-table.csv'} />}
     >
-      <Stack direction='row' justifyContent='flex-end' alignItems='center' spacing={2}></Stack>
+      <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}></Stack>
       <ScrollX>
         <ReactTable columns={columns} data={data} striped={striped} />
       </ScrollX>

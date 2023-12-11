@@ -200,7 +200,7 @@ const NavCollapse = ({ menu, level, parentId, setSelectedItems, selectedItems, s
         return <NavItem key={item.id} item={item} level={level + 1} />;
       default:
         return (
-          <Typography key={item.id} variant='h6' color='error' align='center'>
+          <Typography key={item.id} variant="h6" color="error" align="center">
             Fix - Collapse or Item
           </Typography>
         );
@@ -285,13 +285,13 @@ const NavCollapse = ({ menu, level, parentId, setSelectedItems, selectedItems, s
             {(drawerOpen || (!drawerOpen && level !== 1)) && (
               <ListItemText
                 primary={
-                  <Typography variant='h6' color={selected === menu.id ? 'primary' : textColor}>
+                  <Typography variant="h6" color={selected === menu.id ? 'primary' : textColor}>
                     {menu.title}
                   </Typography>
                 }
                 secondary={
                   menu.caption && (
-                    <Typography variant='caption' color='secondary'>
+                    <Typography variant="caption" color="secondary">
                       {menu.caption}
                     </Typography>
                   )
@@ -309,7 +309,7 @@ const NavCollapse = ({ menu, level, parentId, setSelectedItems, selectedItems, s
               <PopperStyled
                 open={miniMenuOpened}
                 anchorEl={anchorEl}
-                placement='right-start'
+                placement="right-start"
                 style={{
                   zIndex: 2001
                 }}
@@ -353,7 +353,7 @@ const NavCollapse = ({ menu, level, parentId, setSelectedItems, selectedItems, s
             )}
           </ListItemButton>
           {drawerOpen && (
-            <Collapse in={open} timeout='auto' unmountOnExit>
+            <Collapse in={open} timeout="auto" unmountOnExit>
               <List sx={{ p: 0 }}>{navCollapse}</List>
             </Collapse>
           )}
@@ -394,7 +394,7 @@ const NavCollapse = ({ menu, level, parentId, setSelectedItems, selectedItems, s
               )}
               <ListItemText
                 primary={
-                  <Typography variant='body1' color='inherit' sx={{ my: 'auto' }}>
+                  <Typography variant="body1" color="inherit" sx={{ my: 'auto' }}>
                     {menu.title}
                   </Typography>
                 }
@@ -407,7 +407,7 @@ const NavCollapse = ({ menu, level, parentId, setSelectedItems, selectedItems, s
                 id={popperId}
                 open={miniMenuOpened}
                 anchorEl={anchorEl}
-                placement='right-start'
+                placement="right-start"
                 style={{
                   zIndex: 2001
                 }}

@@ -32,13 +32,12 @@ function WebcamPage() {
   return (
     <div>
       <div>
-        <div className='camView'>{isShowVideo &&
-          <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />}</div>
+        <div className="camView">{isShowVideo && <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />}</div>
         <button onClick={startCam}>Start Video</button>
         <button onClick={stopCam}>Stop Video</button>
         <button onClick={capture}>Capture photo</button>
       </div>
-      {imgSrc && <img src={imgSrc} alt='profile' />}
+      {imgSrc && <img src={imgSrc} alt="profile" />}
     </div>
   );
 }

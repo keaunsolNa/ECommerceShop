@@ -37,8 +37,8 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
       TransitionComponent={PopupTransition}
       keepMounted
       onClose={handleClose}
-      aria-labelledby='alert-dialog-slide-title'
-      aria-describedby='alert-dialog-slide-description'
+      aria-labelledby="alert-dialog-slide-title"
+      aria-describedby="alert-dialog-slide-description"
       sx={{
         '& .MuiDialog-paper': {
           p: 0
@@ -46,9 +46,9 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
       }}
     >
       <MainCard
-        title='Festival gift for your'
+        title="Festival gift for your"
         secondary={
-          <IconButton onClick={handleClose} size='large'>
+          <IconButton onClick={handleClose} size="large">
             <CloseCircleTwoTone style={{ fontSize: 'small' }} />
           </IconButton>
         }
@@ -56,9 +56,8 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
         <Grid container spacing={3}>
           {animate && (
             <Grid item xs={12}>
-              <Transitions type='zoom' in={animate} direction='down'>
-                <Alert variant='outlined' severity='success'
-                       sx={{ borderColor: 'success.dark', color: 'success.dark' }}>
+              <Transitions type="zoom" in={animate} direction="down">
+                <Alert variant="outlined" severity="success" sx={{ borderColor: 'success.dark', color: 'success.dark' }}>
                   coupon copied
                 </Alert>
               </Transitions>
@@ -75,17 +74,17 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
               }}
             >
               <CardContent>
-                <Grid container alignItems='center' justifyContent='space-between'>
+                <Grid container alignItems="center" justifyContent="space-between">
                   <Grid item>
-                    <Typography variant='h4'>Up to 50% Off</Typography>
+                    <Typography variant="h4">Up to 50% Off</Typography>
                   </Grid>
                   <Grid item>
                     <AnimateButton>
-                      <CopyToClipboard text='MANTIS50' onCopy={() => setDiscount('MANTIS50')}>
+                      <CopyToClipboard text="MANTIS50" onCopy={() => setDiscount('MANTIS50')}>
                         <Button
-                          variant='outlined'
-                          color='secondary'
-                          size='small'
+                          variant="outlined"
+                          color="secondary"
+                          size="small"
                           sx={{
                             bgcolor: 'secondary.light',
                             color: 'secondary.dark',
@@ -113,17 +112,17 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
               }}
             >
               <CardContent>
-                <Grid container alignItems='center' justifyContent='space-between' spacing={{ xs: 2, sm: 0 }}>
+                <Grid container alignItems="center" justifyContent="space-between" spacing={{ xs: 2, sm: 0 }}>
                   <Grid item>
-                    <Typography variant='h4'>Festival Fires</Typography>
+                    <Typography variant="h4">Festival Fires</Typography>
                   </Grid>
                   <Grid item>
                     <AnimateButton>
-                      <CopyToClipboard text='FLAT05' onCopy={() => setDiscount('FLAT05')}>
+                      <CopyToClipboard text="FLAT05" onCopy={() => setDiscount('FLAT05')}>
                         <Button
-                          variant='outlined'
-                          color='error'
-                          size='small'
+                          variant="outlined"
+                          color="error"
+                          size="small"
                           sx={{
                             bgcolor: 'orange.light',
                             color: 'error.main',
@@ -144,19 +143,19 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
             <Divider />
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={3} alignItems='center'>
+            <Grid container spacing={3} alignItems="center">
               <Grid item xs={6} sm={2}>
-                <Avatar color='primary' size='md' variant='rounded'>
+                <Avatar color="primary" size="md" variant="rounded">
                   <GiftOutlined />
                 </Avatar>
               </Grid>
               <Grid item xs={6} sm={2} sx={{ display: { xs: 'block', sm: 'none' } }}>
                 <AnimateButton>
-                  <CopyToClipboard text='SUB150' onCopy={() => setDiscount('SUB150')}>
+                  <CopyToClipboard text="SUB150" onCopy={() => setDiscount('SUB150')}>
                     <Button
-                      variant='outlined'
-                      color='primary'
-                      size='small'
+                      variant="outlined"
+                      color="primary"
+                      size="small"
                       sx={{
                         bgcolor: 'primary.light',
                         color: 'primary.dark',
@@ -171,18 +170,17 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
               </Grid>
               <Grid item xs={12} sm={8}>
                 <Stack spacing={0.25}>
-                  <Typography variant='subtitle1'>Get $150 off on your subscription</Typography>
-                  <Typography variant='caption'>When you subscribe to the unlimited consultation plan on
-                    mantis.</Typography>
+                  <Typography variant="subtitle1">Get $150 off on your subscription</Typography>
+                  <Typography variant="caption">When you subscribe to the unlimited consultation plan on mantis.</Typography>
                 </Stack>
               </Grid>
               <Grid item xs={12} sm={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <AnimateButton>
-                  <CopyToClipboard text='SUB150' onCopy={() => setDiscount('SUB150')}>
+                  <CopyToClipboard text="SUB150" onCopy={() => setDiscount('SUB150')}>
                     <Button
-                      variant='outlined'
-                      color='primary'
-                      size='small'
+                      variant="outlined"
+                      color="primary"
+                      size="small"
                       sx={{
                         bgcolor: 'primary.light',
                         color: 'primary.dark',
@@ -201,19 +199,19 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
             <Divider />
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={3} alignItems='center'>
+            <Grid container spacing={3} alignItems="center">
               <Grid item xs={6} sm={2}>
-                <Avatar color='warning' size='md' variant='rounded'>
+                <Avatar color="warning" size="md" variant="rounded">
                   <TrophyOutlined />
                 </Avatar>
               </Grid>
               <Grid item xs={6} sm={2} sx={{ display: { xs: 'block', sm: 'none' } }}>
                 <AnimateButton>
-                  <CopyToClipboard text='UPTO200' onCopy={() => setDiscount('UPTO200')}>
+                  <CopyToClipboard text="UPTO200" onCopy={() => setDiscount('UPTO200')}>
                     <Button
-                      variant='outlined'
-                      color='warning'
-                      size='small'
+                      variant="outlined"
+                      color="warning"
+                      size="small"
                       sx={{
                         bgcolor: 'warning.light',
                         color: 'warning.dark',
@@ -228,17 +226,17 @@ const CouponCode = ({ open, handleClose, setCoupon }) => {
               </Grid>
               <Grid item xs={12} sm={8}>
                 <Stack spacing={0.25}>
-                  <Typography variant='subtitle1'>Save up to $200</Typography>
-                  <Typography variant='caption'>Make 4 play store recharge code purchases & save up to $200</Typography>
+                  <Typography variant="subtitle1">Save up to $200</Typography>
+                  <Typography variant="caption">Make 4 play store recharge code purchases & save up to $200</Typography>
                 </Stack>
               </Grid>
               <Grid item xs={12} sm={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <AnimateButton>
-                  <CopyToClipboard text='UPTO200' onCopy={() => setDiscount('UPTO200')}>
+                  <CopyToClipboard text="UPTO200" onCopy={() => setDiscount('UPTO200')}>
                     <Button
-                      variant='outlined'
-                      color='warning'
-                      size='small'
+                      variant="outlined"
+                      color="warning"
+                      size="small"
                       sx={{
                         bgcolor: 'warning.light',
                         color: 'warning.dark',

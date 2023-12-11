@@ -35,12 +35,10 @@ const EditableRow = ({ value: initialValue, row, row: { index }, column: { dataT
   let element;
   switch (dataType) {
     case 'text':
-      element = <>{row.original.value1 === '' || row.original.value1 === undefined ?
-        <TextField id={`${index}`} size='small' /> : value}</>;
+      element = <>{row.original.value1 === '' || row.original.value1 === undefined ? <TextField id={`${index}`} size="small" /> : value}</>;
       break;
-    default :
-      element = <>{row.original.value1 === '' || row.original.value1 === undefined ?
-        <TextField id={`${index}`} size='small' /> : value}</>;
+    default:
+      element = <>{row.original.value1 === '' || row.original.value1 === undefined ? <TextField id={`${index}`} size="small" /> : value}</>;
       break;
   }
   return element;
@@ -144,7 +142,7 @@ function ReactTable({ columns, data, getHeaderProps, kindNm, setData }) {
   // Render the UI for your table
   return (
     <Stack spacing={10}>
-      <Stack direction='row' justifyContent='space-between' sx={{ p: 0, pb: 0 }}>
+      <Stack direction="row" justifyContent="space-between" sx={{ p: 0, pb: 0 }}>
         <MainCard
           title={kindNm}
           content={false}
@@ -153,14 +151,14 @@ function ReactTable({ columns, data, getHeaderProps, kindNm, setData }) {
               <Button onClick={insertRow}>입력</Button>
               {/* <Button onClick={toggleEditable}>수정</Button> */}
               <Button
-                color='success'
+                color="success"
                 onClick={() => {
                   console.log('저장 완료');
                 }}
               >
                 저장
               </Button>
-              <CSVExport data={data} filename='업무기준관리.csv' />
+              <CSVExport data={data} filename="업무기준관리.csv" />
             </>
           }
           sx={{ maxWidth: 1205 }}
@@ -184,7 +182,7 @@ function ReactTable({ columns, data, getHeaderProps, kindNm, setData }) {
                   ))}
                 </TableHead>
                 <TableBody {...getTableBodyProps()}>
-                  <FixedSizeList height={600} itemCount={rows.length} itemSize={50} width='100%'>
+                  <FixedSizeList height={600} itemCount={rows.length} itemSize={50} width="100%">
                     {RenderRow}
                   </FixedSizeList>
                 </TableBody>
@@ -208,18 +206,19 @@ ReactTable.propTypes = {
   columns: PropTypes.array,
   data: PropTypes.array,
   getHeaderProps: PropTypes.func,
+  setData: PropTypes.func,
   kindNm: PropTypes.string
 };
 
 const StatusCell = ({ value }) => {
   switch (value) {
     case 'Complicated':
-      return <Chip color='error' label='Complicated' size='small' variant='light' />;
+      return <Chip color="error" label="Complicated" size="small" variant="light" />;
     case 'Relationship':
-      return <Chip color='success' label='Relationship' size='small' variant='light' />;
+      return <Chip color="success" label="Relationship" size="small" variant="light" />;
     case 'Single':
     default:
-      return <Chip color='info' label='Single' size='small' variant='light' />;
+      return <Chip color="info" label="Single" size="small" variant="light" />;
   }
 };
 

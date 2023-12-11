@@ -96,7 +96,7 @@ const FooterBlock = ({ isFull }) => {
           }}
         >
           <CardMedia
-            component='img'
+            component="img"
             image={dashImage(`./img-footer-${presetColor}.png`)}
             sx={{
               display: { xs: 'none', md: 'block' },
@@ -108,11 +108,11 @@ const FooterBlock = ({ isFull }) => {
             }}
           />
           <Container>
-            <Grid container alignItems='center' justifyContent='space-between' spacing={2}>
+            <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
               <Grid item xs={12} md={6} sx={{ position: 'relative', zIndex: 1 }}>
                 <Grid container spacing={2} sx={{ [theme.breakpoints.down('md')]: { pr: 0, textAlign: 'center' } }}>
                   <Grid item xs={12}>
-                    <Typography variant='subtitle1' sx={{ color: theme.palette.common.white }}>
+                    <Typography variant="subtitle1" sx={{ color: theme.palette.common.white }}>
                       Roadmap
                     </Typography>
                   </Grid>
@@ -127,7 +127,7 @@ const FooterBlock = ({ isFull }) => {
                       }}
                     >
                       <Typography
-                        variant='h2'
+                        variant="h2"
                         sx={{
                           color: theme.palette.common.white,
                           fontWeight: 700
@@ -138,7 +138,7 @@ const FooterBlock = ({ isFull }) => {
                     </motion.div>
                   </Grid>
                   <Grid item xs={12}>
-                    <Typography variant='body1' sx={{ color: theme.palette.common.white }}>
+                    <Typography variant="body1" sx={{ color: theme.palette.common.white }}>
                       What is next? Checkout the Upcoming release of Mantis React.
                     </Typography>
                   </Grid>
@@ -146,12 +146,12 @@ const FooterBlock = ({ isFull }) => {
                     <Box sx={{ display: 'inline-block' }}>
                       <AnimateButton>
                         <Button
-                          size='large'
-                          variant='contained'
+                          size="large"
+                          variant="contained"
                           endIcon={<SendOutlined />}
                           component={Link}
-                          href='https://links.codedthemes.com/RXnKQ'
-                          target='_blank'
+                          href="https://links.codedthemes.com/RXnKQ"
+                          target="_blank"
                         >
                           Roadmap
                         </Button>
@@ -180,12 +180,11 @@ const FooterBlock = ({ isFull }) => {
               >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <CardMedia component='img' image={imgfooterlogo} sx={{ width: 'auto' }} />
+                    <CardMedia component="img" image={imgfooterlogo} sx={{ width: 'auto' }} />
                   </Grid>
                   <Grid item xs={12}>
-                    <Typography variant='subtitle1' sx={{ fontWeight: 400, color: theme.palette.common.white }}>
-                      Since 2017, More than 50K+ Developers trust the CodedThemes Digital Product. Mantis React is
-                      Manage under their
+                    <Typography variant="subtitle1" sx={{ fontWeight: 400, color: theme.palette.common.white }}>
+                      Since 2017, More than 50K+ Developers trust the CodedThemes Digital Product. Mantis React is Manage under their
                       Experienced Team Players.
                     </Typography>
                   </Grid>
@@ -196,20 +195,20 @@ const FooterBlock = ({ isFull }) => {
               <Grid container spacing={{ xs: 5, md: 2 }}>
                 <Grid item xs={6} sm={3}>
                   <Stack spacing={{ xs: 3, md: 5 }}>
-                    <Typography variant='h5' color={textColor} sx={{ fontWeight: 500 }}>
+                    <Typography variant="h5" color={textColor} sx={{ fontWeight: 500 }}>
                       Help
                     </Typography>
                     <Stack spacing={{ xs: 1.5, md: 2.5 }}>
-                      <FooterLink href='https://links.codedthemes.com/nOuhw' target='_blank' underline='none'>
+                      <FooterLink href="https://links.codedthemes.com/nOuhw" target="_blank" underline="none">
                         Blog
                       </FooterLink>
-                      <FooterLink href='https://links.codedthemes.com/BQFrl' target='_blank' underline='none'>
+                      <FooterLink href="https://links.codedthemes.com/BQFrl" target="_blank" underline="none">
                         Documentation
                       </FooterLink>
-                      <FooterLink href='https://links.codedthemes.com/rhzvh' target='_blank' underline='none'>
+                      <FooterLink href="https://links.codedthemes.com/rhzvh" target="_blank" underline="none">
                         Change Log
                       </FooterLink>
-                      <FooterLink href='https://codedthemes.support-hub.io/' target='_blank' underline='none'>
+                      <FooterLink href="https://codedthemes.support-hub.io/" target="_blank" underline="none">
                         Support
                       </FooterLink>
                     </Stack>
@@ -217,20 +216,20 @@ const FooterBlock = ({ isFull }) => {
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Stack spacing={{ xs: 3, md: 5 }}>
-                    <Typography variant='h5' color={textColor} sx={{ fontWeight: 500 }}>
+                    <Typography variant="h5" color={textColor} sx={{ fontWeight: 500 }}>
                       Store Help
                     </Typography>
                     <Stack spacing={{ xs: 1.5, md: 2.5 }}>
-                      <FooterLink href='https://mui.com/store/license/' target='_blank' underline='none'>
+                      <FooterLink href="https://mui.com/store/license/" target="_blank" underline="none">
                         License
                       </FooterLink>
-                      <FooterLink href='https://mui.com/store/customer-refund-policy/' target='_blank' underline='none'>
+                      <FooterLink href="https://mui.com/store/customer-refund-policy/" target="_blank" underline="none">
                         Refund Policy
                       </FooterLink>
                       <FooterLink
-                        href='https://support.mui.com/hc/en-us/sections/360002564979-For-customers'
-                        target='_blank'
-                        underline='none'
+                        href="https://support.mui.com/hc/en-us/sections/360002564979-For-customers"
+                        target="_blank"
+                        underline="none"
                       >
                         Submit a Request
                       </FooterLink>
@@ -239,12 +238,12 @@ const FooterBlock = ({ isFull }) => {
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Stack spacing={{ xs: 3, md: 5 }}>
-                    <Typography variant='h5' color={textColor} sx={{ fontWeight: 500 }}>
+                    <Typography variant="h5" color={textColor} sx={{ fontWeight: 500 }}>
                       Mantis Eco-System
                     </Typography>
                     <Stack spacing={{ xs: 1.5, md: 2.5 }}>
                       {frameworks.map((item, index) => (
-                        <FooterLink href={item.link} target='_blank' underline='none' key={index}>
+                        <FooterLink href={item.link} target="_blank" underline="none" key={index}>
                           {item.title}
                           {/* {item.isUpcoming && <Chip variant="outlined" size="small" label="Upcoming" sx={{ ml: 0.5 }} />} */}
                         </FooterLink>
@@ -254,17 +253,17 @@ const FooterBlock = ({ isFull }) => {
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Stack spacing={{ xs: 3, md: 5 }}>
-                    <Typography variant='h5' color={textColor} sx={{ fontWeight: 500 }}>
+                    <Typography variant="h5" color={textColor} sx={{ fontWeight: 500 }}>
                       More Products
                     </Typography>
                     <Stack spacing={{ xs: 1.5, md: 2.5 }}>
-                      <FooterLink href='https://links.codedthemes.com/zyACc' target='_blank' underline='none'>
+                      <FooterLink href="https://links.codedthemes.com/zyACc" target="_blank" underline="none">
                         Berry React Material
                       </FooterLink>
-                      <FooterLink href='https://links.codedthemes.com/WztNI' target='_blank' underline='none'>
+                      <FooterLink href="https://links.codedthemes.com/WztNI" target="_blank" underline="none">
                         Free Berry React
                       </FooterLink>
-                      <FooterLink href='https://links.codedthemes.com/sTUAK' target='_blank' underline='none'>
+                      <FooterLink href="https://links.codedthemes.com/sTUAK" target="_blank" underline="none">
                         Free Mantis React
                       </FooterLink>
                     </Stack>
@@ -285,25 +284,25 @@ const FooterBlock = ({ isFull }) => {
         <Container>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={8}>
-              <Typography variant='subtitle2' color='secondary'>
+              <Typography variant="subtitle2" color="secondary">
                 © Made with love by Team CodedThemes
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Grid container spacing={2} alignItems='center' sx={{ justifyContent: 'flex-end' }}>
+              <Grid container spacing={2} alignItems="center" sx={{ justifyContent: 'flex-end' }}>
                 <Grid item>
-                  <Link underline='none' sx={linkSX}>
-                    <CardMedia component='img' image={imgfootersoc1} />
+                  <Link underline="none" sx={linkSX}>
+                    <CardMedia component="img" image={imgfootersoc1} />
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link underline='none' sx={linkSX}>
-                    <CardMedia component='img' image={imgfootersoc2} />
+                  <Link underline="none" sx={linkSX}>
+                    <CardMedia component="img" image={imgfootersoc2} />
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link underline='none' sx={linkSX}>
-                    <CardMedia component='img' image={imgfootersoc3} />
+                  <Link underline="none" sx={linkSX}>
+                    <CardMedia component="img" image={imgfootersoc3} />
                   </Link>
                 </Grid>
               </Grid>

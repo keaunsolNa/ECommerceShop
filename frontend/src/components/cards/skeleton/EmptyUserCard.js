@@ -21,7 +21,7 @@ const EmptyUserCard = ({ title }) => {
             bgcolor: 'transparent'
           }}
         >
-          <Grid container direction='column' justifyContent='center' alignItems='center'>
+          <Grid container direction="column" justifyContent="center" alignItems="center">
             <Grid item>
               <Box sx={{ ml: -9, mb: { xs: -8, sm: -5 } }}>
                 <Box sx={{ position: 'relative' }}>
@@ -34,7 +34,7 @@ const EmptyUserCard = ({ title }) => {
             </Grid>
             <Grid item>
               <Stack spacing={1}>
-                <Typography align='center' variant='h4'>
+                <Typography align="center" variant="h4">
                   {title}
                 </Typography>
               </Stack>

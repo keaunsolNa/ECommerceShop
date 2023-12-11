@@ -76,25 +76,24 @@ const CustomerCard = ({ customer }) => {
   return (
     <>
       <MainCard sx={{ height: 1, '& .MuiCardContent-root': { height: 1, display: 'flex', flexDirection: 'column' } }}>
-        <Grid id='print' container spacing={2.25}>
+        <Grid id="print" container spacing={2.25}>
           <Grid item xs={12}>
             <List sx={{ width: 1, p: 0 }}>
               <ListItem
                 disablePadding
                 secondaryAction={
-                  <IconButton edge='end' aria-label='comments' color='secondary' onClick={handleMenuClick}>
+                  <IconButton edge="end" aria-label="comments" color="secondary" onClick={handleMenuClick}>
                     <MoreOutlined style={{ fontSize: '1.15rem' }} />
                   </IconButton>
                 }
               >
                 <ListItemAvatar>
-                  <Avatar alt={customer.fatherName}
-                          src={avatarImage(`./avatar-${!customer.avatar ? 1 : customer.avatar}.png`)} />
+                  <Avatar alt={customer.fatherName} src={avatarImage(`./avatar-${!customer.avatar ? 1 : customer.avatar}.png`)} />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={<Typography variant='subtitle1'>{customer.fatherName}</Typography>}
+                  primary={<Typography variant="subtitle1">{customer.fatherName}</Typography>}
                   secondary={
-                    <Typography variant='caption' color='secondary'>
+                    <Typography variant="caption" color="secondary">
                       {customer.role}
                     </Typography>
                   }
@@ -102,7 +101,7 @@ const CustomerCard = ({ customer }) => {
               </ListItem>
             </List>
             <Menu
-              id='fade-menu'
+              id="fade-menu"
               MenuListProps={{
                 'aria-labelledby': 'fade-button'
               }}
@@ -122,8 +121,7 @@ const CustomerCard = ({ customer }) => {
               <MenuItem sx={{ a: { textDecoration: 'none', color: 'inherit' } }}>
                 <>
                   {' '}
-                  <PDFDownloadLink document={<ListSmallCard customer={customer} />}
-                                   fileName={`Customer-${customer.fatherName}.pdf`}>
+                  <PDFDownloadLink document={<ListSmallCard customer={customer} />} fileName={`Customer-${customer.fatherName}.pdf`}>
                     Export PDF
                   </PDFDownloadLink>
                 </>
@@ -146,7 +144,7 @@ const CustomerCard = ({ customer }) => {
                     <ListItemIcon>
                       <MailOutlined />
                     </ListItemIcon>
-                    <ListItemText primary={<Typography color='secondary'>{customer.email}</Typography>} />
+                    <ListItemText primary={<Typography color="secondary">{customer.email}</Typography>} />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
@@ -154,9 +152,8 @@ const CustomerCard = ({ customer }) => {
                     </ListItemIcon>
                     <ListItemText
                       primary={
-                        <Typography color='secondary'>
-                          <PatternFormat displayType='text' format='+1 (###) ###-####' mask='_'
-                                         defaultValue={customer.contact} />
+                        <Typography color="secondary">
+                          <PatternFormat displayType="text" format="+1 (###) ###-####" mask="_" defaultValue={customer.contact} />
                         </Typography>
                       }
                     />
@@ -169,7 +166,7 @@ const CustomerCard = ({ customer }) => {
                     <ListItemIcon>
                       <EnvironmentOutlined />
                     </ListItemIcon>
-                    <ListItemText primary={<Typography color='secondary'>{customer.country}</Typography>} />
+                    <ListItemText primary={<Typography color="secondary">{customer.country}</Typography>} />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
@@ -177,7 +174,7 @@ const CustomerCard = ({ customer }) => {
                     </ListItemIcon>
                     <ListItemText
                       primary={
-                        <Link href='https://google.com' target='_blank' sx={{ textTransform: 'lowercase' }}>
+                        <Link href="https://google.com" target="_blank" sx={{ textTransform: 'lowercase' }}>
                           https://{customer.firstName}.en
                         </Link>
                       }
@@ -197,11 +194,11 @@ const CustomerCard = ({ customer }) => {
                   p: 0.5,
                   m: 0
                 }}
-                component='ul'
+                component="ul"
               >
                 {customer.skills.map((skill, index) => (
                   <ListItem disablePadding key={index} sx={{ width: 'auto', pr: 0.75, pb: 0.75 }}>
-                    <Chip color='secondary' variant='outlined' size='small' label={skill} />
+                    <Chip color="secondary" variant="outlined" size="small" label={skill} />
                   </ListItem>
                 ))}
               </Box>
@@ -209,17 +206,17 @@ const CustomerCard = ({ customer }) => {
           </Grid>
         </Grid>
         <Stack
-          direction='row'
-          className='hideforPDf'
-          alignItems='center'
+          direction="row"
+          className="hideforPDf"
+          alignItems="center"
           spacing={1}
-          justifyContent='space-between'
+          justifyContent="space-between"
           sx={{ mt: 'auto', mb: 0, pt: 2.25 }}
         >
-          <Typography variant='caption' color='secondary'>
+          <Typography variant="caption" color="secondary">
             Updated in {customer.time}
           </Typography>
-          <Button variant='outlined' size='small' onClick={handleClickOpen}>
+          <Button variant="outlined" size="small" onClick={handleClickOpen}>
             Preview
           </Button>
         </Stack>
@@ -227,7 +224,7 @@ const CustomerCard = ({ customer }) => {
 
       {/* edit customer dialog */}
       <Dialog
-        maxWidth='sm'
+        maxWidth="sm"
         fullWidth
         TransitionComponent={PopupTransition}
         onClose={handleAdd}

@@ -73,7 +73,7 @@ const EmployeeList = () => {
         secondary={
           <>
             {permission.includes(20) ? (
-              <Button variant='outlined' color='primary' onClick={() => handleOpen()}>
+              <Button variant="outlined" color="primary" onClick={() => handleOpen()}>
                 인사 카드 생성
               </Button>
             ) : null}
@@ -83,12 +83,12 @@ const EmployeeList = () => {
         <CommonSortTable title={'직원 목록'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
-        maxWidth='md'
+        maxWidth="md"
         TransitionComponent={PopupTransition}
         onClose={() => handleOpen()}
         open={open}
         sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
-        aria-describedby='alert-dialog-slide-description'
+        aria-describedby="alert-dialog-slide-description"
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
         <EmployeeDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />

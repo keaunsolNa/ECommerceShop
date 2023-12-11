@@ -4,18 +4,7 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import {
-  Button,
-  Divider,
-  Grid,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography
-} from '@mui/material';
+import { Button, Divider, Grid, Stack, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material';
 
 // third-party
 import { sum } from 'lodash';
@@ -56,22 +45,22 @@ const Increment = ({ itemId, quantity, updateQuantity }) => {
   };
 
   return (
-    <Stack direction='row'>
+    <Stack direction="row">
       <Button
-        key='three'
-        variant='text'
+        key="three"
+        variant="text"
         disabled={value <= 1}
         onClick={incrementHandler}
         sx={{ pr: 0.75, pl: 0.75, minWidth: '0px !important', '&:hover': { bgcolor: 'transparent' } }}
       >
         <MinusOutlined style={{ fontSize: 'inherit' }} />
       </Button>
-      <Typography key='two' sx={{ p: '9px 15px', border: `1px solid ${theme.palette.grey.A800}` }}>
+      <Typography key="two" sx={{ p: '9px 15px', border: `1px solid ${theme.palette.grey.A800}` }}>
         {value}
       </Typography>
       <Button
-        key='one'
-        variant='text'
+        key="one"
+        variant="text"
         onClick={decrementHandler}
         sx={{ pl: 0.75, pr: 0.75, minWidth: '0px !important', '&:hover': { bgcolor: 'transparent' } }}
       >
@@ -105,9 +94,9 @@ const Cart = ({ checkout, onNext, removeProduct, updateQuantity }) => {
           <MainCard content={false}>
             <Grid container>
               <Grid item xs={12} sx={{ py: 2.5, pl: 2.5 }}>
-                <Stack direction='row' alignItems='center' spacing={1}>
-                  <Typography variant='subtitle1'>Cart</Typography>
-                  <Avatar color='secondary' size='xs'>
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <Typography variant="subtitle1">Cart</Typography>
+                  <Avatar color="secondary" size="xs">
                     {totalQuantity}
                   </Avatar>
                 </Stack>
@@ -117,20 +106,20 @@ const Cart = ({ checkout, onNext, removeProduct, updateQuantity }) => {
               </Grid>
               <Grid item xs={12}>
                 <TableContainer>
-                  <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableBody>
                       {rows.map((row, index) => {
                         const colorsData = row.color ? getColor(row.color) : false;
                         return (
                           <TableRow key={index} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
-                            <TableCell component='th' scope='row'>
-                              <Grid container alignItems='center' spacing={2}>
+                            <TableCell component="th" scope="row">
+                              <Grid container alignItems="center" spacing={2}>
                                 <Grid item>
                                   <Avatar
-                                    size='lg'
-                                    variant='rounded'
-                                    color='secondary'
-                                    type='combined'
+                                    size="lg"
+                                    variant="rounded"
+                                    color="secondary"
+                                    type="combined"
                                     src={row.image ? prodImage(`./thumbs/${row.image}`) : ''}
                                   />
                                 </Grid>
@@ -139,34 +128,32 @@ const Cart = ({ checkout, onNext, removeProduct, updateQuantity }) => {
                                     <Typography
                                       component={Link}
                                       to={`/apps/e-commerce/product-details/${row.id}`}
-                                      target='_blank'
-                                      variant='subtitle1'
-                                      color='textPrimary'
+                                      target="_blank"
+                                      variant="subtitle1"
+                                      color="textPrimary"
                                       sx={{ textDecoration: 'none' }}
                                     >
                                       {row.name}
                                     </Typography>
-                                    <Typography
-                                      color='textSecondary'>{colorsData ? colorsData[0].label : 'Multicolor'}</Typography>
+                                    <Typography color="textSecondary">{colorsData ? colorsData[0].label : 'Multicolor'}</Typography>
                                   </Stack>
                                 </Grid>
                               </Grid>
                             </TableCell>
-                            <TableCell align='right'>
-                              <Stack alignItems='center'>
+                            <TableCell align="right">
+                              <Stack alignItems="center">
                                 {row.offerPrice && row.quantity && (
-                                  <Typography
-                                    variant='subtitle1'>{currency(row.offerPrice * row.quantity).format()}</Typography>
+                                  <Typography variant="subtitle1">{currency(row.offerPrice * row.quantity).format()}</Typography>
                                 )}
                               </Stack>
                             </TableCell>
-                            <TableCell align='right'>
+                            <TableCell align="right">
                               <Increment quantity={row.quantity} itemId={row.itemId} updateQuantity={updateQuantity} />
                             </TableCell>
-                            <TableCell align='right'>
+                            <TableCell align="right">
                               <IconButton
                                 onClick={() => removeProduct(row.itemId)}
-                                size='medium'
+                                size="medium"
                                 sx={{ opacity: 0.5, '&:hover': { bgcolor: 'transparent' } }}
                               >
                                 <DeleteOutlined style={{ color: 'grey.500' }} />
@@ -182,9 +169,8 @@ const Cart = ({ checkout, onNext, removeProduct, updateQuantity }) => {
             </Grid>
           </MainCard>
           <Grid item sx={{ textAlign: 'right' }}>
-            <Button color='secondary' component={Link} to='/apps/e-commerce/products' variant='text'
-                    startIcon={<LeftOutlined />}>
-              <Typography variant='h6' color='textPrimary'>
+            <Button color="secondary" component={Link} to="/apps/e-commerce/products" variant="text" startIcon={<LeftOutlined />}>
+              <Typography variant="h6" color="textPrimary">
                 Back to Shopping
               </Typography>
             </Button>
@@ -197,7 +183,7 @@ const Cart = ({ checkout, onNext, removeProduct, updateQuantity }) => {
             <CartDiscount />
           </MainCard>
           <OrderSummary checkout={checkout} show />
-          <Button variant='contained' sx={{ textTransform: 'none' }} fullWidth onClick={onNext}>
+          <Button variant="contained" sx={{ textTransform: 'none' }} fullWidth onClick={onNext}>
             Process to Checkout
           </Button>
         </Stack>

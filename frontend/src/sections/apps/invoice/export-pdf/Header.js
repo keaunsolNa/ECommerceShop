@@ -86,14 +86,14 @@ const Header = ({ list }) => {
                   list?.status === 'Paid'
                     ? theme.palette.success.light + 20
                     : list?.status === 'Unpaid'
-                      ? theme.palette.info.light + 20
-                      : theme.palette.error.light + 20,
+                    ? theme.palette.info.light + 20
+                    : theme.palette.error.light + 20,
                 color:
                   list?.status === 'Paid'
                     ? theme.palette.success.main
                     : list?.status === 'Unpaid'
-                      ? theme.palette.info.main
-                      : theme.palette.error.main
+                    ? theme.palette.info.main
+                    : theme.palette.error.main
               }
             ]}
           >

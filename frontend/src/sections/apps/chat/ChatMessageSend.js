@@ -12,11 +12,11 @@ const ChatMessageSend = ({ message, setMessage, handleEnter }) => {
       fullWidth
       multiline
       rows={4}
-      placeholder='Your Message...'
+      placeholder="Your Message..."
       value={message}
       onChange={(e) => setMessage(e.target.value)}
       onKeyPress={handleEnter}
-      variant='standard'
+      variant="standard"
       sx={{ pr: 2, '& .MuiInput-root:before': { borderBottomColor: theme.palette.divider } }}
     />
   );

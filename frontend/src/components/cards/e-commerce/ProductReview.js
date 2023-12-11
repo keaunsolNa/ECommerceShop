@@ -15,20 +15,19 @@ const avatarImage = require.context('assets/images/users', true);
 
 const ProductReview = ({ avatar, date, name, rating, review }) => (
   <Grid item xs={12}>
-    <Stack direction='row' spacing={1}>
+    <Stack direction="row" spacing={1}>
       <Avatar alt={name} src={avatar && avatarImage(`./${avatar}`)} />
       <Stack spacing={2}>
         <Stack>
-          <Typography variant='subtitle1'
-                      sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
+          <Typography variant="subtitle1" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
             {name}
           </Typography>
-          <Typography variant='caption' color='textSecondary'>
+          <Typography variant="caption" color="textSecondary">
             {date}
           </Typography>
           <Rating
-            size='small'
-            name='simple-controlled'
+            size="small"
+            name="simple-controlled"
             value={rating < 4 ? rating + 1 : rating}
             icon={<StarFilled style={{ fontSize: 'inherit' }} />}
             emptyIcon={<StarOutlined style={{ fontSize: 'inherit' }} />}
@@ -36,7 +35,7 @@ const ProductReview = ({ avatar, date, name, rating, review }) => (
             readOnly
           />
         </Stack>
-        <Typography variant='body2'>{review}</Typography>
+        <Typography variant="body2">{review}</Typography>
       </Stack>
     </Stack>
   </Grid>

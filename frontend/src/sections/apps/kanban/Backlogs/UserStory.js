@@ -144,27 +144,27 @@ const UserStory = ({ story, index }) => {
               }}
             >
               <TableCell sx={{ pl: 3, minWidth: 120, width: 120, height: 46 }}>
-                <Stack direction='row' spacing={0.5} alignItems='center'>
-                  <Tooltip title='Add Task'>
-                    <IconButton aria-label='expand row' onClick={addItem} size='small' sx={{ fontSize: '1.15rem' }}>
+                <Stack direction="row" spacing={0.5} alignItems="center">
+                  <Tooltip title="Add Task">
+                    <IconButton aria-label="expand row" onClick={addItem} size="small" sx={{ fontSize: '1.15rem' }}>
                       <PlusSquareTwoTone color={theme.palette.primary.main} />
                     </IconButton>
                   </Tooltip>
-                  <IconButton aria-label='expand row' size='small' onClick={() => setOpen(!open)} color='secondary'>
+                  <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)} color="secondary">
                     {open ? <DownOutlined /> : <RightOutlined />}
                   </IconButton>
                 </Stack>
               </TableCell>
               <TableCell sx={{ width: 110, minWidth: 110 }}>
-                <Stack direction='row' spacing={0.75} alignItems='center'>
+                <Stack direction="row" spacing={0.75} alignItems="center">
                   <ClusterOutlined style={{ color: theme.palette.primary.main, marginTop: -2 }} />
-                  <Typography variant='subtitle2'>{story.id}</Typography>
+                  <Typography variant="subtitle2">{story.id}</Typography>
                 </Stack>
               </TableCell>
-              <TableCell sx={{ maxWidth: 'calc(100vw - 850px)', minWidth: 140 }} component='th' scope='row'>
+              <TableCell sx={{ maxWidth: 'calc(100vw - 850px)', minWidth: 140 }} component="th" scope="row">
                 <Link
-                  underline='hover'
-                  color='default'
+                  underline="hover"
+                  color="default"
                   onClick={editStory}
                   sx={{
                     overflow: 'hidden',
@@ -179,17 +179,16 @@ const UserStory = ({ story, index }) => {
                 </Link>
               </TableCell>
               <TableCell sx={{ width: 60, minWidth: 60 }}>
-                <IconButton size='small' aria-controls='menu-comment' onClick={handleClick} aria-haspopup='true'
-                            color='secondary'>
+                <IconButton size="small" aria-controls="menu-comment" onClick={handleClick} aria-haspopup="true" color="secondary">
                   <MoreOutlined style={{ color: theme.palette.text.primary }} />
                 </IconButton>
                 <Menu
-                  id='menu-comment'
+                  id="menu-comment"
                   anchorEl={anchorEl}
                   keepMounted
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
-                  variant='selectedMenu'
+                  variant="selectedMenu"
                   anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right'
@@ -221,13 +220,17 @@ const UserStory = ({ story, index }) => {
               <TableCell sx={{ width: 90, minWidth: 90 }}>{storyColumn ? storyColumn.title : ''}</TableCell>
               <TableCell sx={{ width: 140, minWidth: 140 }}>{storyProfile ? storyProfile.name : ''}</TableCell>
               <TableCell sx={{ width: 85, minWidth: 85, textTransform: 'capitalize' }}>{story.priority}</TableCell>
-              <TableCell sx={{
-                width: 120,
-                minWidth: 120
-              }}>{story.dueDate ? format(new Date(story.dueDate), 'd MMM yyyy') : ''}</TableCell>
+              <TableCell
+                sx={{
+                  width: 120,
+                  minWidth: 120
+                }}
+              >
+                {story.dueDate ? format(new Date(story.dueDate), 'd MMM yyyy') : ''}
+              </TableCell>
             </TableRow>
 
-            <Droppable droppableId={story.id} type='item'>
+            <Droppable droppableId={story.id} type="item">
               {(providedDrop, snapshotDrop) => (
                 <TableRow
                   ref={providedDrop.innerRef}
@@ -235,11 +238,11 @@ const UserStory = ({ story, index }) => {
                   sx={getDropWrapper(snapshotDrop.isDraggingOver, theme)}
                 >
                   <TableCell style={{ padding: 0 }} colSpan={8}>
-                    <Collapse in={open} timeout='auto' unmountOnExit>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
                       {open && (
                         <Box sx={{ margin: 0 }}>
                           <TableContainer>
-                            <Table size='small' aria-label='purchases'>
+                            <Table size="small" aria-label="purchases">
                               <TableBody>
                                 {story.itemIds?.map((itemId, i) => (
                                   <Items key={itemId} itemId={itemId} index={i} />

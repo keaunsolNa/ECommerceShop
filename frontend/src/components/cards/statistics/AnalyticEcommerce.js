@@ -14,19 +14,19 @@ import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 const AnalyticEcommerce = ({ color = 'primary', title, count, percentage, isLoss, extra }) => (
   <MainCard contentSX={{ p: 2.25 }}>
     <Stack spacing={0.5}>
-      <Typography variant='h6' color='textSecondary'>
+      <Typography variant="h6" color="textSecondary">
         {title}
       </Typography>
-      <Grid container alignItems='center'>
+      <Grid container alignItems="center">
         <Grid item>
-          <Typography variant='h4' color='inherit'>
+          <Typography variant="h4" color="inherit">
             {count}
           </Typography>
         </Grid>
         {percentage && (
           <Grid item>
             <Chip
-              variant='combined'
+              variant="combined"
               color={color}
               icon={
                 <>
@@ -36,16 +36,16 @@ const AnalyticEcommerce = ({ color = 'primary', title, count, percentage, isLoss
               }
               label={`${percentage}%`}
               sx={{ ml: 1.25, pl: 1 }}
-              size='small'
+              size="small"
             />
           </Grid>
         )}
       </Grid>
     </Stack>
     <Box sx={{ pt: 2.25 }}>
-      <Typography variant='caption' color='textSecondary'>
+      <Typography variant="caption" color="textSecondary">
         You made an extra{' '}
-        <Typography component='span' variant='caption' sx={{ color: `${color || 'primary'}.main` }}>
+        <Typography component="span" variant="caption" sx={{ color: `${color || 'primary'}.main` }}>
           {extra}
         </Typography>{' '}
         this year

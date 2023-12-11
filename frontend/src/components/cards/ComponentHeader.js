@@ -11,9 +11,9 @@ import { GlobalOutlined, NodeExpandOutlined } from '@ant-design/icons';
 const ComponentHeader = ({ title, caption, directory, link }) => (
   <Box sx={{ pl: 3 }}>
     <Stack spacing={1.25}>
-      <Typography variant='h2'>{title}</Typography>
+      <Typography variant="h2">{title}</Typography>
       {caption && (
-        <Typography variant='h6' color='textSecondary'>
+        <Typography variant="h6" color="textSecondary">
           {caption}
         </Typography>
       )}
@@ -21,7 +21,7 @@ const ComponentHeader = ({ title, caption, directory, link }) => (
     <Grid container spacing={0.75} sx={{ mt: 1.75 }}>
       {directory && (
         <Grid item xs={12}>
-          <Typography variant='caption' color='textSecondary'>
+          <Typography variant="caption" color="textSecondary">
             <NodeExpandOutlined style={{ marginRight: 10 }} />
             {directory}
           </Typography>
@@ -29,7 +29,7 @@ const ComponentHeader = ({ title, caption, directory, link }) => (
       )}
       {link && (
         <Grid item xs={12}>
-          <Link variant='caption' color='primary' href={link} target='_blank'>
+          <Link variant="caption" color="primary" href={link} target="_blank">
             <GlobalOutlined style={{ marginRight: 10 }} />
             {link}
           </Link>

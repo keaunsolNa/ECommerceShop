@@ -32,14 +32,14 @@ const ChatHistory = ({ data, theme, user }) => {
       {data.map((history, index) => (
         <Grid item xs={12} key={index}>
           {history.from !== user.name ? (
-            <Stack spacing={1.25} direction='row'>
-              <Grid container spacing={1} justifyContent='flex-end'>
+            <Stack spacing={1.25} direction="row">
+              <Grid container spacing={1} justifyContent="flex-end">
                 <Grid item xs={2} md={3} xl={4} />
 
                 <Grid item xs={10} md={9} xl={8}>
-                  <Stack direction='row' justifyContent='flex-end' alignItems='flex-start'>
+                  <Stack direction="row" justifyContent="flex-end" alignItems="flex-start">
                     <ChatMessageAction index={index} />
-                    <IconButton size='small' color='secondary'>
+                    <IconButton size="small" color="secondary">
                       <EditOutlined />
                     </IconButton>
                     <Card
@@ -54,7 +54,7 @@ const ChatHistory = ({ data, theme, user }) => {
                       <CardContent sx={{ p: 1, pb: '8px !important', width: 'fit-content', ml: 'auto' }}>
                         <Grid container spacing={1}>
                           <Grid item xs={12}>
-                            <Typography variant='h6' color={theme.palette.grey[0]} sx={{ overflowWrap: 'anywhere' }}>
+                            <Typography variant="h6" color={theme.palette.grey[0]} sx={{ overflowWrap: 'anywhere' }}>
                               {history.text}
                             </Typography>
                           </Grid>
@@ -64,7 +64,7 @@ const ChatHistory = ({ data, theme, user }) => {
                   </Stack>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography align='right' variant='subtitle2' color='textSecondary'>
+                  <Typography align="right" variant="subtitle2" color="textSecondary">
                     {history.time}
                   </Typography>
                 </Grid>
@@ -72,7 +72,7 @@ const ChatHistory = ({ data, theme, user }) => {
               <UserAvatar user={{ online_status: 'available', avatar: 'avatar-1.png', name: 'User 1' }} />
             </Stack>
           ) : (
-            <Stack direction='row' spacing={1.25} alignItems='flext-start'>
+            <Stack direction="row" spacing={1.25} alignItems="flext-start">
               <UserAvatar user={{ online_status: user.online_status, avatar: user.avatar, name: user.name }} />
 
               <Grid container>
@@ -88,7 +88,7 @@ const ChatHistory = ({ data, theme, user }) => {
                     <CardContent sx={{ p: 1, pb: '8px !important' }}>
                       <Grid container spacing={1}>
                         <Grid item xs={12}>
-                          <Typography variant='h6' color='textPrimary' sx={{ overflowWrap: 'anywhere' }}>
+                          <Typography variant="h6" color="textPrimary" sx={{ overflowWrap: 'anywhere' }}>
                             {history.text}
                           </Typography>
                         </Grid>
@@ -97,7 +97,7 @@ const ChatHistory = ({ data, theme, user }) => {
                   </Card>
                 </Grid>
                 <Grid item xs={12} sx={{ mt: 1 }}>
-                  <Typography align='left' variant='subtitle2' color='textSecondary'>
+                  <Typography align="left" variant="subtitle2" color="textSecondary">
                     {history.time}
                   </Typography>
                 </Grid>

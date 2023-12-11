@@ -9,7 +9,7 @@ export default function CircularWithPath({ value, size, variant, thickness, show
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress
-        variant='determinate'
+        variant="determinate"
         sx={{ color: pathColor ? pathColor : 'grey.200' }}
         size={size}
         thickness={thickness}
@@ -29,7 +29,7 @@ export default function CircularWithPath({ value, size, variant, thickness, show
             justifyContent: 'center'
           }}
         >
-          <Typography variant='caption' component='div' color='text.secondary'>
+          <Typography variant="caption" component="div" color="text.secondary">
             {value ? `${Math.round(value)}%` : '0%'}
           </Typography>
         </Box>

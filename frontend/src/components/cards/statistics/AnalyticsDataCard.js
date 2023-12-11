@@ -15,16 +15,16 @@ const AnalyticsDataCard = ({ color = 'primary', title, count, percentage, isLoss
   <MainCard content={false}>
     <Box sx={{ p: 2.25 }}>
       <Stack spacing={0.5}>
-        <Typography variant='h6' color='textSecondary'>
+        <Typography variant="h6" color="textSecondary">
           {title}
         </Typography>
-        <Stack direction='row' alignItems='center'>
-          <Typography variant='h4' color='inherit'>
+        <Stack direction="row" alignItems="center">
+          <Typography variant="h4" color="inherit">
             {count}
           </Typography>
           {percentage && (
             <Chip
-              variant='combined'
+              variant="combined"
               color={color}
               icon={
                 <>
@@ -34,7 +34,7 @@ const AnalyticsDataCard = ({ color = 'primary', title, count, percentage, isLoss
               }
               label={`${percentage}%`}
               sx={{ ml: 1.25, pl: 1 }}
-              size='small'
+              size="small"
             />
           )}
         </Stack>

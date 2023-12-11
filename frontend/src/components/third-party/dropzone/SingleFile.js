@@ -95,8 +95,8 @@ const SingleFileUpload = ({ error, file, setFieldValue, sx }) => {
       {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />}
 
       {file && file.length > 0 && (
-        <Stack direction='row' justifyContent='flex-end' sx={{ mt: 1.5 }}>
-          <Button variant='contained' color='error' onClick={onRemove}>
+        <Stack direction="row" justifyContent="flex-end" sx={{ mt: 1.5 }}>
+          <Button variant="contained" color="error" onClick={onRemove}>
             Remove
           </Button>
         </Stack>

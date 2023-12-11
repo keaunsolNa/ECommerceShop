@@ -129,7 +129,7 @@ const InvoiceIncomeAreaChart = ({ series }) => {
 
   return (
     <Box sx={{ '.apexcharts-bar-area': { strokeWidth: 0 } }}>
-      <ReactApexChart options={options} series={series} type='line' height={265} />
+      <ReactApexChart options={options} series={series} type="line" height={265} />
     </Box>
   );
 };

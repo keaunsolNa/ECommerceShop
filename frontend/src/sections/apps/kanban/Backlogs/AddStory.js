@@ -107,8 +107,8 @@ const AddStory = ({ open, handleDrawerOpen }) => {
           borderRadius: '0px'
         }
       }}
-      variant='temporary'
-      anchor='right'
+      variant="temporary"
+      anchor="right"
       open={open}
       ModalProps={{ keepMounted: true }}
       onClose={handleDrawerOpen}
@@ -121,10 +121,10 @@ const AddStory = ({ open, handleDrawerOpen }) => {
           }}
         >
           <Box sx={{ p: 3 }}>
-            <Stack direction='row' alignItems='center' justifyContent='space-between'>
-              <Typography variant='h4'>Add Story</Typography>
-              <Tooltip title='Close'>
-                <IconButton color='secondary' onClick={handleDrawerOpen} size='small' sx={{ fontSize: '0.875rem' }}>
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+              <Typography variant="h4">Add Story</Typography>
+              <Tooltip title="Close">
+                <IconButton color="secondary" onClick={handleDrawerOpen} size="small" sx={{ fontSize: '0.875rem' }}>
                   <CloseOutlined />
                 </IconButton>
               </Tooltip>
@@ -140,9 +140,9 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       <InputLabel>Title</InputLabel>
                       <TextField
                         fullWidth
-                        id='title'
-                        name='title'
-                        placeholder='Title'
+                        id="title"
+                        name="title"
+                        placeholder="Title"
                         value={formik.values.title}
                         onChange={formik.handleChange}
                         error={formik.touched.title && Boolean(formik.errors.title)}
@@ -154,7 +154,7 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                     <Stack spacing={1}>
                       <InputLabel>Assign to</InputLabel>
                       <Autocomplete
-                        id='assign'
+                        id="assign"
                         value={profiles.find((profile) => profile.id === formik.values.assign) || null}
                         onChange={(event, value) => {
                           formik.setFieldValue('assign', value?.id);
@@ -165,15 +165,15 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                         getOptionLabel={(option) => option.name}
                         isOptionEqualToValue={(option) => option.id === formik.values.assign}
                         renderOption={(props, option) => (
-                          <Box component='li' sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                            <img loading='lazy' width='20' src={avatarImage(`./${option.avatar}`)} alt='' />
+                          <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                            <img loading="lazy" width="20" src={avatarImage(`./${option.avatar}`)} alt="" />
                             {option.name}
                           </Box>
                         )}
                         renderInput={(params) => (
                           <TextField
                             {...params}
-                            placeholder='Choose a assignee'
+                            placeholder="Choose a assignee"
                             inputProps={{
                               ...params.inputProps,
                               autoComplete: 'new-password' // disable autocomplete and autofill
@@ -189,22 +189,19 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       <FormControl>
                         <RadioGroup
                           row
-                          aria-label='color'
+                          aria-label="color"
                           value={formik.values.priority}
                           onChange={formik.handleChange}
-                          name='priority'
-                          id='priority'
+                          name="priority"
+                          id="priority"
                         >
-                          <FormControlLabel value='low'
-                                            control={<Radio color='primary' sx={{ color: 'primary.main' }} />}
-                                            label='Low' />
+                          <FormControlLabel value="low" control={<Radio color="primary" sx={{ color: 'primary.main' }} />} label="Low" />
                           <FormControlLabel
-                            value='medium'
-                            control={<Radio color='warning' sx={{ color: 'warning.main' }} />}
-                            label='Medium'
+                            value="medium"
+                            control={<Radio color="warning" sx={{ color: 'warning.main' }} />}
+                            label="Medium"
                           />
-                          <FormControlLabel value='high' control={<Radio color='error' sx={{ color: 'error.main' }} />}
-                                            label='High' />
+                          <FormControlLabel value="high" control={<Radio color="error" sx={{ color: 'error.main' }} />} label="High" />
                         </RadioGroup>
                       </FormControl>
                     </Stack>
@@ -214,7 +211,7 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       <InputLabel>Due date</InputLabel>
                       <DesktopDatePicker
                         value={formik.values.dueDate}
-                        format='dd/MM/yyyy'
+                        format="dd/MM/yyyy"
                         onChange={(date) => {
                           formik.setFieldValue('dueDate', date);
                         }}
@@ -226,8 +223,8 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       <InputLabel>Acceptance</InputLabel>
                       <TextField
                         fullWidth
-                        id='acceptance'
-                        name='acceptance'
+                        id="acceptance"
+                        name="acceptance"
                         multiline
                         rows={3}
                         value={formik.values.acceptance}
@@ -242,8 +239,8 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       <InputLabel>Description</InputLabel>
                       <TextField
                         fullWidth
-                        id='description'
-                        name='description'
+                        id="description"
+                        name="description"
                         multiline
                         rows={3}
                         value={formik.values.description}
@@ -258,8 +255,8 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       <InputLabel>State</InputLabel>
                       <FormControl fullWidth sx={{ m: 1 }}>
                         <Select
-                          id='columnId'
-                          name='columnId'
+                          id="columnId"
+                          name="columnId"
                           displayEmpty
                           value={formik.values.columnId}
                           onChange={formik.handleChange}
@@ -281,7 +278,7 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       </Grid>
                       <Grid item xs={12}>
                         <UploadMultiFile
-                          type='STANDARD'
+                          type="STANDARD"
                           showList={true}
                           setFieldValue={formik.setFieldValue}
                           files={formik.values.files}
@@ -290,7 +287,7 @@ const AddStory = ({ open, handleDrawerOpen }) => {
                       </Grid>
                       {formik.touched.files && formik.errors.files && (
                         <Grid item xs={12}>
-                          <FormHelperText error id='standard-weight-helper-text-password-login'>
+                          <FormHelperText error id="standard-weight-helper-text-password-login">
                             {formik.errors.files}
                           </FormHelperText>
                         </Grid>
@@ -300,7 +297,7 @@ const AddStory = ({ open, handleDrawerOpen }) => {
 
                   <Grid item xs={12}>
                     <AnimateButton>
-                      <Button fullWidth variant='contained' type='submit'>
+                      <Button fullWidth variant="contained" type="submit">
                         Save
                       </Button>
                     </AnimateButton>

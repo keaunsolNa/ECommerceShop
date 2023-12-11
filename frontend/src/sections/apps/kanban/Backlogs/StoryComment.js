@@ -28,26 +28,26 @@ const StoryComment = ({ comment, profile }) => {
     >
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Grid container wrap='nowrap' alignItems='center' spacing={1}>
+          <Grid container wrap="nowrap" alignItems="center" spacing={1}>
             <Grid item>
               <Avatar
                 sx={{ width: 24, height: 24 }}
-                size='sm'
-                alt='User 1'
+                size="sm"
+                alt="User 1"
                 src={profile && profile.avatar && avatarImage(`./${profile.avatar}`)}
               />
             </Grid>
             <Grid item xs zeroMinWidth>
-              <Grid container alignItems='center' spacing={1} justifyContent='space-between'>
+              <Grid container alignItems="center" spacing={1} justifyContent="space-between">
                 <Grid item>
-                  <Typography align='left' variant='subtitle1' component='div'>
+                  <Typography align="left" variant="subtitle1" component="div">
                     {profile.name}
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Stack direction='row' alignItems='center' spacing={0.5}>
-                    <Dot size={6} sx={{ mt: -0.25 }} color='secondary' />
-                    <Typography variant='caption' color='secondary'>
+                  <Stack direction="row" alignItems="center" spacing={0.5}>
+                    <Dot size={6} sx={{ mt: -0.25 }} color="secondary" />
+                    <Typography variant="caption" color="secondary">
                       {profile.time}
                     </Typography>
                   </Stack>
@@ -57,7 +57,7 @@ const StoryComment = ({ comment, profile }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sx={{ '&.MuiGrid-root': { pt: 1.5 } }}>
-          <Typography align='left' variant='body2'>
+          <Typography align="left" variant="body2">
             {comment?.comment}
           </Typography>
         </Grid>

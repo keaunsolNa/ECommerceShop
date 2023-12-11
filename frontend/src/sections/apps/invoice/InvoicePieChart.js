@@ -72,7 +72,7 @@ const InvoicePieChart = () => {
       labels: ['Pending', 'Paid', 'Overdue', 'Draft'],
       colors: [theme.palette.warning.main, theme.palette.success.main, theme.palette.error.main, theme.palette.primary.lighter],
       tooltip: {
-        custom: function({ series, seriesIndex, w }) {
+        custom: function ({ series, seriesIndex, w }) {
           return `<div class="pie_box">
           <span class="PieDot" style='background-color:${w.globals.colors[seriesIndex]}'></span>
           <span class="fontsize">${w.globals.labels[seriesIndex]}${' '}
@@ -97,9 +97,9 @@ const InvoicePieChart = () => {
 
   return (
     <MainCard
-      title='Total Expenses'
+      title="Total Expenses"
       secondary={
-        <IconButton edge='end' aria-label='comments' color='secondary'>
+        <IconButton edge="end" aria-label="comments" color="secondary">
           <MoreOutlined style={{ fontSize: '1.15rem' }} />
         </IconButton>
       }
@@ -115,16 +115,16 @@ const InvoicePieChart = () => {
         '.fontsizeValue': { color: theme.palette.secondary.dark }
       }}
     >
-      <Grid container alignItems='center' spacing={1}>
+      <Grid container alignItems="center" spacing={1}>
         <Grid item xs={12} sx={{ '& .apexcharts-canvas': { margin: '0 auto' } }}>
-          <ReactApexChart options={options} series={series} type='donut' height={downMD ? '100%' : 265} />
+          <ReactApexChart options={options} series={series} type="donut" height={downMD ? '100%' : 265} />
         </Grid>
         <Grid item xs={12}>
           <Grid container>
             <Grid item></Grid>
             <Grid item xs sx={DotSize}>
-              <Dot color='warning' size={12} />
-              <Typography align='left' variant='subtitle1' color='textSecondary'>
+              <Dot color="warning" size={12} />
+              <Typography align="left" variant="subtitle1" color="textSecondary">
                 Pending
               </Typography>
             </Grid>
@@ -137,8 +137,8 @@ const InvoicePieChart = () => {
           <Grid container>
             <Grid item></Grid>
             <Grid item xs sx={DotSize}>
-              <Dot color='success' size={12} />
-              <Typography align='left' variant='subtitle1' color='textSecondary'>
+              <Dot color="success" size={12} />
+              <Typography align="left" variant="subtitle1" color="textSecondary">
                 Paid
               </Typography>
             </Grid>
@@ -151,8 +151,8 @@ const InvoicePieChart = () => {
           <Grid container>
             <Grid item></Grid>
             <Grid item xs sx={DotSize}>
-              <Dot color='error' size={12} />
-              <Typography align='left' variant='subtitle1' color='textSecondary'>
+              <Dot color="error" size={12} />
+              <Typography align="left" variant="subtitle1" color="textSecondary">
                 Overdue
               </Typography>
             </Grid>
@@ -166,7 +166,7 @@ const InvoicePieChart = () => {
             <Grid item></Grid>
             <Grid item xs sx={DotSize}>
               <Dot sx={{ bgcolor: theme.palette.primary.lighter }} size={12} />
-              <Typography align='left' variant='subtitle1' color='textSecondary'>
+              <Typography align="left" variant="subtitle1" color="textSecondary">
                 Draft
               </Typography>
             </Grid>

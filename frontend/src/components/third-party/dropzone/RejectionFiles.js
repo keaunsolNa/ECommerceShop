@@ -12,7 +12,7 @@ import getDropzoneData from 'utils/getDropzoneData';
 export default function RejectionFiles({ fileRejections }) {
   return (
     <Paper
-      variant='outlined'
+      variant="outlined"
       sx={{
         py: 1,
         px: 2,
@@ -26,12 +26,12 @@ export default function RejectionFiles({ fileRejections }) {
 
         return (
           <Box key={path} sx={{ my: 1 }}>
-            <Typography variant='subtitle2' noWrap>
+            <Typography variant="subtitle2" noWrap>
               {path} - {size ? size : ''}
             </Typography>
 
             {errors.map((error) => (
-              <Box key={error.code} component='li' sx={{ typography: 'caption' }}>
+              <Box key={error.code} component="li" sx={{ typography: 'caption' }}>
                 {error.message}
               </Box>
             ))}

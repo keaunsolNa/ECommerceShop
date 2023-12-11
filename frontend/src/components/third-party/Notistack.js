@@ -43,11 +43,11 @@ const Notistack = ({ children }) => {
       iconVariant={
         snackbar.iconVariant === 'useemojis'
           ? {
-            success: <CheckCircleOutlined style={iconSX} />,
-            error: <CloseCircleOutlined style={iconSX} />,
-            warning: <WarningOutlined style={iconSX} />,
-            info: <InfoCircleOutlined style={iconSX} />
-          }
+              success: <CheckCircleOutlined style={iconSX} />,
+              error: <CloseCircleOutlined style={iconSX} />,
+              warning: <WarningOutlined style={iconSX} />,
+              info: <InfoCircleOutlined style={iconSX} />
+            }
           : undefined
       }
       hideIconVariant={snackbar.iconVariant === 'hide' ? true : false}

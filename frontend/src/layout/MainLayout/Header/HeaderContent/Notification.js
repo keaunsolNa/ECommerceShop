@@ -130,16 +130,16 @@ const Notification = () => {
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <IconButton
-        color='secondary'
-        variant='light'
+        color="secondary"
+        variant="light"
         sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
-        aria-label='open profile'
+        aria-label="open profile"
         ref={anchorRef}
         aria-controls={open ? 'profile-grow' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         onClick={handleToggle}
       >
-        <Badge badgeContent={read} color='primary'>
+        <Badge badgeContent={read} color="primary">
           <BellOutlined />
         </Badge>
       </IconButton>
@@ -162,8 +162,7 @@ const Notification = () => {
         }}
       >
         {({ TransitionProps }) => (
-          <Transitions type='grow' position={matchesXs ? 'top' : 'top-right'} sx={{ overflow: 'hidden' }}
-                       in={open} {...TransitionProps}>
+          <Transitions type="grow" position={matchesXs ? 'top' : 'top-right'} sx={{ overflow: 'hidden' }} in={open} {...TransitionProps}>
             <Paper
               sx={{
                 boxShadow: theme.customShadows.z1,
@@ -177,15 +176,15 @@ const Notification = () => {
             >
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard
-                  title='Notification'
+                  title="Notification"
                   elevation={0}
                   border={false}
                   content={false}
                   secondary={
                     <>
                       {read > 0 && (
-                        <Tooltip title='Mark as all read'>
-                          <IconButton color='success' size='small' onClick={() => setRead(0)}>
+                        <Tooltip title="Mark as all read">
+                          <IconButton color="success" size="small" onClick={() => setRead(0)}>
                             <CheckCircleOutlined style={{ fontSize: '1.15rem' }} />
                           </IconButton>
                         </Tooltip>
@@ -194,7 +193,7 @@ const Notification = () => {
                   }
                 >
                   <List
-                    component='nav'
+                    component="nav"
                     sx={{
                       p: 0,
                       '& .MuiListItemButton-root': {
@@ -219,11 +218,11 @@ const Notification = () => {
                             </Avatar>
                           </ListItemAvatar>
                           <ListItemText
-                            primary={<Typography variant='h6'>{ContentsClassification(notiLists)}</Typography>}
-                            secondary='2 min ago'
+                            primary={<Typography variant="h6">{ContentsClassification(notiLists)}</Typography>}
+                            secondary="2 min ago"
                           />
                           <ListItemSecondaryAction>
-                            <Typography variant='caption' noWrap>
+                            <Typography variant="caption" noWrap>
                               3:00 AM
                             </Typography>
                           </ListItemSecondaryAction>
@@ -264,7 +263,7 @@ const Notification = () => {
                     <ListItemButton sx={{ textAlign: 'center', py: `${12}px !important` }}>
                       <ListItemText
                         primary={
-                          <Typography variant='h6' color='primary'>
+                          <Typography variant="h6" color="primary">
                             View All
                           </Typography>
                         }

@@ -113,23 +113,23 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
         <Grid container spacing={2.5} sx={{ pl: { xs: 0, sm: 5, md: 6, lg: 10 } }}>
           <Grid item xs={12} sm={12} md={12} xl={12}>
             <MainCard
-              title='단위업무상세'
+              title="단위업무상세"
               secondary={
                 <Stack direction={'row'} spacing={0.5}>
                   {
                     {
                       false: (
-                        <Tooltip title='데이터 수정'>
-                          <Button variant='contained' onClick={toggleInsertMode}>
+                        <Tooltip title="데이터 수정">
+                          <Button variant="contained" onClick={toggleInsertMode}>
                             수정
                           </Button>
                         </Tooltip>
                       ),
                       true: (
                         <>
-                          <Tooltip title='데이터 저장'>
+                          <Tooltip title="데이터 저장">
                             <Button
-                              variant='contained'
+                              variant="contained"
                               onClick={() => {
                                 formik.submitForm();
                               }}
@@ -137,8 +137,8 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                               저장
                             </Button>
                           </Tooltip>
-                          <Tooltip title='데이터 수정 취소'>
-                            <Button variant='contained' color='error' onClick={toggleInsertMode}>
+                          <Tooltip title="데이터 수정 취소">
+                            <Button variant="contained" color="error" onClick={toggleInsertMode}>
                               취소
                             </Button>
                           </Tooltip>
@@ -156,12 +156,12 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                       <>
                         <FormikProvider value={formik}>
                           <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
+                            <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                               <ListItem divider={!matchDownMD}>
                                 <Grid container spacing={3}>
                                   <Grid item xs={12} md={6}>
                                     <Stack spacing={0.5}>
-                                      <Typography color='secondary'>단위업무코드</Typography>
+                                      <Typography color="secondary">단위업무코드</Typography>
                                       <TextField
                                         {...getFieldProps('unitCd')}
                                         style={{ width: 300 }}
@@ -172,7 +172,7 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                                   </Grid>
                                   <Grid item xs={12} md={6}>
                                     <Stack spacing={0.5}>
-                                      <Typography color='secondary'>단위업무명</Typography>
+                                      <Typography color="secondary">단위업무명</Typography>
                                       <TextField
                                         {...getFieldProps('unitNm')}
                                         style={{ width: 300 }}
@@ -187,7 +187,7 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                                 <Grid container spacing={3}>
                                   <Grid item xs={12} md={6}>
                                     <Stack spacing={0.5}>
-                                      <Typography color='secondary'>영문명</Typography>
+                                      <Typography color="secondary">영문명</Typography>
                                       <TextField
                                         {...getFieldProps('fullNm')}
                                         style={{ width: 300 }}
@@ -198,7 +198,7 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                                   </Grid>
                                   <Grid item xs={12} md={6}>
                                     <Stack spacing={0.5}>
-                                      <Typography color='secondary'>순번</Typography>
+                                      <Typography color="secondary">순번</Typography>
                                       <TextField
                                         {...getFieldProps('ordNo')}
                                         style={{ width: 300 }}
@@ -213,12 +213,11 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                                 <Grid container spacing={3}>
                                   <Grid item xs={12} md={6}>
                                     <Stack spacing={0.5}>
-                                      <Typography color='secondary'>시작일</Typography>
-                                      <FormControl sx={{ width: '100%' }}
-                                                   error={Boolean(touched.staYmd && errors.staYmd)}>
+                                      <Typography color="secondary">시작일</Typography>
+                                      <FormControl sx={{ width: '100%' }} error={Boolean(touched.staYmd && errors.staYmd)}>
                                         <DatePicker
                                           {...{ ...getFieldProps('staYmd'), value: new Date() }}
-                                          format='yyyy년 MM월 dd일'
+                                          format="yyyy년 MM월 dd일"
                                           onChange={(newValue) => setFieldValue('staYmd', newValue)}
                                         />
                                       </FormControl>
@@ -226,12 +225,11 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                                   </Grid>
                                   <Grid item xs={12} md={6}>
                                     <Stack spacing={0.5}>
-                                      <Typography color='secondary'>종료일</Typography>
-                                      <FormControl sx={{ width: '100%' }}
-                                                   error={Boolean(touched.endYmd && errors.endYmd)}>
+                                      <Typography color="secondary">종료일</Typography>
+                                      <FormControl sx={{ width: '100%' }} error={Boolean(touched.endYmd && errors.endYmd)}>
                                         <DatePicker
                                           {...{ ...getFieldProps('endYmd'), value: new Date() }}
-                                          format='yyyy년 MM월 dd일'
+                                          format="yyyy년 MM월 dd일"
                                           onChange={(newValue) => setFieldValue('endYmd', newValue)}
                                         />
                                       </FormControl>
@@ -250,13 +248,13 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                           <Grid container spacing={3}>
                             <Grid item xs={12} md={6}>
                               <Stack spacing={0.5}>
-                                <Typography color='secondary'>단위업무코드</Typography>
+                                <Typography color="secondary">단위업무코드</Typography>
                                 <Typography>{row.values.unitCd}</Typography>
                               </Stack>
                             </Grid>
                             <Grid item xs={12} md={6}>
                               <Stack spacing={0.5}>
-                                <Typography color='secondary'>단위업무명</Typography>
+                                <Typography color="secondary">단위업무명</Typography>
                                 <Typography>{row.values.unitNm}</Typography>
                               </Stack>
                             </Grid>
@@ -266,13 +264,13 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                           <Grid container spacing={3}>
                             <Grid item xs={12} md={6}>
                               <Stack spacing={0.5}>
-                                <Typography color='secondary'>영문명</Typography>
+                                <Typography color="secondary">영문명</Typography>
                                 <Typography>{row.values.fullNm}</Typography>
                               </Stack>
                             </Grid>
                             <Grid item xs={12} md={6}>
                               <Stack spacing={0.5}>
-                                <Typography color='secondary'>순번</Typography>
+                                <Typography color="secondary">순번</Typography>
                                 <Typography>{row.values.ordNo}</Typography>
                               </Stack>
                             </Grid>
@@ -282,13 +280,13 @@ const FrmBizUnitDetail = ({ row, epochToDate, retrieve }) => {
                           <Grid container spacing={3}>
                             <Grid item xs={12} md={6}>
                               <Stack spacing={0.5}>
-                                <Typography color='secondary'>시작일</Typography>
+                                <Typography color="secondary">시작일</Typography>
                                 <Typography>{epochToDate(row.values.staYmd)}</Typography>
                               </Stack>
                             </Grid>
                             <Grid item xs={12} md={6}>
                               <Stack spacing={0.5}>
-                                <Typography color='secondary'>종료일</Typography>
+                                <Typography color="secondary">종료일</Typography>
                                 <Typography>{epochToDate(row.values.endYmd)}</Typography>
                               </Stack>
                             </Grid>

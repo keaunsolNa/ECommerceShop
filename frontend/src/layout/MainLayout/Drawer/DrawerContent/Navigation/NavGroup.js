@@ -56,16 +56,7 @@ const PopperStyled = styled(Popper)(({ theme }) => ({
   }
 }));
 
-const NavGroup = ({
-                    item,
-                    lastItem,
-                    remItems,
-                    lastItemId,
-                    setSelectedItems,
-                    selectedItems,
-                    setSelectedLevel,
-                    selectedLevel
-                  }) => {
+const NavGroup = ({ item, lastItem, remItems, lastItemId, setSelectedItems, selectedItems, setSelectedLevel, selectedLevel }) => {
   const theme = useTheme();
   const { pathname } = useLocation();
 
@@ -167,7 +158,7 @@ const NavGroup = ({
   const moreItems = remItems.map((itemRem, i) => (
     <Fragment key={i}>
       {itemRem.title && (
-        <Typography variant='caption' sx={{ pl: 2 }}>
+        <Typography variant="caption" sx={{ pl: 2 }}>
           {itemRem.title}
         </Typography>
       )}
@@ -190,7 +181,7 @@ const NavGroup = ({
             return <NavItem key={menu.id} item={menu} level={1} />;
           default:
             return (
-              <Typography key={menu.id} variant='h6' color='error' align='center'>
+              <Typography key={menu.id} variant="h6" color="error" align="center">
                 Menu Items Error
               </Typography>
             );
@@ -219,7 +210,7 @@ const NavGroup = ({
         return <NavItem key={menu.id} item={menu} level={1} />;
       default:
         return (
-          <Typography key={menu.id} variant='h6' color='error' align='center'>
+          <Typography key={menu.id} variant="h6" color="error" align="center">
             Menu Items Error
           </Typography>
         );
@@ -236,12 +227,11 @@ const NavGroup = ({
             item.title &&
             drawerOpen && (
               <Box sx={{ pl: 3, mb: 1.5 }}>
-                <Typography variant='subtitle2'
-                            color={theme.palette.mode === ThemeMode.DARK ? 'textSecondary' : 'text.secondary'}>
+                <Typography variant="subtitle2" color={theme.palette.mode === ThemeMode.DARK ? 'textSecondary' : 'text.secondary'}>
                   {item.title}
                 </Typography>
                 {item.caption && (
-                  <Typography variant='caption' color='secondary'>
+                  <Typography variant="caption" color="secondary">
                     {item.caption}
                   </Typography>
                 )}
@@ -281,10 +271,10 @@ const NavGroup = ({
               sx={{ mr: 1 }}
               primary={
                 <Typography
-                  variant='body1'
+                  variant="body1"
                   color={selectedID === currentItem.id ? theme.palette.primary.main : theme.palette.secondary.dark}
                 >
-                  {currentItem.id === lastItemId ? <FormattedMessage id='More Items' /> : currentItem.title}
+                  {currentItem.id === lastItemId ? <FormattedMessage id="More Items" /> : currentItem.title}
                 </Typography>
               }
             />
@@ -298,7 +288,7 @@ const NavGroup = ({
                 id={popperId}
                 open={openMini}
                 anchorEl={anchorEl}
-                placement='bottom-start'
+                placement="bottom-start"
                 style={{
                   zIndex: 2001
                 }}

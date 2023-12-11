@@ -34,12 +34,10 @@ import AnimateButton from '../../components/@extended/AnimateButton';
 import DeleteModal from '../../pages/common/DeleteModal';
 
 const SupplyDetailModal = ({ selectedData, handleReload, handleOpen }) => {
-
   // states
   const [loading, setLoading] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
   const isInsert = selectedData.supplyId === undefined;
-  const [supplyStateList, setSupplyStateList] = useState(['B+']);
   const [findAddressOpen, setFindAddressOpen] = useState(false);
   const supplySchema = Yup.object().shape({
     supplyId: Yup.string(),
@@ -87,7 +85,7 @@ const SupplyDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       detailAddress: isInsert ? '' : selectedData?.detailAddress,
       createDate: isInsert ? null : dayjs(new Date(selectedData.createDate)),
       desc: isInsert ? '' : selectedData.desc
-    }
+    };
   };
   const formik = useFormik({
     enableReinitialize: true,
@@ -405,11 +403,11 @@ const SupplyDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       </MainCard>
     </ScrollX>
   );
-}
+};
 
 SupplyDetailModal.prototype = {
-  selectedData: PropTypes.any,
+  selectedData: PropTypes.array,
   handleReload: PropTypes.func,
   handleOpen: PropTypes.func
-}
+};
 export default SupplyDetailModal;

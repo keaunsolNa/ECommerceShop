@@ -77,11 +77,11 @@ const AddItemComment = ({ itemId }) => {
 
   return (
     <Box sx={{ p: 2, pb: 1.5, border: `1px solid ${theme.palette.divider}` }}>
-      <Grid container alignItems='center' spacing={0.5}>
+      <Grid container alignItems="center" spacing={0.5}>
         <Grid item xs={12}>
           <TextField
             fullWidth
-            placeholder='Add Comment'
+            placeholder="Add Comment"
             value={comment}
             onChange={handleTaskComment}
             sx={{
@@ -120,7 +120,7 @@ const AddItemComment = ({ itemId }) => {
         </Grid>
         <Grid item xs zeroMinWidth />
         <Grid item>
-          <Button size='small' variant='contained' color='primary' onClick={addTaskComment}>
+          <Button size="small" variant="contained" color="primary" onClick={addTaskComment}>
             Comment
           </Button>
         </Grid>

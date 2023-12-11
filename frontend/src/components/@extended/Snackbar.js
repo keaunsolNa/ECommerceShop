@@ -12,19 +12,19 @@ import { CloseOutlined } from '@ant-design/icons';
 
 // animation function
 function TransitionSlideLeft(props) {
-  return <Slide {...props} direction='left' />;
+  return <Slide {...props} direction="left" />;
 }
 
 function TransitionSlideUp(props) {
-  return <Slide {...props} direction='up' />;
+  return <Slide {...props} direction="up" />;
 }
 
 function TransitionSlideRight(props) {
-  return <Slide {...props} direction='right' />;
+  return <Slide {...props} direction="right" />;
 }
 
 function TransitionSlideDown(props) {
-  return <Slide {...props} direction='down' />;
+  return <Slide {...props} direction="down" />;
 }
 
 function GrowTransition(props) {
@@ -67,10 +67,10 @@ const Snackbar = () => {
           TransitionComponent={animation[transition]}
           action={
             <>
-              <Button color='secondary' size='small' onClick={handleClose}>
+              <Button color="secondary" size="small" onClick={handleClose}>
                 UNDO
               </Button>
-              <IconButton size='small' aria-label='close' color='inherit' onClick={handleClose} sx={{ mt: 0.25 }}>
+              <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose} sx={{ mt: 0.25 }}>
                 <CloseOutlined />
               </IconButton>
             </>
@@ -93,16 +93,16 @@ const Snackbar = () => {
             action={
               <>
                 {actionButton !== false && (
-                  <Button color={alert.color} size='small' onClick={handleClose}>
+                  <Button color={alert.color} size="small" onClick={handleClose}>
                     UNDO
                   </Button>
                 )}
                 {close !== false && (
                   <IconButton
                     sx={{ mt: 0.25 }}
-                    size='small'
-                    aria-label='close'
-                    variant='contained'
+                    size="small"
+                    aria-label="close"
+                    variant="contained"
                     color={alert.color}
                     onClick={handleClose}
                   >

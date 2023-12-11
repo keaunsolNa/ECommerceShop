@@ -66,20 +66,20 @@ const AuthLogin = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor='email-login'>ID</InputLabel>
+                  <InputLabel htmlFor="email-login">ID</InputLabel>
                   <OutlinedInput
-                    id='id'
-                    type='id'
+                    id="id"
+                    type="id"
                     value={values.id}
-                    name='id'
+                    name="id"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder='Enter ID'
+                    placeholder="Enter ID"
                     fullWidth
                     error={Boolean(touched.id && errors.id)}
                   />
                   {touched.id && errors.id && (
-                    <FormHelperText error id='standard-weight-helper-text-email-login'>
+                    <FormHelperText error id="standard-weight-helper-text-email-login">
                       {errors.id}
                     </FormHelperText>
                   )}
@@ -87,33 +87,33 @@ const AuthLogin = () => {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor='password-login'>Password</InputLabel>
+                  <InputLabel htmlFor="password-login">Password</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
-                    id='-password-login'
+                    id="-password-login"
                     type={showPassword ? 'text' : 'password'}
                     value={values.password}
-                    name='password'
+                    name="password"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     endAdornment={
-                      <InputAdornment position='end'>
+                      <InputAdornment position="end">
                         <IconButton
-                          aria-label='toggle password visibility'
+                          aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
                           onMouseDown={handleMouseDownPassword}
-                          edge='end'
-                          color='secondary'
+                          edge="end"
+                          color="secondary"
                         >
                           {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
                         </IconButton>
                       </InputAdornment>
                     }
-                    placeholder='Enter password'
+                    placeholder="Enter password"
                   />
                   {touched.password && errors.password && (
-                    <FormHelperText error id='standard-weight-helper-text-password-login'>
+                    <FormHelperText error id="standard-weight-helper-text-password-login">
                       {errors.password}
                     </FormHelperText>
                   )}
@@ -121,8 +121,8 @@ const AuthLogin = () => {
               </Grid>
 
               <Grid item xs={12} sx={{ mt: -1 }}>
-                <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={2}>
-                  <Link variant='h6' component={RouterLink} to='/forgot-password' color='text.primary'>
+                <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+                  <Link variant="h6" component={RouterLink} to="/forgot-password" color="text.primary">
                     Forgot Password?
                   </Link>
                 </Stack>
@@ -134,8 +134,7 @@ const AuthLogin = () => {
               )}
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size='large' type='submit'
-                          variant='contained' color='primary'>
+                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
                     Login
                   </Button>
                 </AnimateButton>

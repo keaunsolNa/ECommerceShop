@@ -90,7 +90,7 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
         }
       }}
       variant={matchDownLG ? 'temporary' : 'persistent'}
-      anchor='left'
+      anchor="left"
       open={openChatDrawer}
       ModalProps={{ keepMounted: true }}
       onClose={handleDrawerOpen}
@@ -106,14 +106,14 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
       >
         <Box sx={{ p: 3, pb: 1 }}>
           <Stack spacing={2}>
-            <Stack direction='row' spacing={0.5} alignItems='center'>
-              <Typography variant='h5' color='inherit'>
+            <Stack direction="row" spacing={0.5} alignItems="center">
+              <Typography variant="h5" color="inherit">
                 Messages
               </Typography>
               <Chip
-                label='9'
-                component='span'
-                color='secondary'
+                label="9"
+                component="span"
+                color="secondary"
                 sx={{
                   width: 20,
                   height: 20,
@@ -127,8 +127,8 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
 
             <OutlinedInput
               fullWidth
-              id='input-search-header'
-              placeholder='Search'
+              id="input-search-header"
+              placeholder="Search"
               value={search}
               onChange={handleSearch}
               sx={{
@@ -137,7 +137,7 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
                 }
               }}
               startAdornment={
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <SearchOutlined style={{ fontSize: 'small' }} />
                 </InputAdornment>
               }
@@ -157,19 +157,19 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
           </Box>
         </SimpleBar>
         <Box sx={{ p: 3, pb: 0 }}>
-          <List component='nav'>
+          <List component="nav">
             <ListItemButton divider>
               <ListItemIcon>
                 <LogoutOutlined />
               </ListItemIcon>
 
-              <ListItemText primary='LogOut' />
+              <ListItemText primary="LogOut" />
             </ListItemButton>
             <ListItemButton divider>
               <ListItemIcon>
                 <SettingOutlined />
               </ListItemIcon>
-              <ListItemText primary='Settings' />
+              <ListItemText primary="Settings" />
             </ListItemButton>
           </List>
         </Box>
@@ -177,27 +177,26 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
         <Box sx={{ p: 3, pt: 1, pl: 5 }}>
           <Grid container>
             <Grid item xs={12}>
-              <Grid container spacing={1} alignItems='center' sx={{ flexWrap: 'nowrap' }}>
+              <Grid container spacing={1} alignItems="center" sx={{ flexWrap: 'nowrap' }}>
                 <Grid item>
                   <UserAvatar user={{ online_status: status, avatar: 'avatar-1.png', name: 'User 1' }} />
                 </Grid>
                 <Grid item xs zeroMinWidth>
-                  <Stack sx={{ cursor: 'pointer', textDecoration: 'none' }} component={Link}
-                         to='/apps/profiles/user/personal'>
-                    <Typography align='left' variant='h5' color='textPrimary'>
+                  <Stack sx={{ cursor: 'pointer', textDecoration: 'none' }} component={Link} to="/apps/profiles/user/personal">
+                    <Typography align="left" variant="h5" color="textPrimary">
                       {user?.name}
                     </Typography>
-                    <Typography align='left' variant='caption' color='textSecondary'>
+                    <Typography align="left" variant="caption" color="textSecondary">
                       {user?.role}
                     </Typography>
                   </Stack>
                 </Grid>
                 <Grid item>
-                  <IconButton onClick={handleClickRightMenu} size='small' color='secondary'>
+                  <IconButton onClick={handleClickRightMenu} size="small" color="secondary">
                     <RightOutlined />
                   </IconButton>
                   <Menu
-                    id='simple-menu'
+                    id="simple-menu"
                     anchorEl={anchorEl}
                     keepMounted
                     open={Boolean(anchorEl)}
@@ -222,7 +221,7 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
                   >
                     <MenuItem onClick={handleRightMenuItemClick('available')}>
                       <IconButton
-                        size='small'
+                        size="small"
                         sx={{
                           color: theme.palette.success.main,
                           '&:hover': {
@@ -239,7 +238,7 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
                     </MenuItem>
                     <MenuItem onClick={handleRightMenuItemClick('offline')}>
                       <IconButton
-                        size='small'
+                        size="small"
                         sx={{
                           color: theme.palette.warning.main,
                           '&:hover': {
@@ -256,7 +255,7 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser }) {
                     </MenuItem>
                     <MenuItem onClick={handleRightMenuItemClick('do_not_disturb')}>
                       <IconButton
-                        size='small'
+                        size="small"
                         sx={{
                           color: theme.palette.grey[400],
                           '&:hover': {

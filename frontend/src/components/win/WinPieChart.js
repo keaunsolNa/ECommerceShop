@@ -10,6 +10,7 @@ import ReactApexChart from 'react-apexcharts';
 // project import
 import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
+import PropTypes from 'prop-types';
 
 // ==============================|| APEXCHART - PIE ||============================== //
 
@@ -66,10 +67,13 @@ const WinPieChart = ({ series, chartOptions }) => {
   }, [mode, primary, line, grey200, backColor, secondary, primaryMain, successDark, error, orangeDark]);
 
   return (
-    <Box id='chart' sx={{ bgcolor: 'transparent' }}>
-      <ReactApexChart options={options} series={series} type='pie' />
+    <Box id="chart" sx={{ bgcolor: 'transparent' }}>
+      <ReactApexChart options={options} series={series} type="pie" />
     </Box>
   );
 };
-
+WinPieChart.propTypes = {
+  series: PropTypes.any,
+  chartOptions: PropTypes.array
+};
 export default WinPieChart;

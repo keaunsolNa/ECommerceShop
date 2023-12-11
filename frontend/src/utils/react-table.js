@@ -32,7 +32,7 @@ export function GlobalFilter({ preGlobalFilteredRows, globalFilter, setGlobalFil
         onChange(e.target.value);
       }}
       placeholder={`Search ${count} records...`}
-      id='start-adornment-email'
+      id="start-adornment-email"
       startAdornment={<SearchOutlined />}
       {...other}
     />
@@ -50,7 +50,7 @@ export function DateColumnFilter({ column: { filterValue, setFilter } }) {
     <FormControl sx={{ width: '100%' }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
-          format='dd/MM/yyyy'
+          format="dd/MM/yyyy"
           value={filterValue && new Date(filterValue)}
           onChange={(newValue) => {
             let formatDateFn = undefined;
@@ -81,7 +81,7 @@ export function DefaultColumnFilter({ column: { filterValue, Header, setFilter }
         setFilter(e.target.value || undefined);
       }}
       placeholder={Header}
-      size='small'
+      size="small"
     />
   );
 }
@@ -106,9 +106,9 @@ export function SelectColumnFilter({ column: { filterValue, setFilter, preFilter
         setFilter(e.target.value || undefined);
       }}
       displayEmpty
-      size='small'
+      size="small"
     >
-      <MenuItem value=''>All</MenuItem>
+      <MenuItem value="">All</MenuItem>
       {options.map((option, i) => (
         <MenuItem key={i} value={option}>
           {option}
@@ -134,7 +134,7 @@ export function SliderColumnFilter({ column: { filterValue, setFilter, preFilter
   }, [id, preFilteredRows]);
 
   return (
-    <Stack direction='row' alignItems='center' spacing={1} sx={{ pl: 1, minWidth: 120 }}>
+    <Stack direction="row" alignItems="center" spacing={1} sx={{ pl: 1, minWidth: 120 }}>
       <Slider
         value={filterValue || min}
         min={min}
@@ -143,11 +143,11 @@ export function SliderColumnFilter({ column: { filterValue, setFilter, preFilter
         onChange={(event, newValue) => {
           setFilter(newValue);
         }}
-        valueLabelDisplay='auto'
-        aria-labelledby='non-linear-slider'
+        valueLabelDisplay="auto"
+        aria-labelledby="non-linear-slider"
       />
-      <Tooltip title='Reset'>
-        <IconButton size='small' color='error' onClick={() => setFilter(undefined)}>
+      <Tooltip title="Reset">
+        <IconButton size="small" color="error" onClick={() => setFilter(undefined)}>
           <CloseOutlined />
         </IconButton>
       </Tooltip>
@@ -171,29 +171,29 @@ export function NumberRangeColumnFilter({ column: { filterValue = [], preFiltere
   }, [id, preFilteredRows]);
 
   return (
-    <Stack direction='row' alignItems='center' spacing={1} sx={{ minWidth: 168, maxWidth: 250 }}>
+    <Stack direction="row" alignItems="center" spacing={1} sx={{ minWidth: 168, maxWidth: 250 }}>
       <TextField
         fullWidth
         value={filterValue[0] || ''}
-        type='number'
+        type="number"
         onChange={(e) => {
           const val = e.target.value;
           setFilter((old = []) => [val ? parseInt(val, 10) : undefined, old[1]]);
         }}
         placeholder={`Min (${min})`}
-        size='small'
+        size="small"
       />
       <LineOutlined />
       <TextField
         fullWidth
         value={filterValue[1] || ''}
-        type='number'
+        type="number"
         onChange={(e) => {
           const val = e.target.value;
           setFilter((old = []) => [old[0], val ? parseInt(val, 10) : undefined]);
         }}
         placeholder={`Max (${max})`}
-        size='small'
+        size="small"
       />
     </Stack>
   );

@@ -68,19 +68,16 @@ const AmountManagement = () => {
   if (loading) return <Loader />;
   return (
     <div>
-      <MainCard
-        content={false}
-        title={'상품 목록'}
-      >
+      <MainCard content={false} title={'상품 목록'}>
         <CommonSortTable title={'상품 내역'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
-        maxWidth='md'
+        maxWidth="md"
         TransitionComponent={PopupTransition}
         onClose={() => handleOpen()}
         open={open}
         sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
-        aria-describedby='alert-dialog-slide-description'
+        aria-describedby="alert-dialog-slide-description"
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
         <AmountDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />

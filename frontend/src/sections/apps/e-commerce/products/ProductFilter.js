@@ -3,18 +3,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 // material-ui
-import {
-  Box,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  Rating,
-  Skeleton,
-  Slider,
-  Stack,
-  TextField,
-  Typography
-} from '@mui/material';
+import { Box, Checkbox, FormControlLabel, Grid, Rating, Skeleton, Slider, Stack, TextField, Typography } from '@mui/material';
 
 // project imports
 import Colors from './Colors';
@@ -30,36 +19,36 @@ const Gender = ({ gender, handelFilter }) => {
   return (
     <Stack>
       {isGenderLoading ? (
-        <Skeleton variant='rectangular' width='100%' height={42} />
+        <Skeleton variant="rectangular" width="100%" height={42} />
       ) : (
         <>
-          <Typography variant='h5'>Gender</Typography>
+          <Typography variant="h5">Gender</Typography>
           <Box sx={{ pl: 0.5 }}>
             <Stack>
               <FormControlLabel
                 control={<Checkbox checked={gender.some((item) => item === 'male')} />}
                 onChange={() => handelFilter('gender', 'male')}
-                label='Male'
+                label="Male"
               />
               <FormControlLabel
                 control={
                   <Checkbox
                     checked={gender.some((item) => item === 'female')}
                     onChange={() => handelFilter('gender', 'female')}
-                    color='secondary'
+                    color="secondary"
                   />
                 }
-                label='Female'
+                label="Female"
               />
               <FormControlLabel
                 control={
                   <Checkbox
                     checked={gender.some((item) => item === 'kids')}
                     onChange={() => handelFilter('gender', 'kids')}
-                    color='error'
+                    color="error"
                   />
                 }
-                label='Kids'
+                label="Kids"
               />
             </Stack>
           </Box>
@@ -86,42 +75,42 @@ const Categories = ({ categories, handelFilter }) => {
     <Stack>
       {isCategoriesLoading ? (
         <Grid item xs={12}>
-          <Skeleton variant='rectangular' width='100%' height={96} />
+          <Skeleton variant="rectangular" width="100%" height={96} />
         </Grid>
       ) : (
         <>
-          <Typography variant='h5'>Categories</Typography>
+          <Typography variant="h5">Categories</Typography>
           <Box sx={{ pl: 0.5 }}>
             <Stack>
               <FormControlLabel
                 control={<Checkbox checked={categories.some((item) => item === 'all')} />}
                 onChange={() => handelFilter('categories', 'all')}
-                label='All'
+                label="All"
               />
               <FormControlLabel
                 control={<Checkbox checked={categories.some((item) => item === 'electronics')} />}
                 onChange={() => handelFilter('categories', 'electronics')}
-                label='Electronics'
+                label="Electronics"
               />
               <FormControlLabel
                 control={<Checkbox checked={categories.some((item) => item === 'fashion')} />}
                 onChange={() => handelFilter('categories', 'fashion')}
-                label='Fashion'
+                label="Fashion"
               />
               <FormControlLabel
                 control={<Checkbox checked={categories.some((item) => item === 'books')} />}
                 onChange={() => handelFilter('categories', 'books')}
-                label='Book'
+                label="Book"
               />
               <FormControlLabel
                 control={<Checkbox checked={categories.some((item) => item === 'toys')} />}
                 onChange={() => handelFilter('categories', 'toys')}
-                label='Toys'
+                label="Toys"
               />
               <FormControlLabel
                 control={<Checkbox checked={categories.some((item) => item === 'kitchen')} />}
                 onChange={() => handelFilter('categories', 'kitchen')}
-                label='Home & Kitchen'
+                label="Home & Kitchen"
               />
             </Stack>
           </Box>
@@ -156,13 +145,13 @@ const Price = ({ handelFilter }) => {
   return (
     <>
       {isPriceLoading ? (
-        <Skeleton variant='rectangular' width='100%' height={172} />
+        <Skeleton variant="rectangular" width="100%" height={172} />
       ) : (
         <Stack spacing={1}>
-          <Typography variant='h5'>Price</Typography>
-          <Stack direction='row' spacing={2}>
+          <Typography variant="h5">Price</Typography>
+          <Stack direction="row" spacing={2}>
             <Stack spacing={0.5}>
-              <Typography color='textSecondary'>Min</Typography>
+              <Typography color="textSecondary">Min</Typography>
               <TextField
                 value={value[0]}
                 InputProps={{
@@ -171,7 +160,7 @@ const Price = ({ handelFilter }) => {
               />
             </Stack>
             <Stack spacing={0.5}>
-              <Typography color='textSecondary'>Max</Typography>
+              <Typography color="textSecondary">Max</Typography>
               <TextField
                 value={value[1]}
                 InputProps={{
@@ -181,8 +170,7 @@ const Price = ({ handelFilter }) => {
             </Stack>
           </Stack>
           <Box sx={{ px: 0.75 }}>
-            <Slider min={0} max={1000} value={value} onChange={handleSlider} valueLabelDisplay='auto'
-                    getAriaValueText={valuetext} />
+            <Slider min={0} max={1000} value={value} onChange={handleSlider} valueLabelDisplay="auto" getAriaValueText={valuetext} />
           </Box>
         </Stack>
       )}
@@ -205,18 +193,18 @@ const RatingSection = ({ rating, handelFilter }) => {
   return (
     <>
       {isRatingLoading ? (
-        <Skeleton variant='rectangular' width='100%' height={172} />
+        <Skeleton variant="rectangular" width="100%" height={172} />
       ) : (
         <Stack spacing={1}>
-          <Typography variant='h5'>Rating</Typography>
-          <Stack direction='row' spacing={1} alignItems='center'>
+          <Typography variant="h5">Rating</Typography>
+          <Stack direction="row" spacing={1} alignItems="center">
             <Rating
               precision={0.5}
-              name='simple-controlled'
+              name="simple-controlled"
               value={rating}
               onChange={(event, newValue) => handelFilter('rating', '', newValue)}
             />
-            <Typography component='legend'>({rating})</Typography>
+            <Typography component="legend">({rating})</Typography>
           </Stack>
         </Stack>
       )}
@@ -232,7 +220,7 @@ RatingSection.propTypes = {
 // ==============================|| PRODUCT GRID - FILTER ||============================== //
 
 const ProductFilter = ({ filter, handelFilter }) => (
-  <Grid container direction='column' rowSpacing={3}>
+  <Grid container direction="column" rowSpacing={3}>
     <Grid item>
       <Gender gender={filter.gender} handelFilter={handelFilter} />
     </Grid>

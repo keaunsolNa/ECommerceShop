@@ -114,7 +114,7 @@ const InvoiceChart = ({ color, data }) => {
     }
   ]);
 
-  return <ReactApexChart options={options} series={series} type='area' height={80} />;
+  return <ReactApexChart options={options} series={series} type="area" height={80} />;
 };
 
 InvoiceChart.propTypes = {

@@ -56,30 +56,29 @@ const CartDiscount = () => {
   });
 
   return (
-    <Stack justifyContent='flex-end' spacing={1}>
-      <Typography align='left' variant='caption' color='textSecondary' sx={{ cursor: 'pointer' }}
-                  onClick={handleClickOpen}>
+    <Stack justifyContent="flex-end" spacing={1}>
+      <Typography align="left" variant="caption" color="textSecondary" sx={{ cursor: 'pointer' }} onClick={handleClickOpen}>
         Have a Promo Code?
       </Typography>
       <form onSubmit={formik.handleSubmit}>
-        <Stack justifyContent='flex-end' spacing={1}>
-          <Stack direction='row' justifyContent='space-between' spacing={2}>
+        <Stack justifyContent="flex-end" spacing={1}>
+          <Stack direction="row" justifyContent="space-between" spacing={2}>
             <TextField
-              id='code'
-              name='code'
+              id="code"
+              name="code"
               fullWidth
-              placeholder='Enter promo code'
+              placeholder="Enter promo code"
               value={formik.values.code}
               onChange={formik.handleChange}
               error={Boolean(formik.errors.code)}
             />
 
-            <Button type='submit' color='primary' variant='contained' aria-label='directions'>
+            <Button type="submit" color="primary" variant="contained" aria-label="directions">
               Apply
             </Button>
           </Stack>
           {formik.errors.code && (
-            <FormHelperText error id='standard-code'>
+            <FormHelperText error id="standard-code">
               {formik.errors.code}
             </FormHelperText>
           )}

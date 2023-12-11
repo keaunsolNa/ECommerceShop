@@ -29,8 +29,8 @@ const Color = ({ bg, id, colors, label, handelFilter }) => {
           onClick={() => handelFilter('colors', id)}
         >
           <Avatar
-            color='inherit'
-            size='sm'
+            color="inherit"
+            size="sm"
             sx={{
               bgcolor: bg,
               color: theme.palette.mode === ThemeMode.DARK ? theme.palette.grey[800] : theme.palette.grey[50],
@@ -66,17 +66,16 @@ const Colors = ({ colors, handelFilter }) => {
     <>
       {isColorsLoading ? (
         <Grid item xs={12}>
-          <Skeleton variant='rectangular' width='100%' height={158} />
+          <Skeleton variant="rectangular" width="100%" height={158} />
         </Grid>
       ) : (
         <Stack>
-          <Typography variant='h5' sx={{ mb: 1 }}>
+          <Typography variant="h5" sx={{ mb: 1 }}>
             Color
           </Typography>
-          <Grid container spacing={1.5} alignItems='center'>
+          <Grid container spacing={1.5} alignItems="center">
             {ColorOptions.map((color, index) => (
-              <Color key={index} id={color.value} bg={color.bg} label={color.label} colors={colors}
-                     handelFilter={handelFilter} />
+              <Color key={index} id={color.value} bg={color.bg} label={color.label} colors={colors} handelFilter={handelFilter} />
             ))}
           </Grid>
         </Stack>

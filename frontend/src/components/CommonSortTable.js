@@ -26,16 +26,18 @@ function CommonBasicTable({ columns, data, striped, handleOpen }) {
     }),
     []
   );
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, globalFilter, preGlobalFilteredRows, setGlobalFilter } = useTable({
-      columns,
-      data,
-      filterTypes,
-      initialState
-    },
-    useGlobalFilter,
-    useFilters,
-    useSortBy
-  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, globalFilter, preGlobalFilteredRows, setGlobalFilter } =
+    useTable(
+      {
+        columns,
+        data,
+        filterTypes,
+        initialState
+      },
+      useGlobalFilter,
+      useFilters,
+      useSortBy
+    );
 
   return (
     <Grid style={{ display: 'flex', flexDirection: 'column' }}>
@@ -43,7 +45,7 @@ function CommonBasicTable({ columns, data, striped, handleOpen }) {
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
-        size='middle'
+        size="middle"
       />
       <Table {...getTableProps()}>
         <TableHead>
@@ -81,7 +83,6 @@ function CommonBasicTable({ columns, data, striped, handleOpen }) {
     </Grid>
   );
 }
-
 
 CommonBasicTable.propTypes = {
   columns: PropTypes.array,

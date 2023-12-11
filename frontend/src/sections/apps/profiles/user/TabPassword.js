@@ -54,7 +54,7 @@ const TabPassword = () => {
   };
 
   return (
-    <MainCard title='Change Password'>
+    <MainCard title="Change Password">
       <Formik
         initialValues={{
           old: '',
@@ -104,24 +104,24 @@ const TabPassword = () => {
               <Grid item container spacing={3} xs={12} sm={6}>
                 <Grid item xs={12}>
                   <Stack spacing={1.25}>
-                    <InputLabel htmlFor='password-old'>Old Password</InputLabel>
+                    <InputLabel htmlFor="password-old">Old Password</InputLabel>
                     <OutlinedInput
-                      placeholder='Enter Old Password'
-                      id='password-old'
+                      placeholder="Enter Old Password"
+                      id="password-old"
                       type={showOldPassword ? 'text' : 'password'}
                       value={values.old}
-                      name='old'
+                      name="old"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                             onClick={handleClickShowOldPassword}
                             onMouseDown={handleMouseDownPassword}
-                            edge='end'
-                            size='large'
-                            color='secondary'
+                            edge="end"
+                            size="large"
+                            color="secondary"
                           >
                             {showOldPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
                           </IconButton>
@@ -130,7 +130,7 @@ const TabPassword = () => {
                       inputProps={{}}
                     />
                     {touched.old && errors.old && (
-                      <FormHelperText error id='password-old-helper'>
+                      <FormHelperText error id="password-old-helper">
                         {errors.old}
                       </FormHelperText>
                     )}
@@ -138,24 +138,24 @@ const TabPassword = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Stack spacing={1.25}>
-                    <InputLabel htmlFor='password-password'>New Password</InputLabel>
+                    <InputLabel htmlFor="password-password">New Password</InputLabel>
                     <OutlinedInput
-                      placeholder='Enter New Password'
-                      id='password-password'
+                      placeholder="Enter New Password"
+                      id="password-password"
                       type={showNewPassword ? 'text' : 'password'}
                       value={values.password}
-                      name='password'
+                      name="password"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                             onClick={handleClickShowNewPassword}
                             onMouseDown={handleMouseDownPassword}
-                            edge='end'
-                            size='large'
-                            color='secondary'
+                            edge="end"
+                            size="large"
+                            color="secondary"
                           >
                             {showNewPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
                           </IconButton>
@@ -164,7 +164,7 @@ const TabPassword = () => {
                       inputProps={{}}
                     />
                     {touched.password && errors.password && (
-                      <FormHelperText error id='password-password-helper'>
+                      <FormHelperText error id="password-password-helper">
                         {errors.password}
                       </FormHelperText>
                     )}
@@ -172,24 +172,24 @@ const TabPassword = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Stack spacing={1.25}>
-                    <InputLabel htmlFor='password-confirm'>Confirm Password</InputLabel>
+                    <InputLabel htmlFor="password-confirm">Confirm Password</InputLabel>
                     <OutlinedInput
-                      placeholder='Enter Confirm Password'
-                      id='password-confirm'
+                      placeholder="Enter Confirm Password"
+                      id="password-confirm"
                       type={showConfirmPassword ? 'text' : 'password'}
                       value={values.confirm}
-                      name='confirm'
+                      name="confirm"
                       onBlur={handleBlur}
                       onChange={handleChange}
                       endAdornment={
-                        <InputAdornment position='end'>
+                        <InputAdornment position="end">
                           <IconButton
-                            aria-label='toggle password visibility'
+                            aria-label="toggle password visibility"
                             onClick={handleClickShowConfirmPassword}
                             onMouseDown={handleMouseDownPassword}
-                            edge='end'
-                            size='large'
-                            color='secondary'
+                            edge="end"
+                            size="large"
+                            color="secondary"
                           >
                             {showConfirmPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
                           </IconButton>
@@ -198,7 +198,7 @@ const TabPassword = () => {
                       inputProps={{}}
                     />
                     {touched.confirm && errors.confirm && (
-                      <FormHelperText error id='password-confirm-helper'>
+                      <FormHelperText error id="password-confirm-helper">
                         {errors.confirm}
                       </FormHelperText>
                     )}
@@ -207,47 +207,47 @@ const TabPassword = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Box sx={{ p: { xs: 0, sm: 2, md: 4, lg: 5 } }}>
-                  <Typography variant='h5'>New password must contain:</Typography>
+                  <Typography variant="h5">New password must contain:</Typography>
                   <List sx={{ p: 0, mt: 1 }}>
                     <ListItem divider>
                       <ListItemIcon sx={{ color: minLength(values.password) ? 'success.main' : 'inherit' }}>
                         {minLength(values.password) ? <CheckOutlined /> : <LineOutlined />}
                       </ListItemIcon>
-                      <ListItemText primary='At least 8 characters' />
+                      <ListItemText primary="At least 8 characters" />
                     </ListItem>
                     <ListItem divider>
                       <ListItemIcon sx={{ color: isLowercaseChar(values.password) ? 'success.main' : 'inherit' }}>
                         {isLowercaseChar(values.password) ? <CheckOutlined /> : <LineOutlined />}
                       </ListItemIcon>
-                      <ListItemText primary='At least 1 lower letter (a-z)' />
+                      <ListItemText primary="At least 1 lower letter (a-z)" />
                     </ListItem>
                     <ListItem divider>
                       <ListItemIcon sx={{ color: isUppercaseChar(values.password) ? 'success.main' : 'inherit' }}>
                         {isUppercaseChar(values.password) ? <CheckOutlined /> : <LineOutlined />}
                       </ListItemIcon>
-                      <ListItemText primary='At least 1 uppercase letter (A-Z)' />
+                      <ListItemText primary="At least 1 uppercase letter (A-Z)" />
                     </ListItem>
                     <ListItem divider>
                       <ListItemIcon sx={{ color: isNumber(values.password) ? 'success.main' : 'inherit' }}>
                         {isNumber(values.password) ? <CheckOutlined /> : <LineOutlined />}
                       </ListItemIcon>
-                      <ListItemText primary='At least 1 number (0-9)' />
+                      <ListItemText primary="At least 1 number (0-9)" />
                     </ListItem>
                     <ListItem>
                       <ListItemIcon sx={{ color: isSpecialChar(values.password) ? 'success.main' : 'inherit' }}>
                         {isSpecialChar(values.password) ? <CheckOutlined /> : <LineOutlined />}
                       </ListItemIcon>
-                      <ListItemText primary='At least 1 special characters' />
+                      <ListItemText primary="At least 1 special characters" />
                     </ListItem>
                   </List>
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Stack direction='row' justifyContent='flex-end' alignItems='center' spacing={2}>
-                  <Button variant='outlined' color='secondary'>
+                <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
+                  <Button variant="outlined" color="secondary">
                     Cancel
                   </Button>
-                  <Button disabled={isSubmitting || Object.keys(errors).length !== 0} type='submit' variant='contained'>
+                  <Button disabled={isSubmitting || Object.keys(errors).length !== 0} type="submit" variant="contained">
                     Save
                   </Button>
                 </Stack>

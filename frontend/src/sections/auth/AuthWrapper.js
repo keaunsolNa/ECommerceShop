@@ -16,8 +16,8 @@ const AuthWrapper = ({ children }) => (
   <Box sx={{ minHeight: '100vh' }}>
     <Grid
       container
-      direction='column'
-      justifyContent='flex-end'
+      direction="column"
+      justifyContent="flex-end"
       sx={{
         minHeight: '100vh'
       }}
@@ -30,8 +30,8 @@ const AuthWrapper = ({ children }) => (
           item
           xs={12}
           container
-          justifyContent='center'
-          alignItems='center'
+          justifyContent="center"
+          alignItems="center"
           sx={{ minHeight: { xs: 'calc(100vh - 210px)', sm: 'calc(100vh - 134px)', md: 'calc(100vh - 112px)' } }}
         >
           <Grid item>

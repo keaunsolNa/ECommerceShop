@@ -66,26 +66,22 @@ const SupplyManagement = () => {
   if (loading) return <Loader />;
   return (
     <>
-      <MainCard
-        content={false}
-        title={'공급 업체 목록'}
-      >
+      <MainCard content={false} title={'공급 업체 목록'}>
         <CommonSortTable title={'업체 목록'} columns={columns} data={data} striped={true} handleOpen={handleOpen} />
       </MainCard>
       <Dialog
-        maxWidth='md'
+        maxWidth="md"
         TransitionComponent={PopupTransition}
         onClose={() => handleOpen()}
         open={open}
         sx={{ '& .MuiDialog-paper': { p: 0 }, transition: 'transform 225ms' }}
-        aria-describedby='alert-dialog-slide-description'
+        aria-describedby="alert-dialog-slide-description"
         slotProps={{ backdrop: { style: { backgroundColor: 'rgba(255, 255, 255, 0.5)' } } }}
       >
-        <SupplyDetailModal  selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
+        <SupplyDetailModal selectedData={selectedData} handleReload={handleReload} handleOpen={handleOpen} />
       </Dialog>
     </>
-  )
-
-}
+  );
+};
 
 export default SupplyManagement;

@@ -149,26 +149,25 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       secondary={
         <Stack direction={'row'} spacing={2}>
           {isInsert ? null : (
-            <IconButton color='error' onClick={() => setDeleteModal(true)} size='small' sx={{ fontSize: '1.1rem' }}>
+            <IconButton color="error" onClick={() => setDeleteModal(true)} size="small" sx={{ fontSize: '1.1rem' }}>
               <DeleteFilled />
             </IconButton>
           )}
-          <IconButton color='secondary' onClick={() => handleOpen()} size='small' sx={{ fontSize: '1.1rem' }}>
+          <IconButton color="secondary" onClick={() => handleOpen()} size="small" sx={{ fontSize: '1.1rem' }}>
             <CloseOutlined />
           </IconButton>
-          <DeleteModal title={'상품 카드'} open={deleteModal} handleClose={() => setDeleteModal(!deleteModal)}
-                       deleteData={deleteData} />
+          <DeleteModal title={'상품 카드'} open={deleteModal} handleClose={() => setDeleteModal(!deleteModal)} deleteData={deleteData} />
         </Stack>
       }
     >
       <FormikProvider value={formik}>
-        <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
+        <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Grid container spacing={2.5}>
               <Grid item xs={12}>
                 <Stack spacing={1.25}>
-                  <Stack spacing={2.5} alignItems='center'>
-                    <Avatar alt='Avatar 1' size='xl' src={avatarImage(`./default.png`)} />
+                  <Stack spacing={2.5} alignItems="center">
+                    <Avatar alt="Avatar 1" size="xl" src={avatarImage(`./default.png`)} />
                   </Stack>
                 </Stack>
               </Grid>
@@ -177,9 +176,9 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>이름</InputLabel>
                   <TextField
                     fullWidth
-                    id='name'
+                    id="name"
                     {...getFieldProps('name')}
-                    placeholder='이름을 입력하세요'
+                    placeholder="이름을 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.name && errors.name)}
                     helperText={touched.name && errors.name}
@@ -192,16 +191,16 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <FormControl fullWidth>
                     <Select
                       fullWidth
-                      id='state'
+                      id="state"
                       {...getFieldProps('state')}
                       onChange={formik.handleChange}
                       defaultValue={'신규 상품'}
                       renderValue={(selected) => {
                         if (!selected) {
-                          return <Typography variant='subtitle1'>Select Status</Typography>;
+                          return <Typography variant="subtitle1">Select Status</Typography>;
                         }
 
-                        return <Typography variant='subtitle2'>{selected}</Typography>;
+                        return <Typography variant="subtitle2">{selected}</Typography>;
                       }}
                     >
                       {productStateList.map((option, idx) => (
@@ -212,7 +211,7 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     </Select>
                   </FormControl>
                   {touched.state && errors.state && (
-                    <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                    <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                       {errors.state}
                     </FormHelperText>
                   )}
@@ -224,16 +223,16 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <FormControl fullWidth>
                     <Select
                       fullWidth
-                      id='categories'
+                      id="categories"
                       {...getFieldProps('categories')}
                       onChange={formik.handleChange}
                       defaultValue={'상의'}
                       renderValue={(selected) => {
                         if (!selected) {
-                          return <Typography variant='subtitle1'>Select Status</Typography>;
+                          return <Typography variant="subtitle1">Select Status</Typography>;
                         }
 
-                        return <Typography variant='subtitle2'>{selected}</Typography>;
+                        return <Typography variant="subtitle2">{selected}</Typography>;
                       }}
                     >
                       {categoriesList.map((option, idx) => (
@@ -244,7 +243,7 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                     </Select>
                   </FormControl>
                   {touched.categories && errors.categories && (
-                    <FormHelperText error id='standard-weight-helper-text-email-login' sx={{ pl: 1.75 }}>
+                    <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
                       {errors.categories}
                     </FormHelperText>
                   )}
@@ -255,9 +254,9 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>가격</InputLabel>
                   <TextField
                     fullWidth
-                    id='price'
+                    id="price"
                     {...getFieldProps('price')}
-                    placeholder='가격을 입력하세요'
+                    placeholder="가격을 입력하세요"
                     onChange={formik.handleChange}
                     error={Boolean(touched.price && errors.price)}
                     helperText={touched.price && errors.price}
@@ -269,9 +268,9 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>재고</InputLabel>
                   <TextField
                     fullWidth
-                    id='amount'
-                    name='amount'
-                    placeholder='재고'
+                    id="amount"
+                    name="amount"
+                    placeholder="재고"
                     value={formik.values.amount}
                     onChange={formik.handleChange}
                     error={formik.touched.amount && Boolean(formik.errors.amount)}
@@ -286,9 +285,9 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>설명</InputLabel>
                   <TextField
                     fullWidth
-                    id='desc'
-                    name='desc'
-                    placeholder='설명'
+                    id="desc"
+                    name="desc"
+                    placeholder="설명"
                     value={formik.values.desc}
                     onChange={formik.handleChange}
                     error={formik.touched.desc && Boolean(formik.errors.desc)}
@@ -301,7 +300,7 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                   <InputLabel>생성일</InputLabel>
                   <DatePicker
                     value={formik.values.createDate}
-                    format='YYYY-MM-DD'
+                    format="YYYY-MM-DD"
                     disabled={!isInsert}
                     onChange={(date) => {
                       formik.setFieldValue('createDate', date);
@@ -310,12 +309,12 @@ const ProductDetailModal = ({ selectedData, handleReload, handleOpen }) => {
                 </Stack>
               </Grid>
               <Grid item xs={12}>
-                <Button fullWidth variant='contained' color='error' type='button' onClick={handleOpen}>
+                <Button fullWidth variant="contained" color="error" type="button" onClick={handleOpen}>
                   닫기
                 </Button>
               </Grid>
               <Grid item xs={12}>
-                <Button fullWidth variant='contained' type='submit' disabled={isSubmitting}>
+                <Button fullWidth variant="contained" type="submit" disabled={isSubmitting}>
                   저장
                 </Button>
               </Grid>

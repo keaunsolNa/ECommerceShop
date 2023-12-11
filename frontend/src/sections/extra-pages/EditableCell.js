@@ -102,7 +102,7 @@ const CellEdit = ({ value: initialValue, row, row: { index }, column: { id, data
                 <TextField
                   value={values.userInfo}
                   id={`${index}-${id}`}
-                  name='userInfo'
+                  name="userInfo"
                   onChange={(e) => {
                     handleChange(e);
                     onChange(e);
@@ -128,24 +128,24 @@ const CellEdit = ({ value: initialValue, row, row: { index }, column: { id, data
       element = (
         <>
           <Select
-            labelId='editable-select-status-label'
+            labelId="editable-select-status-label"
             sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 }, svg: { display: 'none' } }}
-            id='editable-select-status'
+            id="editable-select-status"
             value={value === '입력' ? '입력' : value === '수정' ? '수정' : value === '삭제' ? '삭제' : '조회'}
             onChange={onChange}
             onClick={() => console.log(value)}
           >
-            <MenuItem value='조회'>
-              <Chip color='default' label='조회' size='small' variant='dark' />
+            <MenuItem value="조회">
+              <Chip color="default" label="조회" size="small" variant="dark" />
             </MenuItem>
-            <MenuItem value='입력'>
-              <Chip color='success' label='입력' size='small' variant='dark' />
+            <MenuItem value="입력">
+              <Chip color="success" label="입력" size="small" variant="dark" />
             </MenuItem>
-            <MenuItem value='수정'>
-              <Chip color='warning' label='수정' size='small' variant='dark' />
+            <MenuItem value="수정">
+              <Chip color="warning" label="수정" size="small" variant="dark" />
             </MenuItem>
-            <MenuItem value='삭제'>
-              <Chip color='error' label='삭제' size='small' variant='dark' />
+            <MenuItem value="삭제">
+              <Chip color="error" label="삭제" size="small" variant="dark" />
             </MenuItem>
           </Select>
         </>
@@ -155,21 +155,21 @@ const CellEdit = ({ value: initialValue, row, row: { index }, column: { id, data
       element = (
         <>
           <Select
-            labelId='editable-select-status-label'
+            labelId="editable-select-status-label"
             sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 }, svg: { display: 'none' } }}
-            id='editable-select-status'
+            id="editable-select-status"
             value={value}
             onChange={onChange}
             onBlur={onBlur}
           >
-            <MenuItem value='Complicated'>
-              <Chip color='error' label='Complicated' size='small' variant='light' />
+            <MenuItem value="Complicated">
+              <Chip color="error" label="Complicated" size="small" variant="light" />
             </MenuItem>
-            <MenuItem value='Relationship'>
-              <Chip color='success' label='Relationship' size='small' variant='light' />
+            <MenuItem value="Relationship">
+              <Chip color="success" label="Relationship" size="small" variant="light" />
             </MenuItem>
-            <MenuItem value='Single'>
-              <Chip color='info' label='Single' size='small' variant='light' />
+            <MenuItem value="Single">
+              <Chip color="info" label="Single" size="small" variant="light" />
             </MenuItem>
           </Select>
         </>
@@ -179,18 +179,18 @@ const CellEdit = ({ value: initialValue, row, row: { index }, column: { id, data
       element = (
         <>
           <Select
-            labelId='editable-select-status-label'
+            labelId="editable-select-status-label"
             sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 }, svg: { display: 'none' } }}
-            id='editable-select-status'
+            id="editable-select-status"
             value={value}
             onChange={onChange}
             onBlur={onBlur}
           >
-            <MenuItem value='true'>
-              <Chip color='success' label='예' size='small' variant='light' />
+            <MenuItem value="true">
+              <Chip color="success" label="예" size="small" variant="light" />
             </MenuItem>
-            <MenuItem value='false'>
-              <Chip color='error' label='아니오' size='small' variant='light' />
+            <MenuItem value="false">
+              <Chip color="error" label="아니오" size="small" variant="light" />
             </MenuItem>
           </Select>
         </>
@@ -205,7 +205,7 @@ const CellEdit = ({ value: initialValue, row, row: { index }, column: { id, data
             </Box>
           ) : (
             <>
-              <Stack direction='row' alignItems='center' spacing={1} sx={{ pl: 1, minWidth: 120 }}>
+              <Stack direction="row" alignItems="center" spacing={1} sx={{ pl: 1, minWidth: 120 }}>
                 <Slider
                   value={value}
                   min={0}
@@ -215,8 +215,8 @@ const CellEdit = ({ value: initialValue, row, row: { index }, column: { id, data
                   onChange={(event, newValue) => {
                     setValue(newValue);
                   }}
-                  valueLabelDisplay='auto'
-                  aria-labelledby='non-linear-slider'
+                  valueLabelDisplay="auto"
+                  aria-labelledby="non-linear-slider"
                 />
                 <Tooltip title={'Submit'}>
                   <IconButton onClick={() => setShowSelect(false)}>
@@ -289,10 +289,10 @@ function ReactTable({ columns, data, updateData, skipPageReset }) {
                   row.values.rowStatus === '입력'
                     ? alpha(theme.palette.success.lighter, 0.9)
                     : row.values.rowStatus === '수정'
-                      ? alpha(theme.palette.warning.lighter, 0.9)
-                      : row.values.rowStatus === '삭제'
-                        ? alpha(theme.palette.error.lighter, 0.9)
-                        : 'inherit'
+                    ? alpha(theme.palette.warning.lighter, 0.9)
+                    : row.values.rowStatus === '삭제'
+                    ? alpha(theme.palette.error.lighter, 0.9)
+                    : 'inherit'
               }}
               key={row.id}
               {...row.getRowProps()}

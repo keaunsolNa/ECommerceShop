@@ -104,7 +104,7 @@ const AvatarUpload = ({ error, file, setFieldValue, sx }) => {
           <input {...getInputProps()} />
           {thumbs}
           <PlaceholderWrapper
-            className='placeholder'
+            className="placeholder"
             sx={{
               ...(thumbs && {
                 opacity: 0,
@@ -116,9 +116,9 @@ const AvatarUpload = ({ error, file, setFieldValue, sx }) => {
               })
             }}
           >
-            <Stack spacing={0.5} alignItems='center'>
+            <Stack spacing={0.5} alignItems="center">
               <CameraOutlined style={{ color: theme.palette.secondary.main, fontSize: '2rem' }} />
-              <Typography color='secondary'>{file ? 'Update' : 'Upload'}</Typography>
+              <Typography color="secondary">{file ? 'Update' : 'Upload'}</Typography>
             </Stack>
           </PlaceholderWrapper>
         </DropzoneWrapper>

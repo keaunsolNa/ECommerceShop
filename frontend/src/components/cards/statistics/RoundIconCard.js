@@ -11,24 +11,24 @@ import IconButton from 'components/@extended/IconButton';
 
 const RoundIconCard = ({ primary, secondary, content, iconPrimary, color, bgcolor }) => {
   const IconPrimary = iconPrimary;
-  const primaryIcon = iconPrimary ? <IconPrimary fontSize='large' /> : null;
+  const primaryIcon = iconPrimary ? <IconPrimary fontSize="large" /> : null;
 
   return (
     <MainCard>
-      <Grid container alignItems='center' spacing={0} justifyContent='space-between'>
+      <Grid container alignItems="center" spacing={0} justifyContent="space-between">
         <Grid item>
           <Stack spacing={1}>
-            <Typography variant='h5' color='inherit'>
+            <Typography variant="h5" color="inherit">
               {primary}
             </Typography>
-            <Typography variant='h3'>{secondary}</Typography>
-            <Typography variant='subtitle2' color='inherit'>
+            <Typography variant="h3">{secondary}</Typography>
+            <Typography variant="subtitle2" color="inherit">
               {content}
             </Typography>
           </Stack>
         </Grid>
         <Grid item>
-          <IconButton sx={{ bgcolor, color, '& .MuiSvgIcon-root': { fontSize: '1.5rem' } }} size='large'>
+          <IconButton sx={{ bgcolor, color, '& .MuiSvgIcon-root': { fontSize: '1.5rem' } }} size="large">
             {primaryIcon}
           </IconButton>
         </Grid>

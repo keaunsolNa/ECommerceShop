@@ -19,12 +19,12 @@ const TimerBox = ({ count, label }) => {
 
   return (
     <MainCard content={false} sx={{ width: { xs: 60, sm: 80 } }}>
-      <Stack justifyContent='center' alignItems='center'>
+      <Stack justifyContent="center" alignItems="center">
         <Box sx={{ py: 1.75 }}>
           <Typography variant={matchDownSM ? 'h4' : 'h2'}>{count}</Typography>
         </Box>
         <Box sx={{ p: 0.5, bgcolor: 'secondary.lighter', width: '100%' }}>
-          <Typography align='center' variant='subtitle2'>
+          <Typography align="center" variant="subtitle2">
             {label}
           </Typography>
         </Box>
@@ -46,42 +46,41 @@ function ComingSoon() {
 
   return (
     <>
-      <Grid container spacing={4} direction='column' alignItems='center' justifyContent='center'
-            sx={{ minHeight: '100vh', py: 2 }}>
+      <Grid container spacing={4} direction="column" alignItems="center" justifyContent="center" sx={{ minHeight: '100vh', py: 2 }}>
         <Grid item xs={12}>
           <Box sx={{ height: { xs: 310, sm: 420 }, width: { xs: 360, sm: 'auto' } }}>
-            <img src={coming} alt='mantis' style={{ height: '100%', width: '100%' }} />
+            <img src={coming} alt="mantis" style={{ height: '100%', width: '100%' }} />
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Stack spacing={1} justifyContent='center' alignItems='center' sx={{ mt: -2 }}>
-            <Typography align='center' variant='h1'>
+          <Stack spacing={1} justifyContent="center" alignItems="center" sx={{ mt: -2 }}>
+            <Typography align="center" variant="h1">
               Coming Soon
             </Typography>
-            <Typography align='center' color='textSecondary'>
+            <Typography align="center" color="textSecondary">
               Something new is on its way
             </Typography>
           </Stack>
         </Grid>
         <Grid item xs={12} sx={{ width: { xs: '95%', md: '40%' } }}>
-          <Stack direction='row' alignItems='center' justifyContent='center' spacing={{ xs: 1, sm: 2 }}>
-            <TimerBox count={days} label='day' />
-            <Typography variant='h1'> : </Typography>
-            <TimerBox count={hours} label='hour' />
-            <Typography variant='h1'> : </Typography>
-            <TimerBox count={minutes} label='min' />
-            <Typography variant='h1'> : </Typography>
-            <TimerBox count={seconds} label='sec' />
+          <Stack direction="row" alignItems="center" justifyContent="center" spacing={{ xs: 1, sm: 2 }}>
+            <TimerBox count={days} label="day" />
+            <Typography variant="h1"> : </Typography>
+            <TimerBox count={hours} label="hour" />
+            <Typography variant="h1"> : </Typography>
+            <TimerBox count={minutes} label="min" />
+            <Typography variant="h1"> : </Typography>
+            <TimerBox count={seconds} label="sec" />
           </Stack>
         </Grid>
         <Grid item xs={12} sx={{ width: { xs: 380, md: '40%', lg: '30%' } }}>
           <Stack spacing={2} sx={{ mt: 2 }}>
-            <Typography align='center' color='textSecondary'>
+            <Typography align="center" color="textSecondary">
               Be the first to be notified when Mantis launches.
             </Typography>
-            <Stack direction='row' spacing={1}>
-              <TextField fullWidth placeholder='Email Address' />
-              <Button variant='contained' sx={{ width: '50%' }}>
+            <Stack direction="row" spacing={1}>
+              <TextField fullWidth placeholder="Email Address" />
+              <Button variant="contained" sx={{ width: '50%' }}>
                 Notify Me
               </Button>
             </Stack>

@@ -19,13 +19,13 @@ const ProductView = ({ data }) => {
             <Box sx={{ position: 'relative' }}>
               <img
                 src={data.image && productImage(`./${data.image}`)}
-                alt='product'
+                alt="product"
                 style={{ background: theme.palette.grey[200], width: '100%' }}
               />
               <Chip
                 label={data.isStock ? 'In Stock' : 'Out of Stock'}
                 color={data.isStock ? 'success' : 'error'}
-                variant='light'
+                variant="light"
                 sx={{
                   position: 'absolute',
                   right: 15,
@@ -36,18 +36,18 @@ const ProductView = ({ data }) => {
           </Grid>
           <Grid item xs={12} sm={7} md={8} lg={9}>
             <Stack spacing={1} sx={{ px: 2 }}>
-              <Typography variant='h5'>{data?.name}</Typography>
-              <Typography color='textSecondary'>{data?.about}</Typography>
-              <Rating name='read-only' value={data.rating} readOnly />
+              <Typography variant="h5">{data?.name}</Typography>
+              <Typography color="textSecondary">{data?.about}</Typography>
+              <Rating name="read-only" value={data.rating} readOnly />
               <Box sx={{ width: '80%', pt: 2 }}>
                 <Grid container spacing={1}>
                   <Grid item xs={4} md={3}>
-                    <Typography color='textSecondary'>Categories</Typography>
+                    <Typography color="textSecondary">Categories</Typography>
                   </Grid>
                   <Grid item xs={8} md={9}>
-                    <Stack direction='row' spacing={0.5}>
+                    <Stack direction="row" spacing={0.5}>
                       {data?.categories?.map((item, index) => (
-                        <Typography key={index} variant='h6' sx={{ textTransform: 'capitalize' }}>
+                        <Typography key={index} variant="h6" sx={{ textTransform: 'capitalize' }}>
                           {item}
                           {data?.categories.length > index + 1 ? ',' : ''}
                         </Typography>
@@ -55,17 +55,16 @@ const ProductView = ({ data }) => {
                     </Stack>
                   </Grid>
                   <Grid item xs={4} md={3}>
-                    <Typography color='textSecondary'>Qty</Typography>
+                    <Typography color="textSecondary">Qty</Typography>
                   </Grid>
                   <Grid item xs={8} md={9}>
-                    <Typography variant='h6'>{data?.quantity}</Typography>
+                    <Typography variant="h6">{data?.quantity}</Typography>
                   </Grid>
                   <Grid item xs={4} md={3}>
-                    <Typography color='textSecondary'>Price</Typography>
+                    <Typography color="textSecondary">Price</Typography>
                   </Grid>
                   <Grid item xs={8} md={9}>
-                    <Typography
-                      variant='h5'>{data?.salePrice ? `$${data?.salePrice}` : `$${data?.offerPrice}`}</Typography>
+                    <Typography variant="h5">{data?.salePrice ? `$${data?.salePrice}` : `$${data?.offerPrice}`}</Typography>
                   </Grid>
                 </Grid>
               </Box>

@@ -128,11 +128,11 @@ const Backlogs = () => {
     <MainCard content={false}>
       <TableContainer sx={{ '& .MuiTableCell-root': { p: 1.25 } }}>
         <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId='user-story' type='user-story'>
+          <Droppable droppableId="user-story" type="user-story">
             {(provided, snapshot) => (
               <Table
-                size='small'
-                aria-label='collapsible table'
+                size="small"
+                aria-label="collapsible table"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 sx={getDropWrapper(snapshot.isDraggingOver, theme)}
@@ -147,9 +147,8 @@ const Backlogs = () => {
                 >
                   <TableRow>
                     <TableCell sx={{ pl: 3 }}>
-                      <Tooltip title='Add User Story'>
-                        <Button variant='dashed' size='extraSmall' color='secondary' onClick={addStory}
-                                endIcon={<PlusOutlined />}>
+                      <Tooltip title="Add User Story">
+                        <Button variant="dashed" size="extraSmall" color="secondary" onClick={addStory} endIcon={<PlusOutlined />}>
                           ADD
                         </Button>
                       </Tooltip>

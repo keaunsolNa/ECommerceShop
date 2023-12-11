@@ -31,19 +31,19 @@ const icons = {
 
 const other = {
   id: 'other',
-  title: <FormattedMessage id='others' />,
+  title: <FormattedMessage id="others" />,
   type: 'group',
   children: [
     {
       id: 'sample-page',
-      title: <FormattedMessage id='sample-page' />,
+      title: <FormattedMessage id="sample-page" />,
       type: 'item',
       url: '/sample-page',
       icon: icons.ChromeOutlined
     },
     {
       id: 'documentation',
-      title: <FormattedMessage id='documentation' />,
+      title: <FormattedMessage id="documentation" />,
       type: 'item',
       url: 'https://links.codedthemes.com/BQFrl',
       icon: icons.QuestionOutlined,
@@ -57,7 +57,7 @@ const other = {
     },
     {
       id: 'roadmap',
-      title: <FormattedMessage id='roadmap' />,
+      title: <FormattedMessage id="roadmap" />,
       type: 'item',
       url: 'https://links.codedthemes.com/RXnKQ',
       icon: icons.DeploymentUnitOutlined,

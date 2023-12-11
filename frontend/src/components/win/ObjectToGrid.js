@@ -9,7 +9,7 @@ import styled from 'styled-components';
 // project import
 import MainCard from 'components/MainCard';
 import Loader from 'components/Loader';
-
+import PropTypes from 'prop-types';
 // assets
 
 // styles
@@ -60,11 +60,11 @@ const ObjectToGrid = ({ data }) => {
             <Grid item>
               <Stack spacing={1}>
                 <RoundedCornerBox>
-                  <Typography variant='h5' color='white'>
+                  <Typography variant="h5" color="white">
                     {keyTranslator(key)}
                   </Typography>
                 </RoundedCornerBox>
-                <Typography variant='h3'>
+                <Typography variant="h3">
                   {['string', 'number'].includes(typeof data[key]) && data[key] !== '' ? data[key] : '-'}
                 </Typography>
               </Stack>
@@ -74,6 +74,9 @@ const ObjectToGrid = ({ data }) => {
       ))}
     </Grid>
   );
+};
+ObjectToGrid.propTypes = {
+  data: PropTypes.object
 };
 
 export default ObjectToGrid;
