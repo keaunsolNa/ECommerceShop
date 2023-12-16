@@ -1,0 +1,23 @@
+[
+  {
+    "authorityName": "40",
+    "authorityDesc": "CEO"
+  },
+  {
+    "authorityName": "30",
+    "authorityDesc": "재정관리자"
+  },
+  {
+    "authorityName": "20",
+    "authorityDesc": "인사관리자"
+  },
+  {
+    "authorityName": "10",
+    "authorityDesc": "일반관리자"
+  },
+  {
+    "authorityName": "0",
+    "authorityDesc": "사용자"
+  }
+]
+

@@ -1,0 +1,17 @@
+### authorityAddRequest
+POST http://localhost:8080/api/authority
+Content-Type: application/json
+
+< ./authority.json
+
+### categoriesAddRequest
+POST http://localhost:8080/api/categories
+Content-Type: application/json
+
+< ./categories.json
+
+### createEmployeeRequest
+POST http://localhost:8080/api/employee
+Content-Type: application/json
+
+< ./employee.json

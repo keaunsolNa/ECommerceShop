@@ -5,6 +5,7 @@ import com.ecommerceshop.dto.document.aut.UserRole;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.dto.document.product.ProductBase;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
@@ -17,14 +18,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
+@Slf4j
 @Configuration
 public class CommonModule {
 
+    static final String TIME_ZONE_SEOUL = "Asia/Seoul";
+    static final String INDEX_SCORE = "_score";
     public Date parsingDate(Date inputDate) {
 
         SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-        inputDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+        inputDateFormat.setTimeZone(TimeZone.getTimeZone(TIME_ZONE_SEOUL));
         SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         return getDateParsing(inputDate, inputDateFormat, outputDateFormat);
@@ -33,10 +36,10 @@ public class CommonModule {
     public Date parsingDate2(Date inputDate) {
 
         SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-        inputDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+        inputDateFormat.setTimeZone(TimeZone.getTimeZone(TIME_ZONE_SEOUL));
 
         SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        outputDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+        outputDateFormat.setTimeZone(TimeZone.getTimeZone(TIME_ZONE_SEOUL));
         return getDateParsing2(inputDate, inputDateFormat, outputDateFormat);
     }
 
@@ -52,7 +55,7 @@ public class CommonModule {
 
 
         } catch (ParseException e) {
-            e.printStackTrace();
+            log.trace(e.toString());
         }
 
         return formattedDateAsDate;
@@ -67,11 +70,10 @@ public class CommonModule {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
             LocalDateTime dateTime = LocalDateTime.parse(formattedDate, formatter);
-            Date returnDate = java.sql.Timestamp.valueOf(dateTime);
-            return returnDate;
+            return java.sql.Timestamp.valueOf(dateTime);
 
         } catch (ParseException e) {
-            e.printStackTrace();
+            log.trace(e.toString());
         }
 
         return null;
@@ -79,48 +81,40 @@ public class CommonModule {
 
     public NativeQuery makeMatchAllQuery(String sort) {
 
-        NativeQuery query = NativeQuery.builder()
+        return NativeQuery.builder()
                 .withQuery(q -> q.matchAll(new MatchAllQuery.Builder().build()))
                 .withSort(Sort.by(sort).ascending())
                 .build();
-
-        return query;
     }
 
-    public NativeQuery makeSearchByKeywordsQuery(String keyword, String value, String indexId) {
+    public NativeQuery makeSearchByKeywordsQuery(String keyword, String value) {
 
-        NativeQuery query = NativeQuery.builder()
+        return NativeQuery.builder()
                 .withQuery(q -> q.bool(bool ->
-                        bool.must(term -> term.match(wild -> wild.field(keyword).query(value)))))
+                    bool.must(term -> term.match(wild -> wild.field(keyword).query(value)))))
                 .withMaxResults(2000)
-                .withSort(Sort.by("_score").descending())
+                .withSort(Sort.by(INDEX_SCORE).descending())
                 .build();
-
-        return query;
     }
 
     public NativeQuery makeMatchPhraseQuery(String keyword, String value) {
 
-        NativeQuery query = NativeQuery.builder()
+        return NativeQuery.builder()
                 .withQuery(q -> q.matchPhrase(
-                        cf -> cf.field(keyword).query(value)))
+                    cf -> cf.field(keyword).query(value)))
                 .withMaxResults(1000)
-                .withSort(Sort.by("_score").descending())
+                .withSort(Sort.by(INDEX_SCORE).descending())
                 .build();
-
-        return query;
     }
 
     public NativeQuery makeCombineQuery(String keyCd, String keyNm, String cdKind) {
 
-        NativeQuery query =
-                NativeQuery.builder()
-                        .withQuery(q -> q.combinedFields(
-                                cf -> cf.fields(keyCd, keyNm).query(cdKind)))
-                        .withMaxResults(10000)
-                        .withSort(Sort.by("_score").descending())
-                        .build();
-        return query;
+        return NativeQuery.builder()
+                .withQuery(q -> q.combinedFields(
+                    cf -> cf.fields(keyCd, keyNm).query(cdKind)))
+                .withMaxResults(10000)
+                .withSort(Sort.by(INDEX_SCORE).descending())
+                .build();
     }
 
     public List getListFromSearchHit(SearchHits<?> searchHits) {

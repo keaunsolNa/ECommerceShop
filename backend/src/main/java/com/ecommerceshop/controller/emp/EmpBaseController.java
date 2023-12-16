@@ -5,7 +5,6 @@ import com.ecommerceshop.dto.DTO.MemberDTO;
 import com.ecommerceshop.dto.document.emp.EmpBase;
 import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.service.emp.EmpBaseService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +24,7 @@ public class EmpBaseController {
     @PostMapping()
     public ResponseEntity<EmpBase> empBaseDocumentCreate(@RequestBody EmpBaseDTO empBaseDTO) {
 
-        try {
-            return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBaseDTO));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return ResponseEntity.ok(empBaseService.empBaseDocumentCreate(empBaseDTO));
     }
 
     // 모든 직원 조회

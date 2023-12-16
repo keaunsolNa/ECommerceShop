@@ -14,7 +14,6 @@ import com.ecommerceshop.repository.emp.EmpBaseRepository;
 import com.ecommerceshop.repository.emp.EmpSIRepository;
 import com.ecommerceshop.repository.member.MemberBaseRepository;
 import com.ecommerceshop.repository.member.MemberSIRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -33,6 +32,8 @@ public class EmpBaseService {
     private final SettingUserRole settingUserRole;
     private final SettingEmpDocumentByDTO settingEmpDocumentByDTO;
 
+    private static final String DOCUMENT_NOT_FOUND = "해당하는 문서가 없습니다.";
+
     public EmpBaseService(EmpBaseRepository empBaseRepository, EmpSIRepository empsiRepository, UserRoleRepository userRoleRepository,
                           MemberBaseRepository memberBaseRepository, MemberSIRepository memberSIRepository,
                           CommonModule commonModule, SettingUserRole settingUserRole, SettingEmpDocumentByDTO settingEmpDocumentByDTO,
@@ -49,7 +50,7 @@ public class EmpBaseService {
     }
 
     // 직원 카드 생성
-    public EmpBase empBaseDocumentCreate(EmpBaseDTO empBaseDTO) throws JsonProcessingException {
+    public EmpBase empBaseDocumentCreate(EmpBaseDTO empBaseDTO) {
 
         EmpBase empBase = settingEmpDocumentByDTO.settingEmpDocument(empBaseDTO);
         EmpSI empSI = settingEmpDocumentByDTO.settingEmpSIDocument(empBaseDTO);
@@ -72,8 +73,8 @@ public class EmpBaseService {
     // 아이디로 직원 상세 조회
     public EmpBaseDTO empBaseDocumentSearchById(String id) throws Exception {
 
-        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
-        EmpSI empSI = empsiRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception(DOCUMENT_NOT_FOUND));
+        EmpSI empSI = empsiRepository.findById(id).orElseThrow(() -> new Exception(DOCUMENT_NOT_FOUND));
 
         EmpBaseDTO empBaseDTO = new EmpBaseDTO();
         empBaseDTO.setId(empBase.getId());
@@ -111,8 +112,8 @@ public class EmpBaseService {
     // 아이디로 회원 상세 조회
     public MemberDTO memberBaseDocumentSearchById(String id) throws Exception {
 
-        MemberBase memberBase = memberBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
-        MemberSI memberSI = memberSIRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        MemberBase memberBase = memberBaseRepository.findById(id).orElseThrow(() -> new Exception(DOCUMENT_NOT_FOUND));
+        MemberSI memberSI = memberSIRepository.findById(id).orElseThrow(() -> new Exception(DOCUMENT_NOT_FOUND));
 
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(memberBase.getId());
@@ -134,8 +135,8 @@ public class EmpBaseService {
     // 직원 정보 수정
     public EmpBase empBaseDocumentUpdate(EmpBaseDTO empBaseDTO) throws Exception {
 
-        EmpBase empBase = empBaseRepository.findById(empBaseDTO.getId()).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
-        EmpSI empSI = empsiRepository.findById(empBaseDTO.getId()).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        EmpBase empBase = empBaseRepository.findById(empBaseDTO.getId()).orElseThrow(() -> new Exception(DOCUMENT_NOT_FOUND));
+        EmpSI empSI = empsiRepository.findById(empBaseDTO.getId()).orElseThrow(() -> new Exception(DOCUMENT_NOT_FOUND));
 
         empBase.setEmail(empBaseDTO.getEmail() != null ? empBaseDTO.getEmail() : empBase.getEmail());
         empBase.setName(empBaseDTO.getName() != null ? empBaseDTO.getName() : empBase.getName());
@@ -169,13 +170,13 @@ public class EmpBaseService {
     // 직원 탈퇴 계정으로 전환
     public void empBaseDocumentDeleteById(String id) throws Exception {
 
-        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception(DOCUMENT_NOT_FOUND));
         empBase.setState("탈퇴 계정");
         empBaseRepository.save(empBase);
 
     }
 
-    // test용
+    // test
     public EmpBase empBaseDocumentSearchForTest() {
         NativeQuery query = commonModule.makeMatchAllQuery("id");
         SearchHits<EmpBase> searchHits = elasticsearchOperations.search(query, EmpBase.class);

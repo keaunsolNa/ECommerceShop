@@ -1,0 +1,25 @@
+[
+  {
+    "id": "testId124",
+    "password": "testpassword123!@#",
+    "email": "test@naver.com",
+    "state": "활동 계정",
+    "name": "테스트계정2",
+    "gender": "남성",
+    "role": "일반 관리자",
+    "birth": "2023-12-16",
+    "createDate": "2023-12-16",
+    "phoneNumber": "010-1234-5679",
+    "frontPhoneNumber": "010",
+    "middlePhoneNumber": "1234",
+    "lastPhoneNumber": "5679",
+    "callNumber": "02-971-1235",
+    "frontCallNumber": "02",
+    "middleCallNumber": "971",
+    "lastCallNumber": "1234",
+    "fileId": "",
+    "zipCode": "02-345",
+    "address": "서울시 노원구 마들로",
+    "detailAddress": "어떤 아파트2"
+  }
+]

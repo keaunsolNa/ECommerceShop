@@ -8,8 +8,6 @@ import com.ecommerceshop.module.CommonModule;
 import com.ecommerceshop.repository.product.CategoriesRepository;
 import com.ecommerceshop.repository.product.ProductAndCategoriesRepository;
 import com.ecommerceshop.repository.product.ProductBaseRepository;
-import com.ecommerceshop.repository.product.ProductDetailRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -21,26 +19,25 @@ import java.util.Date;
 public class ProductBaseService {
 
     private final ProductBaseRepository productBaseRepository;
-    private final ProductDetailRepository productDetailRepository;
     private final CategoriesRepository categoriesRepository;
     private final ProductAndCategoriesRepository productAndCategoriesRepository;
     private final ElasticsearchOperations elasticsearchOperations;
     private final CommonModule commonModule;
+    private static final String PRODUCT_NOT_FOUND = "해당하는 상품이 없습니다.";
 
-    public ProductBaseService(ProductBaseRepository productBaseRepository, ProductDetailRepository productDetailRepository,
+    public ProductBaseService(ProductBaseRepository productBaseRepository,
                               ProductAndCategoriesRepository productAndCategoriesRepository, CategoriesRepository categoriesRepository,
                               ElasticsearchOperations elasticsearchOperations,
                               CommonModule commonModule) {
 
         this.productBaseRepository = productBaseRepository;
-        this.productDetailRepository = productDetailRepository;
         this.productAndCategoriesRepository = productAndCategoriesRepository;
         this.categoriesRepository = categoriesRepository;
         this.elasticsearchOperations = elasticsearchOperations;
         this.commonModule = commonModule;
     }
 
-    public ProductBase productBaseCreate(ProductDTO productDTO) throws JsonProcessingException {
+    public ProductBase productBaseCreate(ProductDTO productDTO) {
 
         ProductBase productBase = new ProductBase();
         productBase.setPrice(productDTO.getPrice());
@@ -74,14 +71,14 @@ public class ProductBaseService {
 
     public ProductDTO productBaseDocumentSearchById(String id) throws Exception {
 
-        ProductBase productBase = productBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 상품이 없습니다."));
+        ProductBase productBase = productBaseRepository.findById(id).orElseThrow(() -> new Exception(PRODUCT_NOT_FOUND));
         productBase.setViewCount(productBase.getViewCount() + 1);
         productBaseRepository.save(productBase);
 
-        ProductAndCategories productAndCategories = productAndCategoriesRepository.findById(id).orElseThrow(() -> new Exception("해당하는 상품이 없습니다."));
+        ProductAndCategories productAndCategories = productAndCategoriesRepository.findById(id).orElseThrow(() -> new Exception(PRODUCT_NOT_FOUND));
 
         Categories categories = categoriesRepository.findById(productAndCategories.getCategoriesId())
-                .orElseThrow(() -> new Exception("해당하는 상품이 없습니다."));
+                .orElseThrow(() -> new Exception(PRODUCT_NOT_FOUND));
 
         String categoriesName = categories.getName();
 
@@ -102,7 +99,7 @@ public class ProductBaseService {
 
     public ProductBase productBaseDocumentUpdate(ProductDTO productDTO) throws Exception {
 
-        ProductBase productBaseDocument = productBaseRepository.findById(productDTO.getId()).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        ProductBase productBaseDocument = productBaseRepository.findById(productDTO.getId()).orElseThrow(() -> new Exception(PRODUCT_NOT_FOUND));
 
         productBaseDocument.setName(productDTO.getName() != null ? productDTO.getName() : productBaseDocument.getName());
         productBaseDocument.setDesc(productDTO.getDesc() != null ? productDTO.getDesc() : productBaseDocument.getDesc());
@@ -110,8 +107,8 @@ public class ProductBaseService {
         productBaseDocument.setAmount(productDTO.getAmount() != null ? productDTO.getAmount() : productBaseDocument.getAmount());
         productBaseDocument.setPrice(productDTO.getPrice() != null ? productDTO.getPrice() : productBaseDocument.getPrice());
 
-        ProductAndCategories productAndCategories = productAndCategoriesRepository.findById(productDTO.getId()).orElseThrow(() -> new Exception("해당하는 문서가 없습니다"));
-        Categories categories = categoriesRepository.findById(productAndCategories.getCategoriesId()).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        ProductAndCategories productAndCategories = productAndCategoriesRepository.findById(productDTO.getId()).orElseThrow(() -> new Exception(PRODUCT_NOT_FOUND));
+        Categories categories = categoriesRepository.findById(productAndCategories.getCategoriesId()).orElseThrow(() -> new Exception(PRODUCT_NOT_FOUND));
 
         if (!productDTO.getCategories().equals(categories.getName())) {
 
@@ -123,7 +120,7 @@ public class ProductBaseService {
 
     public void productBaseDocumentDeleteById(String id) throws Exception {
 
-        ProductBase productBase = productBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+        ProductBase productBase = productBaseRepository.findById(id).orElseThrow(() -> new Exception(PRODUCT_NOT_FOUND));
         productBase.setState("판매 중지 상품");
         productBaseRepository.save(productBase);
 

@@ -3,7 +3,6 @@ package com.ecommerceshop.controller.member;
 import com.ecommerceshop.dto.DTO.MemberDTO;
 import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.service.member.MemberBaseService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +23,7 @@ public class MemberBaseController {
     @PostMapping()
     public ResponseEntity<MemberBase> memberBaseDocumentCreate(@RequestBody MemberDTO memberDTO) {
 
-        try {
-            return  ResponseEntity.ok(memberBaseService.memberBaseDocumentCreate(memberDTO));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return  ResponseEntity.ok(memberBaseService.memberBaseDocumentCreate(memberDTO));
     }
 
 }

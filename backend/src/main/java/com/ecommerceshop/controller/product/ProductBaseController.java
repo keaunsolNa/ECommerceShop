@@ -22,11 +22,7 @@ public class ProductBaseController {
     @PostMapping()
     public ResponseEntity<ProductBase> productBaseDocumentCreate(@RequestBody ProductDTO productDTO) {
 
-        try {
-            return ResponseEntity.ok(productBaseService.productBaseCreate(productDTO));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return ResponseEntity.ok(productBaseService.productBaseCreate(productDTO));
     }
 
     @GetMapping("/all")

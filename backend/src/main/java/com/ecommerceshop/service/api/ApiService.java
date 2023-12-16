@@ -2,8 +2,6 @@ package com.ecommerceshop.service.api;
 
 import com.ecommerceshop.dto.document.aut.Authority;
 import com.ecommerceshop.dto.document.aut.UserRole;
-import com.ecommerceshop.dto.document.emp.EmpBase;
-import com.ecommerceshop.dto.document.member.MemberBase;
 import com.ecommerceshop.dto.document.product.Categories;
 import com.ecommerceshop.repository.aut.AuthorityRepository;
 import com.ecommerceshop.repository.aut.UserRoleRepository;
@@ -81,9 +79,9 @@ public class ApiService {
         Iterable<Categories> categories = categoriesRepository.findAll();
 
         List<String> categorieList = new ArrayList<>();
-        for (Categories categorieslist : categories) {
+        for (Categories categoriesList : categories) {
 
-            categorieList.add(categorieslist.getName());
+            categorieList.add(categoriesList.getName());
         }
 
         return categorieList;
@@ -94,17 +92,16 @@ public class ApiService {
 
         boolean dupCheck = false;
         try {
-            EmpBase empBase = empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+            empBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
         } catch (Exception e) {
 
             try {
-                MemberBase memberBase = memberBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
+                memberBaseRepository.findById(id).orElseThrow(() -> new Exception("해당하는 문서가 없습니다."));
             } catch (Exception exception) {
                 dupCheck = true;
             }
         }
 
-        System.out.println(dupCheck);
         return dupCheck;
     }
 }
