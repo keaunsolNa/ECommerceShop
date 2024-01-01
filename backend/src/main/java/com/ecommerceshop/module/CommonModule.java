@@ -79,11 +79,10 @@ public class CommonModule {
         return null;
     }
 
-    public NativeQuery makeMatchAllQuery(String sort) {
+    public NativeQuery makeMatchAllQuery() {
 
         return NativeQuery.builder()
                 .withQuery(q -> q.matchAll(new MatchAllQuery.Builder().build()))
-                .withSort(Sort.by(sort).ascending())
                 .build();
     }
 

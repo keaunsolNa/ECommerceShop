@@ -13,6 +13,7 @@ public class SettingUserRole {
 
         List<UserRole> userRoleList = new ArrayList<>();
 
+        System.out.println(role);
         switch (role) {
 
             case "CEO":

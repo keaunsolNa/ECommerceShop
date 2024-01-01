@@ -123,7 +123,7 @@ const EmployeeDetailModal = ({ selectedData, handleReload, handleOpen }) => {
       email: isInsert ? '' : selectedData.email,
       state: isInsert ? '가입 대기' : selectedData.state,
       name: isInsert ? '' : selectedData.name,
-      gender: isInsert ? '' : selectedData.gender,
+      gender: isInsert ? '남성' : selectedData.gender,
       role: isInsert ? '일반관리자' : selectedData?.role,
       birth: isInsert ? null : dayjs(new Date(selectedData.birth)),
       frontPhoneNumber: isInsert ? '010' : selectedData.frontPhoneNumber,

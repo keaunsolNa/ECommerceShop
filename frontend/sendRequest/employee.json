@@ -1,12 +1,12 @@
 [
   {
-    "id": "testId124",
+    "id": "testId123",
     "password": "testpassword123!@#",
     "email": "test@naver.com",
     "state": "활동 계정",
-    "name": "테스트계정2",
+    "name": "깁갑수",
     "gender": "남성",
-    "role": "일반 관리자",
+    "role": "CEO",
     "birth": "2023-12-16",
     "createDate": "2023-12-16",
     "phoneNumber": "010-1234-5679",
@@ -20,6 +20,6 @@
     "fileId": "",
     "zipCode": "02-345",
     "address": "서울시 노원구 마들로",
-    "detailAddress": "어떤 아파트2"
+    "detailAddress": "어떤 아파트3"
   }
 ]

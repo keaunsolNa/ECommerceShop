@@ -192,6 +192,6 @@ const EmployeeSelfGrid = ({ data }) => {
 
 EmployeeSelfGrid.propTypes = {
   select: PropTypes.object,
-  data: PropTypes.array
+  data: PropTypes.object
 };
 export default EmployeeSelfGrid;
