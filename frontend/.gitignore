@@ -91,7 +91,6 @@ dist
 
 # vuepress build output
 .vuepress/dist
-
 # Serverless directories
 .serverless/
 
@@ -108,7 +107,8 @@ dist
 *.bak
 
 #IntelliJ file
-.idea/
-
+.idea/sonarlint/
+*.iml
 #lock
 package-lock.json
+
